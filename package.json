@@ -31,7 +31,11 @@
     "jsqr": "^1.1.1",
     "webdav": "^1.5.3",
     "dropbox": "^4.0.9",
-    "blowfish": "^1.0.1"
+    "blowfish": "^1.0.1",
+    "otplib": "^10.0.1",
+    "@types/otplib": "^7.0.0",
+    "@types/firefox": "^0.0.29",
+    "@types/firefox-webext-browser": "^58.0.3"
   },
   "dependencies": {}
 }
