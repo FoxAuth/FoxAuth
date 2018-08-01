@@ -84,4 +84,4 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ```
 
-See more at our wiki.
+See more at our [wiki](https://github.com/FoxAuth/FoxAuth/wiki].
