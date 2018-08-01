@@ -1,21 +1,34 @@
 #!/usr/bin/bash
 
-# Extension build script
+# Firefox extension build script
 # Syntax:
 #   build.sh
 
+# Only firefox is supported
 PLATFORM=firefox
 
+# Delete old files
 echo "Removing old build files..."
 rm -rf build
 rm -rf $PLATFORM
 
+# Check code style
 echo "Checking code style..."
 gts check
 
+# Compile typescript
 echo "Compiling..."
 npm run compile
 mkdir $PLATFORM
 
-cp -r build src/css src/icons src/images src/js src/_locales LICENSE src/options src/views $PLATFORM
-cp manifest-$PLATFORM.json $PLATFORM/manifest.json
+# Build
+cp -r scripts \
+      src/css \
+      src/icons \
+      src/_locales \
+      src/options \
+      src/popup.html \
+      LICENSE \
+      $PLATFORM
+
+cp src/manifest.json $PLATFORM/manifest.json

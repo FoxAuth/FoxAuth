@@ -5,10 +5,11 @@
     "target": "es6",
     "strict": true,
     "rootDir": "src",
-    "outDir": "build"
+    "outDir": "scripts"
   },
   "include": [
-    "src/js/*.ts"
+    "src/typescript/*.ts",
+    "src/options/options.ts"
   ],
   "exclude": [
     "node_modules"

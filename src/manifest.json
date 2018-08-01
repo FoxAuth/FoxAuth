@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "__MSG_extName__",
   "short_name": "__MSG_extShortName__",
-  "homepage_url": "https://github.com/foxauth/foxauth/",
+  "homepage_url": "https://github.com/FoxAuth/FoxAuth/",
   "version": "0.1.0",
   "default_locale": "en",
   "description": "__MSG_extDesc__",
@@ -19,11 +19,11 @@
   },
   "browser_action": {
     "default_icon": {
-      "19": "images/icon19.png",
-      "38": "images/icon38.png"
+      "19": "icons/icon19.png",
+      "38": "icons/icon38.png"
     },
     "default_title": "__MSG_extShortName__",
-    "default_popup": "views/popup.html"
+    "default_popup": "popup.html"
   },
   "options_ui": {
     "page": "options/options.html",
@@ -31,31 +31,7 @@
   },
   "background": {
     "scripts": [
-      "js/jsqrcode/grid.js",
-      "js/jsqrcode/version.js",
-      "js/jsqrcode/detector.js",
-      "js/jsqrcode/formatinf.js",
-      "js/jsqrcode/errorlevel.js",
-      "js/jsqrcode/bitmat.js",
-      "js/jsqrcode/datablock.js",
-      "js/jsqrcode/bmparser.js",
-      "js/jsqrcode/datamask.js",
-      "js/jsqrcode/rsdecoder.js",
-      "js/jsqrcode/gf256poly.js",
-      "js/jsqrcode/gf256.js",
-      "js/jsqrcode/decoder.js",
-      "js/jsqrcode/qrcode.js",
-      "js/jsqrcode/findpat.js",
-      "js/jsqrcode/alignpat.js",
-      "js/jsqrcode/databr.js",
-      "js/md5.js",
-      "js/aes.js",
-      "js/sha.js",
-      "js/qrcode.js",
-      "build/models/encryption.js",
-      "build/models/otp.js",
-      "build/models/storage.js",
-      "build/background.js"
+      "scripts/background.js"
     ]
   },
   "permissions": [
@@ -68,10 +44,6 @@
   "optional_permissions": [
     "clipboardWrite",
     "https://*.dropboxapi.com/*"
-  ],
-  "web_accessible_resources": [
-    "views/qr.html",
-    "images/scan.gif"
   ],
   "content_security_policy": "script-src 'self'; font-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; connect-src https://*.dropboxapi.com; default-src 'none'"
 }

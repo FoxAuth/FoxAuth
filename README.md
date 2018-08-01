@@ -29,16 +29,18 @@
 
 FoxAuth is a [TOTP](https://wikipedia.org/wiki/Time-based_One-time_Password_algorithm) browser client with autofill support for __FireFox__ and __FireFox Android__ (_FireFox 57.0+ is required_)
 
+See more at our [wiki](https://github.com/FoxAuth/FoxAuth/wiki).
+
 ## Features
 
-- Import / Export
+- Import / Export keystore list
 - Password based encryption
 - Dropbox backup
 - QR Code support
 
 ## Building
 
-[Node.js](https://nodejs.org/) greater than v8.0 is required.
+[Node.js](https://nodejs.org/) greater than __v8.0__ is required.
 
 ```bash
 # Install build tools
@@ -83,5 +85,3 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ```
-
-See more at our [wiki](https://github.com/FoxAuth/FoxAuth/wiki].

@@ -5,13 +5,14 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "check": "gts check",
-    "clean": "gts clean",
+    "clean": "gts clean && rm -rf firefox",
     "compile": "gts clean && tsc -p .",
     "fix": "gts fix",
     "prepare": "npm run compile",
     "pretest": "npm run compile",
     "posttest": "npm run check",
-    "build": "bash scripts/build.sh"
+    "build": "bash build.sh",
+    "package-debug": "npm run build && cd firefox; zip plugin.zip *"
   },
   "repository": {
     "type": "git",
@@ -24,8 +25,8 @@
   },
   "homepage": "https://github.com/FoxAuth/FoxAuth#readme",
   "devDependencies": {
-    "gts": "^0.5.2",
-    "typescript": "^2.6.1"
+    "gts": "^0.8.0",
+    "typescript": "^2.9.2"
   },
   "dependencies": {}
 }
