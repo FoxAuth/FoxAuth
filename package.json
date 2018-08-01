@@ -31,7 +31,7 @@
     "jsqr": "^1.1.1",
     "webdav": "^1.5.3",
     "dropbox": "^4.0.9",
-    "blowfish": "^0.1.0"
+    "blowfish": "^1.0.1"
   },
   "dependencies": {}
 }
