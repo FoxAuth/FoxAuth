@@ -1,0 +1,14 @@
+{
+  "extName": {
+    "message": "FoxAuth Authenticator",
+    "description": "Extension Name"
+  },
+  "extShortName": {
+    "message": "FoxAuth",
+    "description": "Extension Name"
+  },
+  "extDesc": {
+    "message": "A Firefox authenticator that can autofill TOTP codes with Firefox Android support.",
+    "description": "Extension Description"
+  }
+}

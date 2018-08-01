@@ -1,0 +1,9 @@
+language: node_js
+
+node_js:
+  - "node"
+
+script:
+  - "gts check"
+  - "npm i -g lintspaces-cli && lintspaces -nt -d 'spaces' -i 'js-comments' src/* src/options/* src/views/* manifest-*.json src/css/*.css src/js/*"
+  - "npm install --only=production addons-linter && npm run firefox && addons-linter firefox"

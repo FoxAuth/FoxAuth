@@ -1,0 +1,31 @@
+{
+  "name": "foxauth",
+  "version": "0.1.0",
+  "description": "A Firefox authenticator that can autofill TOTP codes with Firefox Android support.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "check": "gts check",
+    "clean": "gts clean",
+    "compile": "gts clean && tsc -p .",
+    "fix": "gts fix",
+    "prepare": "npm run compile",
+    "pretest": "npm run compile",
+    "posttest": "npm run check",
+    "build": "bash scripts/build.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FoxAuth/FoxAuth.git"
+  },
+  "author": "FoxAuth Organization",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/FoxAuth/FoxAuth/issues"
+  },
+  "homepage": "https://github.com/FoxAuth/FoxAuth#readme",
+  "devDependencies": {
+    "gts": "^0.5.2",
+    "typescript": "^2.6.1"
+  },
+  "dependencies": {}
+}
