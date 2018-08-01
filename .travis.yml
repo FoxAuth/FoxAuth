@@ -16,3 +16,4 @@ script:
   - lintspaces -nt -d 'spaces' -i 'js-comments' src/options/* src/css/*.css src/typescript/* src/manifest.json
   - npm run build
   - addons-linter firefox
+  - npm run package
