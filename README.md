@@ -1,4 +1,4 @@
-# FoxAuth Firefox TOTP Plugin
+# FoxAuth Firefox TOTP Extension
 
 <div align='center'>
 <img width='20%' height='20%' src='foxauth.svg'></img><p>
@@ -25,11 +25,9 @@
 </a>
 </div>
 
-> 📝 This repository contains the code of __FoxAuth Firefox(Android) TOTP client plugin__
-
 ## Introduction
 
-FoxAuth is a [TOTP](https://wikipedia.org/wiki/Time-based_One-time_Password_algorithm) browser plugin client with autofill support for __FireFox__ and __FireFox Android__ (_FireFox 57.0+ is required_)
+FoxAuth is a [TOTP](https://wikipedia.org/wiki/Time-based_One-time_Password_algorithm) browser client with autofill support for __FireFox__ and __FireFox Android__ (_FireFox 57.0+ is required_)
 
 ## Features
 
@@ -85,3 +83,5 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ```
+
+See more at our wiki.
