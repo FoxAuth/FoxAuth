@@ -12,8 +12,8 @@
 <img src="https://img.shields.io/travis/FoxAuth/FoxAuth.svg?style=flat-square" alt="TravisCI" />
 </a>
 ·
-<a href="https://gitter.im/FoxAuth/FoxAuth/">
-<img src="https://img.shields.io/gitter/room/FoxAuth/FoxAuth.svg?style=flat-square" alt="chatOnGitter" /></a>
+<a href="https://t.me/joinchat/Flgxfkm5Q2fvKtiyvYo3vA">
+<img src="https://img.shields.io/badge/Telegram-join%20chat-yellow.svg?style=flat-square" alt="chatOnTelegram" /></a>
 ·
 <a href="https://github.com/FoxAuth/FoxAuth/">
 <img src="https://img.shields.io/github/languages/code-size/FoxAuth/FoxAuth.svg?style=flat-square" alt="codesize" />
