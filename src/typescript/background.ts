@@ -1,4 +1,3 @@
-declare var require: NodeRequire;
 const mdui = require('../libs/mdui.min.js');
 const $$ = mdui.JQ;
 
