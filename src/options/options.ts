@@ -1,1 +1,1 @@
-mdui.snackbar("WIP");
+mdui.snackbar('WIP');

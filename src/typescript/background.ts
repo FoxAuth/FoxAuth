@@ -3,4 +3,4 @@ const $$ = mdui.JQ;
 
 document.onclick = () => mdui.alert('Foooooo');
 
-console.log(browser.i18n.getMessage("extName") + ': Plugin Hello');
+console.log(browser.i18n.getMessage('extName') + ': Plugin Hello');
