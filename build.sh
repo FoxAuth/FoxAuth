@@ -28,6 +28,7 @@ cp -r scripts \
       src/_locales \
       src/options \
       src/popup.html \
+      src/libs \
       LICENSE \
       $PLATFORM
 

@@ -12,7 +12,7 @@
     "pretest": "npm run compile",
     "posttest": "npm run check",
     "build": "bash build.sh",
-    "package-debug": "npm run build && cd firefox; zip plugin.zip *"
+    "package": "npm run build && cd firefox; zip plugin.zip *"
   },
   "repository": {
     "type": "git",

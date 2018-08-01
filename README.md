@@ -58,6 +58,22 @@ npm run build
 
 Windows users can also use [Msys2](http://www.msys2.org) or [CygWin](https://www.cygwin.com/) to build
 
+## Development
+
+```bash
+# Get the web-ext tool
+npm install --global web-ext
+
+# Run plugin in your browser
+web-ext run
+
+# Build extension
+web-ext build
+
+# Publish extension
+web-ext sign --api-key=$AMO_JWT_ISSUER --api-secret=$AMO_JWT_SECRET
+```
+
 ## Maintainer
 
 - [duangsuse](https://github.com/duangsuse) code helper
