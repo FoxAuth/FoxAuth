@@ -33,7 +33,7 @@
   },
   "Blacklist": {
     "message": "No autofill for domain name",
-    "description": "No autofill for domain name"
+    "description": "No autofill for domain names"
   },
   "AccountsList": {
     "message": "Accounts List",
