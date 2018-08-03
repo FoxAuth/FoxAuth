@@ -1,31 +1,46 @@
-"use strict";
+'use strict';
+
+// Must not be null...
+var browser = browser || null;
+var mdui = mdui || null;
 
 const _M = browser.i18n.getMessage;
 const _L = console.log;
 
-var $$ = mdui.JQ;
+let $$ = mdui.JQ;
 
 // This page is for
 // + Import/Export settings
-// + Encryption setup
+// + Encrypted import export
 // + No autofill blacklist
 // + DropBox WebDav Backup
 
 $$('#title').text(_M('extName'));
 
+/**
+ * Make a excited chain call function
+ *
+ * @param {Function} fn function to 2nd chain call
+ * @param {Function} inner fuction to 1st chain call
+ */
 function chian(fn, inner) {
-    return (function (o) {
+    return ((o) => {
         return fn(inner(o));
     });
 }
 
+/**
+ * Make a mdui tip content object
+ *
+ * @param {String} m message
+ */
 function _C(m) {
     return {
         content: m
-    }
+    };
 }
 
-var _Tip = chian(_C, _M);
+let _Tip = chian(_C, _M);
 
 // Setup tooltips
 new mdui.Tooltip('#title', _Tip('Version'));
@@ -33,25 +48,25 @@ new mdui.Tooltip('#export', _Tip('ImportExport'));
 new mdui.Tooltip('#backup', _Tip('Backup'));
 new mdui.Tooltip('#crypt', _Tip('Crypt'));
 
-// should use dark style from 19:00 to 6:00
+// Should use dark style from 19:00 to 6:00
 function shouldApplyDarkStyle() {
-    var conf = localStorage['night'];
+    let conf = localStorage['night'];
     if (conf != null) {
         if (conf == false.toString())
             return false;
         else return true;
     }
-    var dh = new Date();
-    var nightBegin = localStorage['nightBegin'] || 19;
-    var nightEnd = localStorage['nightEnd'] || 6;
+    let dh = new Date();
+    let nightBegin = localStorage['nightBegin'] || 19;
+    let nightEnd = localStorage['nightEnd'] || 6;
     return dh.getHours() >= nightBegin && dh.getHours() <= 24 || dh.getHours() <= nightEnd;
 }
 const MDUI_DARK_CLASS = 'mdui-theme-layout-dark';
 
-// call this to apply dark style automatically
+// Call this to apply dark style automatically
 function autodark() {
-    var body = mdui.JQ('body')[0];
-    var cls = body.classList;
+    let body = mdui.JQ('body')[0];
+    let cls = body.classList;
     if (shouldApplyDarkStyle())
         cls.add(MDUI_DARK_CLASS);
     else
@@ -121,10 +136,22 @@ function backup(_import) {
     return false;
 }
 
+/**
+ * Add onclick listener
+ *
+ * @param {String} selector CSS selector
+ * @param {Function} fun function to execute when clicked
+ */
 function _K(selector, fun) {
     return $$(selector).on('click', fun);
 }
 
+/**
+ * Wrap a one-arity function to zero-arity function
+ *
+ * @param {Function} fun wrapped function
+ * @param {Object} saved_arg1 arg1 to pass
+ */
 function _S(fun, saved_arg1) {
     return (function () {
         return fun(saved_arg1);

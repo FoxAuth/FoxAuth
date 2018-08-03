@@ -1,1 +1,2 @@
-// Script for auto-filling and QR scan feature
+'use strict';
+// Script for auto filling

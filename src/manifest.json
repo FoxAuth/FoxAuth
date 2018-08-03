@@ -31,16 +31,11 @@
   },
   "background": {
     "scripts": [
-      "scripts/background.js"
+      "scripts/backgroud.js"
     ]
   },
-  "content_scripts": [{
-    "matches": ["<all_urls>"],
-    "js": ["scripts/page.js"]
-  }],
   "permissions": [
     "activeTab",
-    "<all_urls>",
     "clipboardWrite",
     "storage",
     "identity",

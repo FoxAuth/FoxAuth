@@ -45,7 +45,7 @@
   },
   "QRScan": {
     "message": "Scan QR Code",
-    "description": "Scan QR"
+    "description": "Scan QR Code"
   },
   "ManualImport": {
     "message": "Manual Import",
@@ -57,30 +57,30 @@
   },
   "DescImportExport": {
     "message": "Import your TOTP accounts from a list or export them to a list and download them",
-    "description": "Desc: Import Export"
+    "description": "Desc: Import Export list"
   },
   "DescCryptoImportExport": {
     "message": "Import your encrypted TOTP accounts from a list with a password or export them to a list with blowfish encryption and download them",
-    "description": "Desc: Crypt IE"
+    "description": "Desc: Crypt Imprt Export"
   },
   "DescBlacklist": {
     "message": "Do not auto-complete for this websites: e.g. google.com",
-    "description": "Desc: Blacklist"
+    "description": "Desc: Blacklist Configure"
   },
   "DescWebDav": {
     "message": "Import or export your accounts from WebDav",
-    "description": "Desc: Wdav"
+    "description": "Desc: WebDav / Dropbox backup / import"
   },
   "doImport": {
     "message": "Import",
-    "description": "Button import"
+    "description": "Button: import"
   },
   "doExport": {
     "message": "Export",
-    "description": "Button export"
+    "description": "Button: export"
   },
   "doConfig": {
     "message": "Configure",
-    "description": "Button config"
+    "description": "Button: config"
   }
 }

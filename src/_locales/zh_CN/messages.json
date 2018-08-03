@@ -45,7 +45,7 @@
   },
   "QRScan": {
     "message": "扫描二维码",
-    "description": "Scan QR"
+    "description": "Scan QR code"
   },
   "ManualImport": {
     "message": "手动导入",
@@ -61,26 +61,26 @@
   },
   "DescCryptoImportExport": {
     "message": "用密码从你的文件中导入已经加密的帐号列表，或者将他们导出到加密的列表，并下载到本地",
-    "description": "Desc: Crypt IE"
+    "description": "Desc: Crypt Import Export"
   },
   "DescBlacklist": {
     "message": "不要为这些站点自动填充二重验证号码，例如，google.com",
-    "description": "Desc: Blacklist"
+    "description": "Desc: Blacklist configure"
   },
   "DescWebDav": {
     "message": "从 WebDav 或者 Dropbox 导入 / 将配置导出到WebDav 或 Dropbox",
-    "description": "Desc: Wdav"
+    "description": "Desc: WebDav / Dropbox import / export"
   },
   "doImport": {
     "message": "导入",
-    "description": "Button import"
+    "description": "Button: import"
   },
   "doExport": {
     "message": "导出",
-    "description": "Button export"
+    "description": "Button: export"
   },
   "doConfig": {
     "message": "配置",
-    "description": "Button config"
+    "description": "Button: config"
   }
 }
