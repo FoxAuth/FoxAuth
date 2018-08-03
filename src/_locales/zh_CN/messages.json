@@ -56,31 +56,31 @@
     "description": "Open options menu"
   },
   "DescImportExport": {
-    "message": "Import your TOTP accounts from a list or export them to a list and download them",
+    "message": "从你的文件中导入帐号列表，或者将他们导出到列表，并下载到本地",
     "description": "Desc: Import Export"
   },
   "DescCryptoImportExport": {
-    "message": "Import your encrypted TOTP accounts from a list with a password or export them to a list with blowfish encryption and download them",
+    "message": "用密码从你的文件中导入已经加密的帐号列表，或者将他们导出到加密的列表，并下载到本地",
     "description": "Desc: Crypt IE"
   },
   "DescBlacklist": {
-    "message": "Do not auto-complete for this websites: e.g. google.com",
+    "message": "不要为这些站点自动填充二重验证号码，例如，google.com",
     "description": "Desc: Blacklist"
   },
   "DescWebDav": {
-    "message": "Import or export your accounts from WebDav",
+    "message": "从 WebDav 或者 Dropbox 导入 / 将配置导出到WebDav 或 Dropbox",
     "description": "Desc: Wdav"
   },
   "doImport": {
-    "message": "Import",
+    "message": "导入",
     "description": "Button import"
   },
   "doExport": {
-    "message": "Export",
+    "message": "导出",
     "description": "Button export"
   },
   "doConfig": {
-    "message": "Configure",
+    "message": "配置",
     "description": "Button config"
   }
 }
