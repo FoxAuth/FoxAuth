@@ -1,9 +1,10 @@
 {
   "name": "foxauth",
   "version": "0.1.0",
-  "description": "A Firefox authenticator that can autofill TOTP codes with Firefox Android support.",
+  "description": "A Firefox authenticator that can autofill TOTP codes with Firefox Android support",
   "scripts": {
     "build": "bash build",
+    "check": "eslint src/scripts/*.js src/options/*.js",
     "clean": "rm -rf firefox",
     "package": "npm run build && cd firefox; zip -r plugin.zip *"
   },

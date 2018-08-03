@@ -15,7 +15,7 @@ $$('#title').text(_M('extName'));
 
 function chian(fn, inner) {
     return (function (o) {
-        return fn(inner(o))
+        return fn(inner(o));
     });
 }
 

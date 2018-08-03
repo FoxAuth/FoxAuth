@@ -1,16 +1,21 @@
 # FoxAuth Firefox TOTP Extension
 
 <div align='center'>
-  <img width='20%' height='20%' src='foxauth.svg'></img><p>
+  <img width='20%' height='20%' src='foxauth.svg'></img>
+  <p>
   <strong>A Firefox authenticator that can autofill TOTP codes with Firefox Android support</strong>
   <br>
   <br>
-    <a href='https://addons.mozilla.org/firefox/addon/foxauth'>
+    <a href='https://addons.mozilla.org/firefox/addon/foxauth/'>
       <img src='https://img.shields.io/amo/v/foxauth.svg?style=flat-square' alt='download' />
     </a>
   ·
+    <a href="https://travis-ci.org/FoxAuth/FoxAuth/">
+      <img src="https://img.shields.io/travis/FoxAuth/FoxAuth.svg?style=flat-square" alt="chatOnTelegram" />
+    </a>
+  ·
     <a href="https://t.me/joinchat/Flgxfkm5Q2fvKtiyvYo3vA">
-      <img src="https://img.shields.io/badge/Telegram-join%20chat-yellow.svg?style=flat-square" alt="chatOnTelegram" />
+      <img src="https://img.shields.io/badge/telegram-join_chat-yellow.svg?style=flat-square" alt="chatOnTelegram" />
     </a>
   ·
     <a href="https://github.com/FoxAuth/FoxAuth/">
@@ -25,21 +30,21 @@
 
 ## Introduction
 
-FoxAuth is a [TOTP](https://wikipedia.org/wiki/Time-based_One-time_Password_algorithm) browser client with autofill support for __FireFox__ and __FireFox Android__ (_FireFox 57.0+ is required_)
+FoxAuth is an [(T)OTP](https://wikipedia.org/wiki/Time-based_One-time_Password_algorithm) browser client with autofill support for __FireFox__ and __FireFox Android__ (_FireFox 57.0+ is required_)
 
-See more at our [wiki](https://github.com/FoxAuth/FoxAuth/wiki).
+> __OTP__ refers to __One-Time Password__. See more at our [wiki](https://github.com/FoxAuth/FoxAuth/wiki).
 
 ## Features
 
-- OTP Client
-- Firefox Android support
-- Import / Export accounts list
-- Password based account list encryption
-- Autofill 2fa form
-- Password based encryption
-- Dropbox / WebDav backup
-- QR Code share / import support
-- Manual share / import
+- OTP Client, supports __TOTP__ and __Conuter-based OTP__
+- __Firefox Android__ support
+- __Import / Export__ accounts list
+- Password based account list encrypted __import / export__
+- Domain based __autofill black-list__
+- Autofill __2 factor authenticator__ form
+- __Dropbox / WebDav__ backup
+- QR Code __export / import__ support
+- Manual account __import / export__ support
 - Material Design
 
 ## Building
@@ -49,6 +54,9 @@ See more at our [wiki](https://github.com/FoxAuth/FoxAuth/wiki).
 ```bash
 # Install development dependencies
 npm install
+
+# Install check tools
+npm install -g eslint addons-linter # lintspaces-cli
 
 # Build
 npm run build
@@ -71,15 +79,19 @@ web-ext run
 # Build extension
 web-ext build
 
+# Setup your issuer and secret here, or set in travis
+export AMO_JWT_ISSUER=your_issuer
+export AMO_JWT_SECRET=your_secret
+
 # Publish extension
 web-ext sign --api-key=$AMO_JWT_ISSUER --api-secret=$AMO_JWT_SECRET
 ```
 
 ## Maintainer
 
-- [duangsuse](https://github.com/duangsuse) code helper
-- [james58899](https://github.com/james58899) code helper
-- [Rictusempra](https://github.com/Rictusempra) creator
+- [duangsuse](https://github.com/duangsuse)__@GitHub__ code helper 📝
+- [james58899](https://github.com/james58899)__@GitHub__ code helper 📝
+- [Rictusempra](https://github.com/Rictusempra)__@GitHub__ creator 💡
 
 ## License
 

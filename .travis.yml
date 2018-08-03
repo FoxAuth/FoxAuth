@@ -1,18 +1,41 @@
+# Node js managed firefox ext. project
 language: node_js
 
 node_js:
-  - 8
+  - "8"
+
+stages:
+  - prepare-ls
+  - prepare-eslint
+  - prepare-addonslint
+  - check-spaces
+  - check-ecmascript
+  - check-addons
+  - deploy
+  - clean
 
 cache:
   directories:
     - node_modules
 
-before_script:
-  - npm i lintspaces-cli
-  - npm i --only=production addons-linter
+jobs:
+  include:
+    - stage: prepare-ls
+      script: npm i lintspaces-cli
+    - stage: prepare-eslint
+      script: npm i eslint
+    - stage: prepare-addonslint
+      script: npm i --only=production addons-linter
+    - stage: check-spaces
+      script: lintspaces -nt -d 'spaces' -i 'js-comments' src/options/* src/css/*.css src/scripts/*.js src/libs/*.js src/manifest.json
+    - stage: check-ecmascript
+      script: npm run check
+    - stage: check-addons
+      script: addons-linter firefox
+    - stage: deploy
+      script:
+        - npm run build
+        - npm run package
+    - stage: clean
+      script: npm run clean
 
-script:
-  - lintspaces -nt -d 'spaces' -i 'js-comments' src/options/* src/css/*.css src/scripts/*.js src/libs/*.js src/manifest.json
-  - npm run build
-  - addons-linter firefox
-  - npm run package

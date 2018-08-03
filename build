@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-# Firefox extension build script
+# Firefox FoxAuth extension build script
 # Usage:
 #   build.sh
 
