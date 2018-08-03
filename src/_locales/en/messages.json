@@ -26,5 +26,61 @@
   "Crypt": {
     "message": "Encrypted import or export",
     "description": "Encrypt Accounts and Export"
+  },
+  "WebDavExport": {
+    "message": "Export or Import from WebDav/Dropbox",
+    "description": "Export or Import from Boxes"
+  },
+  "Blacklist": {
+    "message": "No autofill for domain name",
+    "description": "No autofill for domain name"
+  },
+  "AccountsList": {
+    "message": "Accounts List",
+    "description": "Accounts list"
+  },
+  "QRShare": {
+    "message": "Share by QR Code",
+    "description": "Share by QR code"
+  },
+  "QRScan": {
+    "message": "Scan QR Code",
+    "description": "Scan QR"
+  },
+  "ManualImport": {
+    "message": "Manual Import",
+    "description": "Manual import"
+  },
+  "Options": {
+    "message": "Open Options Menu",
+    "description": "Open options menu"
+  },
+  "DescImportExport": {
+    "message": "Import your TOTP accounts from a list or export them to a list and download them",
+    "description": "Desc: Import Export"
+  },
+  "DescCryptoImportExport": {
+    "message": "Import your encrypted TOTP accounts from a list with a password or export them to a list with blowfish encryption and download them",
+    "description": "Desc: Crypt IE"
+  },
+  "DescBlacklist": {
+    "message": "Do not auto-complete for this websites: e.g. google.com",
+    "description": "Desc: Blacklist"
+  },
+  "DescWebDav": {
+    "message": "Import or export your accounts from WebDav",
+    "description": "Desc: Wdav"
+  },
+  "doImport": {
+    "message": "Import",
+    "description": "Button import"
+  },
+  "doExport": {
+    "message": "Export",
+    "description": "Button export"
+  },
+  "doConfig": {
+    "message": "Configure",
+    "description": "Button config"
   }
 }

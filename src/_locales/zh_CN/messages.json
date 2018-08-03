@@ -26,5 +26,61 @@
   "Crypt": {
     "message": "加密导入/导出",
     "description": "Encrypt Accounts and Export"
+  },
+  "WebDavExport": {
+    "message": "从 WebDav/Dropbox 导入导出",
+    "description": "Export or Import from Boxes"
+  },
+  "Blacklist": {
+    "message": "不使用自动填充的域名",
+    "description": "No autofill for domain name"
+  },
+  "AccountsList": {
+    "message": "帐号列表",
+    "description": "Accounts list"
+  },
+  "QRShare": {
+    "message": "分享二维码",
+    "description": "Share by QR code"
+  },
+  "QRScan": {
+    "message": "扫描二维码",
+    "description": "Scan QR"
+  },
+  "ManualImport": {
+    "message": "手动导入",
+    "description": "Manual import"
+  },
+  "Options": {
+    "message": "打开设置菜单",
+    "description": "Open options menu"
+  },
+  "DescImportExport": {
+    "message": "Import your TOTP accounts from a list or export them to a list and download them",
+    "description": "Desc: Import Export"
+  },
+  "DescCryptoImportExport": {
+    "message": "Import your encrypted TOTP accounts from a list with a password or export them to a list with blowfish encryption and download them",
+    "description": "Desc: Crypt IE"
+  },
+  "DescBlacklist": {
+    "message": "Do not auto-complete for this websites: e.g. google.com",
+    "description": "Desc: Blacklist"
+  },
+  "DescWebDav": {
+    "message": "Import or export your accounts from WebDav",
+    "description": "Desc: Wdav"
+  },
+  "doImport": {
+    "message": "Import",
+    "description": "Button import"
+  },
+  "doExport": {
+    "message": "Export",
+    "description": "Button export"
+  },
+  "doConfig": {
+    "message": "Configure",
+    "description": "Button config"
   }
 }

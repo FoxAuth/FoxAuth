@@ -58,6 +58,24 @@ function autodark() {
         cls.remove(MDUI_DARK_CLASS);
 }
 
+$$('#it').text(_M('ImportExport'));
+$$('#et').text(_M('Crypt'));
+$$('#at').text(_M('Blacklist'));
+$$('#wt').text(_M('WebDavExport'));
+
+$$('#is').text(_M('DescImportExport'));
+$$('#es').text(_M('DescCryptoImportExport'));
+$$('#as').text(_M('DescBlacklist'));
+$$('#ws').text(_M('DescWebDav'));
+
+$$('#ii').text(_M('doImport'));
+$$('#ie').text(_M('doExport'));
+$$('#ei').text(_M('doImport'));
+$$('#ee').text(_M('doExport'));
+$$('#ac').text(_M('doConfig'));
+$$('#wi').text(_M('doImport'));
+$$('#we').text(_M('doExport'));
+
 autodark();
 
 function ieM(selector) {
