@@ -27,11 +27,11 @@ jobs:
     - stage: prepare-addonslint
       script: npm i --only=production addons-linter
     - stage: check-spaces
-      script: lintspaces -nt -d 'spaces' -i 'js-comments' src/options/* src/css/*.css src/scripts/*.js src/libs/*.js src/manifest.json
+      script: ./node_modules/.bin/lintspaces -nt -d 'spaces' -i 'js-comments' src/options/* src/css/*.css src/scripts/*.js src/libs/*.js src/manifest.json
     - stage: check-ecmascript
-      script: npm run check
+      script: npm run check PATH=$PATH:./node_modules/.bin/
     - stage: check-addons
-      script: addons-linter firefox
+      script: ./node_modules/.bin/addons-linter firefox
     - stage: deploy
       script:
         - npm run build
