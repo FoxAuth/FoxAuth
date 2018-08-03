@@ -58,6 +58,7 @@ function autodark() {
         cls.remove(MDUI_DARK_CLASS);
 }
 
+// Bind translations
 $$('#it').text(_M('ImportExport'));
 $$('#et').text(_M('Crypt'));
 $$('#at').text(_M('Blacklist'));
@@ -78,36 +79,43 @@ $$('#we').text(_M('doExport'));
 
 autodark();
 
+// importExport menu
 function ieM(selector) {
     _L('Run ieM');
     return;
 }
 
+// importExport
 function importExport(_import) {
     _L('Run importExport');
-    return fasle;
+    return false;
 }
 
+// encrypt ie menu
 function eM(selector) {
     _L('Run eM');
     return;
 }
 
+// encrypted import export
 function encrypted(_import) {
     _L('Run encrypted importExport');
     return false;
 }
 
+// blacklist options
 function blackOptions() {
     _L('Run options blacklist');
     return false;
 }
 
+// backup menu
 function bM(selector) {
     _L('Run backup menu');
     return;
 }
 
+// run backup rescue
 function backup(_import) {
     _L('Run backup');
     return false;
@@ -123,11 +131,19 @@ function _S(fun, saved_arg1) {
     });
 }
 
+// Bind events
 var bML = _S(bM, '#backup');
 var eML = _S(eM, '#crypt');
 var ieML = _S(ieM, '#export');
 
-// Bind events
 _K('#export', ieML);
 _K('#backup', bML);
 _K('#crypt', eML);
+
+_K('#ii', _S(importExport, true));
+_K('#ie', _S(importExport, false));
+_K('#ei', _S(encrypted, true));
+_K('#ee', _S(encrypted, false));
+_K('#ac', blackOptions);
+_K('#wi', _S(backup, true));
+_K('#we', _S(backup, false));
