@@ -1,0 +1,18 @@
+language: node_js
+
+node_js:
+  - 8
+
+cache:
+  directories:
+    - node_modules
+
+before_script:
+  - npm i lintspaces-cli
+  - npm i --only=production addons-linter
+
+script:
+  - lintspaces -nt -d 'spaces' -i 'js-comments' src/options/* src/css/*.css src/scripts/*.js src/libs/*.js src/manifest.json
+  - npm run build
+  - addons-linter firefox
+  - npm run package
