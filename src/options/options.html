@@ -16,19 +16,34 @@
 <body class="mdui-theme-primary-green mdui-theme-accent-pink mdui-text-color-white">
     <div class="mdui-appbar">
         <div class="mdui-toolbar mdui-color-theme">
-            <a id="title" class="mdui-text-color-white mdui-typo-headline">Authenticator</a>
+            <a id="title" class="mdui-text-color-white mdui-typo-headline mdui-hidden-xs">Authenticator</a>
+            <a class="mdui-text-color-white mdui-typo-headline mdui-hidden-sm-up">FoxAuth</a>
             <div class="mdui-toolbar-spacer"></div>
             <a id="export" class="mdui-text-color-white mdui-btn mdui-btn-icon">
-                <i class="mdui-icon material-icons">import_export</i>
+                <i class="mdui-icon material-icons" onclick="importExport()">import_export</i>
             </a>
             <a id="backup" class="mdui-text-color-white mdui-btn mdui-btn-icon">
-                <i class="mdui-icon material-icons">backup</i>
+                <i class="mdui-icon material-icons" onclick="backup()">backup</i>
             </a>
             <a id="crypt" class="mdui-text-color-white mdui-btn mdui-btn-icon">
-                <i class="mdui-icon material-icons">lock</i>
+                <i class="mdui-icon material-icons" onclick="encrypted()">lock</i>
             </a>
         </div>
     </div>
+    <ul class="mdui-list">
+        <li class="mdui-list-item">
+            <div id="text_import" class="mdui-typo">Import Export Setup</div>
+        </li>
+        <li class="mdui-list-item">
+            <div id="text_es" class="mdui-typo">Encrypted Import Export</div>
+        </li>
+        <li class="mdui-list-item">
+            <div id="text_blacklist" class="mdui-typo">Autofill Blacklist Setup</div>
+        </li>
+        <li class="mdui-list-item">
+            <div id="text_webdav" class="mdui-typo">WebDav/Dropbox Backup/Import</div>
+        </li>
+    </ul>
     <script src="options.js"></script>
 </body>
 
