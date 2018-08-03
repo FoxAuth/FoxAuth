@@ -79,29 +79,55 @@ $$('#we').text(_M('doExport'));
 autodark();
 
 function ieM(selector) {
+    _L('Run ieM');
     return;
 }
 
 function importExport(_import) {
+    _L('Run importExport');
     return fasle;
 }
 
 function eM(selector) {
+    _L('Run eM');
     return;
 }
 
 function encrypted(_import) {
+    _L('Run encrypted importExport');
     return false;
 }
 
 function blackOptions() {
+    _L('Run options blacklist');
     return false;
 }
 
 function bM(selector) {
+    _L('Run backup menu');
     return;
 }
 
 function backup(_import) {
+    _L('Run backup');
     return false;
 }
+
+function _K(selector, fun) {
+    return $$(selector).on('click', fun);
+}
+
+function _S(fun, saved_arg1) {
+    return (function () {
+        return fun(saved_arg1);
+    });
+}
+
+var bML = _S(bM, '#backup');
+var eML = _S(eM, '#crypt');
+var ieML = _S(ieM, '#export');
+
+// Bind events
+_K('#export', ieML);
+_K('#backup', bML);
+_K('#crypt', eML);
