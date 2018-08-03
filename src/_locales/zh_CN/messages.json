@@ -33,7 +33,7 @@
   },
   "Blacklist": {
     "message": "不使用自动填充的域名",
-    "description": "No autofill for domain name"
+    "description": "No autofill for domain names"
   },
   "AccountsList": {
     "message": "帐号列表",

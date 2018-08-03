@@ -32,7 +32,7 @@
     "description": "Export or Import from Boxes"
   },
   "Blacklist": {
-    "message": "No autofill for domain name",
+    "message": "No autofill for domain names",
     "description": "No autofill for domain names"
   },
   "AccountsList": {
