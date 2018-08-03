@@ -3,15 +3,8 @@
   "version": "0.1.0",
   "description": "A Firefox authenticator that can autofill TOTP codes with Firefox Android support.",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "check": "gts check",
-    "clean": "gts clean && rm -rf firefox",
-    "compile": "gts clean && tsc -p .",
-    "fix": "gts fix",
-    "prepare": "npm run compile",
-    "pretest": "npm run compile",
-    "posttest": "npm run check",
-    "build": "bash build.sh",
+    "build": "bash build",
+    "clean": "rm -rf firefox",
     "package": "npm run build && cd firefox; zip -r plugin.zip *"
   },
   "repository": {
@@ -24,19 +17,6 @@
     "url": "https://github.com/FoxAuth/FoxAuth/issues"
   },
   "homepage": "https://github.com/FoxAuth/FoxAuth#readme",
-  "devDependencies": {
-    "gts": "^0.8.0",
-    "typescript": "^2.9.2",
-    "mdui": "^0.4.1",
-    "jsqr": "^1.1.1",
-    "webdav": "^1.5.3",
-    "dropbox": "^4.0.9",
-    "blowfish": "^1.0.1",
-    "otplib": "^10.0.1",
-    "@types/otplib": "^7.0.0",
-    "@types/firefox": "^0.0.29",
-    "@types/firefox-webext-browser": "^58.0.3",
-    "@types/node": "^10.5.5"
-  },
+  "devDependencies": {},
   "dependencies": {}
 }

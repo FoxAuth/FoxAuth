@@ -31,15 +31,20 @@
   },
   "background": {
     "scripts": [
-      "scripts/typescript/background.js"
+      "scripts/background.js"
     ]
   },
+  "content_scripts": [{
+    "matches": ["<all_urls>"],
+    "js": ["scripts/page.js"]
+  }],
   "permissions": [
     "activeTab",
     "<all_urls>",
     "clipboardWrite",
     "storage",
-    "identity"
+    "identity",
+    "contextMenus"
   ],
   "optional_permissions": [
     "clipboardWrite",

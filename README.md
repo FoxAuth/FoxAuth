@@ -1,28 +1,26 @@
 # FoxAuth Firefox TOTP Extension
 
 <div align='center'>
-<img width='20%' height='20%' src='foxauth.svg'></img><p>
-<strong>A Firefox authenticator that can autofill TOTP codes with Firefox Android support</strong>
-<br>
-<br>
-<a href='https://addons.mozilla.org/firefox/addon/foxauth'>
-<img src='https://img.shields.io/amo/v/foxauth.svg?style=flat-square' alt='download' /></a>
-·
-<a href="https://travis-ci.org/FoxAuth/FoxAuth/">
-<img src="https://img.shields.io/travis/FoxAuth/FoxAuth.svg?style=flat-square" alt="TravisCI" />
-</a>
-·
-<a href="https://t.me/joinchat/Flgxfkm5Q2fvKtiyvYo3vA">
-<img src="https://img.shields.io/badge/Telegram-join%20chat-yellow.svg?style=flat-square" alt="chatOnTelegram" /></a>
-·
-<a href="https://github.com/FoxAuth/FoxAuth/">
-<img src="https://img.shields.io/github/languages/code-size/FoxAuth/FoxAuth.svg?style=flat-square" alt="codesize" />
-</a>
-·
-<a href="https://www.gnu.org/licenses/gpl-3.0.html">
-<img src="https://img.shields.io/github/license/FoxAuth/FoxAuth.svg?style=flat-square" alt="license" />
-</a>
-</a>
+  <img width='20%' height='20%' src='foxauth.svg'></img><p>
+  <strong>A Firefox authenticator that can autofill TOTP codes with Firefox Android support</strong>
+  <br>
+  <br>
+    <a href='https://addons.mozilla.org/firefox/addon/foxauth'>
+      <img src='https://img.shields.io/amo/v/foxauth.svg?style=flat-square' alt='download' />
+    </a>
+  ·
+    <a href="https://t.me/joinchat/Flgxfkm5Q2fvKtiyvYo3vA">
+      <img src="https://img.shields.io/badge/Telegram-join%20chat-yellow.svg?style=flat-square" alt="chatOnTelegram" />
+    </a>
+  ·
+    <a href="https://github.com/FoxAuth/FoxAuth/">
+      <img src="https://img.shields.io/github/languages/code-size/FoxAuth/FoxAuth.svg?style=flat-square" alt="codesize" />
+    </a>
+  ·
+    <a href="https://www.gnu.org/licenses/gpl-3.0.html">
+      <img src="https://img.shields.io/github/license/FoxAuth/FoxAuth.svg?style=flat-square" alt="license" />
+    </a>
+  </a>
 </div>
 
 ## Introduction
@@ -33,27 +31,30 @@ See more at our [wiki](https://github.com/FoxAuth/FoxAuth/wiki).
 
 ## Features
 
-- Import / Export keystore list
+- OTP Client
+- Firefox Android support
+- Import / Export accounts list
+- Password based account list encryption
+- Autofill 2fa form
 - Password based encryption
-- Dropbox backup
-- QR Code support
+- Dropbox / WebDav backup
+- QR Code share / import support
+- Manual share / import
+- Material Design
 
 ## Building
 
 [Node.js](https://nodejs.org/) greater than __v8.0__ is required.
 
 ```bash
-# Install build tools
-npm install -g typescript gts
-
 # Install development dependencies
 npm install
 
-# Fix code style issues
-gts fix
-
 # Build
 npm run build
+
+# Package debug addon
+npm run package
 ```
 
 Windows users can also use [Msys2](http://www.msys2.org) or [CygWin](https://www.cygwin.com/) to build

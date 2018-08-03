@@ -1,30 +1,30 @@
 {
   "extName": {
-    "message": "FoxAuth Authenticator",
+    "message": "火狐 2FA 验证器",
     "description": "Extension Name"
   },
   "extShortName": {
-    "message": "FoxAuth",
+    "message": "火狐验证器",
     "description": "Extension Short Name"
   },
   "extDesc": {
-    "message": "A Firefox authenticator that can autofill TOTP codes with Firefox Android support",
+    "message": "一个火狐 2FA 验证器扩展，能够自动填写验证表单，支持火狐 Android",
     "description": "Extension Description"
   },
   "Version": {
-    "message": "v0.1.0",
+    "message": "版本 0.1.0",
     "description": "Plugin version"
   },
   "ImportExport": {
-    "message": "Import or Export",
+    "message": "导入/导出",
     "description": "Import or Export Accounts"
   },
   "Backup": {
-    "message": "Backup",
+    "message": "备份",
     "description": "Backup Accounts"
   },
   "Crypt": {
-    "message": "Encrypted import or export",
+    "message": "加密导入/导出",
     "description": "Encrypt Accounts and Export"
   }
 }
