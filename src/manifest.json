@@ -31,7 +31,7 @@
   },
   "background": {
     "scripts": [
-      "scripts/backgroud.js"
+      "scripts/background.js"
     ]
   },
   "permissions": [
