@@ -82,5 +82,21 @@
   "doConfig": {
     "message": "Configure",
     "description": "Button: open config"
+  },
+  "exportQROrText": {
+    "message": "Export QR Code or account text",
+    "description": "Export QR code or account text"
+  },
+  "DescExportQROrText": {
+    "message": "Export QR Code to share or generate and copy account text",
+    "description": "Desc: Export QR code or account text"
+  },
+  "doExportQR": {
+    "message": "Export QR",
+    "description": "Button: Export QR"
+  },
+  "doExportText": {
+    "message": "Export Text",
+    "description": "Button: Export Text"
   }
 }

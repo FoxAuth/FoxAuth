@@ -43,7 +43,7 @@ let _Tip = chian(_C, _M);
 
 // Add account manually
 function addAccount() {
-
+    _L('Add account');
     return false;
 }
 

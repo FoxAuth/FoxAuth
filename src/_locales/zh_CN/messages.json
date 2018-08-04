@@ -82,5 +82,21 @@
   "doConfig": {
     "message": "配置",
     "description": "Button: open config"
+  },
+  "exportQROrText": {
+    "message": "导出 QR 码或帐号文本",
+    "description": "Export QR code or account text"
+  },
+  "DescExportQROrText": {
+    "message": "导出并分享帐号 QR 码或生成并复制帐号文本",
+    "description": "Desc: Export QR code or account text"
+  },
+  "doExportQR": {
+    "message": "导出 QR 码",
+    "description": "Button: Export QR"
+  },
+  "doExportText": {
+    "message": "导出文本",
+    "description": "Button: Export Text"
   }
 }

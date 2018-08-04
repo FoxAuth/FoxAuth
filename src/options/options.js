@@ -78,11 +78,13 @@ $$('#it').text(_M('ImportExport'));
 $$('#et').text(_M('Crypt'));
 $$('#at').text(_M('Blacklist'));
 $$('#wt').text(_M('WebDavExport'));
+$$('#qt').text(_M('exportQROrText'));
 
 $$('#is').text(_M('DescImportExport'));
 $$('#es').text(_M('DescCryptoImportExport'));
 $$('#as').text(_M('DescBlacklist'));
 $$('#ws').text(_M('DescWebDav'));
+$$('#qs').text(_M('DescExportQROrText'));
 
 $$('#ii').text(_M('doImport'));
 $$('#ie').text(_M('doExport'));
@@ -91,6 +93,8 @@ $$('#ee').text(_M('doExport'));
 $$('#ac').text(_M('doConfig'));
 $$('#wi').text(_M('doImport'));
 $$('#we').text(_M('doExport'));
+$$('#qi').text(_M('doExportQR'));
+$$('#qe').text(_M('doExportText'));
 
 autodark();
 
