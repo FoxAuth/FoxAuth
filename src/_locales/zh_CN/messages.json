@@ -118,5 +118,13 @@
   "RestoreDefault": {
     "message": "设为默认",
     "description": "Button: MDUI Theme Restore"
+  },
+  "About": {
+    "message": "关于火狐验证器",
+    "description": "About foxauth title"
+  },
+  "AboutText": {
+    "message": "一个火狐 2FA 验证器扩展，能够自动填写验证表单且支持火狐 Android",
+    "description": "Text: FA About"
   }
 }

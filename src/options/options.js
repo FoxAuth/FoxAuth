@@ -81,6 +81,9 @@ $$('#at').text(_M('Blacklist'));
 $$('#wt').text(_M('WebDavExport'));
 $$('#qt').text(_M('exportQROrText'));
 
+$$('#att').text(_M('About'));
+$$('#ass').text(_M('AboutText'));
+
 $$('#is').text(_M('DescImportExport'));
 $$('#es').text(_M('DescCryptoImportExport'));
 $$('#as').text(_M('DescBlacklist'));

@@ -118,5 +118,13 @@
   "RestoreDefault": {
     "message": "Restore Default",
     "description": "Button: MDUI Theme Restore"
+  },
+  "About": {
+    "message": "About FoxAuth",
+    "description": "About foxauth title"
+  },
+  "AboutText": {
+    "message": "A Firefox authenticator that can autofill TOTP codes with Firefox Android support",
+    "description": "Text: FA About"
   }
 }
