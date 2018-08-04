@@ -44,7 +44,7 @@
     "description": "Share by QR code"
   },
   "QRScan": {
-    "message": "Scan QR Code",
+    "message": "Scan QR Code to import",
     "description": "Scan QR Code"
   },
   "ManualImport": {
@@ -81,6 +81,6 @@
   },
   "doConfig": {
     "message": "Configure",
-    "description": "Button: config"
+    "description": "Button: open config"
   }
 }

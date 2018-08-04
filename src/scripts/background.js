@@ -11,7 +11,7 @@ const FQRID = 'foxAuthImportQR';
 */
 function onCreated(ignored) {
     if (browser.runtime.lastError) {
-        console.log('Error: ${browser.runtime.lastError}');
+        console.log('Error: ' + browser.runtime.lastError);
     } else {
         console.log('Item created successfully');
     }
@@ -29,8 +29,8 @@ function onRemoved() {
     Called when there was an error.
     We'll just log the error here.
 */
-function onError(ignored) {
-    console.log('Error: ${error}');
+function onError(error) {
+    console.log('Error: ' + error);
 }
 
 /*
@@ -55,6 +55,7 @@ function _EXE(script) {
     Decode and import QR code
 */
 function decode(url) {
+    console.log('Decode called with ' + url);
     return;
 }
 
@@ -65,6 +66,5 @@ function decode(url) {
 browser.contextMenus.onClicked.addListener((info, ignored) => {
     if (info.menuItemId == FQRID) {
         decode(info.srcUrl);
-        console.log(info.srcUrl);
     }
 });

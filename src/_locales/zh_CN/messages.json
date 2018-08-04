@@ -40,11 +40,11 @@
     "description": "Accounts list"
   },
   "QRShare": {
-    "message": "分享二维码",
+    "message": "分享帐号二维码",
     "description": "Share by QR code"
   },
   "QRScan": {
-    "message": "扫描二维码",
+    "message": "扫描帐号二维码",
     "description": "Scan QR code"
   },
   "ManualImport": {
@@ -81,6 +81,6 @@
   },
   "doConfig": {
     "message": "配置",
-    "description": "Button: config"
+    "description": "Button: open config"
   }
 }
