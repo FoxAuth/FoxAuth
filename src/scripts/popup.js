@@ -47,6 +47,12 @@ function addAccount() {
     return false;
 }
 
+// on copy account 2fa code
+function onAccountClick(id) {
+    _L('Click: ' + id);
+    return false;
+}
+
 // Setup tooltips
 new mdui.Tooltip('#setup', _Tip('Options'));
 new mdui.Tooltip('#add', _Tip('ManualImport'));

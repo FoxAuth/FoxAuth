@@ -147,6 +147,18 @@ function backup(_import) {
     return false;
 }
 
+// run export QR
+function eqr() {
+    _L('Export QR');
+    return false;
+}
+
+// run export Text
+function et() {
+    _L('Export Text');
+    return false;
+}
+
 /**
  * Add onclick listener
  *
@@ -185,6 +197,9 @@ _K('#ee', _S(encrypted, false));
 _K('#ac', blackOptions);
 _K('#wi', _S(backup, true));
 _K('#we', _S(backup, false));
+
+_K('#qi', eqr);
+_K('#qe', et);
 
 // MDUI code
 
