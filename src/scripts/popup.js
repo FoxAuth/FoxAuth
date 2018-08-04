@@ -6,7 +6,7 @@ var mdui = mdui || null;
 const _M = browser.i18n.getMessage;
 const _L = console.log;
 
-let $$ = mdui.JQ;
+var $$ = mdui.JQ;
 
 // This page is for
 // + OTP Client
