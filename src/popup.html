@@ -8,12 +8,20 @@
     <script src="libs/mdui.min.js"></script>
 </head>
 
-<body class="mdui-container-fluid">
-    <div class="mdui-typo">
-        <strong>Hello, world!</strong>
-        <br>
-        <a href="https://github.com">GitHub</a>
+<body class="mdui-theme-primary-green mdui-theme-accent-pink mdui-text-color-white">
+    <div class="mdui-appbar">
+        <div class="mdui-toolbar mdui-color-theme">
+            <a class="mdui-text-color-white mdui-typo-headline">FoxAuth</a>
+            <div class="mdui-toolbar-spacer" style="margin-left: 120px"></div>
+            <a id="add" class="mdui-text-color-white mdui-btn mdui-btn-icon">
+                <i class="mdui-icon material-icons">add</i>
+            </a>
+            <a id="setup" class="mdui-text-color-white mdui-btn mdui-btn-icon">
+                <i class="mdui-icon material-icons">settings</i>
+            </a>
+        </div>
     </div>
+    <ul id="list" class="mdui-list mdui-text-color-theme-text"></ul>
     <script src="scripts/popup.js"></script>
 </body>
 
