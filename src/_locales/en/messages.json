@@ -98,5 +98,25 @@
   "doExportText": {
     "message": "Export Text",
     "description": "Button: Export Text"
+  },
+  "Theme": {
+    "message": "Theme",
+    "description": "Button: MDUI Theme"
+  },
+  "ThemePrimary": {
+    "message": "Primary Color",
+    "description": "Button: MDUI Theme Primary"
+  },
+  "ThemeSecoundary": {
+    "message": "Accent Color",
+    "description": "Button: MDUI Theme Accent"
+  },
+  "ThemeSetup": {
+    "message": "Theme Setup",
+    "description": "Button: MDUI Theme Setup"
+  },
+  "RestoreDefault": {
+    "message": "Restore Default",
+    "description": "Button: MDUI Theme Restore"
   }
 }
