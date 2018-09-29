@@ -2,8 +2,20 @@ body {
     font-size: 150%;
 }
 a {
-    color: #ffffff;
+    color: #0c0c0d
     text-decoration: none;
+}
+#cssmenu #first {
+    background: url("../icons/options/Preferences.svg") left no-repeat;
+}
+#cssmenu #second {
+    background: url("../icons/options/tokens.svg") left no-repeat;
+}
+#cssmenu #third {
+    background: url("../icons/options/sync.svg") left no-repeat;
+}
+#cssmenu #last {
+    background: url("../icons/options/about.svg") left no-repeat;
 }
 #cssmenu,
 #cssmenu ul,
@@ -48,7 +60,7 @@ a {
 }
 #cssmenu #bg-one {
   height: 10px;
-  background: #0f71ba;
+  background: rgba(12, 12, 13, 0.1)
 }
 #cssmenu #bg-two {
   height: 59px;
@@ -59,7 +71,7 @@ a {
   bottom: 4px;
   height: 55px;
   z-index: 3;
-  background: #222222;
+  background: rgba(12, 12, 13, 0.1)
   background: linear-gradient(to bottom, #555555 0%, #222222 100%);
 }
 #cssmenu #bg-four {
@@ -70,7 +82,7 @@ a {
 }
 #cssmenu ul {
   height: 59px;
-  background-color: #222222;
+  background-color: rgba(12, 12, 13, 0.1)
 }
 #cssmenu ul li {
   float: left;
@@ -84,7 +96,7 @@ a {
   margin-bottom: 4px;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
-  color: #eeeeee;
+  color: #0c0c0d
   font-size: 15px;
   text-decoration: none;
 }
@@ -94,11 +106,11 @@ a {
 }
 #cssmenu ul li:hover,
 #cssmenu ul li.active {
-  background: #0f71ba;
+  background: rgba(12, 12, 13, 0.1)
   background: linear-gradient(to bottom, #3fa4f0 0%, #0f71ba 100%);
 }
 #cssmenu ul li a:hover,
 #cssmenu ul li.active > a {
   background: url('../options/bg.png');
-  color: #ffffff;
+  color: #0c0c0d
 }
