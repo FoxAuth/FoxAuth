@@ -1,12 +1,56 @@
 body {
-    font-size: 150%;
+    font-size: 100%;
     margin: 0;
     padding: 0;
     font-family: 'Segoe UI', San Francisco, Ubuntu, 'Fira Sans', Noto;
 }
+main {
+  margin: 0px 8px 0px 8px;
+}
 a {
-    color: #ffffff;
-    text-decoration: none;
+  color: #0060df;
+  text-decoration: none;
+}
+input [type="checkbox"] {
+  border-radius: 2px;
+  width: 16px;
+  height: 16px;
+  padding: 0px 4px;
+  background-color: rgba(12, 12, 13, 0.1);
+  border: 1px rgba(12, 12, 13, 0.3);
+}
+input [type="checkbox"]:hover {
+  background-color: rgba(12, 12, 13, 0.2);
+}
+input [type="checkbox"]:checked {
+  background: url("../icons/options/checkbox-check-16.svg");
+  background-color: #0060df;
+}
+.checkbox-text {
+  font-size: 13px;
+  color: #0c0c0d;
+}
+.btn-text {
+  color: #ffffff;
+}
+button {
+  background-color: #0060df;
+  border-radius: 2px;
+  height: 32px;
+  margin: 8px 0px;
+  padding: 0px 8px;
+  width: auto;
+  min-width: 132px;
+  border: 0px;
+}
+button:hover {
+  background-color: #003eaa;
+}
+button:active {
+  background-color: #002275;
+}
+button:focus {
+  box-shadow: 0 0 0 1px #0a84ff inset, 0 0 0 1px #0a84ff, 0 0 0 4px rgba(10, 132, 255, 0.3);
 }
 #cssmenu #first {
     background: url("../icons/options/Preferences.svg") left no-repeat;

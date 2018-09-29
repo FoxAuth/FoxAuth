@@ -18,7 +18,30 @@
         </ul>
     </div>
     <main>
-        <p></p>
+        <p>Welcome to FoxAuth Authenticator.</p>
+        <form>
+        <div>
+            <input type="checkbox" id="information" name="TOTP">
+            <label for="TOTP">
+                <div class="checkbox-text">
+                    Disable TOTP information window after scanning QR code.
+                </div>
+            </label>
+        </div>
+        <div>
+            <input type="checkbox" id="autofill" name="autofill">
+            <label for="autofill">
+                <div class="checkbox-text">
+                    Disable TOTP code autofill globally (so that codes must be filled manually via context menu).
+                </div>
+            </label>
+        </div>
+        <button name="reset" type="reset">
+            <div class="btn-text">
+                    Reset
+            </div>
+        </button>
+        </form>
     </main>
   <script src="options.js"></script>
   <script src="../scripts/background.js"></script>
