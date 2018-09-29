@@ -1,21 +1,13 @@
 'use strict';
 
 // Must not be null...
-var browser = browser || null;
-var mdui = mdui || null;
-
-const _M = browser.i18n.getMessage;
 const _L = console.log;
 
 var $$ = mdui.JQ;
 
-// This page is for
-// + Import/Export settings
-// + Encrypted import export
-// + No autofill blacklist
-// + DropBox WebDav Backup
+//option page
 
-$$('#title').text(_M('extName'));
+
 
 /**
  * Make a excited chain call function

@@ -1,9 +1,18 @@
 'use strict';
 // Script for QR menu and page injection
 
-var browser = browser || null;
-const _M = browser.i18n.getMessage;
 const FQRID = 'foxAuthImportQR';
+
+//option page
+function openURL(url) {
+    browser.tabs.create({
+        url: url
+    })
+}
+
+browser.runtime.onInstalled.addListener(function () {
+    browser.runtime.openOptionsPage();
+});
 
 /*
     Called when the item has been created, or when creation failed due to an error.

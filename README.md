@@ -10,14 +10,6 @@
       <img src='https://img.shields.io/amo/v/foxauth.svg?style=flat-square' alt='download' />
     </a>
   ·
-    <a href="https://travis-ci.org/FoxAuth/FoxAuth/">
-      <img src="https://img.shields.io/travis/FoxAuth/FoxAuth.svg?style=flat-square" alt="chatOnTelegram" />
-    </a>
-  ·
-    <a href="https://t.me/joinchat/Flgxfkm5Q2fvKtiyvYo3vA">
-      <img src="https://img.shields.io/badge/telegram-join_chat-yellow.svg?style=flat-square" alt="chatOnTelegram" />
-    </a>
-  ·
     <a href="https://github.com/FoxAuth/FoxAuth/">
       <img src="https://img.shields.io/github/languages/code-size/FoxAuth/FoxAuth.svg?style=flat-square" alt="codesize" />
     </a>
@@ -40,58 +32,17 @@ FoxAuth is an [(T)OTP](https://wikipedia.org/wiki/Time-based_One-time_Password_a
 - __Firefox Android__ support
 - __Import / Export__ accounts list
 - Password based account list encrypted __import / export__
-- Domain based __autofill black-list__
 - Autofill __2 factor authenticator__ form
-- __Dropbox / WebDav__ backup
+- __Dropbox / FxA__ backup
 - QR Code __export / import__ support
 - Manual account __import / export__ support
-- Material Design
-
-## Building
-
-[Node.js](https://nodejs.org/) greater than __v8.0__ is required.
-
-```bash
-# Install development dependencies
-npm install
-
-# Install check tools
-npm install -g eslint addons-linter # lintspaces-cli
-
-# Build
-npm run build
-
-# Package debug addon
-npm run package
-```
-
-Windows users can also use [Msys2](http://www.msys2.org) or [CygWin](https://www.cygwin.com/) to build
-
-## Development
-
-```bash
-# Get the web-ext tool
-npm install --global web-ext
-
-# Run plugin in your browser
-web-ext run
-
-# Build extension
-web-ext build
-
-# Setup your issuer and secret here, or set in travis
-export AMO_JWT_ISSUER=your_issuer
-export AMO_JWT_SECRET=your_secret
-
-# Publish extension
-web-ext sign --api-key=$AMO_JWT_ISSUER --api-secret=$AMO_JWT_SECRET
-```
+- Photon Design
 
 ## Maintainer
 
 - [duangsuse](https://github.com/duangsuse)__@GitHub__ code helper 📝
 - [james58899](https://github.com/james58899)__@GitHub__ code helper 📝
-- [Rictusempra](https://github.com/Rictusempra)__@GitHub__ creator 💡
+- [Riajyuu](https://github.com/Riajyuu)__@GitHub__ creator 💡
 
 ## License
 
