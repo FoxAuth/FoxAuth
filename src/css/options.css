@@ -2,9 +2,10 @@ body {
     font-size: 150%;
     margin: 0;
     padding: 0;
+    font-family: 'Segoe UI', San Francisco, Ubuntu, 'Fira Sans', Noto;
 }
 a {
-    color: #0c0c0d;
+    color: #ffffff;
     text-decoration: none;
 }
 #cssmenu #first {
@@ -86,8 +87,6 @@ a {
 #cssmenu ul li a {
   padding: 24px 30px 20px 30px;
   margin-bottom: 4px;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
   color: #0c0c0d;
   font-size: 15px;
   text-decoration: none;
@@ -95,10 +94,10 @@ a {
 #cssmenu ul li:hover,
 #cssmenu ul li.active {
   background: rgba(12, 12, 13, 0.1);
-  background: linear-gradient(to bottom, #3fa4f0 0%, #0f71ba 100%);
+  background: linear-gradient(to bottom, #0060df 0%, #0060df 100%);
   height: inherit;
 }
 #cssmenu ul li a:hover,
 #cssmenu ul li.active > a {
-  color: #0c0c0d
+  color: #ffffff;
 }
