@@ -23,7 +23,7 @@
       "38": "icons/icon.svg"
     },
     "default_title": "FoxAuth",
-    "default_popup": "popup.html"
+    "default_popup": "popup/index.html"
   },
   "options_ui": {
     "page": "options/option.html",

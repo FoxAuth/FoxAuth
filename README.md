@@ -22,13 +22,12 @@
 
 ## Introduction
 
-FoxAuth is an [(T)OTP](https://wikipedia.org/wiki/Time-based_One-time_Password_algorithm) browser client with autofill support for __FireFox__ and __FireFox Android__ (_FireFox 57.0+ is required_)
+FoxAuth is an [TOTP](https://wikipedia.org/wiki/Time-based_One-time_Password_algorithm) browser client with autofill support for __FireFox__ and __FireFox Android__ (_FireFox 57.0+ is required_)
 
 > __OTP__ refers to __One-Time Password__. See more at our [wiki](https://github.com/FoxAuth/FoxAuth/wiki).
 
 ## Features
 
-- OTP Client, supports __TOTP__ and __Conuter-based OTP__
 - __Firefox Android__ support
 - __Import / Export__ accounts list
 - Password based account list encrypted __import / export__
@@ -41,7 +40,6 @@ FoxAuth is an [(T)OTP](https://wikipedia.org/wiki/Time-based_One-time_Password_a
 ## Maintainer
 
 - [duangsuse](https://github.com/duangsuse)__@GitHub__ code helper 📝
-- [james58899](https://github.com/james58899)__@GitHub__ code helper 📝
 - [Riajyuu](https://github.com/Riajyuu)__@GitHub__ creator 💡
 
 ## License

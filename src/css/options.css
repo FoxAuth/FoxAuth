@@ -1,8 +1,10 @@
 body {
     font-size: 150%;
+    margin: 0;
+    padding: 0;
 }
 a {
-    color: #0c0c0d
+    color: #0c0c0d;
     text-decoration: none;
 }
 #cssmenu #first {
@@ -44,10 +46,6 @@ a {
   margin-right: 0;
   margin-left: 4px;
 }
-#cssmenu.align-right ul li:first-child,
-#cssmenu.align-right ul li:first-child > a {
-  border-bottom-right-radius: 3px;
-}
 #cssmenu #bg-one,
 #cssmenu #bg-two,
 #cssmenu #bg-three,
@@ -55,8 +53,6 @@ a {
   position: absolute;
   bottom: 0;
   width: 100%;
-  border-bottom-left-radius: 3px;
-  border-bottom-right-radius: 3px;
 }
 #cssmenu #bg-one {
   height: 10px;
@@ -65,20 +61,18 @@ a {
 #cssmenu #bg-two {
   height: 59px;
   z-index: 2;
-  background: url('../options/bg.png');
 }
 #cssmenu #bg-three {
   bottom: 4px;
   height: 55px;
   z-index: 3;
-  background: rgba(12, 12, 13, 0.1)
+  background: rgba(12, 12, 13, 0.1);
   background: linear-gradient(to bottom, #555555 0%, #222222 100%);
 }
 #cssmenu #bg-four {
   bottom: 4px;
   height: 55px;
   z-index: 4;
-  background: url('images/bg.png');
 }
 #cssmenu ul {
   height: 59px;
@@ -87,8 +81,6 @@ a {
 #cssmenu ul li {
   float: left;
   margin-right: 4px;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
   z-index: 5;
 }
 #cssmenu ul li a {
@@ -96,21 +88,17 @@ a {
   margin-bottom: 4px;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
-  color: #0c0c0d
+  color: #0c0c0d;
   font-size: 15px;
   text-decoration: none;
 }
-#cssmenu ul li:first-child,
-#cssmenu ul li:first-child > a {
-  border-bottom-left-radius: 3px;
-}
 #cssmenu ul li:hover,
 #cssmenu ul li.active {
-  background: rgba(12, 12, 13, 0.1)
+  background: rgba(12, 12, 13, 0.1);
   background: linear-gradient(to bottom, #3fa4f0 0%, #0f71ba 100%);
+  height: inherit;
 }
 #cssmenu ul li a:hover,
 #cssmenu ul li.active > a {
-  background: url('../options/bg.png');
   color: #0c0c0d
 }
