@@ -31,16 +31,16 @@ FoxAuth is an [TOTP](https://wikipedia.org/wiki/Time-based_One-time_Password_alg
 - __Firefox Android__ support
 - __Import / Export__ accounts list
 - Password based account list encrypted __import / export__
-- Autofill __2 factor authenticator__ form
+- Autofill __TOTP__ form
 - __Dropbox / FxA__ backup
 - QR Code __export / import__ support
 - Manual account __import / export__ support
-- Photon Design
+- [Photon Design](https://design.firefox.com/photon)
 
 ## Maintainer
 
 - [duangsuse](https://github.com/duangsuse)__@GitHub__ code helper 📝
-- [Riajyuu](https://github.com/Riajyuu)__@GitHub__ creator 💡
+- [Riajyuu](https://github.com/Riajyuu)__@GitHub__ creator & main maintainer 💡
 
 ## License
 
