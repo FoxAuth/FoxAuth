@@ -31,7 +31,7 @@
     ]
   },
   "permissions": [
-    "activeTab",
+    "Tabs",
     "storage",
     "contextMenus",
     "notifications"
