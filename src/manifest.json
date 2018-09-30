@@ -34,7 +34,8 @@
     "Tabs",
     "storage",
     "contextMenus",
-    "notifications"
+    "notifications",
+    "<all_urls>"
   ],
   "optional_permissions": [
     "https://*.dropboxapi.com/*"
