@@ -33,7 +33,8 @@
   "permissions": [
     "activeTab",
     "storage",
-    "contextMenus"
+    "contextMenus",
+    "notifications"
   ],
   "optional_permissions": [
     "https://*.dropboxapi.com/*"
