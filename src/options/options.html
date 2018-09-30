@@ -19,37 +19,36 @@
     </div>
     <main>
         <p>Welcome to FoxAuth Authenticator.</p>
-        <form>
+    <form class="container">
+        <div class="checkbox-group">
         <div>
+            <label class="checkbox-label" for="TOTP"></label>
             <input type="checkbox" id="information" name="TOTP">
-            <label for="TOTP">
                 <div class="checkbox-text">
                     Disable TOTP information window after scanning QR code.
                 </div>
-            </label>
         </div>
         <div>
+            <label class="checkbox-label" for="autofill"></label>
             <input type="checkbox" id="autofill" name="autofill">
-            <label for="autofill">
                 <div class="checkbox-text">
                     Disable TOTP code autofill globally (so that codes must be filled manually via context menu).
                 </div>
-            </label>
         </div>
         <div>
+                <label class="checkbox-label" for="context"></label>
                 <input type="checkbox" id="context" name="context">
-                <label for="context">
                     <div class="checkbox-text">
                         Disable context menus. (Note that we don't have clipboard permission so codes must be typed manually if both methods desabled).
                     </div>
-                </label>
+        </div>
         </div>
         <button name="reset" type="reset">
             <div class="btn-text">
                     Reset
             </div>
         </button>
-        </form>
+    </form>
     </main>
   <script src="options.js"></script>
   <script src="../scripts/background.js"></script>

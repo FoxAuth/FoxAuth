@@ -7,26 +7,34 @@ body {
 main {
   margin: 0px 8px 0px 8px;
 }
+p {
+  margin: 8px
+}
 a {
   text-decoration: none;
+  color: #0060df;
 }
 a:focus {
   border: 0 0 0 2px #0a84ff, 0 0 0 6px rgba(10, 132, 255, 0.3);
 }
-input[type="checkbox"] {
+.checkbox-label {
   border-radius: 2px;
   width: 16px;
   height: 16px;
-  padding: 0px 4px;
+  margin: 0px 4px;
+  background: url("../icons/options/checkbox.svg") 16px 16px;
   background-color: rgba(12, 12, 13, 0.1);
   border: 1px rgba(12, 12, 13, 0.3);
 }
-input[type="checkbox"]:hover {
+.checkbox-label:hover {
   background-color: rgba(12, 12, 13, 0.2);
 }
-input[type="checkbox"]:checked {
+.checkbox-label:checked {
   background: url("../icons/options/checkbox-check-16.svg");
   background-color: #0060df;
+}
+input[type="checkbox"] {
+  display: none;
 }
 .checkbox-text {
   font-size: 13px;
