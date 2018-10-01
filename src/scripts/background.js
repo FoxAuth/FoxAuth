@@ -17,7 +17,11 @@ browser.runtime.onInstalled.addListener(function () {
 browser.contextMenus.create({
     id: QR,
     title: "Scan QR code to add TOTP",
-    contexts: ['image']
+    contexts: ['image'],
+    icons: {
+        "16": "../icons/icon.svg",
+        "32": "../icons/icon.svg"
+      }
 }, onCreated);
 
 /*
