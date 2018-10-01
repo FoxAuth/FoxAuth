@@ -42,6 +42,13 @@ FoxAuth is an [TOTP](https://wikipedia.org/wiki/Time-based_One-time_Password_alg
 - [duangsuse](https://github.com/duangsuse)__@GitHub__ code helper 📝
 - [Riajyuu](https://github.com/Riajyuu)__@GitHub__ creator & main maintainer 💡
 
+## Development
+
+1. Run `yarn` to install dependency.
+2. We use `scss` , you can make changes in `src/scss/` . Run `yarn run css` to compile scss to css lively.
+3. Colors variables are at `_photon-colors.scss` .
+3. Font size variables are at `_photon-font-size.scss` .
+
 ## License
 
 FoxAuth is licensed under __GNU General Public License 3.0__

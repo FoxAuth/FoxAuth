@@ -1,58 +1,90 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta name="description" content="FoxAuth Authenticator">
     <link rel="icon" href="../icons/icon.svg">
     <title>FoxAuth Authenticator</title>
+    <link href="../css/normalize.css" rel="stylesheet">
+    <link href="../css/main.css" rel="stylesheet">
     <link href="../css/options.css" rel="stylesheet">
 </head>
+
 <body>
-    <div id='cssmenu'>
-        <ul>
-           <li class='active'><a href='https://github.com/FoxAuth/FoxAuth'><span>FoxAuth Authenticator</span></a></li>
-           <li id="first"><a href='#'><span>General</span></a></li>
-           <li id="second"><a href='tokens.html'><span>Secret Tokens</span></a></li>
-           <li id="third"><a href='sync.html'><span>Backup & Sync</span></a></li>
-           <li id="last"><a href='about.html'><span>About</span></a></li>
-        </ul>
+    <div class="top-bar">
+        <a href='https://github.com/FoxAuth/FoxAuth' class="logo">
+            FoxAuth Authenticator
+        </a>
+        <div class="actions">
+            <a href="options.html" class="action-group active">
+                <img class="icon" src="../icons/options/Preferences.svg" alt="">
+                <div class="action">General</div>
+            </a>
+            <a href="tokens.html" class="action-group">
+                <img class="icon" src="../icons/options/tokens.svg" alt="">
+                <div class="action">Secret Tokens</div>
+            </a>
+            <a href="sync.html" class="action-group">
+                <img class="icon" src="../icons/options/sync.svg" alt="">
+                <div class="action">Backup & Sync</div>
+            </a>
+            <a href="about.html" class="action-group">
+                <img class="icon" src="../icons/options/about.svg" alt="">
+                <div class="action">About</div>
+            </a>
+        </div>
     </div>
-    <main>
+    <div class="content">
+
         <p>Welcome to FoxAuth Authenticator.</p>
-        <p>Check out <a href="https://github.com/FoxAuth/FoxAuth/wiki">our wiki <img src="../icons/options/Open In New.svg" width="16px" height="16px"> </a> to get started.</p>
+        <p>Check out <a href="https://github.com/FoxAuth/FoxAuth/wiki">our wiki <img src="../icons/options/Open In New.svg"
+                    width="16px" height="16px"> </a> to get started.</p>
         <h2>General Options</h2>
-    <form class="container">
+
         <div class="checkbox-group">
-        <div>
-            <label class="checkbox-label" for="TOTP"></label>
-            <input type="checkbox" id="information" name="TOTP">
+            <label class="checkbox-label" for="TOTP">
+                <div class="checkbox-icon checked">
+                </div>
                 <div class="checkbox-text">
                     Disable TOTP information window after scanning QR code.
                 </div>
+            </label>
+            <input type="checkbox" id="TOTP" name="TOTP">
         </div>
-        <div>
-            <label class="checkbox-label" for="autofill"></label>
-            <input type="checkbox" id="autofill" name="autofill">
+        <div class="checkbox-group">
+            <label class="checkbox-label" for="autofill">
+                <div class="checkbox-icon">
+                </div>
                 <div class="checkbox-text">
                     Disable TOTP code autofill globally (so that codes must be filled manually via context menu).
                 </div>
+            </label>
+            <input type="checkbox" id="autofill" name="autofill">
         </div>
-        <div>
-                <label class="checkbox-label" for="context"></label>
-                <input type="checkbox" id="context" name="context">
-                    <div class="checkbox-text">
-                        Disable context menus. (Note that we don't have clipboard permission so codes must be typed manually if both methods desabled).
-                    </div>
+        <div class="checkbox-group">
+            <label class="checkbox-label" for="context">
+                <div class="checkbox-icon">
+                </div>
+                <div class="checkbox-text">
+                    Disable context menus. (Note that we don't have clipboard permission so codes must be typed
+                    manually if both methods desabled).
+                </div>
+            </label>
+            <input type="checkbox" id="context" name="context">
+
         </div>
+
+
+        <div class="btn">
+            Reset
         </div>
-        <button name="reset" type="reset" class="resetbtn">
-            <div class="btn-text">
-                    Reset
-            </div>
-        </button>
-    </form>
-    </main>
-  <script src="../scripts/options.js"></script>
-  <script src="../scripts/background.js"></script>
+
+    </div>
+
+
+    <script src="../scripts/options.js"></script>
+    <script src="../scripts/background.js"></script>
 </body>
+
 </html>
