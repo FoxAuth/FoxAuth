@@ -1,13 +1,12 @@
 //reset notifi'
-function resetnotifi() {
+function resetNotifi() {
     browser.notifications.create({
         "type": "basic",
         "iconUrl": "../icons/icon.svg",
-        "title": title,
-        "message": content
+        "title": "FoxAuth Authenticator",
+        "message": "Reset done."
       });
 };
 
 //genral option page reset
-let firstreset = document.querySelector('.firstreset');
-button.addEventListener('click', resetnotifi);
+document.querySelector('.resetbtn').addEventListener("click", resetNotifi);
