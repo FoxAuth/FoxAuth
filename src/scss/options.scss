@@ -1,0 +1,105 @@
+@import "photon-colors";
+@import "photon-font-size";
+
+.top-bar {
+  display: flex;
+  font-size: $title-20;
+  .logo {
+    flex: 1;
+    display: block;
+    line-height: 60px;
+    text-align: center;
+    color: $grey-90;
+    background-color: $grey-90-a10;
+  }
+  .actions {
+    flex: 4;
+    display: flex;
+
+    .action-group {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: $grey-90-a10;
+      height: 60px;
+      .icon {
+        width: 16px;
+        height: 16px;
+        margin-right: 8px;
+      }
+      .action {
+        color: $grey-90;
+      }
+      &:hover {
+        background-color: $grey-90-a20;
+      }
+      &.active {
+        background-color: $blue-60;
+        .action {
+          color: #fff;
+        }
+      }
+    }
+  }
+}
+.content {
+  margin: 50px;
+  .checkbox-group {
+    .checkbox-label {
+      display: flex;
+      align-items: center;
+      .checkbox-icon {
+        border-radius: 2px;
+        display: block;
+        min-width: 16px;
+        min-height: 16px;
+        margin: 3px 4px 3px 0;
+        // background-image: url("../icons/options/checkbox.svg");
+        border: 1px solid $grey-90-a30;
+        background-size: 16px 16px;
+        background-color: $grey-90-a10;
+
+        &:hover {
+          background-color: $grey-90-a20;
+        }
+        &.checked {
+          background-image: url("../icons/options/checkbox-check-16.svg");
+          background-color: $blue-60;
+        }
+      }
+      .checkbox-text {
+        font-size: $body-10;
+        color: $grey-90;
+      }
+    }
+    input[type="checkbox"] {
+      display: none;
+    }
+  }
+
+  .btn {
+    background-color: $blue-60;
+    border-radius: 2px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    margin: 8px 0px;
+    padding: 0px 8px;
+    width: auto;
+    min-width: 132px;
+    border: 0px;
+    color: #ffffff;
+
+    &:hover {
+      background-color: $blue-70;
+    }
+    &.active {
+      background-color: $blue-80;
+    }
+    // &.focus {
+    //   box-shadow: 0 0 0 1px #0a84ff inset, 0 0 0 1px #0a84ff,
+    //     0 0 0 4px rgba(10, 132, 255, 0.3);
+    // }
+  }
+}

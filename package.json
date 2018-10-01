@@ -1,0 +1,14 @@
+{
+  "name": "FoxAuth",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/FoxAuth/FoxAuth.git",
+  "author": "",
+  "license": "",
+  "scripts": {
+    "css": "sass --watch src/scss:src/css"
+  },
+  "devDependencies": {
+    "sass": "^1.14.1"
+  }
+}
