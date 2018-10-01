@@ -1,9 +1,7 @@
-'use strict';
-
 //option page
 function openURL(url) {
     browser.tabs.create({
-        url: url
+        url: "../options/options.html"
     })
 }
 
@@ -15,21 +13,27 @@ browser.runtime.onInstalled.addListener(function () {
     Create all the context menu items.
 */
 browser.contextMenus.create({
-    id: QR,
+    id: "scanQR",
     title: "Scan QR code to add TOTP",
-    contexts: ['image'],
+    contexts: ["image", "page"],
     icons: {
-        "16": "../icons/icon.svg",
-        "32": "../icons/icon.svg"
+        "16": "../icons/foxauth16.png",
+        "32": "../icons/foxauth32.png"
       }
-}, onCreated);
+});
 
 /*
     The click event listener, where we perform the appropriate action given the
     ID of the menu item that was clicked.
 */
 browser.contextMenus.onClicked.addListener((info, ignored) => {
-    if (info.menuItemId == QR) {
-        decode(info.srcUrl);
+    if (info.menuItemId === "scanQR") {
+        browser.windows.create({
+            url: "../options/otpinfo.html",
+            type: "popup",
+            height: Math.floor(window.innerHeight*0.75),
+            width: Math.floor(window.innerWidth*0.75)
+        });
+        //decode(info.srcUrl);
     }
 });

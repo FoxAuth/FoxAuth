@@ -1,156 +1,109 @@
-body {
-    font-size: 100%;
-    margin: 0;
-    padding: 0;
-    font-family: 'Segoe UI', San Francisco, Ubuntu, 'Fira Sans', Noto;
+.top-bar {
+  display: flex;
+  font-size: 17px;
 }
-main {
-  margin: 0px 8px 0px 8px;
+
+.top-bar .logo {
+  flex: 1;
+  display: block;
+  line-height: 60px;
+  text-align: center;
+  color: #0c0c0d;
+  background-color: rgba(12, 12, 13, 0.1);
 }
-p, h2 {
-  margin: 8px 8px;
+
+.top-bar .actions {
+  flex: 4;
+  display: flex;
 }
-a {
-  text-decoration: none;
-  color: #0060df;
+
+.top-bar .actions .action-group {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(12, 12, 13, 0.1);
+  height: 60px;
 }
-a:focus {
-  border: 0 0 0 2px #0a84ff, 0 0 0 6px rgba(10, 132, 255, 0.3);
-}
-.checkbox-label {
-  border-radius: 2px;
+
+.top-bar .actions .action-group .icon {
   width: 16px;
   height: 16px;
-  margin: 0px 4px;
-  background: url("../icons/options/checkbox.svg") 16px 16px;
-  background-color: rgba(12, 12, 13, 0.1);
-  border: 1px rgba(12, 12, 13, 0.3);
+  margin-right: 8px;
 }
-.checkbox-label:hover {
+
+.top-bar .actions .action-group .action {
+  color: #0c0c0d;
+}
+
+.top-bar .actions .action-group:hover {
   background-color: rgba(12, 12, 13, 0.2);
 }
-.checkbox-label:checked {
-  background: url("../icons/options/checkbox-check-16.svg");
+
+.top-bar .actions .action-group.active {
   background-color: #0060df;
 }
-input[type="checkbox"] {
-  display: none;
+
+.top-bar .actions .action-group.active .action {
+  color: #fff;
 }
-.checkbox-text {
+
+.content {
+  margin: 50px;
+}
+
+.content .checkbox-group .checkbox-label {
+  display: flex;
+  align-items: center;
+}
+
+.content .checkbox-group .checkbox-label .checkbox-icon {
+  border-radius: 2px;
+  display: block;
+  min-width: 16px;
+  min-height: 16px;
+  margin: 3px 4px 3px 0;
+  border: 1px solid rgba(12, 12, 13, 0.3);
+  background-size: 16px 16px;
+  background-color: rgba(12, 12, 13, 0.1);
+}
+
+.content .checkbox-group .checkbox-label .checkbox-icon:hover {
+  background-color: rgba(12, 12, 13, 0.2);
+}
+
+.content .checkbox-group .checkbox-label .checkbox-icon.checked {
+  background-image: url("../icons/options/checkbox-check-16.svg");
+  background-color: #0060df;
+}
+
+.content .checkbox-group .checkbox-label .checkbox-text {
   font-size: 13px;
   color: #0c0c0d;
 }
-.btn-text {
-  color: #ffffff;
+
+.content .checkbox-group input[type="checkbox"] {
+  display: none;
 }
-button {
+
+.content .btn {
   background-color: #0060df;
   border-radius: 2px;
   height: 32px;
+  line-height: 32px;
+  text-align: center;
   margin: 8px 0px;
   padding: 0px 8px;
   width: auto;
   min-width: 132px;
   border: 0px;
+  color: #ffffff;
 }
-button:hover {
+
+.content .btn:hover {
   background-color: #003eaa;
 }
-button:active {
+
+.content .btn.active {
   background-color: #002275;
-}
-button:focus {
-  box-shadow: 0 0 0 1px #0a84ff inset, 0 0 0 1px #0a84ff, 0 0 0 4px rgba(10, 132, 255, 0.3);
-}
-#cssmenu #first {
-    background: url("../icons/options/Preferences.svg") left no-repeat;
-}
-#cssmenu #second {
-    background: url("../icons/options/tokens.svg") left no-repeat;
-}
-#cssmenu #third {
-    background: url("../icons/options/sync.svg") left no-repeat;
-}
-#cssmenu #last {
-    background: url("../icons/options/about.svg") left no-repeat;
-}
-#cssmenu,
-#cssmenu ul,
-#cssmenu ul li,
-#cssmenu ul li a {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  list-style: none;
-  line-height: 1;
-  display: block;
-  position: relative;
-  font-family: 'Segoe UI', San Francisco, Ubuntu, 'Fira Sans', Noto;
-}
-#cssmenu {
-  width: 100%;
-  height: 59px;
-  padding-bottom: 4px;
-}
-#cssmenu.align-right {
-  float: right;
-}
-#cssmenu.align-right ul li {
-  float: right;
-  margin-right: 0;
-  margin-left: 4px;
-}
-#cssmenu #bg-one,
-#cssmenu #bg-two,
-#cssmenu #bg-three,
-#cssmenu #bg-four {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-}
-#cssmenu #bg-one {
-  height: 10px;
-  background: rgba(12, 12, 13, 0.1)
-}
-#cssmenu #bg-two {
-  height: 59px;
-  z-index: 2;
-}
-#cssmenu #bg-three {
-  bottom: 4px;
-  height: 55px;
-  z-index: 3;
-  background: rgba(12, 12, 13, 0.1);
-  background: linear-gradient(to bottom, #555555 0%, #222222 100%);
-}
-#cssmenu #bg-four {
-  bottom: 4px;
-  height: 55px;
-  z-index: 4;
-}
-#cssmenu ul {
-  height: 59px;
-  background-color: rgba(12, 12, 13, 0.1)
-}
-#cssmenu ul li {
-  float: left;
-  margin-right: 4px;
-  z-index: 5;
-}
-#cssmenu ul li a {
-  padding: 24px 30px 20px 30px;
-  margin-bottom: 4px;
-  color: #0c0c0d;
-  font-size: 15px;
-  text-decoration: none;
-}
-#cssmenu ul li:hover,
-#cssmenu ul li.active {
-  background: rgba(12, 12, 13, 0.1);
-  background: linear-gradient(to bottom, #0060df 0%, #0060df 100%);
-  height: inherit;
-}
-#cssmenu ul li a:hover,
-#cssmenu ul li.active > a {
-  color: #ffffff;
 }
