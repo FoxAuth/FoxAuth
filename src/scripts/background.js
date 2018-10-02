@@ -26,13 +26,14 @@ browser.contextMenus.create({
     The click event listener, where we perform the appropriate action given the
     ID of the menu item that was clicked.
 */
+
 browser.contextMenus.onClicked.addListener((info, ignored) => {
     if (info.menuItemId === "scanQR") {
         browser.windows.create({
             url: "../options/otpinfo.html",
             type: "popup",
-            height: Math.floor(window.innerHeight*0.75),
-            width: Math.floor(window.innerWidth*0.75)
+            height: 700,
+            width: 700
         });
         //decode(info.srcUrl);
     }
