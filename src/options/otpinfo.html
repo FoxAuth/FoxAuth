@@ -3,10 +3,25 @@
 
 <head>
     <link href="../css/main.css" rel="stylesheet">
+    <link href="../css/otp.css" rel="stylesheet">
 </head>
 
 <body>
-    test window
+    <form class="newOTP">
+        <fieldset>
+            <legend><strong>Edit credential</strong></legend>
+            <p>
+                Issuer: <input type="text" id="newIssuer" name="newIssuer" required placeholder="New Issuer" class="newOTP_issuer"><br>
+                <span class="caption">This string is used to match domain for autofill. "GitHub" will match github.com,
+                    e.g.</span>
+            </p>
+            <p>
+                Account name: <input type="text" id="newAccountName" name="newAccountName" required placeholder="New Account name"
+                    class="newOTP_AccountName"><br>
+                <span class="caption">Required string to generate OTP codes.</span>
+            </p>
+        </fieldset>
+    </form>
 </body>
 
 </html>

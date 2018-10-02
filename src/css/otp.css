@@ -1,0 +1,46 @@
+form {
+    margin: 4px 8px;
+}
+
+legend {
+    text-align: center;
+    margin: 8px;
+    font-size: 150%;
+}
+
+fieldset {
+    border: 0px;
+}
+
+input[type=text] {
+    margin: 4px;
+    height: 32px;
+    padding-left: 8px;
+    border: 1px solid rgba(12, 12, 13, 0.3);
+    border-radius: 2px;
+    color: #0c0c0d;
+    width: flex;
+    min-width: 250px;
+}
+
+input[type=text]:hover {
+    border: 1px solid rgba(12, 12, 13, 0.5);
+    border-radius: 2px;
+}
+
+input[type=text]:active {
+    border: 1px solid #0a84ff;
+    border-radius: 2px;
+    box-shadow: 0 0 0 1px #0a84ff, 0 0 0 4px rgba(10, 132, 255, 0.3);
+}
+
+iput[type=text]:checked {
+    color: #0a84ff;
+}
+
+.caption {
+    font-size: 11px;
+    font-weight: 400;
+    opacity: 0.6;
+    color: #0a84ff;
+}
