@@ -4,12 +4,12 @@ body {
 
 form {
     margin: 4px 8px;
+    max-width: 600px;
+    display: inline-block;
 }
 
 fieldset {
     border: 0px;
-    max-width: 600px;
-    display: inline-block;
 }
 
 img {
@@ -45,7 +45,7 @@ button:active {
     float: right;
 }
 
-.newIssuer, .newAccountName, .newSecretToken, {
+.newIssuer, .newAccountName, .newSecretToken {
     flex-grow: 1;
     margin: 4px 8px;
     display: flex;

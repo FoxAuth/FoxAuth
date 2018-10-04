@@ -14,10 +14,6 @@ document.querySelector('.resetbtn').addEventListener("click", resetNotifi);
 //create new OTP form
 document.querySelector('.otpNewBtn').addEventListener("click", () => {
     const dom = document.querySelector('.newOTP');
-    const c = el.cloneNode(true);
+    const c = dom.cloneNode(true);
     dom.parentNode.appendChild(c);
 });
-
-console.log(document.querySelector('body'));
-console.log(dom);
-console.log(c);
