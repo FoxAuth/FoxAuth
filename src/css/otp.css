@@ -1,15 +1,32 @@
+body {
+    background-color: #f9f9fa;
+}
+
 form {
     margin: 4px 8px;
 }
 
-legend {
-    text-align: center;
-    margin: 8px;
-    font-size: 150%;
-}
-
 fieldset {
     border: 0px;
+    max-width: 600;
+}
+
+.form_left {
+    margin: 4px 8px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+img {
+    margin: 4px 4px;
+}
+
+.otpNewBtn {
+    float: right;
+}
+
+.new_issuer, new_AccountName {
+    flex-grow: 1;
 }
 
 input[type=text] {
@@ -41,6 +58,6 @@ iput[type=text]:checked {
 .caption {
     font-size: 11px;
     font-weight: 400;
-    opacity: 0.6;
     color: #0a84ff;
+    flex-basis: 100%;
 }

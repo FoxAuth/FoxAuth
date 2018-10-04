@@ -7,18 +7,30 @@
 </head>
 
 <body>
+    <img class="otpLogo" src="../icons/icon.svg" height="32px" width="32px">
+    <img class="otpNewBtn" src="../icons/options/New.svg" height="32px" width="32px">
     <form class="newOTP">
         <fieldset>
-            <legend><strong>Edit credential</strong></legend>
-            <p>
-                Issuer: <input type="text" id="newIssuer" name="newIssuer" required placeholder="New Issuer" class="newOTP_issuer"><br>
+            <p class="form_left">
+                Issuer <input type="text" id="newIssuer" name="newIssuer" required placeholder="New issuer" class="new_issuer">
                 <span class="caption">This string is used to match domain for autofill. "GitHub" will match github.com,
                     e.g.</span>
             </p>
-            <p>
-                Account name: <input type="text" id="newAccountName" name="newAccountName" required placeholder="New Account name"
-                    class="newOTP_AccountName"><br>
+            <p class="form_left">
+                Account name <input type="text" id="newAccountName" name="newAccountName" required placeholder="New account name"
+                    class="new_AccountName">
                 <span class="caption">Required string to generate OTP codes.</span>
+            </p>
+            <p class="form_left">
+                Secret Tokens <input type="password" id="newSecretToken" name="newSecretToken" required placeholder="New secret token">
+                <span class="caption">Required string to generate OTP codes.</span>
+            </p>
+            <p>
+                <label for="newOTPType">Type </label>
+                <select id="newOTPType" name="newOTPType">
+                    <option>Time based</option>
+                    <option>Counter based</option>
+                </select>
             </p>
         </fieldset>
     </form>

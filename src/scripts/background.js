@@ -29,11 +29,8 @@ browser.contextMenus.create({
 
 browser.contextMenus.onClicked.addListener((info, ignored) => {
     if (info.menuItemId === "scanQR") {
-        browser.windows.create({
-            url: "../options/otpinfo.html",
-            type: "popup",
-            height: 700,
-            width: 700
+        browser.tabs.create({
+            url: "../options/otpinfo.html"
         });
         //decode(info.srcUrl);
     }
