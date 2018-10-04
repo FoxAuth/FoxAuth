@@ -8,50 +8,81 @@ form {
 
 fieldset {
     border: 0px;
-    max-width: 600;
-}
-
-.form_left {
-    margin: 4px 8px;
-    display: flex;
-    flex-wrap: wrap;
+    max-width: 600px;
 }
 
 img {
     margin: 4px 4px;
 }
 
+button {
+    background-color: #0060df;
+    border-radius: 2px;
+    border: 1px solid #0060df;
+    margin: 4px 4px;
+    height: 32px;
+    padding: 0px 8px;
+    width: auto;
+    min-width: 132px;
+}
+
+button:hover {
+    background-color: #003eaa;
+}
+
+button:active {
+    background-color: #002275;
+    box-shadow: 0 0 0 1px #0a84ff inset, 0 0 0 1px #0a84ff, 0 0 0 4px rgba(10, 132, 255, 0.3);
+}
+
+.btnText {
+    text-align: center;
+    color: #ffffff;
+}
+
 .otpNewBtn {
     float: right;
 }
 
-.new_issuer, new_AccountName {
+.newIssuer, .newAccountName, .newSecretToken, {
     flex-grow: 1;
+    margin: 4px 8px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
 }
 
-input[type=text] {
+.newOTPType, .newOTPPeriod {
+    display: inline-flex;
+    width: 50%;
+}
+
+input:invalid {
+    border: 1px solid #ff0039;
+}
+
+input[type=text], input[type=password], input[type=number], select {
     margin: 4px;
     height: 32px;
     padding-left: 8px;
     border: 1px solid rgba(12, 12, 13, 0.3);
     border-radius: 2px;
     color: #0c0c0d;
-    width: flex;
     min-width: 250px;
 }
 
-input[type=text]:hover {
+input[type=text]:hover, input[type=password]:hover, input[type=number]:hover, select:hover {
     border: 1px solid rgba(12, 12, 13, 0.5);
     border-radius: 2px;
 }
 
-input[type=text]:active {
+input[type=text]:active, input[type=password]:active, input[type=number]:active, select:active {
     border: 1px solid #0a84ff;
     border-radius: 2px;
     box-shadow: 0 0 0 1px #0a84ff, 0 0 0 4px rgba(10, 132, 255, 0.3);
 }
 
-iput[type=text]:checked {
+input[type=text]:checked, input[type=password]:checked {
     color: #0a84ff;
 }
 
