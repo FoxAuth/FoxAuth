@@ -24,7 +24,7 @@
 
 FoxAuth is an [TOTP](https://wikipedia.org/wiki/Time-based_One-time_Password_algorithm) browser client with autofill support for __FireFox__ and __FireFox Android__ (_FireFox 57.0+ is required_)
 
-> __OTP__ refers to __One-Time Password__. See more at our [wiki](https://github.com/FoxAuth/FoxAuth/wiki).
+> 2FA made no longer annoying but enjoyable
 
 ## Features
 
@@ -32,15 +32,10 @@ FoxAuth is an [TOTP](https://wikipedia.org/wiki/Time-based_One-time_Password_alg
 - __Import / Export__ accounts list
 - Password based account list encrypted __import / export__
 - Autofill __TOTP__ form
-- __Dropbox / FxA__ backup
+- __Dropbox / FxA__ sync
 - QR Code __export / import__ support
 - Manual account __import / export__ support
 - [Photon Design](https://design.firefox.com/photon)
-
-## Maintainer
-
-- [duangsuse](https://github.com/duangsuse)__@GitHub__ code helper 📝
-- [Riajyuu](https://github.com/Riajyuu)__@GitHub__ creator & main maintainer 💡
 
 ## License
 

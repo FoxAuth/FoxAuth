@@ -19,14 +19,13 @@ browser.contextMenus.create({
     icons: {
         "16": "../icons/foxauth16.png",
         "32": "../icons/foxauth32.png"
-      }
+    }
 });
 
 /*
     The click event listener, where we perform the appropriate action given the
     ID of the menu item that was clicked.
 */
-
 browser.contextMenus.onClicked.addListener((info, ignored) => {
     if (info.menuItemId === "scanQR") {
         browser.tabs.create({
@@ -35,3 +34,21 @@ browser.contextMenus.onClicked.addListener((info, ignored) => {
         //decode(info.srcUrl);
     }
 });
+
+//autfill matching
+var matchTarget = window.location.hostname;
+var matchIssuer;
+switch (matchTarget) {
+    case "www.amazon.cn":
+    matchIssuer = "z.cn"
+    break;
+    case "signin.aws.amazon.com":
+    matchIssuer =""
+    break;
+    case "keepersecurity.com":
+    matchIssuer = ""
+    break;
+    default:
+    matchTarget.split('.').reverse();
+    matchIssuer = matchTarget[1] || matchTarget[0];
+};

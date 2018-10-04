@@ -17,3 +17,7 @@ document.querySelector('.otpNewBtn').addEventListener("click", () => {
     const c = el.cloneNode(true);
     dom.parentNode.appendChild(c);
 });
+
+console.log(document.querySelector('body'));
+console.log(dom);
+console.log(c);

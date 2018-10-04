@@ -1,6 +1,8 @@
 .top-bar {
   display: flex;
   font-size: 17px;
+  border: 1px solid #000;
+  border-radius: 4px;
 }
 
 .top-bar .logo {
@@ -9,7 +11,7 @@
   line-height: 60px;
   text-align: center;
   color: #0c0c0d;
-  background-color: rgba(12, 12, 13, 0.1);
+  background-color: #ffffff;
 }
 
 .top-bar .actions {
@@ -22,7 +24,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(12, 12, 13, 0.1);
+  background-color: #ffffff;
   height: 60px;
 }
 
@@ -37,7 +39,7 @@
 }
 
 .top-bar .actions .action-group:hover {
-  background-color: rgba(12, 12, 13, 0.2);
+  background-color: #f9f9fa;
 }
 
 .top-bar .actions .action-group.active {

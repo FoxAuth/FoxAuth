@@ -9,6 +9,7 @@ form {
 fieldset {
     border: 0px;
     max-width: 600px;
+    display: inline-block;
 }
 
 img {
