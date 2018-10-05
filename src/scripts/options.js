@@ -12,7 +12,7 @@ function resetNotifi() {
 document.querySelector('.resetbtn').addEventListener("click", resetNotifi);
 
 //toggle additional form items
-document.getElementById('moreFormbtn').addEventListener("click", () => {
+document.getElementById("moreFormbtn").addEventListener("click", () => {
     var x = document.getElementById("moreFormItem");
     if (x.style.display === "none") {
         x.style.display = "block";
@@ -24,13 +24,13 @@ document.getElementById('moreFormbtn').addEventListener("click", () => {
 //create new OTP form
 document.querySelector('.otpNewBtn').addEventListener("click", () => {
     const dom = document.querySelector('.newOTP');
-    const c = dom.cloneNode(true);
-    dom.parentNode.appendChild(c);
+    const node = dom.cloneNode(true);
+    dom.parentNode.appendChild(node);
 });
 
 //delete OTP form
-document.getElementById('deleteOTP').addEventListener("click", () => {
-    var node = document.getElementById("newOTP");
+document.getElementById("deleteOTP").addEventListener("click", () => {
+    var node = document.querySelector(".newOTP");
     if (node.parentNode) {
       node.parentNode.removeChild(node);
     }
