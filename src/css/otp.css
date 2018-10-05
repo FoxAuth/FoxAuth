@@ -49,7 +49,7 @@ button:active {
     float: right;
 }
 
-.newIssuer, .newAccountName, .newSecretToken {
+.newIssuer, .newAccountName, .newSecretToken, .newRecovery {
     margin: 4px 8px;
     display: flex;
     flex-wrap: wrap;
