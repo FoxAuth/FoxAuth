@@ -29,8 +29,8 @@ document.querySelector('.otpNewBtn').addEventListener("click", () => {
 });
 
 //delete OTP form
-document.querySelector('.deleteOTP').addEventListener("click", () => {
-    var node = document.getElementsByClassName('.newOTP');
+document.getElementById('deleteOTP').addEventListener("click", () => {
+    var node = document.getElementById("newOTP");
     if (node.parentNode) {
       node.parentNode.removeChild(node);
     }

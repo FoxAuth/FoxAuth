@@ -45,7 +45,7 @@ button:active {
     color: #ffffff;
 }
 
-.otpNewBtn, .deleteOTP, #moreFormbtn {
+.otpNewBtn, #deleteOTP, #moreFormbtn {
     float: right;
 }
 
