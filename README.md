@@ -18,6 +18,10 @@
       <img src="https://img.shields.io/github/license/FoxAuth/FoxAuth.svg?style=flat-square" alt="license" />
     </a>
   </a>
+  ·
+    <a href="https://t.me/joinchat/Flgxfkm5Q2c8JayWirYTmA">
+      <img src="https://img.shields.io/badge/Telegram-Join%20Chat-red.svg?style=flat-square" alt="Telegram link" />
+    </a>
 </div>
 
 ## Introduction
