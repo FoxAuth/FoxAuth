@@ -97,3 +97,7 @@ input[type=text]:checked, input[type=password]:checked {
     color: #0a84ff;
     flex-basis: 100%;
 }
+
+#moreFormItem {
+    display: none;
+}
