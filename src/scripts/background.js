@@ -36,6 +36,7 @@ browser.contextMenus.onClicked.addListener((info, ignored) => {
 });
 
 //autfill matching
+function matchOTP (){
 var matchTarget = window.location.hostname;
 var matchIssuer;
 switch (matchTarget) {
@@ -51,4 +52,4 @@ switch (matchTarget) {
     default:
     matchTarget.split('.').reverse();
     matchIssuer = matchTarget[1] || matchTarget[0];
-};
+}};
