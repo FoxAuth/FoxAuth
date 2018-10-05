@@ -33,7 +33,9 @@
                         required pattern="[2-7][a-z][A-Z]{=}" placeholder="New secret token">
                     <span class="caption">Required string to generate OTP codes.</span>
                 </p>
-                <p><img class="moreFormbtn" src="../icons/options/Menu.svg" height="16px" height="16px"><div class="newOTPType">
+                <img id="moreFormbtn" src="../icons/options/More horizontal.svg" height="16px" height="16px">
+                <div id="moreFormItem">
+                <p><div class="newOTPType">
                     <label for="newOTPType">Type </label>
                     <select id="newOTPType" name="newOTPType">
                         <option>Time based</option>
@@ -57,7 +59,7 @@
                         <option>8</option>
                     </select>
                 </div></p>
-            <p>
+            </div>
                 <p>
                     <button type="submit">
                         <div class="btnText">Confirm</div>
