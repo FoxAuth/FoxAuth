@@ -1,3 +1,7 @@
+*, :after, :before {
+    box-sizing: border-box;
+}
+
 body {
     background-color: #f9f9fa;
 }
@@ -41,12 +45,11 @@ button:active {
     color: #ffffff;
 }
 
-.otpNewBtn {
+.otpNewBtn, .moreFormbtn, .deleteOTP {
     float: right;
 }
 
 .newIssuer, .newAccountName, .newSecretToken {
-    flex-grow: 1;
     margin: 4px 8px;
     display: flex;
     flex-wrap: wrap;
@@ -56,6 +59,7 @@ button:active {
 .newOTPType, .newOTPPeriod {
     display: inline-flex;
     width: 50%;
+    align-items: center;
 }
 
 input:invalid {
@@ -69,7 +73,7 @@ input[type=text], input[type=password], input[type=number], select {
     border: 1px solid rgba(12, 12, 13, 0.3);
     border-radius: 2px;
     color: #0c0c0d;
-    min-width: 250px;
+    flex-grow: 1;
 }
 
 input[type=text]:hover, input[type=password]:hover, input[type=number]:hover, select:hover {

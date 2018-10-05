@@ -17,3 +17,11 @@ document.querySelector('.otpNewBtn').addEventListener("click", () => {
     const c = dom.cloneNode(true);
     dom.parentNode.appendChild(c);
 });
+
+//delete OTP form
+document.querySelector('.deleteOTP').addEventListener("click", () => {
+    var node = document.getElementsByClassName('.newOTP');
+    if (node.parentNode) {
+      node.parentNode.removeChild(node);
+    }
+});
