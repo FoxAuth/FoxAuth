@@ -28,12 +28,63 @@ browser.contextMenus.create({
 */
 browser.contextMenus.onClicked.addListener((info, ignored) => {
     if (info.menuItemId === "scanQR") {
-        browser.tabs.create({
-            url: "../options/otpinfo.html"
-        });
+        if(info.mediaType !== 'image') {
+            showErrorMsg('Can not found Image.')
+        } else {
+            var img = new Image()
+            var canvas = document.createElement('canvas')
+            var ctx = canvas.getContext("2d")
+            img.crossOrigin = ''
+            img.onload = function () {
+                canvas.width = img.width
+                canvas.height = img.height
+                ctx.drawImage(img, 0, 0, img.width, img.height)
+                decodeQr(canvas)
+            }
+            img.src = info.srcUrl
+        }
         //decode(info.srcUrl);
     }
 });
+
+function decodeQr(canvas) {
+    var dataURL = canvas.toDataURL("image/png")
+    qrcode.decode(dataURL)
+}
+
+function showErrorMsg(msg) {
+    browser.windows.create({
+        url: browser.runtime.getURL("options/error.html") + "?" + msg,
+        width: 350,
+        height: 300,
+        type: "popup"
+    });
+}
+var injectQr_1 = document.createElement('script')
+injectQr_1.onload = function() {
+    qrcode.callback = function (/*err,*/ result) {
+        if (result === 'error decoding QR Code') {
+            showErrorMsg('Qrcode decode error.')
+        } else {
+            if(result.startsWith('otpauth://totp/')) {
+                browser.windows.create({
+                    url: browser.runtime.getURL("options/otpinfo.html") + "?" + result,
+                    width: 750,
+                    height: 550,
+                    type: "popup"
+                });
+            } else {
+                showErrorMsg('TOTP not found.')
+            }
+        }
+    }
+}
+injectQr_1.src = browser.runtime.getURL('scripts/qr/llqrcode.js')
+document.body.appendChild(injectQr_1)
+var injectQr_2 = document.createElement('script')
+injectQr_2.src = browser.runtime.getURL('scripts/qr/imgproc.js')
+document.body.appendChild(injectQr_2)
+
 
 //autfill matching
 function matchOTP (){
