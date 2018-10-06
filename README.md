@@ -34,6 +34,7 @@ FoxAuth is an [TOTP](https://wikipedia.org/wiki/Time-based_One-time_Password_alg
 
 - __Firefox Android__ support
 - QR code / manually add account info
+- __Container tab__ support to autofill multiple same-domain accounts
 - (Password based) account list (encrypted) __import / export__
 - Autofill __TOTP__ form
 - __Dropbox / FxA__ sync
