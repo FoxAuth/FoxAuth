@@ -12,8 +12,12 @@ function resetNotifi() {
 document.querySelector('.resetbtn').addEventListener("click", resetNotifi);
 
 //toggle additional form items
-document.getElementById("moreFormbtn").addEventListener("click", () => {
-    var x = document.getElementById("moreFormItem");
+document.body.addEventListener("click", (e) => {
+    const t = e.target;
+    if (!t.classList || !t.classList.contains('moreFormbtn')) {
+        return;
+    }
+    const x = t.parentNode.querySelector('.moreFormItem');
     if (x.style.display === "none") {
         x.style.display = "block";
     } else {
@@ -29,8 +33,12 @@ document.querySelector('.otpNewBtn').addEventListener("click", () => {
 });
 
 //delete OTP form
-document.getElementById("deleteOTP").addEventListener("click", () => {
-    var node = document.querySelector(".newOTP");
+document.body.addEventListener("click", (e) => {
+    const t = e.target;
+    if (!t.classList || !t.classList.contains('deleteOTP')) {
+        return;
+    }
+    const node = t.parentNode;
     if (node.parentNode) {
       node.parentNode.removeChild(node);
     }

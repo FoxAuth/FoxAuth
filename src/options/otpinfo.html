@@ -14,8 +14,8 @@
     <img class="otpNewBtn" src="../icons/options/New.svg" height="32px" width="32px">
     <div>
         <form class="newOTP">
-            <img id="deleteOTP" src="../icons/options/Close.svg" height="32px" width="32px">
             <fieldset>
+                    <img id="deleteOTP" class="deleteOTP" src="../icons/options/Close.svg" height="32px" width="32px">
                 <p class="newIssuer">
                     <label for="newIssuer">Issuer</label> <input type="text" id="newIssuer" name="newIssuer" required
                         placeholder="New issuer">
@@ -37,32 +37,29 @@
                         <label for="newRecovery">Recovery</label> <input type="text" id="newRecovery" name="newSecretToken" placeholder="New recovery">
                         <span class="caption">Given string in case OTP account info lost.</span>
                     </p>
-                <img id="moreFormbtn" src="../icons/options/More horizontal.svg" height="32px" height="32px">
-                <div id="moreFormItem">
-                <p><div class="newOTPType">
+                <img id="moreFormbtn" class="moreFormbtn" src="../icons/options/More horizontal.svg" height="32px" height="32px">
+                <div id="moreFormItem" class="moreFormItem">
+                <p>
                     <label for="newOTPType">Type </label>
-                    <select id="newOTPType" name="newOTPType">
+                    <select class="newOTPType" id="newOTPType" name="newOTPType">
                         <option>Time based</option>
                         <option>Counter based</option>
                     </select>
-                </div><div class="newOTPAlgorithm">
                     <label for="newOTPAlgorithm">Algorithm </label>
-                    <select id="newOTPAlgorithm" name="newOTPAlgorithm">
+                    <select class="newOTPAlgorithm" id="newOTPAlgorithm" name="newOTPAlgorithm">
                         <option>SHA-1</option>
                         <option>SHA-256</option>
                     </select>
-                </div></p>
-            <p><div class="newOTPPeriod">
+                </p>
+            <p>
                     <label for="newOTPPeriod">Period </label>
-                    <input type="number" name="newOTPPeriod" id="newOTPPeriod" value="30" min="30" max="99" step="1">
-                </div><div class="newOTPDigits">
+                    <input class="newOTPPeriod" type="number" name="newOTPPeriod" id="newOTPPeriod" value="30" min="30" max="99" step="1">
                     <label for="newOTPDigits">Digits </label>
-                    <select id="newOTPDigits" name="newOTPDigits">
+                    <select  class="newOTPDigits" id="newOTPDigits" name="newOTPDigits">
                         <option>6</option>
                         <option>7</option>
                         <option>8</option>
-                    </select>
-                </div></p>
+                    </select></p>
             </div>
                 <p>
                     <button type="submit">

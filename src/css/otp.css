@@ -12,6 +12,10 @@ form {
     display: inline-block;
 }
 
+.moreFormItem {
+    margin: 4px 8px;
+}
+
 fieldset {
     border: 0px;
 }
