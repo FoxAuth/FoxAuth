@@ -35,9 +35,7 @@
     "unlimitedStorage",
     "contextMenus",
     "notifications",
+    "contextualIdentities",
     "<all_urls>"
-  ],
-  "optional_permissions": [
-    "https://*.dropboxapi.com/*"
   ]
 }
