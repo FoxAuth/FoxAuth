@@ -66,3 +66,35 @@ document.getElementById("eye").addEventListener("click", function () {
         hide();
     }
 }, false);
+
+//container tabs
+var div = document.getElementById('containerAssign');
+  
+if (browser.contextualIdentities === undefined) {
+    div.setAttribute("disable");
+} else {
+  browser.contextualIdentities.query({})
+    .then((identities) => {
+      if (!identities.length) {
+        browser.notifications.create({
+            "type": "basic",
+            "iconUrl": "../icons/icon.svg",
+            "title": "FoxAuth Authenticator",
+            "message": "Waring: no container found."
+        });
+        return;
+      }
+
+     for (let identity of identities) {
+       let row = document.createElement('div');
+       let span = document.createElement('span');
+       span.className = 'identity';
+       span.innerText = identity.name;
+       span.style = `color: ${identity.color}`;
+       console.log(identity);
+       row.appendChild(span);
+       createOptions(row, identity);
+       div.appendChild(row);
+     }
+  });
+}
