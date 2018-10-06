@@ -33,13 +33,21 @@ FoxAuth is an [TOTP](https://wikipedia.org/wiki/Time-based_One-time_Password_alg
 ## Features
 
 - __Firefox Android__ support
-- __Import / Export__ accounts list
-- Password based account list encrypted __import / export__
+- QR code / manually add account info
+- (Password based) account list (encrypted) __import / export__
 - Autofill __TOTP__ form
 - __Dropbox / FxA__ sync
-- QR Code __export / import__ support
-- Manual account __import / export__ support
 - [Photon Design](https://design.firefox.com/photon)
+
+## Revisioning
+
+Here is how this project gets revisioning:
+
+- a - major changes, represents a complete overhaul of the code in the file, hardly distinguishable from before; you probably will never need to bump this; when creating new files just give it a version of 1.0.0. 
+
+- b - mid-level changes, when you add or modify a significant chunk of code that alters the way the rest works; for instance when adding whole new features.
+
+- c - minor changes, such as most bugfixes; this is probably what you will be bumping most often.
 
 ## License
 
