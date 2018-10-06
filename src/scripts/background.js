@@ -53,3 +53,8 @@ switch (matchTarget) {
     matchTarget.split('.').reverse();
     matchIssuer = matchTarget[1] || matchTarget[0];
 }};
+
+//add listeners here
+browser.contextualIdentities.onCreated.addListener(listener);
+browser.contextualIdentities.onRemoved.addListener(listener);
+browser.contextualIdentities.onUpdated.addListener(listener);
