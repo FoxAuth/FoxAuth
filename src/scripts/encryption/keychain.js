@@ -1,5 +1,3 @@
-const b64 = require('base64-js');
-
 function arrayToB64(array) {
   return b64
     .fromByteArray(array)
@@ -9,13 +7,13 @@ function arrayToB64(array) {
 }
 
 function b64ToArray(str) {
-  return b64.toByteArray(str + '==='.slice((str.length + 3) % 4));
+  return base64js.toByteArray(str + '==='.slice((str.length + 3) % 4));
 }
 
 const encoder = new TextEncoder();
 const decoder = new TextDecoder();
 
-export default class Keychain {
+class Keychain {
   constructor(secretKeyB64, nonce, ivB64) {
     this._nonce = nonce || 'yRCdyQ1EMSA3mo4rqSkuNQ==';
     if (ivB64) {
