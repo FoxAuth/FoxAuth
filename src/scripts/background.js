@@ -44,10 +44,10 @@ switch (matchTarget) {
     matchIssuer = "z.cn"
     break;
     case "signin.aws.amazon.com":
-    matchIssuer =""
+    matchIssuer = "Amazon Web Services"
     break;
     case "keepersecurity.com":
-    matchIssuer = ""
+    matchIssuer = "Keeper"
     break;
     default:
     matchTarget.split('.').reverse();
