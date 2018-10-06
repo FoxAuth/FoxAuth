@@ -53,11 +53,11 @@ function decodeQr(canvas) {
 }
 
 function showErrorMsg(msg) {
-    browser.windows.create({
-        url: browser.runtime.getURL("options/error.html") + "?" + msg,
-        width: 350,
-        height: 300,
-        type: "popup"
+    browser.notifications.create({
+        "type": "basic",
+        "iconUrl": "../icons/icon.svg",
+        "title": "FoxAuth Authenticator",
+        "message": msg
     });
 }
 var injectQr_1 = document.createElement('script')

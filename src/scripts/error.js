@@ -1,1 +1,0 @@
-document.getElementById('error_msg').innerText = decodeURIComponent(window.location.search.substring(1))
