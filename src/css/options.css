@@ -4,7 +4,8 @@ body {
 
 .menu-btn {
   background: transparent;
-  border: #d7d7db solid 1px
+  border: #d7d7db solid 1px;
+  border-radius: 2px;
 }
 
 .menu-btn:hover {
