@@ -107,6 +107,9 @@ switch (matchTarget) {
     case "keepersecurity.com":
     matchIssuer = "Keeper"
     break;
+    case "login.live.com":
+    matchIssuer = "Microsoft"
+    break;
     default:
     matchTarget.split('.').reverse();
     matchIssuer = matchTarget[1] || matchTarget[0];
