@@ -25,11 +25,15 @@ document.body.addEventListener("click", (e) => {
     }
 });
 
+//init OTP form stack object
+const otpFormStack = [];
+const otpBasicForm = document.querySelector('.newOTP').cloneNode(true);
+
 //create new OTP form
 document.querySelector('.otpNewBtn').addEventListener("click", () => {
-    const dom = document.querySelector('.newOTP');
-    const node = dom.cloneNode(true);
-    dom.parentNode.appendChild(node);
+    const otpFormBox = document.querySelector('#otpFormBox');
+    const node = otpFormStack.length? otpFormStack.pop() : otpBasicForm.cloneNode(true);
+    otpFormBox.appendChild(node);
 });
 
 //delete OTP form
@@ -40,7 +44,7 @@ document.body.addEventListener("click", (e) => {
     }
     const node = t.parentNode;
     if (node.parentNode) {
-      node.parentNode.removeChild(node);
+      otpFormStack.push(node.parentNode.removeChild(node));
     }
 });
 
@@ -69,7 +73,7 @@ document.getElementById("eye").addEventListener("click", function () {
 
 //container tabs
 var div = document.getElementById('containerAssign');
-  
+
 if (browser.contextualIdentities === undefined) {
     div.setAttribute("disable");
 } else {
