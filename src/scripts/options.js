@@ -86,3 +86,13 @@ if (browser.contextualIdentities === undefined) {
       }).forEach(x => document.querySelector('select').appendChild(x))
   });
 }
+
+//Get QrScan Result
+var qrresult = decodeURIComponent(window.location.search.substring(1))
+if (qrresult.length > 0) {
+    var scannedotp = new URL(qrresult)
+    console.log(scannedotp)
+    document.getElementById('newAccountName').value = scannedotp.pathname.substring(7)
+    document.getElementById('newSecretToken').value = scannedotp.searchParams.get('secret')
+    document.getElementById('newIssuer').value = scannedotp.searchParams.get('issuer')
+}
