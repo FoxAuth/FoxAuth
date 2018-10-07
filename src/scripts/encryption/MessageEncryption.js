@@ -21,7 +21,7 @@ class MessageEncryption {
   // https://stackoverflow.com/a/40764378
   /**
    * @param {string} password 
-   * @returns {string} encryptedPassword
+   * @returns {Promise<string>} encryptedPassword
    */
   encrypt(password) {
     return this.instance.encryptFile(encoder.encode(password).buffer).then(arr => ab2str(arr))
@@ -29,7 +29,7 @@ class MessageEncryption {
 
   /**
    * @param {string} encryptedPassword
-   * @returns {string} password
+   * @returns {Promise<string>} password
    */
   decrypt(encryptedPassword) {
     return this.instance.decryptFile(str2ab(encryptedPassword)).then(arr => decoder.decode(arr))
