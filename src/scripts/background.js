@@ -22,6 +22,16 @@ browser.contextMenus.create({
     }
 });
 
+browser.contextMenus.create({
+    id: "autfillOTP",
+    title: "autfill OTP code",
+    contexts: ["input"],
+    icons: {
+        "16": "../icons/foxauth16.png",
+        "32": "../icons/foxauth32.png"
+    }
+});
+
 /*
     The click event listener, where we perform the appropriate action given the
     ID of the menu item that was clicked.
@@ -66,15 +76,12 @@ injectQr_1.onload = function() {
         if (result === 'error decoding QR Code') {
             showErrorMsg('Qrcode decode error.')
         } else {
-            if(result.startsWith('otpauth://totp/')) {
-                browser.windows.create({
-                    url: browser.runtime.getURL("options/otpinfo.html") + "?" + result,
-                    width: 750,
-                    height: 550,
-                    type: "popup"
+            if(result.startsWith('otpauth://totp/' | 'otpauth://hotp/')) {
+                browser.tabs.create({
+                    url: browser.runtime.getURL("options/otpinfo.html") + "?" + result
                 });
             } else {
-                showErrorMsg('TOTP not found.')
+                showErrorMsg('OTP not found.')
             }
         }
     }
