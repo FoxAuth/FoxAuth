@@ -5,15 +5,34 @@
     <meta name="description" content="FoxAuth Authenticator">
     <link rel="icon" href="../icons/icon.svg">
     <title>FoxAuth Authenticator</title>
+    <link href="../css/main.css" rel="stylesheet">
     <link href="../css/options.css" rel="stylesheet">
 </head>
 <body>
-    <div id='cssmenu'>
-        <ul>
-           <li class='active'><a href='https://github.com/FoxAuth/FoxAuth'><span>FoxAuth Authenticator</span></a></li>
-           <li id="first"><a href='options.html'><span>General</span></a></li>
-           <li id="second"><a href='tokens.html'><span>Secret Tokens</span></a></li>
-           <li id="third"><a href='#'><span>Backup & Sync</span></a></li>
-           <li id="last"><a href='about.html'><span>About</span></a></li>
-        </ul>
+    <div class="top-bar">
+        <div class="logo-header">
+            <a href='https://github.com/FoxAuth/FoxAuth' class="logo">
+                <img class="imageLogo" src="../icons/icon.svg" height="32px" width="32px"> FoxAuth Authenticator
+            </a>
+            <button class="menu-btn" id="showMenuBtn" data-open="0"><img src="../icons/options/Menu.svg" alt=""></button>
+        </div>
+        <div class="actions">
+            <a href="options.html" class="action-group">
+                <img class="icon" src="../icons/options/Preferences.svg" alt="">
+                <div class="action">General</div>
+            </a>
+            <a href="tokens.html" class="action-group">
+                <img class="icon" src="../icons/options/tokens.svg" alt="">
+                <div class="action">Secret Tokens</div>
+            </a>
+            <a href="sync.html" class="action-group active">
+                <img class="icon" src="../icons/options/sync.svg" alt="">
+                <div class="action">Backup & Sync</div>
+            </a>
+            <a href="about.html" class="action-group">
+                <img class="icon" src="../icons/options/about.svg" alt="">
+                <div class="action">About</div>
+            </a>
+        </div>
     </div>
+    <script src="../scripts/menu.js"></script>

@@ -1,14 +1,40 @@
+body {
+  padding-top: 4em;
+}
+
+.menu-btn {
+  background: transparent;
+  border: #d7d7db solid 1px
+}
+
+.menu-btn:hover {
+  background: rgba(12, 12, 13, 0.1)
+}
+
+.menu-btn:active {
+  background: rgba(12, 12, 13, 0.2)
+}
+
+.menu-btn:focus {
+  box-shadow: 0 0 0 1px #0a84ff inset, 0 0 0 1px #0a84ff, 0 0 0 4px rgba(10, 132, 255, 0.3)
+}
+
 .top-bar {
   display: flex;
   font-size: 17px;
   border: 1px solid #000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  white-space: nowrap;
 }
 
 .top-bar .imageLogo {
   vertical-align: middle;
 }
 
-.top-bar .logo {
+.top-bar .logo-header {
   flex: 1;
   display: block;
   line-height: 60px;
@@ -17,9 +43,22 @@
   background-color: #ffffff;
 }
 
+.top-bar .logo-header .logo {
+  padding: 0 1em;
+}
+
+.top-bar .logo-header button {
+  display: none;
+  height: 3em;
+  align-self: center;
+  margin: 0 1em;
+}
+
 .top-bar .actions {
   flex: 4;
   display: flex;
+  overflow: hidden;
+  transition: max-height .5s ease;
 }
 
 .top-bar .actions .action-group {
@@ -41,6 +80,7 @@
   color: #0c0c0d;
 }
 
+.top-bar .actions .action-group.active,
 .top-bar .actions .action-group:hover {
   background-color: #ededf0;
   border-radius: 4px;
@@ -105,4 +145,24 @@
 .content .resetbtn.active {
   background-color: #002275;
   box-shadow: 0 0 0 1px #0a84ff inset, 0 0 0 1px #0a84ff, 0 0 0 4px rgba(10, 132, 255, 0.3);
+}
+
+@media (max-width: 768px){
+  .top-bar .logo-header button {
+      display: block;
+  }
+  .top-bar, .top-bar .actions {
+      flex-direction: column;
+  }
+  .top-bar .actions .action-group {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .top-bar .logo-header {
+    display: flex;
+    justify-content: space-between;
+  }
+  .top-bar .actions {
+    max-height: 0
+  }
 }

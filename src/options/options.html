@@ -12,9 +12,12 @@
 
 <body>
     <div class="top-bar">
-        <a href='https://github.com/FoxAuth/FoxAuth' class="logo">
-            <img class="imageLogo" src="../icons/icon.svg" height="32px" width="32px"> FoxAuth Authenticator
-        </a>
+        <div class="logo-header">
+            <a href='https://github.com/FoxAuth/FoxAuth' class="logo">
+                <img class="imageLogo" src="../icons/icon.svg" height="32px" width="32px"> FoxAuth Authenticator
+            </a>
+            <button class="menu-btn" id="showMenuBtn" data-open="0"><img src="../icons/options/Menu.svg" alt=""></button>
+        </div>
         <div class="actions">
             <a href="options.html" class="action-group active">
                 <img class="icon" src="../icons/options/Preferences.svg" alt="">
@@ -82,6 +85,7 @@
     </div>
 
 
+    <script src="../scripts/menu.js"></script>
     <script src="../scripts/options.js"></script>
 </body>
 

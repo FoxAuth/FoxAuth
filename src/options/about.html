@@ -9,27 +9,48 @@
     <link href="../css/options.css" rel="stylesheet">
 </head>
 <body>
-    <div id='cssmenu'>
-        <ul>
-           <li class='active'><a href='https://github.com/FoxAuth/FoxAuth'><span>FoxAuth Authenticator</span></a></li>
-           <li id="first"><a href='options.html'><span>General</span></a></li>
-           <li id="second"><a href='tokens.html'><span>Secret Tokens</span></a></li>
-           <li id="third"><a href='sync.html'><span>Backup & Sync</span></a></li>
-           <li id="last"><a href='#'><span>About</span></a></li>
-        </ul>
+    <div class="top-bar">
+        <div class="logo-header">
+            <a href='https://github.com/FoxAuth/FoxAuth' class="logo">
+                <img class="imageLogo" src="../icons/icon.svg" height="32px" width="32px"> FoxAuth Authenticator
+            </a>
+            <button class="menu-btn" id="showMenuBtn" data-open="0"><img src="../icons/options/Menu.svg" alt=""></button>
+        </div>
+        <div class="actions">
+            <a href="options.html" class="action-group">
+                <img class="icon" src="../icons/options/Preferences.svg" alt="">
+                <div class="action">General</div>
+            </a>
+            <a href="tokens.html" class="action-group">
+                <img class="icon" src="../icons/options/tokens.svg" alt="">
+                <div class="action">Secret Tokens</div>
+            </a>
+            <a href="sync.html" class="action-group">
+                <img class="icon" src="../icons/options/sync.svg" alt="">
+                <div class="action">Backup & Sync</div>
+            </a>
+            <a href="about.html" class="action-group active">
+                <img class="icon" src="../icons/options/about.svg" alt="">
+                <div class="action">About</div>
+            </a>
+        </div>
     </div>
-    <h2>Acknowledgement</h2>
-    <p>Many ❤ to helpers during project building:</p>
-    <ul>
-        <li>Mozilla for <a href="https://design.firefox.com/photon">Photon Design <img src="../icons/options/Open In New.svg" width="16px" height="16px"></a> &amp; <a href="http://design.firefox.com/icons/">icon assets  <img src="../icons/options/Open In New.svg" width="16px" height="16px"> .</a></li>
-        <li><a href="https://github.com/laobubu/QRScaner">QRScaner <img src="../icons/options/Open In New.svg" width="16px" height="16px"></a> for QR code manipulation & third party library for TOTP code generation.</li>
-        <li><a href="https://github.com/Authenticator-Extension/Authenticator">Authenticator <img src="../icons/options/Open In New.svg" width="16px" height="16px"></a> &amp; <a href="https://github.com/Yubico/yubioath-desktop">Yubioath Desktop <img src="../icons/options/Open In New.svg" width="16px" height="16px"></a> for features inspiration.</li>
-        <li><a href="https://github.com/mozilla/send/">Firefox Send <img src="../icons/options/Open In New.svg" width="16px" height="16px"></a>for encryption code &amp; <a href="https://github.com/dankogai/js-base64">js-base64 <img src="../icons/options/Open In New.svg" width="16px" height="16px"></a> for base64 encoding.</li>
-        <li><a href="https://github.com/violentmonkey/violentmonkey">Violentmonkey <img src="../icons/options/Open In New.svg" width="16px" height="16px"></a> for Dropbox sync API manipulation.</li>
-        <li>Other project helpers &amp; brilliant minds.</li>
-    </ul>
-    <h2>Other Info</h2>
-    <p>TOTP codes manipulation methods in this project respect <a href="https://tools.ietf.org/html/rfc6238">RFC 6238 <img src="../icons/options/Open In New.svg" width="16px" height="16px"> .</a></p>
-    <p>Except where otherwise noticed, this project is licensed under <a href="https://www.gnu.org/licenses/gpl-3.0.html">GNU General Public License 3.0 <img src="../icons/options/Open In New.svg" width="16px" height="16px"> </a>.</p>
+    <div class="content">
+        <h2>Acknowledgement</h2>
+        <p>Many ❤ to helpers during project building:</p>
+        <ul>
+            <li>Mozilla for <a href="https://design.firefox.com/photon">Photon Design <img src="../icons/options/Open In New.svg" width="16px" height="16px"></a> &amp; <a href="http://design.firefox.com/icons/">icon assets  <img src="../icons/options/Open In New.svg" width="16px" height="16px"> .</a></li>
+            <li><a href="https://github.com/laobubu/QRScaner">QRScaner <img src="../icons/options/Open In New.svg" width="16px" height="16px"></a> for QR code manipulation & third party library for TOTP code generation.</li>
+            <li><a href="https://github.com/Authenticator-Extension/Authenticator">Authenticator <img src="../icons/options/Open In New.svg" width="16px" height="16px"></a> &amp; <a href="https://github.com/Yubico/yubioath-desktop">Yubioath Desktop <img src="../icons/options/Open In New.svg" width="16px" height="16px"></a> for features inspiration.</li>
+            <li><a href="https://github.com/mozilla/send/">Firefox Send <img src="../icons/options/Open In New.svg" width="16px" height="16px"></a>for encryption code &amp; <a href="https://github.com/dankogai/js-base64">js-base64 <img src="../icons/options/Open In New.svg" width="16px" height="16px"></a> for base64 encoding.</li>
+            <li><a href="https://github.com/violentmonkey/violentmonkey">Violentmonkey <img src="../icons/options/Open In New.svg" width="16px" height="16px"></a> for Dropbox sync API manipulation.</li>
+            <li>Other project helpers &amp; brilliant minds.</li>
+        </ul>
+        <h2>Other Info</h2>
+        <p>TOTP codes manipulation methods in this project respect <a href="https://tools.ietf.org/html/rfc6238">RFC 6238 <img src="../icons/options/Open In New.svg" width="16px" height="16px"> .</a></p>
+        <p>Except where otherwise noticed, this project is licensed under <a href="https://www.gnu.org/licenses/gpl-3.0.html">GNU General Public License 3.0 <img src="../icons/options/Open In New.svg" width="16px" height="16px"> </a>.</p>
+    </div>
+
+    <script src="../scripts/menu.js"></script>
 </body>
 </html>

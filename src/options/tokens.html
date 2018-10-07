@@ -11,30 +11,36 @@
 </head>
 
 <body>
-        <div class="top-bar">
-                <a href='https://github.com/FoxAuth/FoxAuth' class="logo">
-                    FoxAuth Authenticator
-                </a>
-                <div class="actions">
-                    <a href="options.html" class="action-group active">
-                        <img class="icon" src="../icons/options/Preferences.svg" alt="">
-                        <div class="action">General</div>
-                    </a>
-                    <a href="tokens.html" class="action-group">
-                        <img class="icon" src="../icons/options/tokens.svg" alt="">
-                        <div class="action">Secret Tokens</div>
-                    </a>
-                    <a href="sync.html" class="action-group">
-                        <img class="icon" src="../icons/options/sync.svg" alt="">
-                        <div class="action">Backup & Sync</div>
-                    </a>
-                    <a href="about.html" class="action-group">
-                        <img class="icon" src="../icons/options/about.svg" alt="">
-                        <div class="action">About</div>
-                    </a>
-                </div>
-            </div>
-    <script src="../scripts/options.js"></script>
+    <div class="top-bar">
+        <div class="logo-header">
+            <a href='https://github.com/FoxAuth/FoxAuth' class="logo">
+                <img class="imageLogo" src="../icons/icon.svg" height="32px" width="32px"> FoxAuth Authenticator
+            </a>
+            <button class="menu-btn" id="showMenuBtn" data-open="0"><img src="../icons/options/Menu.svg" alt=""></button>
+        </div>
+        <div class="actions">
+            <a href="options.html" class="action-group">
+                <img class="icon" src="../icons/options/Preferences.svg" alt="">
+                <div class="action">General</div>
+            </a>
+            <a href="tokens.html" class="action-group active">
+                <img class="icon" src="../icons/options/tokens.svg" alt="">
+                <div class="action">Secret Tokens</div>
+            </a>
+            <a href="sync.html" class="action-group">
+                <img class="icon" src="../icons/options/sync.svg" alt="">
+                <div class="action">Backup & Sync</div>
+            </a>
+            <a href="about.html" class="action-group">
+                <img class="icon" src="../icons/options/about.svg" alt="">
+                <div class="action">About</div>
+            </a>
+        </div>
+    </div>
+    <script src="../scripts/menu.js"></script>
+    <script src="../scripts/dependency/ef.min.js"></script>
+    <script src="../scripts/dependency/jsOTP.min.js"></script>
+    <script src="../scripts/tokens.js"></script>
 </body>
 
 </html>
