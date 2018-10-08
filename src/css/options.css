@@ -287,3 +287,7 @@ button:active {
   color: red;
   font-size: 1.5em;
 }
+
+ul {
+  list-style: none;
+}

@@ -51,12 +51,47 @@
     <h3>Encrypt &amp; Decrypt</h3>
     <form id="encryptForm">
         <fieldset style="border: 0;">
-            <input type="password" class="encryptPass" id="encryptPass" name="encryptPass" required placeholder="Input your encryption password here"> <img id="eye" src="../icons/options/show-password.svg"><br>
+            <input type="password" class="encryptPass" id="encryptPass" name="encryptPass" required placeholder="Input your encryption password here">
+            <img id="eye" src="../icons/options/show-password.svg"><br>
             <span class="caption">Use this password to encrypt your account info.</span><br>
-            <input type="password" class="encryptPass" id="reconfirmPass" name="reconfirmPass" required placeholder="Reconfirm your password"> <img id="eye" src="../icons/options/show-password.svg"><br>
-            <span class="caption">WARNING: <span id="specialCapt"><strong>NO ONE</strong></span> can help if you forget this.</span><br>
-            <button><div class="btnText">Encrypt</div></button> <button disabled><div class="btnText">Decrypt</div></button>
+            <input type="password" class="encryptPass" id="reconfirmPass" name="reconfirmPass" required placeholder="Reconfirm your password">
+            <img id="eye" src="../icons/options/show-password.svg"><br>
+            <span class="caption">WARNING: <span id="specialCapt"><strong>NO ONE</strong></span> can help if you forget
+                this.</span><br>
+            <button>
+                <div class="btnText">Encrypt</div>
+            </button> <button disabled>
+                <div class="btnText">Decrypt</div>
+            </button>
         </fieldset>
+        <ul>
+                <li>
+                    <div class="checkbox-group">
+                        <label class="checkbox-label" for="rememPass">
+                            <div class="checkbox-icon">
+                            </div>
+                            <div class="checkbox-text">
+                                Remember encryption password.
+                            </div>
+                        </label>
+                        <input type="checkbox" id="rememPass" name="rememPass">
+                    </div>
+                    <ul>
+                        <li>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label" for="rememPassSession">
+                                    <div class="checkbox-icon">
+                                    </div>
+                                    <div class="checkbox-text">
+                                        Remember during only one browser session.
+                                    </div>
+                                </label>
+                                <input type="checkbox" id="rememPassSession" name="rememPassSession">
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
     </form>
     <div class="btnGroup">
         <h3>Import or export your account info</h3><br>
