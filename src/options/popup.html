@@ -5,23 +5,32 @@
     <meta charset="utf-8">
     <meta name="description" content="FoxAuth Authenticator">
     <link href="../css/main.css" rel="stylesheet">
+    <link href="../css/popup.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/spectre.min.css">
     <link rel="stylesheet" href="../css/spectre-exp.min.css">
     <link rel="stylesheet" href="../css/spectre-icons.min.css">
 </head>
+
 <body>
-        <script src="../scripts/options.js"></script>
-        <div id="topnav">
-            <a target="_tab" href="options.html"><img src="../icons/options/Preferences.svg" title="Open options" height="32px" width="32px"></a>
-            <a target="_tab" href="tokens.html"><img src="../icons/options/edit token.svg" title="See all tokens" height="32px" width="32px"></a>
-            <a id="scanQRPopup"><img src="../icons/options/qr-scan.svg" title="Scan QR" height="32px" width="32px"></a>
-            <a id="autofillOTPForm"><img src="../icons/options/Formfill.svg" title="Autofill OTP code" height="32px" width="32px"></a>
+    <script src="../scripts/options.js"></script>
+    <div class="top-bar">
+        <div class="actions">
+            <a class="popup-group" target="_tab" href="options.html"><img src="../icons/options/Preferences.svg" title="Open options"
+                    height="32px" width="32px"></a>
+            <a class="popup-group" target="_tab" href="tokens.html"><img src="../icons/options/edit token.svg" title="See all tokens"
+                    height="32px" width="32px"></a>
+            <a class="popup-group" id="scanQRPopup"><img src="../icons/options/qr-scan.svg" title="Scan QR" height="32px"
+                    width="32px"></a>
+            <a class="popup-group" id="autofillOTPForm"><img src="../icons/options/Formfill.svg" title="Autofill OTP code"
+                    height="32px" width="32px"></a>
         </div>
+    </div>
     <div id="otpContainer">
 
-        </div>
-        <script src="../scripts/dependency/ef.min.js"></script>
-        <script src="../scripts/dependency/jsOTP.min.js"></script>
-        <script src="../scripts/tokens.js"></script>
+    </div>
+    <script src="../scripts/dependency/ef.min.js"></script>
+    <script src="../scripts/dependency/jsOTP.min.js"></script>
+    <script src="../scripts/tokens.js"></script>
 </body>
+
 </html>

@@ -1,0 +1,10 @@
+.popup-group {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    height: 40px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
