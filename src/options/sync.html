@@ -48,6 +48,16 @@
             <div class="syncBtnText">Firefox account</div>
         </button>
     </div>
+    <h3>Encrypt &amp; Decrypt</h3>
+    <form id="encryptForm">
+        <fieldset style="border: 0;">
+            <input type="password" class="encryptPass" id="encryptPass" name="encryptPass" required placeholder="Input your encryption password here"> <img id="eye" src="../icons/options/show-password.svg"><br>
+            <span class="caption">Use this password to encrypt your account info.</span><br>
+            <input type="password" class="encryptPass" id="reconfirmPass" name="reconfirmPass" required placeholder="Reconfirm your password"> <img id="eye" src="../icons/options/show-password.svg"><br>
+            <span class="caption">WARNING: <span id="specialCapt">NO ONE</span> can help if you forget this.</span><br>
+            <button><div class="btnText">Encrypt</div></button> <button disabled><div class="btnText">Decrypt</div></button>
+        </fieldset>
+    </form>
     <div class="btnGroup">
         <h3>Import or export your account info</h3><br>
         <button class="operatebtn">
@@ -57,16 +67,9 @@
         <button class="operatebtn">
             <img src="../icons/options/export.svg" width="32px" height="32px">
             <div class="operateBtnText">Export</div>
-        </button>
+        </button><br>
+        <span class="caption">DO NOTE that exporting will <strong>NOT</strong> excute decrypting.</span>
     </div>
-    <h3>Encrypt &amp; Decrypt</h3>
-    <form id="encryptForm">
-        <fieldset style="border: 0;">
-            <input type="password" class="encryptPass" id="encryptPass" name="encryptPass" required> <img id="eye" src="../icons/options/show-password.svg"><br>
-            <span class="caption">Use this password to encrypt your account info.</span><br>
-            <button><div class="btnText">Encrypt</div></button> <button disabled><div class="btnText">Decrypt</div></button>
-        </fieldset>
-    </form>
     <script src="../scripts/menu.js"></script>
     <script src="../scripts/background.js"></script>
     <script src="../scripts/options.js"></script>

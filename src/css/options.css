@@ -223,12 +223,12 @@ button:disabled {
   border: 1px solid rgba(12, 12, 13, 0.3);
   border-radius: 2px;
   color: #0c0c0d;
-  min-width: 200px;
+  min-width: 250px;
 }
 
 #encryptForm, h3 {
   text-align: center;
-  margin: 16px 0 -16px 0;
+  margin: 16px 0 -20px 0;
 }
 
 .caption {
@@ -281,4 +281,9 @@ button:active {
 .btnText {
   text-align: center;
   color: #ffffff;
+}
+
+#specialCapt {
+  color: red;
+  font-size: 1.5em;
 }
