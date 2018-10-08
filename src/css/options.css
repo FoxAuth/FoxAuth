@@ -167,3 +167,33 @@ body {
     max-height: 0
   }
 }
+
+.btnGroup {
+  text-align: center;
+  margin: 8px 8px;
+}
+
+.syncbtn {
+  background-color: #ffffff;
+  border-radius: 2px;
+  height: auto;
+  padding: 2px 8px;
+  width: auto;
+  min-width: 132px;
+  border: 1px solid;
+  margin: 8px 8px;
+}
+
+.syncBtnText {
+  color: #0c0c0d;
+  vertical-align: middle;
+}
+
+.syncbtn:hover {
+  background-color: #ededf0;
+}
+
+.syncbtn:active {
+  background-color: rgba(12, 12, 13, 0.3);
+  box-shadow: 0 0 0 1px #0a84ff inset, 0 0 0 1px #0a84ff, 0 0 0 4px rgba(10, 132, 255, 0.3);
+}
