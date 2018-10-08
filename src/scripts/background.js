@@ -1,5 +1,5 @@
 //option page
-function openURL(url) {
+/*function openURL(url) {
     browser.tabs.create({
         url: "../options/options.html"
     })
@@ -7,7 +7,7 @@ function openURL(url) {
 
 browser.runtime.onInstalled.addListener(function () {
     browser.runtime.openOptionsPage();
-});
+});*/
 
 /*
     Create all the context menu items.
