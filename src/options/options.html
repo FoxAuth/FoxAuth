@@ -45,21 +45,11 @@
         <h2>General Options</h2>
 
         <div class="checkbox-group">
-            <label class="checkbox-label" for="TOTP">
-                <div class="checkbox-icon checked">
-                </div>
-                <div class="checkbox-text">
-                    Disable TOTP information window after scanning QR code (Recommended as manual adding still pops up).
-                </div>
-            </label>
-            <input type="checkbox" id="TOTP" name="TOTP">
-        </div>
-        <div class="checkbox-group">
             <label class="checkbox-label" for="autofill">
                 <div class="checkbox-icon">
                 </div>
                 <div class="checkbox-text">
-                    Disable TOTP code autofill globally (so that codes must be filled manually via context menu).
+                    Disable TOTP code autofill globally (so that codes must be filled manually via context menu or popup).
                 </div>
             </label>
             <input type="checkbox" id="autofill" name="autofill">
@@ -69,19 +59,12 @@
                 <div class="checkbox-icon">
                 </div>
                 <div class="checkbox-text">
-                    Disable context menus. (Note that we don't have clipboard permission so codes must be typed
-                    manually if both methods desabled).
+                    Disable context menus. (so that codes can be only filled via manual typing or popup).
                 </div>
             </label>
             <input type="checkbox" id="context" name="context">
 
         </div>
-
-
-        <div class="resetbtn">
-            Reset
-        </div>
-
     </div>
 
 
