@@ -11,6 +11,6 @@ Before creating your PR(s), there is something we hope to find out (pls check it
   - [ ] important
   - [ ] moderate
   - [ ] minor
-  - [ ] trival
+  - [ ] trivial
 
 Thanks for your time again.
