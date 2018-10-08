@@ -170,10 +170,10 @@ body {
 
 .btnGroup {
   text-align: center;
-  margin: 8px 8px;
+  margin: 24px 8px;
 }
 
-.syncbtn {
+.syncbtn, .operatebtn {
   background-color: #ffffff;
   border-radius: 2px;
   height: auto;
@@ -184,16 +184,16 @@ body {
   margin: 8px 8px;
 }
 
-.syncBtnText {
+.syncBtnText, .operateBtnText {
   color: #0c0c0d;
   vertical-align: middle;
 }
 
-.syncbtn:hover {
+.syncbtn:hover, .operatebtn:hover {
   background-color: #ededf0;
 }
 
-.syncbtn:active {
+.syncbtn:active, .operatebtn:active {
   background-color: rgba(12, 12, 13, 0.3);
   box-shadow: 0 0 0 1px #0a84ff inset, 0 0 0 1px #0a84ff, 0 0 0 4px rgba(10, 132, 255, 0.3);
 }
