@@ -148,27 +148,32 @@ body {
   box-shadow: 0 0 0 1px #0a84ff inset, 0 0 0 1px #0a84ff, 0 0 0 4px rgba(10, 132, 255, 0.3);
 }
 
-@media (min-width: 768px){
+@media (min-width: 768px) {
   .top-bar .actions {
     max-height: none !important;
   }
 }
 
-@media (max-width: 768px){
+@media (max-width: 768px) {
   .top-bar .logo-header button {
     display: block;
   }
-  .top-bar, .top-bar .actions {
+
+  .top-bar,
+  .top-bar .actions {
     flex-direction: column;
   }
+
   .top-bar .actions .action-group {
     padding-top: 10px;
     padding-bottom: 10px;
   }
+
   .top-bar .logo-header {
     display: flex;
     justify-content: space-between;
   }
+
   .top-bar .actions {
     max-height: 0
   }
@@ -179,7 +184,8 @@ body {
   margin: 24px 8px;
 }
 
-.syncbtn, .operatebtn {
+.syncbtn,
+.operatebtn {
   background-color: #ffffff;
   border-radius: 2px;
   height: auto;
@@ -190,20 +196,89 @@ body {
   margin: 8px 8px;
 }
 
-.syncBtnText, .operateBtnText {
+.syncBtnText,
+.operateBtnText {
   color: #0c0c0d;
   vertical-align: middle;
 }
 
-.syncbtn:hover, .operatebtn:hover {
+.syncbtn:hover,
+.operatebtn:hover {
   background-color: #ededf0;
 }
 
-.syncbtn:active, .operatebtn:active {
+.syncbtn:active,
+.operatebtn:active {
   background-color: rgba(12, 12, 13, 0.3);
   box-shadow: 0 0 0 1px #0a84ff inset, 0 0 0 1px #0a84ff, 0 0 0 4px rgba(10, 132, 255, 0.3);
 }
 
 button:disabled {
   opacity: 0.4;
+}
+
+.encryptPass {
+  height: 32px;
+  padding-left: 8px;
+  border: 1px solid rgba(12, 12, 13, 0.3);
+  border-radius: 2px;
+  color: #0c0c0d;
+  min-width: 200px;
+}
+
+#encryptForm, h3 {
+  text-align: center;
+  margin: 16px 0 -16px 0;
+}
+
+.caption {
+  font-size: 11px;
+  font-weight: 400;
+  color: #0a84ff;
+  flex-basis: 100%;
+}
+
+input {
+  margin: 4px;
+  height: 32px;
+  padding-left: 8px;
+  border: 1px solid rgba(12, 12, 13, 0.3);
+  border-radius: 2px;
+  color: #0c0c0d;
+}
+
+input:hover {
+  border: 1px solid rgba(12, 12, 13, 0.5);
+  border-radius: 2px;
+}
+
+input:active {
+  border: 1px solid #0a84ff;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px #0a84ff, 0 0 0 4px rgba(10, 132, 255, 0.3);
+}
+
+button {
+  background-color: #0060df;
+  border-radius: 2px;
+  border: 1px solid #0060df;
+  margin: 4px 4px;
+  height: 32px;
+  padding: 0px 8px;
+  width: auto;
+  min-width: 132px;
+}
+
+button:hover {
+  background-color: #003eaa;
+}
+
+button:active {
+  background-color: #002275;
+  box-shadow: 0 0 0 1px #0a84ff inset, 0 0 0 1px #0a84ff, 0 0 0 4px rgba(10, 132, 255, 0.3);
+}
+
+.btnText {
+  text-align: center;
+  color: #ffffff;
 }

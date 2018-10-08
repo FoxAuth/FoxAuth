@@ -38,7 +38,7 @@
         </div>
     </div>
     <div class="btnGroup">
-        Choose service you prefer to sync your data:<br>
+        <h3>Choose service you prefer to sync your data</h3><br>
         <button class="syncbtn">
             <img src="../icons/service/dropbox.svg" width="32px" height="32px">
             <div class="syncBtnText">Dropbox</div>
@@ -49,7 +49,7 @@
         </button>
     </div>
     <div class="btnGroup">
-        Import or export your account info:<br>
+        <h3>Import or export your account info</h3><br>
         <button class="operatebtn">
             <img src="../icons/options/import.svg" width="32px" height="32px">
             <div class="operateBtnText">Import</div>
@@ -59,8 +59,17 @@
             <div class="operateBtnText">Export</div>
         </button>
     </div>
+    <h3>Encrypt &amp; Decrypt</h3>
+    <form id="encryptForm">
+        <fieldset style="border: 0;">
+            <input type="password" class="encryptPass" id="encryptPass" name="encryptPass" required> <img id="eye" src="../icons/options/show-password.svg"><br>
+            <span class="caption">Use this password to encrypt your account info.</span><br>
+            <button><div class="btnText">Encrypt</div></button> <button disabled><div class="btnText">Decrypt</div></button>
+        </fieldset>
+    </form>
     <script src="../scripts/menu.js"></script>
     <script src="../scripts/background.js"></script>
+    <script src="../scripts/options.js"></script>
 </body>
 
 </html>
