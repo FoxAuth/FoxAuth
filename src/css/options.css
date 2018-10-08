@@ -148,12 +148,18 @@ body {
   box-shadow: 0 0 0 1px #0a84ff inset, 0 0 0 1px #0a84ff, 0 0 0 4px rgba(10, 132, 255, 0.3);
 }
 
+@media (min-width: 768px){
+  .top-bar .actions {
+    max-height: none !important;
+  }
+}
+
 @media (max-width: 768px){
   .top-bar .logo-header button {
-      display: block;
+    display: block;
   }
   .top-bar, .top-bar .actions {
-      flex-direction: column;
+    flex-direction: column;
   }
   .top-bar .actions .action-group {
     padding-top: 10px;
