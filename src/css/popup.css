@@ -1,4 +1,4 @@
-.popup-group {
+.top-bar .actions .popup-group {
     flex: 1;
     display: flex;
     justify-content: center;
@@ -7,4 +7,19 @@
     height: 40px;
     padding-top: 10px;
     padding-bottom: 10px;
+}
+
+.top-bar {
+	white-space: nowrap;
+}
+
+.top-bar .actions {
+	flex: 4;
+	display: flex;
+	overflow: hidden;
+	transition: max-height .5s ease;
+}
+
+.top-bar .actions {
+	max-height: none !important;
 }
