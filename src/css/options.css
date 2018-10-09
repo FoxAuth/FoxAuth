@@ -9,15 +9,15 @@ body {
 }
 
 .menu-btn:hover {
-  background: rgba(12, 12, 13, 0.1)
+  background: rgba(12, 12, 13, 0.1);
 }
 
 .menu-btn:active {
-  background: rgba(12, 12, 13, 0.2)
+  background: rgba(12, 12, 13, 0.2);
 }
 
 .menu-btn:focus {
-  box-shadow: 0 0 0 1px #0a84ff inset, 0 0 0 1px #0a84ff, 0 0 0 4px rgba(10, 132, 255, 0.3)
+  box-shadow: 0 0 0 1px #0a84ff inset, 0 0 0 1px #0a84ff, 0 0 0 4px rgba(10, 132, 255, 0.3);
 }
 
 .top-bar {
@@ -29,6 +29,7 @@ body {
   left: 0;
   width: 100%;
   white-space: nowrap;
+  z-index: 10;
 }
 
 .top-bar .imageLogo {
@@ -175,7 +176,7 @@ body {
   }
 
   .top-bar .actions {
-    max-height: 0
+    max-height: 0;
   }
 }
 
