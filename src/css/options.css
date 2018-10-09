@@ -291,3 +291,11 @@ button:active {
 ul {
   list-style: none;
 }
+
+#tokenSearch {
+  text-align: center;
+}
+
+input[type="search"] {
+  width: 75%;
+}
