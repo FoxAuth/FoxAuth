@@ -6,6 +6,7 @@ body {
   background: transparent;
   border: #d7d7db solid 1px;
   border-radius: 2px;
+  min-width: auto;
 }
 
 .menu-btn:hover {
