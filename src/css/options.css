@@ -307,3 +307,7 @@ button:active {
 input[type="search"] {
   width: 75%;
 }
+
+input::selection {
+  background: #0a84ff;
+}

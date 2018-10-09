@@ -47,3 +47,7 @@ input:active {
 #popupSearch {
     text-align: center;
 }
+
+input::selection {
+    background: #0a84ff;
+}
