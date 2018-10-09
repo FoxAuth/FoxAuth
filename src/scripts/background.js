@@ -86,12 +86,6 @@ injectQr_1.onload = function() {
         }
     }
 }
-injectQr_1.src = browser.runtime.getURL('scripts/qr/llqrcode.js')
-document.body.appendChild(injectQr_1)
-var injectQr_2 = document.createElement('script')
-injectQr_2.src = browser.runtime.getURL('scripts/qr/imgproc.js')
-document.body.appendChild(injectQr_2)
-
 
 //autfill matching
 function matchOTP (){
