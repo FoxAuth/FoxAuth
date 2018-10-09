@@ -10,16 +10,40 @@
 }
 
 .top-bar {
-	white-space: nowrap;
+    white-space: nowrap;
 }
 
 .top-bar .actions {
-	flex: 4;
-	display: flex;
-	overflow: hidden;
-	transition: max-height .5s ease;
+    flex: 4;
+    display: flex;
+    overflow: hidden;
+    transition: max-height .5s ease;
 }
 
 .top-bar .actions {
-	max-height: none !important;
+    max-height: none !important;
+}
+
+input {
+    height: 32px;
+    padding-left: 8px;
+    border: 1px solid rgba(12, 12, 13, 0.3);
+    border-radius: 2px;
+    color: #0c0c0d;
+    width: 75%;
+}
+
+input:hover {
+    border: 1px solid rgba(12, 12, 13, 0.5);
+    border-radius: 2px;
+}
+
+input:active {
+    border: 1px solid #0a84ff;
+    border-radius: 2px;
+    box-shadow: 0 0 0 1px #0a84ff, 0 0 0 4px rgba(10, 132, 255, 0.3);
+}
+
+#popupSearch {
+    text-align: center;
 }
