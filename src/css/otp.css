@@ -1,4 +1,6 @@
-*, :after, :before {
+*,
+:after,
+:before {
     box-sizing: border-box;
 }
 
@@ -58,18 +60,30 @@ button:active {
     color: #ffffff;
 }
 
-.otpNewBtn, #deleteOTP, #moreFormbtn {
+.otpNewBtn,
+#deleteOTP,
+#moreFormbtn {
     float: right;
 }
 
-.newIssuer, .newAccountName, .newSecretToken, .newRecovery {
+.newIssuer,
+.newAccountName,
+.newSecretToken,
+.newRecovery,
+.localIssuer,
+.localAccountName,
+.localSecretToken,
+.localRecovery {
     margin: 4px 8px;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
 }
 
-.newOTPType, .newOTPPeriod {
+.newOTPType,
+.newOTPPeriod,
+.localOTPType,
+.localOTPPeriod {
     display: inline-flex;
     width: 50%;
     align-items: center;
@@ -79,7 +93,10 @@ input:invalid {
     border: 1px solid #ff0039;
 }
 
-input[type=text], input[type=password], input[type=number], select {
+input[type=text],
+input[type=password],
+input[type=number],
+select {
     margin: 4px;
     height: 32px;
     padding-left: 8px;
@@ -89,18 +106,25 @@ input[type=text], input[type=password], input[type=number], select {
     flex-grow: 1;
 }
 
-input[type=text]:hover, input[type=password]:hover, input[type=number]:hover, select:hover {
+input[type=text]:hover,
+input[type=password]:hover,
+input[type=number]:hover,
+select:hover {
     border: 1px solid rgba(12, 12, 13, 0.5);
     border-radius: 2px;
 }
 
-input[type=text]:active, input[type=password]:active, input[type=number]:active, select:active {
+input[type=text]:active,
+input[type=password]:active,
+input[type=number]:active,
+select:active {
     border: 1px solid #0a84ff;
     border-radius: 2px;
     box-shadow: 0 0 0 1px #0a84ff, 0 0 0 4px rgba(10, 132, 255, 0.3);
 }
 
-input[type=text]:checked, input[type=password]:checked {
+input[type=text]:checked,
+input[type=password]:checked {
     color: #0a84ff;
 }
 
