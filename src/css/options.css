@@ -290,6 +290,13 @@ button:active {
 
 .ulPass {
   list-style: none;
+  padding-left: 0;
+}
+
+.ulPass .checkbox-group{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #tokenSearch {
