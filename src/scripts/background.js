@@ -24,7 +24,7 @@ browser.contextMenus.create({
 
 browser.contextMenus.create({
     id: "autfillOTP",
-    title: "autfill OTP code",
+    title: "Autofill OTP code",
     contexts: ["editable"],
     icons: {
         "16": "../icons/foxauth16.png",

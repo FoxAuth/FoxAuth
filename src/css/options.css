@@ -313,3 +313,7 @@ input[type="search"] {
 input::selection {
   background: #0a84ff;
 }
+
+.localOTP {
+  width: 425px;
+}

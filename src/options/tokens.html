@@ -45,10 +45,10 @@
     <div id="otpFormBox">
         <form class="localOTP">
             <fieldset>
-                <label for="containerAssign" class="containerAssign">Choose container</label> <select id="containerAssign" name="containerAssign">
+                <label for="containerAssign" class="containerAssign">Assigned container</label> <select id="containerAssign" name="containerAssign">
                     <option>none</option>
                 </select>
-                    <img id="deleteOTP" class="deleteOTP" src="../icons/options/Close.svg" height="32px" width="32px">
+                <a href="#"><img id="deleteOTP" class="deleteOTP" src="../icons/options/Close.svg" height="32px" width="32px"></a>
                 <p class="localIssuer">
                     <label for="localIssuer">Issuer</label> <input type="text" id="localIssuer" name="localIssuer" required>
                 </p>
@@ -58,12 +58,12 @@
                 </p>
                 <p class="localSecretToken">
                     <label for="localSecretToken">Secret Tokens</label> <input type="password" id="localSecretToken" name="localSecretToken"
-                        required pattern="[2-7][a-z][A-Z]{=}"> <img id="eye" src="../icons/options/show-password.svg">
+                        required pattern="[2-7][a-z][A-Z]{=}"> <a href="#"><img id="eye" src="../icons/options/show-password.svg"></a>
                 </p>
                 <p class="localRecovery">
                         <label for="localRecovery">Recovery</label> <input type="text" id="localRecovery" name="localSecretToken">
                     </p>
-                <img id="moreFormbtn" class="moreFormbtn" src="../icons/options/More horizontal.svg" height="32px" height="32px">
+                    <a href="#"><img id="moreFormbtn" class="moreFormbtn" src="../icons/options/More horizontal.svg" height="32px" height="32px"></a>
                 <div id="moreFormItem" class="moreFormItem">
                 <p>
                     <label for="localOTPType">Type </label>

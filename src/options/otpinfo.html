@@ -11,14 +11,14 @@
 
 <body>
     <img class="otpLogo" src="../icons/icon.svg" height="32px" width="32px">
-    <img class="otpNewBtn" src="../icons/options/New.svg" height="32px" width="32px">
+    <a href="#"><img class="otpNewBtn" src="../icons/options/New.svg" height="32px" width="32px"></a>
     <div id="otpFormBox">
         <form class="newOTP">
             <fieldset>
                 <label for="containerAssign" class="containerAssign">Choose container</label> <select id="containerAssign" name="containerAssign">
                     <option>none</option>
                 </select>
-                    <img id="deleteOTP" class="deleteOTP" src="../icons/options/Close.svg" height="32px" width="32px">
+                <a href="#"><img id="deleteOTP" class="deleteOTP" src="../icons/options/Close.svg" height="32px" width="32px"></a>
                 <p class="newIssuer">
                     <label for="newIssuer">Issuer</label> <input type="text" id="newIssuer" name="newIssuer" required
                         placeholder="New issuer">
@@ -33,14 +33,14 @@
                 </p>
                 <p class="newSecretToken">
                     <label for="newSecretToken">Secret Tokens</label> <input type="password" id="newSecretToken" name="newSecretToken"
-                        required pattern="[2-7][a-z][A-Z]{=}" placeholder="New secret token"> <img id="eye" src="../icons/options/show-password.svg">
+                        required pattern="[2-7][a-z][A-Z]{=}" placeholder="New secret token"> <a href="#"><img id="eye" src="../icons/options/show-password.svg"></a>
                     <span class="caption">Required string to generate OTP codes.</span>
                 </p>
                 <p class="newRecovery">
                         <label for="newRecovery">Recovery</label> <input type="text" id="newRecovery" name="newSecretToken" placeholder="New recovery">
                         <span class="caption">Given string in case OTP account info lost.</span>
                     </p>
-                <img id="moreFormbtn" class="moreFormbtn" src="../icons/options/More horizontal.svg" height="32px" height="32px">
+                    <a href="#"><img id="moreFormbtn" class="moreFormbtn" src="../icons/options/More horizontal.svg" height="32px" height="32px"></a>
                 <div id="moreFormItem" class="moreFormItem">
                 <p>
                     <label for="newOTPType">Type </label>
