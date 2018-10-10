@@ -15,7 +15,7 @@ document.body.addEventListener("click", (e) => {
     if (!t.classList || !t.classList.contains('deleteOTP')) {
         return;
     }
-    const node = t.parentNode;
+    const node = t.parentNode.parentNode.parentNode;
     if (node.parentNode) {
       otpFormStack.push(node.parentNode.removeChild(node));
     }
