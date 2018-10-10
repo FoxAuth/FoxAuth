@@ -51,18 +51,16 @@
     <h3>Encrypt &amp; Decrypt</h3>
     <form id="encryptForm">
         <fieldset style="border: 0;">
-            <input type="password" class="encryptPass" id="encryptPass" name="encryptPass" required placeholder="Input your encryption password here">
+            <input type="password" class="encryptPass" id="encryptPass" name="encryptPass" required placeholder="Input your password here">
             <a href="#"><img id="eye" src="../icons/options/show-password.svg"></a><br>
-            <span class="caption">Use this password to encrypt your account info.</span><br>
+            <span class="caption">Use this password to encrypt/decrypt your account info.</span><br>
             <input type="password" class="encryptPass" id="reconfirmPass" name="reconfirmPass" required placeholder="Reconfirm your password">
             <a href="#"><img id="eye" src="../icons/options/show-password.svg"></a><br>
             <span class="caption">WARNING: <span id="specialCapt"><strong>NO ONE</strong></span> can help if you forget
                 this.</span><br>
-            <button>
-                <div class="btnText">Encrypt</div>
-            </button> <button disabled>
-                <div class="btnText">Decrypt</div>
-            </button>
+            <button type="submit">
+                <div class="btnText">Confirm</div>
+            </button> <button><img src="../icons/options/Forget.svg" style="vertical-align: middle"> <span class="btnText">Forget</span></button>
         </fieldset>
         <ul class="ulPass">
                 <li>
