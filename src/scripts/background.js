@@ -110,6 +110,6 @@ switch (matchTarget) {
 }};
 
 //add listeners here
-browser.contextualIdentities.onCreated.addListener(listener);
-browser.contextualIdentities.onRemoved.addListener(listener);
-browser.contextualIdentities.onUpdated.addListener(listener);
+// browser.contextualIdentities.onCreated.addListener(listener);
+// browser.contextualIdentities.onRemoved.addListener(listener);
+// browser.contextualIdentities.onUpdated.addListener(listener);

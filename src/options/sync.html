@@ -52,10 +52,10 @@
     <form id="encryptForm">
         <fieldset style="border: 0;">
             <input type="password" class="encryptPass" id="encryptPass" name="encryptPass" required placeholder="Input your password here">
-            <a href="#"><img id="eye" src="../icons/options/show-password.svg"></a><br>
+            <a href="#"><img class="eye" src="../icons/options/show-password.svg"></a><br>
             <span class="caption">Use this password to encrypt/decrypt your account info.</span><br>
             <input type="password" class="encryptPass" id="reconfirmPass" name="reconfirmPass" required placeholder="Reconfirm your password">
-            <a href="#"><img id="eye" src="../icons/options/show-password.svg"></a><br>
+            <a href="#"><img class="eye" src="../icons/options/show-password.svg"></a><br>
             <span class="caption">WARNING: <span id="specialCapt"><strong>NO ONE</strong></span> can help if you forget
                 this.</span><br>
             <button type="submit">
@@ -63,19 +63,25 @@
             </button> <button disabled><img src="../icons/options/Forget.svg" style="vertical-align: middle"> <span class="btnText">Forget</span></button>
         </fieldset>
         <ul class="ulPass">
-            <li class="checkbox-group">
-                <input type="checkbox" id="rememPass" name="rememPass">
-                <label for="rememPass">
-                    Store encryption password in Firefox password storage.
-                </label>
-            </li>
-            <li class="checkbox-group">
-                <input type="checkbox" id="rememPassSession" name="rememPassSession" disabled>
-                <label for="rememPassSession">
-                    Store during only one browser session.
-                </label>
-            </li>
-        </ul>
+                <li>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="rememPass" name="rememPass">
+                        <label class="checkbox-label" for="rememPass">
+                            Store encryption password in Firefox password storage.
+                        </label>
+                    </div>
+                    <ul class="ulPass">
+                        <li>
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="rememPassSession" name="rememPassSession">
+                                <label class="checkbox-label" for="rememPassSession">
+                                    Store during only one browser session.
+                                </label>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
     </form>
     <div class="btnGroup">
         <h3>Import or export your account info</h3><br>
@@ -90,8 +96,7 @@
         <span class="caption">DO NOTE that exporting will <strong>NOT</strong> excute decrypting.</span>
     </div>
     <script src="../scripts/menu.js"></script>
-    <script src="../scripts/background.js"></script>
-    <script src="../scripts/options.js"></script>
+    <script src="../scripts/sync.js"></script>
 </body>
 
 </html>
