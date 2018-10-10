@@ -12,6 +12,7 @@ form {
     margin: 4px 8px;
     max-width: 600px;
     display: inline-block;
+    vertical-align: top;
 }
 
 .moreFormItem {
