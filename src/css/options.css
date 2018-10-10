@@ -293,7 +293,7 @@ button:active {
 .ulPass {
   list-style: none;
   padding-left: 0;
-  margin: -16px 0 40px 0;
+  margin: -6px 0 48px 0;
 }
 
 .ulPass .checkbox-group{
@@ -364,4 +364,9 @@ input::selection {
 
 .checkbox-group input[type=checkbox]:disabled + label::before {
   opacity: 0.6;
+}
+
+.checkbox-group label::before {
+  vertical-align: middle;
+  margin: -3px 4px 0 0;
 }
