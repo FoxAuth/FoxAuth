@@ -1,4 +1,3 @@
-
 //toggle checkbox
 [...document.getElementsByClassName('ulPass')].forEach(ul => {
   const applyNest = p => {
@@ -19,3 +18,14 @@
   };
   [...ul.children].forEach(applyNest);
 });
+
+//import handling
+var fileSelect = document.getElementById("operatebtn"),
+  fileElem = document.getElementById("fileElem");
+
+fileSelect.addEventListener("click", function (e) {
+  if (fileElem) {
+    fileElem.click();
+  }
+  e.preventDefault();
+}, false);

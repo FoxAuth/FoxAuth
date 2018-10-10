@@ -86,7 +86,8 @@
     <div class="btnGroup">
         <h3>Import or export your account info</h3><br>
         <button class="operatebtn">
-            <img src="../icons/options/import.svg" width="32px" height="32px">
+            <input type="file" id="fileElem" multiple accept="image/*" style="display:none" onchange="handleFiles(this.files)">
+            <a href="#" id="fileSelect"><img src="../icons/options/import.svg" width="32px" height="32px"></a>
             <div class="operateBtnText">Import</div>
         </button>
         <button class="operatebtn">
