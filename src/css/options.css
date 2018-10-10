@@ -293,7 +293,14 @@ button:active {
 .ulPass {
   list-style: none;
   padding-left: 0;
-  margin: -6px 0 48px 0;
+}
+
+#encryptForm {
+  margin-bottom: 28px;
+}
+
+#encryptForm fieldset {
+  margin-bottom: -24px;
 }
 
 .ulPass .checkbox-group{
