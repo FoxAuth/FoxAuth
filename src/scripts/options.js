@@ -1,4 +1,4 @@
-//reset notifi'
+/*//reset notifi'
 function resetNotifi() {
     browser.notifications.create({
         "type": "basic",
@@ -9,7 +9,7 @@ function resetNotifi() {
 };
 
 //genral option page reset
-document.querySelector('.resetbtn').addEventListener("click", resetNotifi);
+document.querySelector('.resetbtn').addEventListener("click", resetNotifi);*/
 
 //toggle additional form items
 document.body.addEventListener("click", (e) => {
