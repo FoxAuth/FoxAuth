@@ -382,11 +382,10 @@ input::selection {
   background-color: #ededf0;
   color: #0c0c0d;
   min-height: 32px;
-  box-sizing: 75%;
-  display: none;
+  width: 700px;
 }
 
-.genericMsgTxt, .genericMsgCloseBtn, .genericIcon  {
+.genericMsgTxt, .genericMsgCloseBtn, .genericIcon {
   vertical-align: middle;
 }
 

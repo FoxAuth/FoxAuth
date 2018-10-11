@@ -19,6 +19,11 @@
   [...ul.children].forEach(applyNest);
 });
 
+//msgDismiss
+document.getElementsByClassName("syncbtn").addEventListener("click", () => {
+  document.getElementsByClassName("genericMsg").removeAttribute("display: none")
+});
+
 //import handling
 var fileSelect = document.getElementById("operatebtn"),
   fileElem = document.getElementById("fileElem");
