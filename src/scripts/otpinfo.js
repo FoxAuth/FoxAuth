@@ -45,6 +45,26 @@ document.querySelector(".eye").addEventListener("click", function () {
     }
 }, false);
 
+//container tabs
+var div = document.getElementById('containerAssign');
+
+if (browser.contextualIdentities === undefined) {
+    div.setAttribute("disable");
+} else {
+  browser.contextualIdentities.query({})
+    .then((identities) => {
+      if (!identities.length) {
+        div.setAttribute("disable");
+        return;
+      }
+      identities.map(x => {
+        const opt = document.createElement('option')
+        opt.innerHTML = x.name
+        return opt
+      }).forEach(x => document.querySelector('select').appendChild(x))
+  });
+}
+
 //Get QrScan Result
 var qrresult = decodeURIComponent(window.location.search.substring(1))
 if (qrresult.length > 0) {
