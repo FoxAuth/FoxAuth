@@ -377,3 +377,32 @@ input::selection {
   vertical-align: middle;
   margin: -3px 4px 0 0;
 }
+
+.genericMsg {
+  background-color: #ededf0;
+  color: #0c0c0d;
+  min-height: 32px;
+  box-sizing: 75%;
+  display: none;
+}
+
+.genericMsgTxt, .genericMsgCloseBtn, .genericIcon  {
+  vertical-align: middle;
+}
+
+.genericMsgCloseBtn {
+  height: 1.5em;
+}
+
+.genericMsgCloseBtn:hover {
+  background-color: #aeaeb2;
+}
+
+.genericIcon {
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+.genericMsgContent {
+  padding-right: 8px;
+}
