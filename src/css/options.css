@@ -293,6 +293,7 @@ button:active {
 .ulPass {
   list-style: none;
   padding-left: 0;
+  margin-bottom: 4px;
 }
 
 #encryptForm {
@@ -300,7 +301,7 @@ button:active {
 }
 
 #encryptForm fieldset {
-  margin-bottom: -24px;
+  margin-bottom: -28px;
 }
 
 .ulPass .checkbox-group{
@@ -324,7 +325,6 @@ input::selection {
 .localOTP {
   width: 425px;
 }
-
 
 .checkbox-group input[type=checkbox] + label {
   font-size: 16px;
