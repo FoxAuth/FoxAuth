@@ -390,6 +390,18 @@ input::selection {
   color: #3e2800;
   min-height: 32px;
   width: auto;
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  z-index: 10;
+  width: 100%;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.warningMsgTxt {
+  padding: 0 4px;
+  line-height: 32px;
 }
 
 .warningMsgBtn {
@@ -412,6 +424,16 @@ input::selection {
   vertical-align: middle;
 }
 
+.warningIcon {
+  padding-right: 4px;
+}
+
+.warningMsgCloseBtn {
+  flex: 32px 0 0;
+  padding: 0 4px;
+  cursor: pointer;
+}
+
 .genericMsgCloseBtn {
   height: 1.5em;
 }
@@ -420,7 +442,7 @@ input::selection {
   background-color: #aeaeb2;
 }
 
-.genericIcon, .warningIcon {
+.genericIcon {
   padding-left: 4px;
   padding-right: 4px;
 }
