@@ -139,3 +139,10 @@ input[type=password]:checked {
 #moreFormItem {
     display: none;
 }
+
+#btnWrapper {
+    position: relative;
+    top: -14px;
+    left: 45%;
+    right: 50%;
+}
