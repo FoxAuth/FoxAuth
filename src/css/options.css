@@ -389,16 +389,17 @@ input::selection {
   background-color: #ffe900;
   color: #3e2800;
   min-height: 32px;
-  width: auto;
   /* display: flex; */
   justify-content: space-between;
-  position: fixed;
+  position: absolute;
   top: 0;
   z-index: 10;
-  width: 100%;
   opacity: 0;
   transition: opacity 0.3s;
   display: none;
+  left: 2px;
+  right: 2px;
+  border-radius: 2px;
 }
 .warningMsgTxt {
   padding: 0 4px;
@@ -410,6 +411,7 @@ input::selection {
   background-color: #d7b600;
   color: #3e2800;
   border: 0;
+  cursor: pointer;
 }
 
 .warningMsgBtn:hover {

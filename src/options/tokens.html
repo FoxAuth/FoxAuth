@@ -9,6 +9,7 @@
     <link href="../css/main.css" rel="stylesheet">
     <link href="../css/options.css" rel="stylesheet">
     <link href="../css/otp.css" rel="stylesheet">
+    <link href="../css/tokens.css" rel="stylesheet">
 </head>
 
 <body>
@@ -38,61 +39,63 @@
             </a>
         </div>
     </div>
-    <div id="tokenSearch">
-        <input type="search" name="popupSearch" placeholder="&#128270; Search issuers, Containers name or Account name">
-    </div>
-    <h2 style="margin: 16px 16px">Locally stored account info</h2>
-    <div id="otpFormBox">
-        <form class="localOTP">
-            <fieldset>
-                <label for="containerAssign" class="containerAssign">Assigned container</label> <select id="containerAssign" name="containerAssign">
-                    <option>none</option>
-                </select>
-                <a href="#"><img id="deleteOTP" class="deleteOTP" src="../icons/options/Close.svg" height="32px" width="32px"></a>
-                <p class="localIssuer">
-                    <label for="localIssuer">Issuer</label> <input type="text" id="localIssuer" name="localIssuer" required>
-                </p>
-                <p class="localAccountName">
-                    <label for="localAccountName">Account name</label> <input type="text" id="localAccountName" name="localAccountName"
-                        required>
-                </p>
-                <p class="localSecretToken">
-                    <label for="localSecretToken">Secret Tokens</label> <input type="password" id="localSecretToken" name="localSecretToken"
-                        required pattern="[2-7][a-z][A-Z]{=}"> <a href="#"><img class="eye" src="../icons/options/show-password.svg"></a>
-                </p>
-                <p class="localRecovery">
-                        <label for="localRecovery">Recovery</label> <input type="text" id="localRecovery" name="localSecretToken">
+    <div class="tokens-content">
+        <div class="warningMsg">
+            <div class="warningMsgTxt"><img class="warningIcon" src="../icons/options/Warning.svg"><span class="warningMsgContent">Deleting account info doesn't disable 2FA. Make sure you won't be locked out before proceed.<button class="warningMsgBtn">Confirm</button></span></div>
+            <img class="warningMsgCloseBtn" src="../icons/options/Close.svg">
+        </div>        
+        <div id="tokenSearch">
+            <input type="search" name="popupSearch" placeholder="&#128270; Search issuers, Containers name or Account name">
+        </div>
+        <h2 style="margin: 16px 16px">Locally stored account info</h2>
+        <div id="otpFormBox">
+            <form class="localOTP">
+                <fieldset>
+                    <label for="containerAssign" class="containerAssign">Assigned container</label> <select id="containerAssign" name="containerAssign">
+                        <option>none</option>
+                    </select>
+                    <a href="#"><img id="deleteOTP" class="deleteOTP" src="../icons/options/Close.svg" height="32px" width="32px"></a>
+                    <p class="localIssuer">
+                        <label for="localIssuer">Issuer</label> <input type="text" id="localIssuer" name="localIssuer" required>
                     </p>
-                    <a href="#"><img id="moreFormbtn" class="moreFormbtn" src="../icons/options/More horizontal.svg" height="32px" height="32px"></a>
-                <div id="moreFormItem" class="moreFormItem">
+                    <p class="localAccountName">
+                        <label for="localAccountName">Account name</label> <input type="text" id="localAccountName" name="localAccountName"
+                            required>
+                    </p>
+                    <p class="localSecretToken">
+                        <label for="localSecretToken">Secret Tokens</label> <input type="password" id="localSecretToken" name="localSecretToken"
+                            required pattern="[2-7][a-z][A-Z]{=}"> <a href="#"><img class="eye" src="../icons/options/show-password.svg"></a>
+                    </p>
+                    <p class="localRecovery">
+                            <label for="localRecovery">Recovery</label> <input type="text" id="localRecovery" name="localSecretToken">
+                        </p>
+                        <a href="#"><img id="moreFormbtn" class="moreFormbtn" src="../icons/options/More horizontal.svg" height="32px" height="32px"></a>
+                    <div id="moreFormItem" class="moreFormItem">
+                    <p>
+                        <label for="localOTPType">Type </label>
+                        <select class="localOTPType" id="localOTPType" name="localOTPType">
+                            <option>Time based</option>
+                            <option>Counter based</option>
+                        </select>
+                        <label for="localOTPAlgorithm">Algorithm </label>
+                        <select class="localOTPAlgorithm" id="localOTPAlgorithm" name="localOTPAlgorithm">
+                            <option>SHA-1</option>
+                            <option>SHA-256</option>
+                        </select>
+                    </p>
                 <p>
-                    <label for="localOTPType">Type </label>
-                    <select class="localOTPType" id="localOTPType" name="localOTPType">
-                        <option>Time based</option>
-                        <option>Counter based</option>
-                    </select>
-                    <label for="localOTPAlgorithm">Algorithm </label>
-                    <select class="localOTPAlgorithm" id="localOTPAlgorithm" name="localOTPAlgorithm">
-                        <option>SHA-1</option>
-                        <option>SHA-256</option>
-                    </select>
-                </p>
-            <p>
-                    <label for="localOTPPeriod">Period </label>
-                    <input class="localOTPPeriod" type="number" name="localOTPPeriod" id="localOTPPeriod" value="30" min="30" max="99" step="1">
-                    <label for="localOTPDigits">Digits </label>
-                    <select  class="localOTPDigits" id="localOTPDigits" name="localOTPDigits">
-                        <option>6</option>
-                        <option>7</option>
-                        <option>8</option>
-                    </select></p>
-            </div>
-            </fieldset>
-        </form>
-    </div>
-    <div class="warningMsg">
-        <div class="warningMsgTxt"><img class="warningIcon" src="../icons/options/Warning.svg"><span class="warningMsgContent">Deleting account info doesn't disable 2FA. Make sure you won't be locked out before proceed.<button class="warningMsgBtn">Confirm</button></span></div>
-        <img class="warningMsgCloseBtn" src="../icons/options/Close.svg">
+                        <label for="localOTPPeriod">Period </label>
+                        <input class="localOTPPeriod" type="number" name="localOTPPeriod" id="localOTPPeriod" value="30" min="30" max="99" step="1">
+                        <label for="localOTPDigits">Digits </label>
+                        <select  class="localOTPDigits" id="localOTPDigits" name="localOTPDigits">
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                        </select></p>
+                </div>
+                </fieldset>
+            </form>
+        </div>
     </div>
     <script src="../scripts/menu.js"></script>
     <script src="../scripts/formAction.js"></script>

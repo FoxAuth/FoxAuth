@@ -1,12 +1,35 @@
-
+;
 //delete OTP form
-document.body.addEventListener("click", (e) => {
-  const t = e.target;
-  if (!t.classList || !t.classList.contains('deleteOTP')) {
+(function () {
+  const warningMsg = document.querySelector('.warningMsg');
+  const warningMsgCloseBtn = warningMsg.querySelector('.warningMsgCloseBtn');
+  const warningMsgBtn = warningMsg.querySelector('.warningMsgBtn');
+  let confirmFun = function () { };
+
+  warningMsgCloseBtn.addEventListener('click', function () {
+    warningMsgBtn.removeEventListener('click', confirmFun);
+    warningMsg.style.display = 'none';
+    warningMsg.style.opacity = '0';
+  });
+  document.body.addEventListener("click", function (e) {
+    const t = e.target;
+    if (!t.classList || !t.classList.contains('deleteOTP')) {
       return;
-  }
-  const node = t.parentNode.parentNode.parentNode;
-  if(window.confirm("Delete these account info doesn't disable account 2FA for you. Make sure you won't be locked out before proceed.")){
-    node.parentNode.removeChild(node);
-  }
-});
+    }
+    const node = t.parentNode.parentNode.parentNode;
+    warningMsg.style.display = 'flex';
+    warningMsg.style.opacity = '1';
+    confirmFun = function () {
+      node.parentNode.removeChild(node);
+      console.log('mmm', Math.random());
+      const event = document.createEvent('HTMLEvents');
+      event.initEvent('click', true, false);
+      warningMsgCloseBtn.dispatchEvent(event);
+      // and other operations
+    }
+    warningMsgBtn.addEventListener('click', confirmFun);
+
+  });
+
+})();
+
