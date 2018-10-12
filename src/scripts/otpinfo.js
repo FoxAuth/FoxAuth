@@ -74,3 +74,23 @@ if (qrresult.length > 0) {
     document.getElementById('newSecretToken').value = scannedotp.searchParams.get('secret')
     document.getElementById('newIssuer').value = scannedotp.searchParams.get('issuer')
 }
+
+//container tabs
+var div = document.getElementById('containerAssign');
+
+if (browser.contextualIdentities === undefined) {
+    div.setAttribute("disable");
+} else {
+  browser.contextualIdentities.query({})
+    .then((identities) => {
+      if (!identities.length) {
+        div.setAttribute("disable");
+        return;
+      }
+      identities.map(x => {
+        const opt = document.createElement('option')
+        opt.innerHTML = x.name
+        return opt
+      }).forEach(x => document.querySelector('select').appendChild(x))
+  });
+}
