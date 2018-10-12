@@ -107,7 +107,9 @@ switch (matchTarget) {
     default:
     matchTarget.split('.').reverse();
     matchIssuer = matchTarget[1] || matchTarget[0];
-}};
+}
+return matchIssuer;
+};
 
 //add listeners here
 // browser.contextualIdentities.onCreated.addListener(listener);
