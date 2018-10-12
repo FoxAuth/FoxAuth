@@ -390,7 +390,7 @@ input::selection {
   color: #3e2800;
   min-height: 32px;
   width: auto;
-  display: flex;
+  /* display: flex; */
   justify-content: space-between;
   position: fixed;
   top: 0;
@@ -398,6 +398,7 @@ input::selection {
   width: 100%;
   opacity: 0;
   transition: opacity 0.3s;
+  display: none;
 }
 .warningMsgTxt {
   padding: 0 4px;
