@@ -12,3 +12,13 @@ document.body.addEventListener("click", (e) => {
         x.style.display = "none";
     }
 });
+
+// toggle password
+document.body.addEventListener('click', function (e) {
+    const t = e.target;
+    if (!t.classList || !t.classList.contains('eye')) {
+        return;
+    }
+    const input = e.target.parentNode.previousElementSibling;
+    input.type = (input.type === 'password' ? 'text' : 'password')
+});
