@@ -1,7 +1,7 @@
 
 document.getElementById('scanQRPopup').addEventListener('click', e => {
-  // @TODO show waiting overlay here
-
+  // show waiting overlay
+  document.body.classList.add('scanning')
   
   browser.tabs.captureTab().then(dataURL => {
     QrScanner.scanImage(dataURL)
@@ -15,6 +15,10 @@ document.getElementById('scanQRPopup').addEventListener('click', e => {
       })
       .catch(error => {
         alert(error || 'No QR code found.')
-    })
+      })
+      // Promise.prototype.finally require Firefox 58
+      .finally(() => {
+        document.body.classList.remove('scanning')
+      })
   })
 })
