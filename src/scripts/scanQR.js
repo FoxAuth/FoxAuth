@@ -6,8 +6,11 @@ document.getElementById('scanQRPopup').addEventListener('click', e => {
   browser.tabs.captureTab().then(dataURL => {
     QrScanner.scanImage(dataURL)
       .then(result => {
+        // validate and parse URL
+        const otpInfo = urlOtpauth.parse(result)
+        const params = new URLSearchParams(otpInfo)
         browser.tabs.create({
-          url: `otpinfo.html?${encodeURIComponent(result)}`
+          url: `otpinfo.html?${params.toString()}`
         })
       })
       .catch(error => {

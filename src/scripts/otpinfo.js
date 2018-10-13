@@ -66,13 +66,12 @@ if (browser.contextualIdentities === undefined) {
 }
 
 //Get QrScan Result
-var qrresult = decodeURIComponent(window.location.search.substring(1))
+var qrresult = window.location.search.substring(1)
 if (qrresult.length > 0) {
-    var scannedotp = new URL(qrresult)
-    console.log(scannedotp)
-    document.getElementById('newAccountName').value = scannedotp.pathname.substring(7)
-    document.getElementById('newSecretToken').value = scannedotp.searchParams.get('secret')
-    document.getElementById('newIssuer').value = scannedotp.searchParams.get('issuer')
+    var scannedotp = new URLSearchParams(qrresult)
+    document.getElementById('newAccountName').value = scannedotp.get('account')
+    document.getElementById('newSecretToken').value = scannedotp.get('key')
+    document.getElementById('newIssuer').value = scannedotp.get('issuer')
 }
 
 //container tabs
