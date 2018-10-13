@@ -382,7 +382,16 @@ input::selection {
   background-color: #ededf0;
   color: #0c0c0d;
   min-height: 32px;
-  width: 700px;
+  justify-content: space-between;
+  position: absolute;
+  top: 0;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.3s;
+  display: none;
+  left: 2px;
+  right: 2px;
+  border-radius: 2px;
 }
 
 .warningMsg {
@@ -401,7 +410,8 @@ input::selection {
   right: 2px;
   border-radius: 2px;
 }
-.warningMsgTxt {
+
+.warningMsgTxt, .genericMsgTxt {
   padding: 0 4px;
   line-height: 32px;
 }
@@ -427,27 +437,19 @@ input::selection {
   vertical-align: middle;
 }
 
-.warningIcon {
+.warningIcon, .genericIcon {
+  padding-left: 4px;
   padding-right: 4px;
 }
 
-.warningMsgCloseBtn {
+.warningMsgCloseBtn, .genericMsgCloseBtn {
   flex: 32px 0 0;
   padding: 0 4px;
   cursor: pointer;
 }
 
-.genericMsgCloseBtn {
-  height: 1.5em;
-}
-
 .genericMsgCloseBtn:hover {
   background-color: #aeaeb2;
-}
-
-.genericIcon {
-  padding-left: 4px;
-  padding-right: 4px;
 }
 
 .genericMsgContent, .warningMsgContent {
