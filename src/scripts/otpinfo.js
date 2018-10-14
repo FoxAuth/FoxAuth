@@ -21,30 +21,6 @@ document.body.addEventListener("click", (e) => {
     }
 });
 
-
-//toggle token
-function show() {
-    var p = document.getElementById('newSecretToken');
-    p.setAttribute('type', 'text');
-}
-
-function hide() {
-    var p = document.getElementById('newSecretToken');
-    p.setAttribute('type', 'password');
-}
-
-var pwShown = 0;
-
-document.querySelector(".eye").addEventListener("click", function () {
-    if (pwShown == 0) {
-        pwShown = 1;
-        show();
-    } else {
-        pwShown = 0;
-        hide();
-    }
-}, false);
-
 //container tabs
 var div = document.getElementById('containerAssign');
 
