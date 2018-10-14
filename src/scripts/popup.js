@@ -52,8 +52,5 @@ function clearOTP() {
     otpStoreInterval.empty()
 }
 addOTP('example.com/1', 'Example1','JBSWY3DPEHPK3PXP')
-addOTP('example.com/2', 'Example2','JBSWY3DPEHPK3PXA')
 addOTP('example.com/3', 'Example3','JBSWY3DPEHPK3PXE', 60)
 addOTP('example.com/4', 'Example4','JBSWY3DPEHPK3PXZ', 30, 8)
-addOTP('example.com/5', 'Example5','JBSWY3DPEHPK3PXH')
-addOTP('example.com/6', 'Example6','JBSWY3DPEHPK3PXQ')
