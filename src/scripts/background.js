@@ -104,6 +104,9 @@ switch (matchTarget) {
     case "login.live.com":
     matchIssuer = "Microsoft"
     break;
+    case "discordapp.com":
+    matchIssuer = "Discord"
+    break;
     default:
     matchTarget.split('.').reverse();
     matchIssuer = matchTarget[1] || matchTarget[0];
