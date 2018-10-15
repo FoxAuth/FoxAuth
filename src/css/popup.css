@@ -47,6 +47,7 @@ input:active {
 
 #popupSearch {
     text-align: center;
+    margin-bottom: 4px;
 }
 
 input::selection {

@@ -127,9 +127,8 @@ h3 {
     border: .05rem solid #e7e9ed;
     border-radius: .1rem;
     display: flex;
-    display: -ms-flexbox;
-    -ms-flex-direction: column;
-    flex-direction: column
+    flex-direction: column;
+    margin-bottom: 4px;
 }
 
 .card .card-body,
