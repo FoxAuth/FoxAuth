@@ -7,7 +7,7 @@ Before creating your PR(s), there is something we hope to find out (pls check it
 - [ ] Is this a11y and/or i18n relevant?
 - [ ] Is this to add a new feature?
 - [ ] is this a bug fix? If so, please select importance below as well:
-  - [ ] critical: complete out of functioning, e.g. crashing, freezing
+  - [ ] critical: complete out of functioning, e.g. crashing, freezing, data loss, etc.
   - [ ] important: major features out of functioning
   - [ ] moderate: unexpected behaviors impacting UX
   - [ ] minor: little impacting on normal using
