@@ -22,6 +22,10 @@
     <a href="https://t.me/joinchat/Flgxfkm5Q2c8JayWirYTmA">
       <img src="https://img.shields.io/badge/Telegram-Join%20Chat-red.svg?style=flat-square" alt="Telegram link" />
     </a>
+      ·
+    <a href="https://gitter.im/FoxAuth/Lobby">
+      <img src="https://img.shields.io/badge/Gitter-Join%20Chat-purple.svg?style=flat-square" alt="Telegram link" />
+    </a>
 </div>
 
 ## Introduction
@@ -49,6 +53,10 @@ Here is how this project gets revisioning:
 - b - mid-level changes, when you add or modify a significant chunk of code that alters the way the rest works; for instance when adding whole new features.
 
 - c - minor changes, such as most bugfixes; this is probably what you will be bumping most often.
+
+## Security
+
+We use encryption code from [Firefox Send](github.com/mozilla/send) in WebCrypto API and store password in Firefox password storage. Welcome as we are to any security review, it shall be more efficiently to perform it at that side.
 
 ## License
 
