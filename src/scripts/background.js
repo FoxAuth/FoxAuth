@@ -107,6 +107,9 @@ switch (matchTarget) {
     case "discordapp.com":
     matchIssuer = "Discord"
     break;
+    case "wordpress.com":
+    matchIssuer = "WordPress.com"
+    break;
     default:
     matchTarget.split('.').reverse();
     matchIssuer = matchTarget[1] || matchTarget[0];
@@ -115,6 +118,6 @@ return matchIssuer;
 };
 
 //add listeners here
-// browser.contextualIdentities.onCreated.addListener(listener);
-// browser.contextualIdentities.onRemoved.addListener(listener);
-// browser.contextualIdentities.onUpdated.addListener(listener);
+browser.contextualIdentities.onCreated.addListener(listener);
+browser.contextualIdentities.onRemoved.addListener(listener);
+browser.contextualIdentities.onUpdated.addListener(listener);
