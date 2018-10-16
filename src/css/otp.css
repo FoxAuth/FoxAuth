@@ -19,15 +19,6 @@ form {
     margin: 4px 8px;
 }
 
-.containerAssign {
-    margin-left: 8px;
-}
-
-#containerAssign {
-    width: auto;
-    min-width: 30%;
-}
-
 fieldset {
     border: 0px;
 }
@@ -61,7 +52,11 @@ button:active {
     color: #ffffff;
 }
 
-.otpNewBtn,
+.otpinfo-head {
+    display: flex;
+    justify-content: space-between;
+}
+
 #deleteOTP,
 #moreFormbtn {
     float: right;
@@ -74,7 +69,8 @@ button:active {
 .localIssuer,
 .localAccountName,
 .localSecretToken,
-.localRecovery {
+.localRecovery,
+.form-row {
     margin: 4px 8px;
     display: flex;
     flex-wrap: wrap;
@@ -82,7 +78,6 @@ button:active {
 }
 
 .newOTPType,
-.newOTPPeriod,
 .localOTPType,
 .localOTPPeriod {
     display: inline-flex;
@@ -140,9 +135,107 @@ input[type=password]:checked {
     display: none;
 }
 
-#btnWrapper {
+.form-row {
     position: relative;
-    top: -14px;
-    left: 45%;
-    right: 50%;
+}
+.form-row label {
+    min-width: 135px;
+    text-align: right;
+}
+.form-row .eye-box {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+}
+.form-addtion {
+    padding-left: 139px;
+}
+.input-password {
+    padding-right: 32px;
+}
+
+.form-row-multi {
+    display: flex;
+    align-items: center;
+}
+.form-label.first {
+    min-width: 135px;
+    text-align: right;  
+    flex: 0 0 135px;  
+}
+.form-label.second {
+    min-width: 80px;
+    text-align: right;  
+    flex: 0 0 80px;  
+}
+fieldset .form-row-multi .form-input-multi {
+    flex: 1 0 150px;
+    min-width: 10px;
+}
+.form-more, .delete-row {
+    display: block;
+    position: relative;
+    margin-right: 4px;
+}
+.form-more::after, .delete-row::after{
+    content: ' ';
+    display: block;
+    clear: both;
+}
+.form-btns {
+    margin-left: 4px;
+    display: flex;
+    justify-content: space-between;
+    margin-right: 8px;
+}
+
+@media (max-width: 629px) {
+    .form-more, .delete-row {
+        margin-right: 0px;
+    }
+    
+    .form-row label {
+        width: 100%;
+        text-align: left;
+    }
+
+    .form-row input, .form-row select {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .form-row .eye-box {
+        position: absolute;
+        top: 29px;
+        right: 8px;
+    }
+    .form-addtion {
+        padding-left: 0;
+    }
+
+    .form-row-multi {
+        display: block;
+        align-items: center;
+        margin: 0;
+    }
+    .form-label.first, .form-label.second {
+        width: 100%;
+        text-align: left; 
+        margin-top: 8px;
+        display: block;
+    }
+    fieldset .form-row-multi .form-input-multi {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        display: block;
+    }
+    .form-btns {
+        margin-right: 4px;
+        flex-wrap: wrap;
+    }
+    
+    .localOTP {
+        width: calc(100% - 16px);
+    }
 }

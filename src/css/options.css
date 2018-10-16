@@ -323,7 +323,7 @@ input::selection {
 }
 
 .localOTP {
-  width: 425px;
+  width: 600px;
 }
 
 .checkbox-group input[type=checkbox] + label {

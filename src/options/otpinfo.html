@@ -10,63 +10,68 @@
 </head>
 
 <body>
-    <img class="otpLogo" src="../icons/icon.svg" height="32px" width="32px">
-    <span id="btnWrapper">
-    <button id="submitAll"><div class="btnText">Submit all</div></button></span>
-    <a href="#"><img class="otpNewBtn" src="../icons/options/New.svg" height="32px" width="32px"></a>
+    <div class="otpinfo-head">
+        <img class="otpLogo" src="../icons/icon.svg" height="32px" width="32px">
+        <span id="btnWrapper">
+        <button id="submitAll"><div class="btnText">Submit all</div></button></span>
+        <a href="#"><img id='otpNewBtn' src="../icons/options/New.svg" height="32px" width="32px"></a>
+
+    </div>
     <div id="otpFormBox">
         <form class="newOTP">
             <fieldset>
-                <label for="containerAssign" class="containerAssign">Choose container</label> <select id="containerAssign" name="containerAssign">
-                    <option>none</option>
-                </select>
-                <a href="#"><img id="deleteOTP" class="deleteOTP" src="../icons/options/Close.svg" height="32px" width="32px"></a>
-                <p class="newIssuer">
+                <a href="#"  class='delete-row'><img id="deleteOTP" class="deleteOTP" src="../icons/options/Close.svg" height="32px" width="32px"></a>
+                <p class="form-row">
+                    <label for="containerAssign" class="containerAssign">Choose container</label> <select id="containerAssign" name="containerAssign">
+                        <option>none</option>
+                    </select>
+                </p>
+                <p class="newIssuer form-row">
                     <label for="newIssuer">Issuer</label> <input type="text" id="newIssuer" name="newIssuer" required
                         placeholder="New issuer">
-                    <span class="caption">This string is used to match domain for autofill. "GitHub" will match
+                    <span class="caption form-addtion">This string is used to match domain for autofill. "GitHub" will match
                         github.com,
                         e.g., <span style="font-size: 1.25em"><strong>case insensitive</strong></span>.</span>
                 </p>
-                <p class="newAccountName">
+                <p class="newAccountName form-row">
                     <label for="newAccountName">Account name</label> <input type="text" id="newAccountName" name="newAccountName"
                         required placeholder="New account name">
-                    <span class="caption">Required string to generate OTP codes.</span>
+                    <span class="caption form-addtion">Required string to generate OTP codes.</span>
                 </p>
-                <p class="newSecretToken">
-                    <label for="newSecretToken">Secret Tokens</label> <input type="password" id="newSecretToken" name="newSecretToken"
-                        required pattern="[2-7][a-z][A-Z]{=}" placeholder="New secret token"> <a href="#"><img class="eye" src="../icons/options/show-password.svg"></a>
-                    <span class="caption">Required string to generate OTP codes.</span>
+                <p class="newSecretToken form-row">
+                    <label for="newSecretToken">Secret Tokens</label> <input type="password" class='input-password' id="newSecretToken" name="newSecretToken"
+                        required pattern="[2-7][a-z][A-Z]{=}" placeholder="New secret token"> <a href="#" class='eye-box'><img class="eye" src="../icons/options/show-password.svg"></a>
+                    <span class="caption form-addtion">Required string to generate OTP codes.</span>
                 </p>
-                <p class="newRecovery">
+                <p class="newRecovery form-row">
                         <label for="newRecovery">Recovery</label> <input type="text" id="newRecovery" name="newSecretToken" placeholder="New recovery">
-                        <span class="caption">Given string in case OTP account info lost.</span>
+                        <span class="caption form-addtion">Given string in case OTP account info lost.</span>
                     </p>
-                    <a href="#"><img id="moreFormbtn" class="moreFormbtn" src="../icons/options/More horizontal.svg" height="32px" height="32px"></a>
+                    <a href="#" class='form-more'><img id="moreFormbtn" class="moreFormbtn" src="../icons/options/More horizontal.svg" height="32px" height="32px"></a>
                 <div id="moreFormItem" class="moreFormItem">
-                <p>
-                    <label for="newOTPType">Type </label>
-                    <select class="newOTPType" id="newOTPType" name="newOTPType">
+                <p class='form-row-multi'>
+                    <label for="newOTPType" class='form-label first'>Type </label>
+                    <select class="newOTPType form-input-multi" id="newOTPType" name="newOTPType">
                         <option>Time based</option>
                         <option>Counter based</option>
                     </select>
-                    <label for="newOTPAlgorithm">Algorithm </label>
-                    <select class="newOTPAlgorithm" id="newOTPAlgorithm" name="newOTPAlgorithm">
+                    <label for="newOTPAlgorithm" class='form-label second'>Algorithm </label>
+                    <select class="newOTPAlgorithm form-input-multi" id="newOTPAlgorithm" name="newOTPAlgorithm">
                         <option>SHA-1</option>
                         <option>SHA-256</option>
                     </select>
                 </p>
-            <p>
-                    <label for="newOTPPeriod">Period </label>
-                    <input class="newOTPPeriod" type="number" name="newOTPPeriod" id="newOTPPeriod" value="30" min="30" max="99" step="1">
-                    <label for="newOTPDigits">Digits </label>
-                    <select  class="newOTPDigits" id="newOTPDigits" name="newOTPDigits">
+            <p class='form-row-multi'>
+                    <label for="newOTPPeriod" class='form-label first'>Period </label>
+                    <input class="newOTPPeriod form-input-multi" type="number" name="newOTPPeriod" id="newOTPPeriod" value="30" min="30" max="99" step="1">
+                    <label for="newOTPDigits" class='form-label second'>Digits </label>
+                    <select  class="newOTPDigits form-input-multi" id="newOTPDigits" name="newOTPDigits">
                         <option>6</option>
                         <option>7</option>
                         <option>8</option>
                     </select></p>
             </div>
-                <p>
+                <p class='form-btns'>
                     <button type="submit">
                         <div class="btnText">Submit</div>
                     </button>
