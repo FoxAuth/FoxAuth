@@ -3,10 +3,11 @@ const otpFormStack = [];
 const otpBasicForm = document.querySelector('.newOTP').cloneNode(true);
 
 //create new OTP form
-document.querySelector('.otpNewBtn').addEventListener("click", () => {
+document.querySelector('#otpNewBtn').addEventListener("click", () => {
     const otpFormBox = document.querySelector('#otpFormBox');
     const node = otpFormStack.length? otpFormStack.pop() : otpBasicForm.cloneNode(true);
-    otpFormBox.appendChild(node);
+    // otpFormBox.appendChild(node);
+    otpFormBox.insertBefore(node,otpFormBox.firstChild);
 });
 
 //delete OTP form
