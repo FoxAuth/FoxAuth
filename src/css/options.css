@@ -400,6 +400,7 @@ input::selection {
   min-height: 32px;
   /* display: flex; */
   justify-content: space-between;
+  align-items: flex-start;
   position: absolute;
   top: 0;
   z-index: 10;
@@ -443,8 +444,8 @@ input::selection {
 }
 
 .warningMsgCloseBtn, .genericMsgCloseBtn {
-  flex: 32px 0 0;
-  padding: 0 4px;
+  flex: 40px 0 0;
+  padding: 4px;
   cursor: pointer;
 }
 
