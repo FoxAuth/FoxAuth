@@ -16,6 +16,7 @@
     if (!t.classList || !t.classList.contains('deleteOTP')) {
       return;
     }
+    e.preventDefault();
     const node = t.parentNode.parentNode.parentNode;
     warningMsg.style.display = 'flex';
     warningMsg.style.opacity = '1';

@@ -1,3 +1,7 @@
 .tokens-content {
   position: relative;
 }
+.warningMsg {
+  position: fixed;
+  top: 62px;
+}
