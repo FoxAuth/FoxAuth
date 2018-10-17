@@ -5,3 +5,10 @@
   position: fixed;
   top: 62px;
 }
+.delete-row {
+  height: 40px;
+  cursor: default;
+}
+.delete-row > .deleteOTP {
+  cursor: pointer;
+}
