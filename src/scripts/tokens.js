@@ -4,10 +4,11 @@
   const warningMsg = document.querySelector('.warningMsg');
   const warningMsgCloseBtn = warningMsg.querySelector('.warningMsgCloseBtn');
   const warningMsgBtn = warningMsg.querySelector('.warningMsgBtn');
-  let confirmFun = function () { };
-  let cachedAccountInfos = [];
   const formBox = document.getElementById('otpFormBox');
   const defaultAccountInfoForm = formBox.children[0];
+  let confirmFun = function () { };
+  let cachedAccountInfos = [];
+  let accountInfoUpdateRecord = [];
 
   warningMsgCloseBtn.addEventListener('click', function () {
     warningMsgBtn.removeEventListener('click', confirmFun);
@@ -38,6 +39,32 @@
     warningMsgBtn.addEventListener('click', confirmFun);
 
   });
+  const valueChangeHandler = (event) => {
+    const { target } = event;
+    if (
+      (target.nodeName === 'INPUT' && event.type === 'input') ||
+      target.nodeName === 'SELECT'
+    ) {
+      // record which info are updated
+      accountInfoUpdateRecord.push({
+        index: findIndex(formBox.children, target.form),
+        change: {
+          [target.name]: target.value
+        }
+      });
+      debounce(() => {
+        const { form } = target;
+        if (!form) {
+          return;
+        }
+        // save to storage
+        updateInfos(cachedAccountInfos, accountInfoUpdateRecord);
+        accountInfoUpdateRecord = [];
+      }, 200);
+    }
+  };
+  formBox.addEventListener('input', valueChangeHandler);
+  formBox.addEventListener('change', valueChangeHandler);
 
   initInfos();
   async function initInfos() {
@@ -110,6 +137,27 @@
     } else {
       infos.splice(0, 1, getRefreshAccountInfo());
     }
+    saveInfosToLocal(infos);
+  }
+  let timer = null;
+  function debounce(func, wait) {
+    if (timer) {
+      clearTimeout(timer);
+    }
+    timer = setTimeout(() => {
+      func();
+      timer = null;
+    }, wait);
+  }
+  function updateInfos(infos, records) {
+    records.forEach((record) => {
+      if (record.index >= 0) {
+        infos.splice(record.index, 1, {
+          ...(infos[record.index]),
+          ...(record.change)
+        });
+      }
+    });
     saveInfosToLocal(infos);
   }
 })();
