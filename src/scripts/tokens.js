@@ -23,8 +23,13 @@
     warningMsg.style.display = 'flex';
     warningMsg.style.opacity = '1';
     confirmFun = function () {
-      node.parentNode.removeChild(node);
-      console.log('mmm', Math.random());
+      const index = findIndex(formBox.children, node);
+      removeInfo(cachedAccountInfos, index);
+      if (cachedAccountInfos.length > 1) {
+        node.parentNode.removeChild(node);
+      } else {
+        updateInfoForm(node, cachedAccountInfos[0]);
+      }
       const event = document.createEvent('HTMLEvents');
       event.initEvent('click', true, false);
       warningMsgCloseBtn.dispatchEvent(event);
@@ -88,6 +93,24 @@
       return fragment;
     }, document.createDocumentFragment());
   }
-
+  function findIndex(arrayLike, item) {
+    if (!arrayLike || arrayLike.length <= 0) {
+      return -1;
+    } else {
+      const length = arrayLike.length;
+      for (let i = 0; i < length; i++) {
+        if (arrayLike[i] === item) return i;
+      }
+      return -1;
+    }
+  }
+  function removeInfo(infos, index) {
+    if (infos.length > 1) {
+      infos.splice(index, 1);
+    } else {
+      infos.splice(0, 1, getRefreshAccountInfo());
+    }
+    saveInfosToLocal(infos);
+  }
 })();
 
