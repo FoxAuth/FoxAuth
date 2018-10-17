@@ -7,14 +7,10 @@
   const formBox = document.getElementById('otpFormBox');
   const defaultAccountInfoForm = formBox.children[0];
   let confirmFun = function () { };
+  let warningCloseFun = function () { };
   let cachedAccountInfos = [];
   let accountInfoUpdateRecord = [];
 
-  warningMsgCloseBtn.addEventListener('click', function () {
-    warningMsgBtn.removeEventListener('click', confirmFun);
-    warningMsg.style.display = 'none';
-    warningMsg.style.opacity = '0';
-  });
   document.body.addEventListener("click", function (e) {
     const t = e.target;
     if (!t.classList || !t.classList.contains('deleteOTP')) {
@@ -23,7 +19,12 @@
     const node = t.parentNode.parentNode.parentNode;
     warningMsg.style.display = 'flex';
     warningMsg.style.opacity = '1';
+    hideFormDeleteBtn(node);
     confirmFun = function () {
+      const event = document.createEvent('HTMLEvents');
+      event.initEvent('click', true, false);
+      warningMsgCloseBtn.dispatchEvent(event);
+      // and other operations
       const index = findIndex(formBox.children, node);
       const { length } = cachedAccountInfos;
       removeInfo(cachedAccountInfos, index);
@@ -32,12 +33,16 @@
       } else {
         updateInfoForm(node, cachedAccountInfos[0]);
       }
-      const event = document.createEvent('HTMLEvents');
-      event.initEvent('click', true, false);
-      warningMsgCloseBtn.dispatchEvent(event);
-      // and other operations
+    }
+    warningCloseFun = function () {
+      warningMsgBtn.removeEventListener('click', confirmFun);
+      warningMsgCloseBtn.removeEventListener('click', warningCloseFun);
+      warningMsg.style.display = 'none';
+      warningMsg.style.opacity = '0';
+      showFormDeleteBtn(node);
     }
     warningMsgBtn.addEventListener('click', confirmFun);
+    warningMsgCloseBtn.addEventListener('click', warningCloseFun);
 
   });
   const valueChangeHandler = (event) => {
@@ -163,5 +168,18 @@
     });
     saveInfosToLocal(infos);
   }
+  function setFormDeleteBtnDisplay(form, display) {
+    const elements = form.parentNode.children;
+    for (const elem of elements) {
+      elem.querySelector('.deleteOTP').style.display = display;
+    }
+  }
+  function showFormDeleteBtn(form) {
+    setFormDeleteBtnDisplay(form, 'block');
+  }
+  function hideFormDeleteBtn(form) {
+    setFormDeleteBtnDisplay(form, 'none');
+  }
+
 })();
 
