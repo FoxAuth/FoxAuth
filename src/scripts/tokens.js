@@ -25,8 +25,9 @@
     warningMsg.style.opacity = '1';
     confirmFun = function () {
       const index = findIndex(formBox.children, node);
+      const { length } = cachedAccountInfos;
       removeInfo(cachedAccountInfos, index);
-      if (cachedAccountInfos.length > 1) {
+      if (length > 1) {
         node.parentNode.removeChild(node);
       } else {
         updateInfoForm(node, cachedAccountInfos[0]);
@@ -46,10 +47,12 @@
       target.nodeName === 'SELECT'
     ) {
       // record which info are updated
+      let { value } = target;
+      if (target.name !== 'localSecretToken') value = value.trim();
       accountInfoUpdateRecord.push({
         index: findIndex(formBox.children, target.form),
         change: {
-          [target.name]: target.value
+          [target.name]: value
         }
       });
       debounce(() => {
@@ -60,7 +63,7 @@
         // save to storage
         updateInfos(cachedAccountInfos, accountInfoUpdateRecord);
         accountInfoUpdateRecord = [];
-      }, 200);
+      }, 100);
     }
   };
   formBox.addEventListener('input', valueChangeHandler);
