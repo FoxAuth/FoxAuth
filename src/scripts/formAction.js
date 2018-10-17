@@ -5,6 +5,7 @@ document.body.addEventListener("click", (e) => {
     if (!t.classList || !t.classList.contains('moreFormbtn')) {
         return;
     }
+    e.preventDefault();
     const x = t.parentNode.parentNode.querySelector('.moreFormItem');
     if (window.getComputedStyle(x).display === "none") {
         x.style.display = "block";
