@@ -42,7 +42,7 @@ FoxAuth is an [TOTP](https://wikipedia.org/wiki/Time-based_One-time_Password_alg
 - __import / export__
 - (Password based) account list __encryption__
 - Autofill __TOTP__ form
-- __Dropbox / FxA__ sync (in upcoming releases)
+- __Dropbox /__ (in upcoming releases) __FxA__ sync
 - [Photon Design](https://design.firefox.com/photon)
 
 ## Revisioning
@@ -57,7 +57,7 @@ Here is how this project gets revisioning:
 
 ## Security
 
-We use encryption code from [Firefox Send](github.com/mozilla/send) in WebCrypto API and store password in Firefox password storage. Welcome as we are to any security review, it shall be more efficiently to perform it at that side.
+We use encryption code from [Firefox Send](github.com/mozilla/send) in WebCrypto API and store encryption password in Firefox password storage. Welcome as we are to any security review, it shall be more efficiently to perform it at that side.
 
 ## License
 
