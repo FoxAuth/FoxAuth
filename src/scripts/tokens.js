@@ -75,59 +75,35 @@
   formBox.addEventListener('input', valueChangeHandler);
   formBox.addEventListener('change', valueChangeHandler);
 
-  initInfos();
-  async function initInfos() {
-    const infos = await getInfosFromLocal();
+  init();
+  async function init() {
+    tokenSearch.value = '';
+    const infos = await getAccountInfos();
+    await initBrowserContainers();
+    // make sure default form has default value
+    updateInfoForm(defaultAccountInfoForm, {
+      info: getDefaultAccountInfo(),
+      containers: getBrowserContainers()
+    });
     if (infos.length > 0) {
       cachedAccountInfos = infos;
     } else {
       // give some samples
-      cachedAccountInfos = [getRefreshAccountInfo()];
-      saveInfosToLocal(cachedAccountInfos);
+      cachedAccountInfos = [getDefaultAccountInfo()];
+      saveAccountInfos(cachedAccountInfos);
     }
-    const newNode = defaultAccountInfoForm.cloneNode(true);
-    updateInfoForm(newNode, cachedAccountInfos[0]);
-    formBox.replaceChild(newNode, defaultAccountInfoForm);
-    formBox.appendChild(generateInfosFragment(cachedAccountInfos.slice(1)));
+    const forms = generateInfoFormList(cachedAccountInfos, getBrowserContainers());
+    htmlBrandNewChildren(formBox, forms);
   }
-  async function getInfosFromLocal() {
-    const obj = await browser.storage.local.get('accountInfos');
-    const { accountInfos } = obj;
-    return Array.isArray(accountInfos) ? accountInfos : [];
-  }
-  function saveInfosToLocal(infos) {
-    browser.storage.local.set({
-      accountInfos: infos
-    });
-  }
-  function getRefreshAccountInfo() {
-    return {
-      containerAssign: 'none',
-      localIssuer: '',
-      localAccountName: '',
-      localSecretToken: '',
-      localRecovery: '',
-      localOTPType: 'Time based',
-      localOTPAlgorithm: 'SHA-1',
-      localOTPPeriod: '30',
-      localOTPDigits: '6'
-    };
-  }
-  function updateInfoForm(form, info) {
-    Object.keys(info).forEach((key) => {
-      const element = form.querySelector(`[name=${key}]`);
-      if (element) {
-        element.value = info[key];
-      }
-    });
-  }
-  function generateInfosFragment(accountInfos) {
-    return accountInfos.reduce((fragment, info) => {
+  function generateInfoFormList(accountInfos, containers) {
+    return accountInfos.map((info) => {
       const form = defaultAccountInfoForm.cloneNode(true);
-      updateInfoForm(form, info);
-      fragment.appendChild(form);
-      return fragment;
-    }, document.createDocumentFragment());
+      updateInfoForm(form, {
+        info,
+        containers
+      });
+      return form;
+    });
   }
   function findIndex(arrayLike, item) {
     if (!arrayLike || arrayLike.length <= 0) {
