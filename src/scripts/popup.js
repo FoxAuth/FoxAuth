@@ -1,3 +1,6 @@
+const iconOnError = function(e){
+  e.src = '../icons/service/fallback.svg';
+}
 const otpContainer = new (ef.t`
 >div.container
   >div.columns
@@ -6,36 +9,41 @@ const otpContainer = new (ef.t`
 `)()
 const template_totp = ef.t`
 >div.column.col-12.mt-1
-  >div.card
-    >div
-      >div.float-left
-        >div.btn
-          .{{i18n_Edit}}
-      >div.float-right
-        >div.btn.btncopy
-          #data-clipboard-action = copy
-          #data-clipboard-text = {{OTP}}
-          .{{i18n_Copy}}
-    >div.header.h3.text-center.pt-1
-      .{{OTP}}
-    >div.card-body.text-gray
-      .{{URL}}
-      >div.float-right
-        .{{USER}}
+  >div.card.popup-card
+    >div.popup-header.popup-text
+      >span.fl
+        .{{issuer}}
+      >span.fr
+        #style = color:{{containerColor}}
+        .{{container}}
+    >div.popup-content
+      >div.popup-row
+        >div.popup-left
+          >img.popup-icon.issuer-icon
+            #onerror = iconOnError(this)
+            #src = ../icons/service/{{issuerLowerCase}}.svg
+        >div.popup-row-item
+          .{{OTP}}
+        >div.popup-right
+          >img.popup-icon
+            #src = {{containerIcon}}
     >progress.progress
       #max={{progress_max}}
       %value={{progress}}
 `
 otpContainer.$mount({target: document.getElementById('otpContainer'), option: 'replace'})
 var otpStoreInterval = []
-function addOTP(url, user,key, expiry = 30, code_length = 6) {
+function addOTP(issuer, containerObj, key, expiry = 30, code_length = 6) {
     var totp = new jsOTP.totp(expiry, code_length)
     var id = otpContainer.otppoint.push(new template_totp({$data: {
         i18n_Copy: 'Copy',
         i18n_Edit: 'Edit',
         OTP: totp.getOtp(key),
-        URL: url,
-        USER: user,
+        issuer: issuer,
+        issuerLowerCase: issuer.toLowerCase(),
+        container: containerObj.name,
+        containerIcon: containerObj.iconUrl,
+        containerColor: containerObj.colorCode,
         progress_max: expiry,
         progress: expiry - (Math.round(new Date().getTime() / 1000.0) % expiry)
     }})) - 1
@@ -51,6 +59,23 @@ function clearOTP() {
     otpContainer.otppoint.empty()
     otpStoreInterval.empty()
 }
-addOTP('example.com/1', 'Example1','JBSWY3DPEHPK3PXP')
-addOTP('example.com/3', 'Example3','JBSWY3DPEHPK3PXE', 60)
-addOTP('example.com/4', 'Example4','JBSWY3DPEHPK3PXZ', 30, 8)
+addOTP('GitHub', {
+  colorCode: "#ff9f00",
+  iconUrl: "resource://usercontext-content/briefcase.svg",
+  name: "Work"
+},'JBSWY3DPEHPK3PXP')
+addOTP('discord', {
+  colorCode: "#37adff",
+  iconUrl: "resource://usercontext-content/fingerprint.svg",
+  name: "Personal"
+},'JBSWY3DPEHPK3PXE', 60)
+addOTP('gmail', {
+  colorCode: "#51cd00",
+  iconUrl: "resource://usercontext-content/dollar.svg",
+  name: "Banking"
+},'JBSWY3DPEHPK3PXZ', 30, 8);
+addOTP('nsths', {
+  colorCode: "#51cd00",
+  iconUrl: "resource://usercontext-content/dollar.svg",
+  name: "Banking"
+},'JBSWY3DPEHPK3PXZ', 30, 8);

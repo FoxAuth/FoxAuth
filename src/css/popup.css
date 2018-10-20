@@ -67,3 +67,69 @@ body.scanning::after {
     align-items: center;
     justify-content: center;
 }
+
+.popup-card.card {
+    margin: 8px 0;
+}
+
+
+.popup-text {
+    color: #737373;
+    font-size: 13px;
+}
+.popup-header {
+    margin: 8px;
+    margin-bottom: 0;
+}
+.popup-header::after {
+    content: ' ';
+    display: block;
+    clear: both;
+}
+.fl {
+    float: left;
+}
+.fr {
+    float: right;
+}
+.popup-content {
+    margin: 8px;
+}
+.popup-row {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.popup-row::after {
+    content: ' ';
+    display: block;
+    clear: both;
+}
+.popup-row-item {
+    line-height: 28px;
+    display: block;
+    text-align: center;
+    font-size: 28px;
+    color: #2a2a2e;
+    font-weight: 600;
+    flex: 1 1 100px;
+}
+.popup-left {
+    /* position: absolute; */
+    /* left: 0;
+    bottom: 0; */
+    flex: 0 0 32px;
+}
+.popup-right {
+    /* position: absolute; */
+    /* right: 0;
+    bottom: 0; */
+    flex: 0 0 32px;
+}
+.popup-icon {
+    display: block;
+    height: 32px;
+    width: 32px;
+    object-fit: contain;
+}
