@@ -27,13 +27,7 @@
       warningMsgCloseBtn.dispatchEvent(event);
       // and other operations
       const index = findIndex(formBox.children, node);
-      const { length } = cachedAccountInfos;
       removeInfo(cachedAccountInfos, index);
-      if (length > 1) {
-        node.parentNode.removeChild(node);
-      } else {
-        updateInfoForm(node, cachedAccountInfos[0]);
-      }
     }
     warningCloseFun = function () {
       warningMsgBtn.removeEventListener('click', confirmFun);
@@ -120,12 +114,13 @@
     }
   }
   function removeInfo(infos, index) {
+    if (index < 0) return;
     if (infos.length > 1) {
       infos.splice(index, 1);
     } else {
-      infos.splice(0, 1, getRefreshAccountInfo());
+      infos.splice(0, 1, getDefaultAccountInfo());
     }
-    saveInfosToLocal(infos);
+    saveAccountInfos(infos);
   }
   let timer = null;
   function debounce(func, wait) {
