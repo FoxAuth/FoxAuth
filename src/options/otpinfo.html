@@ -27,45 +27,45 @@
                     </select>
                 </p>
                 <p class="newIssuer form-row">
-                    <label for="newIssuer">Issuer</label> <input type="text" id="newIssuer" name="newIssuer" required
+                    <label for="newIssuer">Issuer</label> <input type="text" id="newIssuer" name="localIssuer" required
                         placeholder="New issuer">
                     <span class="caption form-addtion">This string is used to match domain for autofill. "GitHub" will match
                         github.com,
                         e.g., <span style="font-size: 1.25em"><strong>case insensitive</strong></span>.</span>
                 </p>
                 <p class="newAccountName form-row">
-                    <label for="newAccountName">Account name</label> <input type="text" id="newAccountName" name="newAccountName"
+                    <label for="newAccountName">Account name</label> <input type="text" id="newAccountName" name="localAccountName"
                         required placeholder="New account name">
                     <span class="caption form-addtion">Required string to generate OTP codes.</span>
                 </p>
                 <p class="newSecretToken form-row">
-                    <label for="newSecretToken">Secret Tokens</label> <input type="password" class='input-password' id="newSecretToken" name="newSecretToken"
+                    <label for="newSecretToken">Secret Tokens</label> <input type="password" class='input-password' id="newSecretToken" name="localSecretToken"
                         required pattern="[2-7][a-z][A-Z]{=}" placeholder="New secret token"> <a href="#" class='eye-box'><img class="eye" src="../icons/options/show-password.svg"></a>
                     <span class="caption form-addtion">Required string to generate OTP codes.</span>
                 </p>
                 <p class="newRecovery form-row">
-                        <label for="newRecovery">Recovery</label> <input type="text" id="newRecovery" name="newSecretToken" placeholder="New recovery">
+                        <label for="newRecovery">Recovery</label> <input type="text" id="newRecovery" name="localRecovery" placeholder="New recovery">
                         <span class="caption form-addtion">Given string in case OTP account info lost.</span>
                     </p>
                     <a href="#" class='form-more'><img id="moreFormbtn" class="moreFormbtn" src="../icons/options/More horizontal.svg" height="32px" height="32px"></a>
                 <div id="moreFormItem" class="moreFormItem">
                 <p class='form-row-multi'>
                     <label for="newOTPType" class='form-label first'>Type </label>
-                    <select class="newOTPType form-input-multi" id="newOTPType" name="newOTPType">
+                    <select class="newOTPType form-input-multi" id="newOTPType" name="localOTPType">
                         <option>Time based</option>
                         <option>Counter based</option>
                     </select>
                     <label for="newOTPAlgorithm" class='form-label second'>Algorithm </label>
-                    <select class="newOTPAlgorithm form-input-multi" id="newOTPAlgorithm" name="newOTPAlgorithm">
+                    <select class="newOTPAlgorithm form-input-multi" id="newOTPAlgorithm" name="localOTPAlgorithm">
                         <option>SHA-1</option>
                         <option>SHA-256</option>
                     </select>
                 </p>
             <p class='form-row-multi'>
                     <label for="newOTPPeriod" class='form-label first'>Period </label>
-                    <input class="newOTPPeriod form-input-multi" type="number" name="newOTPPeriod" id="newOTPPeriod" value="30" min="30" max="99" step="1">
+                    <input class="newOTPPeriod form-input-multi" type="number" name="localOTPPeriod" id="newOTPPeriod" value="30" min="30" max="99" step="1">
                     <label for="newOTPDigits" class='form-label second'>Digits </label>
-                    <select  class="newOTPDigits form-input-multi" id="newOTPDigits" name="newOTPDigits">
+                    <select  class="newOTPDigits form-input-multi" id="newOTPDigits" name="localOTPDigits">
                         <option>6</option>
                         <option>7</option>
                         <option>8</option>
@@ -83,6 +83,8 @@
         </form>
     </div>
     <script src="../scripts/formAction.js"></script>
+    <script src="../scripts/accountInfo.js"></script>
+    <script src="../scripts/accountInfoFormAction.js"></script>
     <script src="../scripts/otpinfo.js"></script>
 </body>
 
