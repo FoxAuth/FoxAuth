@@ -50,10 +50,13 @@
     const { target } = event;
     if (
       (target.nodeName === 'INPUT' && event.type === 'input') ||
-      target.nodeName === 'SELECT'
+      (target.nodeName === 'SELECT' && event.type === 'change')
     ) {
       // record which info are updated
       let { value } = target;
+      if (target.name !== 'localSecretToken') {
+        value = value.trim();
+      }
       if (target.name !== 'localSecretToken') value = value.trim();
       accountInfoUpdateRecord.push({
         index: findIndex(formBox.children, target.form),
@@ -137,13 +140,36 @@
   function updateInfos(infos, records) {
     records.forEach((record) => {
       if (record.index >= 0) {
-        infos.splice(record.index, 1, {
-          ...(infos[record.index]),
-          ...(record.change)
-        });
+        if (shouldUpdateInfo(infos, record)) {
+          infos.splice(record.index, 1, {
+            ...(infos[record.index]),
+            ...(record.change)
+          });
+        }
       }
     });
-    saveInfosToLocal(infos);
+    saveAccountInfos(infos);
+  }
+  // should update info?
+  function shouldUpdateInfo(infos, record) {
+    if (record.change.localIssuer || record.change.containerAssign) {
+      const nextInfo = {
+        ...(infos[record.index]),
+        ...(record.change)
+      };
+      if (findIndexOfSameAccountInfo(
+          // do not compare self
+          infos.filter((_, index) => index !== record.index),
+          nextInfo
+        ) < 0
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return true;
+    }
   }
   function setFormDeleteBtnDisplay(form, display) {
     const elements = form.parentNode.children;
