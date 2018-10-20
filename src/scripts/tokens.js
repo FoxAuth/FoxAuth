@@ -71,6 +71,16 @@
   };
   formBox.addEventListener('input', valueChangeHandler);
   formBox.addEventListener('change', valueChangeHandler);
+  browser.storage.onChanged.addListener((changes, areaName) => {
+    if (areaName !== 'local') return;
+    if (!changes.accountInfos) return;
+    const { newValue } = changes.accountInfos;
+    cachedAccountInfos = newValue;
+    updateAllInfoForm(formBox, {
+      infos: newValue,
+      defaultAccountInfoForm,
+    });
+  });
 
   init();
   async function init() {
@@ -101,6 +111,27 @@
       });
       return form;
     });
+  }
+  function updateAllInfoForm(formBox, {
+    infos, defaultAccountInfoForm
+  }) {
+    const { children } = formBox;
+    let { length } = children;
+    const { length: newLength } = infos;
+    const count = newLength - length;
+    if (count > 0) {
+      const array = [];
+      for(let i = 0; i < count; i++) {
+        array.push(defaultAccountInfoForm.cloneNode(true));
+      }
+      formBox.append(...array);
+    } else if (count < 0) {
+      removeChildren(formBox, 'fromLast', Math.abs(count));
+    }
+
+    for (let i = 0; i < newLength; i++) {
+      updateInfoForm(children[i], { info: infos[i] });
+    }
   }
   function findIndex(arrayLike, item) {
     if (!arrayLike || arrayLike.length <= 0) {
