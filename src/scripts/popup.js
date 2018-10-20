@@ -59,23 +59,19 @@ function clearOTP() {
     otpContainer.otppoint.empty()
     otpStoreInterval.empty()
 }
-addOTP('GitHub', {
-  colorCode: "#ff9f00",
-  iconUrl: "resource://usercontext-content/briefcase.svg",
-  name: "Work"
-},'JBSWY3DPEHPK3PXP')
-addOTP('discord', {
-  colorCode: "#37adff",
-  iconUrl: "resource://usercontext-content/fingerprint.svg",
-  name: "Personal"
-},'JBSWY3DPEHPK3PXE', 60)
-addOTP('gmail', {
-  colorCode: "#51cd00",
-  iconUrl: "resource://usercontext-content/dollar.svg",
-  name: "Banking"
-},'JBSWY3DPEHPK3PXZ', 30, 8);
-addOTP('nsths', {
-  colorCode: "#51cd00",
-  iconUrl: "resource://usercontext-content/dollar.svg",
-  name: "Banking"
-},'JBSWY3DPEHPK3PXZ', 30, 8);
+
+(async function(){
+  const accountInfosPromise = getAccountInfos();
+  const contextualIdentitiesPromise = browser.contextualIdentities.query({});
+  const accountInfos = await accountInfosPromise;
+  const contextualIdentities = await contextualIdentitiesPromise;
+  accountInfos.forEach(e=>{
+    addOTP(
+      e.localIssuer,
+      contextualIdentities.find(el=>el.cookieStoreId === e.containerAssign),
+      e.localSecretToken, // TODO make sure that the key is correct
+      e.localOTPPeriod,
+      e.localOTPDigits,
+      )
+  })
+})();
