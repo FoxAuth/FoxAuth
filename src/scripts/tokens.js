@@ -4,6 +4,7 @@
   const warningMsg = document.querySelector('.warningMsg');
   const warningMsgCloseBtn = warningMsg.querySelector('.warningMsgCloseBtn');
   const warningMsgBtn = warningMsg.querySelector('.warningMsgBtn');
+  const tokenSearch = document.querySelector('[name=popupSearch]');
   const formBox = document.getElementById('otpFormBox');
   const defaultAccountInfoForm = formBox.children[0];
   let confirmFun = function () { };
@@ -28,6 +29,8 @@
       // and other operations
       const index = findIndex(formBox.children, node);
       removeInfo(cachedAccountInfos, index);
+      // need re search
+      handleSearch();
     }
     warningCloseFun = function () {
       warningMsgBtn.removeEventListener('click', confirmFun);
@@ -71,6 +74,9 @@
   };
   formBox.addEventListener('input', valueChangeHandler);
   formBox.addEventListener('change', valueChangeHandler);
+  tokenSearch.addEventListener('input', (event) => {
+    debounce(handleSearch, 300)
+  });
   browser.storage.onChanged.addListener((changes, areaName) => {
     if (areaName !== 'local') return;
     if (!changes.accountInfos) return;
@@ -208,6 +214,40 @@
   }
   function hideFormDeleteBtn(form) {
     setFormDeleteBtnDisplay(form, 'none');
+  }
+  // search account info by issuers, containers name or account name
+  function searchAccountInfos(keyword, infos) {
+    if (keyword === '') return infos;
+    return infos.map(
+      (info) => info.localIssuer.indexOf(keyword) >= 0 ||
+        info.localAccountName.indexOf(keyword) >= 0 ||
+        isContainerMatchKeyword(keyword, info.containerAssign)
+    );
+  }
+  // search container name
+  function isContainerMatchKeyword(keyword, containerId) {
+    const browserContainers = getBrowserContainers();
+    for (const container of browserContainers) {
+      if (container.cookieStoreId === containerId) {
+        if (container.name.indexOf(keyword) >= 0) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+  // handle search for issuers, containers name or account name
+  function handleSearch() {
+    const result = searchAccountInfos(tokenSearch.value.trim(), cachedAccountInfos);
+    const { children } = formBox;
+    const { length } = children;
+    for(let i = 0; i < length; i++) {
+      if (result[i]) {
+        children[i].style.display = 'inline-block';
+      } else {
+        children[i].style.display = 'none';
+      }
+    }
   }
 
 })();
