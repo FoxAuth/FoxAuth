@@ -117,7 +117,20 @@ switch (matchTarget) {
 return matchIssuer;
 };
 
+// if info's container has been removed, set its container to ''
+async function setInfoNotFoundContainerToNone(container) {
+    let infos = await getAccountInfos();
+    infos = infos.map((info) => {
+        if (info.containerAssign === container.cookieStoreId) {
+            info.containerAssign = '';
+        }
+        return info;
+    });
+    saveAccountInfos(infos);
+}
+
 //add listeners here
-browser.contextualIdentities.onCreated.addListener(listener);
-browser.contextualIdentities.onRemoved.addListener(listener);
-browser.contextualIdentities.onUpdated.addListener(listener);
+browser.contextualIdentities.onRemoved.addListener((changeInfo) => {
+    const { contextualIdentity } = changeInfo;
+    setInfoNotFoundContainerToNone(contextualIdentity)
+});

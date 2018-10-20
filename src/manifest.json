@@ -26,7 +26,8 @@
   },
   "background": {
     "scripts": [
-      "scripts/background.js"
+      "scripts/background.js",
+      "scripts/accountInfo.js"
     ]
   },
   "permissions": [
