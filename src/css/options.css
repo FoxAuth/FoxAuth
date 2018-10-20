@@ -93,6 +93,10 @@ body {
   margin: 50px;
 }
 
+.content .checkbox-group+.checkbox-group {
+  margin-top: 4px;
+}
+
 .content .checkbox-group .checkbox-label {
   display: flex;
   align-items: center;
