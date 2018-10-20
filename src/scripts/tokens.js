@@ -6,6 +6,7 @@
   const warningMsgBtn = warningMsg.querySelector('.warningMsgBtn');
   const tokenSearch = document.querySelector('[name=popupSearch]');
   const formBox = document.getElementById('otpFormBox');
+  const warningCover = document.querySelector('.warning-cover');
   const defaultAccountInfoForm = formBox.children[0];
   let confirmFun = function () { };
   let warningCloseFun = function () { };
@@ -21,7 +22,7 @@
     const node = t.parentNode.parentNode.parentNode;
     warningMsg.style.display = 'flex';
     warningMsg.style.opacity = '1';
-    hideFormDeleteBtn(node);
+    warningCover.style.display = 'block';
     confirmFun = function () {
       const event = document.createEvent('HTMLEvents');
       event.initEvent('click', true, false);
@@ -37,7 +38,7 @@
       warningMsgCloseBtn.removeEventListener('click', warningCloseFun);
       warningMsg.style.display = 'none';
       warningMsg.style.opacity = '0';
-      showFormDeleteBtn(node);
+      warningCover.style.display = 'none';
     }
     warningMsgBtn.addEventListener('click', confirmFun);
     warningMsgCloseBtn.addEventListener('click', warningCloseFun);
@@ -202,18 +203,6 @@
     } else {
       return true;
     }
-  }
-  function setFormDeleteBtnDisplay(form, display) {
-    const elements = form.parentNode.children;
-    for (const elem of elements) {
-      elem.querySelector('.deleteOTP').style.display = display;
-    }
-  }
-  function showFormDeleteBtn(form) {
-    setFormDeleteBtnDisplay(form, 'block');
-  }
-  function hideFormDeleteBtn(form) {
-    setFormDeleteBtnDisplay(form, 'none');
   }
   // search account info by issuers, containers name or account name
   function searchAccountInfos(keyword, infos) {

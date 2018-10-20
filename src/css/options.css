@@ -394,12 +394,23 @@ input::selection {
   border-radius: 2px;
 }
 
+.warning-cover {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9;
+  background: #0009;
+  display: none;
+}
+
 .warningMsg {
   background-color: #ffe900;
   color: #3e2800;
   min-height: 32px;
   /* display: flex; */
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: flex-start;
   position: absolute;
   top: 0;
@@ -410,11 +421,16 @@ input::selection {
   left: 2px;
   right: 2px;
   border-radius: 2px;
+  padding-right: 40px;
 }
 
 .warningMsgTxt, .genericMsgTxt {
   padding: 0 4px;
   line-height: 32px;
+}
+.warningMsgTxt {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .warningMsgBtn {
@@ -423,6 +439,7 @@ input::selection {
   color: #3e2800;
   border: 0;
   cursor: pointer;
+  margin-left: 0;
 }
 
 .warningMsgBtn:hover {
@@ -442,11 +459,22 @@ input::selection {
   padding-left: 4px;
   padding-right: 4px;
 }
+.warningIcon {
+  height:32px;
+  width: 32px;
+  display: block;
+  padding: 4px;
+}
 
 .warningMsgCloseBtn, .genericMsgCloseBtn {
   flex: 40px 0 0;
   padding: 4px;
   cursor: pointer;
+}
+.warningMsgCloseBtn {
+  position: absolute;
+  right: 0;
+  top: 0;
 }
 
 .genericMsgCloseBtn:hover {
@@ -455,4 +483,10 @@ input::selection {
 
 .genericMsgContent, .warningMsgContent {
   padding-right: 8px;
+}
+
+.warningMsgContent {
+  padding: 7px 0;
+  line-height: 1.5;
+  margin-right: 4px;
 }
