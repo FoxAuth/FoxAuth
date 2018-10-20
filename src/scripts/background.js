@@ -134,3 +134,34 @@ browser.contextualIdentities.onRemoved.addListener((changeInfo) => {
     const { contextualIdentity } = changeInfo;
     setInfoNotFoundContainerToNone(contextualIdentity)
 });
+
+// init account info example
+(async function() {
+    const result = await browser.contextualIdentities.query({});
+    browser.storage.local.set({
+        accountInfos: [
+            {
+                containerAssign: result[0].cookieStoreId,
+                localIssuer: 'GitHubExample',
+                localAccountName: 'MyName1',
+                localSecretToken: 'MyToken1',
+                localRecovery: 'MyRecovery1',
+                localOTPType: 'Time based',
+                localOTPAlgorithm: 'SHA-1',
+                localOTPPeriod: '30',
+                localOTPDigits: '6'
+            }, {
+                containerAssign: result[1].cookieStoreId,
+                localIssuer: 'DorpboxExample',
+                localAccountName: 'MyName2',
+                localSecretToken: 'MyToken3',
+                localRecovery: 'MyRecovery4',
+                localOTPType: 'Time based',
+                localOTPAlgorithm: 'SHA-1',
+                localOTPPeriod: '30',
+                localOTPDigits: '6'
+            }
+        ]
+    });
+    
+})();
