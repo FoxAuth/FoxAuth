@@ -133,3 +133,11 @@ body.scanning::after {
     width: 32px;
     object-fit: contain;
 }
+.popup-link {
+    text-decoration: none;
+    color: inherit;
+}
+.popup-link:hover {
+    text-decoration: none;
+    color: inherit;
+}

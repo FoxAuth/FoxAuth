@@ -12,3 +12,23 @@
 .delete-row > .deleteOTP {
   cursor: pointer;
 }
+.localOTP {
+  border: 1px solid #fff;
+}
+.localOTP.active {
+  animation: 0.5s linear 0s infinite alternate form-highlight;
+  box-sizing: border-box;
+}
+
+@keyframes form-highlight {
+  from {
+    border: 1px solid #0a84ff;
+    border-radius: 2px;
+    box-shadow: 0 0 0 1px #0a84ff, 0 0 0 4px rgba(10, 132, 255, 0.3);
+  }
+  to {
+    border: 1px solid #fff;
+    border-radius: 2px;
+    box-shadow: none;
+  }
+}

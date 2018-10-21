@@ -26,6 +26,7 @@
   },
   "background": {
     "scripts": [
+      "scripts/dependency/qr-scanner.min.js",
       "scripts/background.js",
       "scripts/accountInfo.js"
     ]
