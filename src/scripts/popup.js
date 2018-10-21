@@ -17,7 +17,6 @@ const otpContainer = new (ef.t`
 const template_totp = ef.t`
 >div.column.col-12.mt-1.account-item
   #data-issuer = {{issuer}}
-  #data-account-name = {{accountName}}
   #data-container-name = {{container}}
   >div.card.popup-card
     >div.popup-header.popup-text
@@ -33,7 +32,10 @@ const template_totp = ef.t`
             #onerror = iconOnError(this)
             #src = ../icons/service/{{issuerLowerCase}}.svg
         >div.popup-row-item
-          .{{OTP}}
+          >a.popup-link
+            #href = /options/tokens.html?index={{index}}
+            #target = _blank
+            .{{OTP}}
         >div.popup-right
           >img.popup-icon
             #onerror = containerIconOnError(this)
@@ -44,7 +46,7 @@ const template_totp = ef.t`
 `
 otpContainer.$mount({ target: document.getElementById('otpContainer'), option: 'replace' })
 var otpStoreInterval = []
-function addOTP(issuer, accountName, containerObj = {}, key, expiry = 30, code_length = 6) {
+function addOTP(issuer, containerObj = {}, key, expiry = 30, code_length = 6, option = {}) {
   var totp = new jsOTP.totp(expiry, code_length)
   var id = otpContainer.otppoint.push(new template_totp({
     $data: {
@@ -52,13 +54,13 @@ function addOTP(issuer, accountName, containerObj = {}, key, expiry = 30, code_l
       i18n_Edit: 'Edit',
       OTP: totp.getOtp(key),
       issuer: issuer,
-      accountName: accountName,
       issuerLowerCase: issuer.toLowerCase(),
       container: containerObj.name,
       containerIcon: containerObj.iconUrl,
       containerColor: containerObj.colorCode,
       progress_max: expiry,
-      progress: expiry - (Math.round(new Date().getTime() / 1000.0) % expiry)
+      progress: expiry - (Math.round(new Date().getTime() / 1000.0) % expiry),
+      index: option.index
     }
   })) - 1
   otpStoreInterval.push(setInterval(function () {
@@ -91,7 +93,7 @@ function initSearch() {
     const domList = document.querySelectorAll('.account-item');
     [...domList].forEach(e => {
       const data = e.dataset;
-      if ([data.issuer, data.accountName, data.containerName].some(str => str.toLowerCase().indexOf(keyword) >= 0)) {
+      if ([data.issuer, data.containerName].some(str => str.toLowerCase().indexOf(keyword) >= 0)) {
         e.style.display = 'block';
       } else {
         e.style.display = 'none';
@@ -108,14 +110,16 @@ function initSearch() {
   const contextualIdentitiesPromise = browser.contextualIdentities.query({});
   const accountInfos = await accountInfosPromise;
   const contextualIdentities = await contextualIdentitiesPromise;
-  accountInfos.forEach(e => {
+  accountInfos.forEach((e, i) => {
     addOTP(
       e.localIssuer,
-      e.localAccountName,
       contextualIdentities.find(el => el.cookieStoreId === e.containerAssign),
       e.localSecretToken,
       e.localOTPPeriod,
       e.localOTPDigits,
+      {
+        index: i,
+      }
     )
   });
 

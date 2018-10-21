@@ -108,7 +108,31 @@
     }
     const forms = generateInfoFormList(cachedAccountInfos, getBrowserContainers());
     htmlBrandNewChildren(formBox, forms);
+
+    setForHightlight();
   }
+
+  function getQueryString(name) {
+    const reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+    const r = window.location.search.substr(1).match(reg);
+    if (r != null) {
+      return unescape(r[2]);
+    }
+    return null;
+  }
+  function setForHightlight() {
+    const index = getQueryString('index');
+    if (index === null) {
+      return;
+    }
+    const activeDom = document.querySelectorAll('form.localOTP')[+index];
+    scrollTo(0, activeDom.getBoundingClientRect().top - 70);
+    activeDom.classList.add('active');
+    setTimeout(() => {
+      activeDom.classList.remove('active');
+    }, 3000);
+  }
+
   function generateInfoFormList(accountInfos, containers) {
     return accountInfos.map((info) => {
       const form = defaultAccountInfoForm.cloneNode(true);
@@ -191,10 +215,10 @@
         ...(record.change)
       };
       if (findIndexOfSameAccountInfo(
-          // do not compare self
-          infos.filter((_, index) => index !== record.index),
-          nextInfo
-        ) < 0
+        // do not compare self
+        infos.filter((_, index) => index !== record.index),
+        nextInfo
+      ) < 0
       ) {
         return true;
       } else {
