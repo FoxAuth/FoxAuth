@@ -1,0 +1,40 @@
+.ulPass > li {
+    width: 356px;
+    text-align: left;
+    margin: 3px auto;
+}
+
+.radio-box > input[type=radio] {
+    display: none;
+}
+.radio-box > .radio-label {
+    display: block;
+    width: 100%;
+    padding: 3px 0;
+    color: #0c0c0d;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: normal;
+}
+.radio-box > .radio-label::before {
+    content: '';
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin: -3px 4px 0 0;
+    background :rgba(12, 12, 13, 0.1);
+    border: 1px solid rgba(12, 12, 13, 0.3);
+    border-radius: 100%;
+    transition: background 100ms ease 0ms;
+    vertical-align: middle;
+}
+.radio-box > .radio-label:hover::before {
+    background: rgba(12, 12, 13, 0.2);
+}
+.radio-box > .radio-label:active::before {
+    background: url(../icons/options/radiobutton-marker-16.svg) #0060df center center;
+    box-shadow: 0 0 0 1px #0a84ff inset, 0 0 0 1px #0a84ff, 0 0 0 4px rgba(10, 132, 255, 0.3);
+}
+.radio-box > input[type=radio]:checked + .radio-label::before {
+    background: url(../icons/options/radiobutton-marker-16.svg) #0060df center center;
+}

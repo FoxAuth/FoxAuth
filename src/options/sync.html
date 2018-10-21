@@ -8,6 +8,7 @@
     <title>FoxAuth Authenticator</title>
     <link href="../css/main.css" rel="stylesheet">
     <link href="../css/options.css" rel="stylesheet">
+    <link href="../css/sync.css" rel="stylesheet">
 </head>
 
 <body>
@@ -67,27 +68,21 @@
         </fieldset>
         <ul class="ulPass">
             <li>
-                <div class="checkbox-group">
-                    <input type="checkbox" id="rememPass" name="rememPass">
-                    <label class="checkbox-label" for="rememPass">
+                <div class="radio-box"><input type="radio" id="rememPass" name="rememPass"><label class="radio-label" for="rememPass">
                         Store encryption password in Firefox password storage.
                     </label>
                 </div>
-                <ul class="ulPass">
-                    <li>
-                        <div class="checkbox-group">
-                            <input type="checkbox" id="rememPassSession" name="rememPassSession" disabled>
-                            <label class="checkbox-label" for="rememPassSession">
-                                Store during only one browser session.
-                            </label>
-                        </div>
-                    </li>
-                </ul>
+            </li>
+            <li>
+                <div class="radio-box"><input type="radio" id="rememPassSession" name="rememPass"><label class="radio-label" for="rememPassSession">
+                        Store during only one browser session.
+                    </label>
+                </div>
             </li>
         </ul>
         <button disabled><img src="../icons/options/Forget.svg" style="vertical-align: middle"> <span class="btnText">Forget password</span></button>
     </form>
-    <div class="btnGroup">
+    <div class="btnGroup" style="display: none">
         <h3>Import or export your account info</h3><br>
         <button class="operatebtn">
             <input type="file" id="fileElem" multiple accept="image/*" style="display:none" onchange="handleFiles(this.files)">
