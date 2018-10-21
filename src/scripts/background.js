@@ -142,9 +142,9 @@ browser.contextualIdentities.onRemoved.addListener((changeInfo) => {
         accountInfos: [
             {
                 containerAssign: result[0].cookieStoreId,
-                localIssuer: 'GitHubExample',
-                localAccountName: 'MyName1',
-                localSecretToken: 'MyToken1',
+                localIssuer: 'GitHub',
+                localAccountName: 'GitHubExample',
+                localSecretToken: 'JBSWY3DPEHPK3PXZ',
                 localRecovery: 'MyRecovery1',
                 localOTPType: 'Time based',
                 localOTPAlgorithm: 'SHA-1',
@@ -152,14 +152,14 @@ browser.contextualIdentities.onRemoved.addListener((changeInfo) => {
                 localOTPDigits: '6'
             }, {
                 containerAssign: result[1].cookieStoreId,
-                localIssuer: 'DorpboxExample',
-                localAccountName: 'MyName2',
-                localSecretToken: 'MyToken3',
+                localIssuer: 'Dropbox',
+                localAccountName: 'DropboxExample',
+                localSecretToken: 'JBSWY3DPEHPK3PXZ',
                 localRecovery: 'MyRecovery4',
                 localOTPType: 'Time based',
                 localOTPAlgorithm: 'SHA-1',
-                localOTPPeriod: '30',
-                localOTPDigits: '6'
+                localOTPPeriod: '60',
+                localOTPDigits: '8'
             }
         ]
     });
