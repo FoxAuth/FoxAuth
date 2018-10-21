@@ -59,8 +59,18 @@ browser.contextMenus.onClicked.addListener((info, ignored) => {
 
 function decodeQr(canvas) {
     var dataURL = canvas.toDataURL("image/png")
-    qrcode.decode(dataURL)
-}
+    QrScanner.scanImage(dataURL)
+      .then(result => {
+        // validate and parse URL
+        const otpInfo = urlOtpauth.parse(result)
+        const params = new URLSearchParams(otpInfo)
+        browser.tabs.create({
+          url: `otpinfo.html?${params.toString()}`
+        })
+      })
+      .catch(error => {
+        console.log(error || 'No QR code found.')
+      })}
 
 function showErrorMsg(msg) {
     browser.notifications.create({
