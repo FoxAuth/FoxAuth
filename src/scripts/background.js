@@ -160,6 +160,16 @@ browser.contextualIdentities.onRemoved.addListener((changeInfo) => {
                 localOTPAlgorithm: 'SHA-1',
                 localOTPPeriod: '60',
                 localOTPDigits: '8'
+            }, {
+                containerAssign: undefined,
+                localIssuer: 'Microsoft',
+                localAccountName: 'MicrosoftExample',
+                localSecretToken: 'JBSWY3DPEHPK3PXZ',
+                localRecovery: 'MyRecovery4',
+                localOTPType: 'Time based',
+                localOTPAlgorithm: 'SHA-1',
+                localOTPPeriod: '30',
+                localOTPDigits: '6'
             }
         ]
     });

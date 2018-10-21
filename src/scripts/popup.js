@@ -1,5 +1,11 @@
 const iconOnError = function(e){
+  console.log('icon', e);
   e.src = '../icons/service/fallback.svg';
+}
+const containerIconOnError = function(e){
+  console.log('container',e);
+  console.log(e.parentNode);
+  e.parentNode.removeChild(e);
 }
 const otpContainer = new (ef.t`
 >div.container
@@ -26,6 +32,7 @@ const template_totp = ef.t`
           .{{OTP}}
         >div.popup-right
           >img.popup-icon
+            #onerror = containerIconOnError(this)
             #src = {{containerIcon}}
     >progress.progress
       #max={{progress_max}}
@@ -33,7 +40,7 @@ const template_totp = ef.t`
 `
 otpContainer.$mount({target: document.getElementById('otpContainer'), option: 'replace'})
 var otpStoreInterval = []
-function addOTP(issuer, containerObj, key, expiry = 30, code_length = 6) {
+function addOTP(issuer, containerObj = {}, key, expiry = 30, code_length = 6) {
     var totp = new jsOTP.totp(expiry, code_length)
     var id = otpContainer.otppoint.push(new template_totp({$data: {
         i18n_Copy: 'Copy',
