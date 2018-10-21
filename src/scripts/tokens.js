@@ -207,10 +207,11 @@
   // search account info by issuers, containers name or account name
   function searchAccountInfos(keyword, infos) {
     if (keyword === '') return infos;
+    const lowerCaseKeyword = (keyword||'').toLowerCase();
     return infos.map(
-      (info) => info.localIssuer.indexOf(keyword) >= 0 ||
-        info.localAccountName.indexOf(keyword) >= 0 ||
-        isContainerMatchKeyword(keyword, info.containerAssign)
+      (info) => info.localIssuer.toLowerCase().indexOf(lowerCaseKeyword) >= 0 ||
+        info.localAccountName.toLowerCase().indexOf(lowerCaseKeyword) >= 0 ||
+        isContainerMatchKeyword(lowerCaseKeyword, info.containerAssign)
     );
   }
   // search container name
@@ -218,7 +219,7 @@
     const browserContainers = getBrowserContainers();
     for (const container of browserContainers) {
       if (container.cookieStoreId === containerId) {
-        if (container.name.indexOf(keyword) >= 0) {
+        if (container.name.toLowerCase().indexOf(keyword) >= 0) {
           return true;
         }
       }
