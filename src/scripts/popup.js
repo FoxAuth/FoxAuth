@@ -1,3 +1,4 @@
+const serviceIconNames = getServiceIconNames();
 const iconOnError = function (e) {
   console.log('icon', e);
   e.src = '../icons/service/fallback.svg';
@@ -30,7 +31,7 @@ const template_totp = ef.t`
         >div.popup-left
           >img.popup-icon.issuer-icon
             #onerror = iconOnError(this)
-            #src = ../icons/service/{{issuerLowerCase}}.svg
+            #src = ../icons/service/{{issuerIcon}}.svg
         >div.popup-row-item
           >a.popup-link
             #href = /options/tokens.html?index={{index}}
@@ -38,6 +39,7 @@ const template_totp = ef.t`
             .{{OTP}}
         >div.popup-right
           >img.popup-icon
+            #style = display:{{containerIconDisplay}}
             #onerror = containerIconOnError(this)
             #src = {{containerIcon}}
     >progress.progress
@@ -54,9 +56,10 @@ function addOTP(issuer, containerObj = {}, key, expiry = 30, code_length = 6, op
       i18n_Edit: 'Edit',
       OTP: totp.getOtp(key),
       issuer: issuer,
-      issuerLowerCase: issuer.toLowerCase(),
+      issuerIcon: serviceIconNames.find(e => issuer.toLowerCase().indexOf(e) >= 0 ) || 'fallback',
       container: containerObj.name,
       containerIcon: containerObj.iconUrl,
+      containerIconDisplay: containerObj.iconUrl? 'block': 'none',
       containerColor: containerObj.colorCode,
       progress_max: expiry,
       progress: expiry - (Math.round(new Date().getTime() / 1000.0) % expiry),
