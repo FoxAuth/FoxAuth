@@ -67,11 +67,23 @@ const doResetAccountInfos = lockAsyncFunc(
     setConfirmBtnStatus();
   }
 );
+const doForgetPassword = lockAsyncFunc(
+  async () => {
+    const storageArea = await getPasswordStorageArea();
+    await savePasswordInfo(storageArea, {
+      nextPassword: '',
+      nextEncryptIV: null
+    });
+    await setForgetBtnStatus();
+  }
+)
+
 passwordInput.addEventListener('input', () => {
   setConfirmBtnStatus();
 });
 forgetBtn.addEventListener('click', (event) => {
-  console.log('forget password');
+  event.preventDefault();
+  doForgetPassword();
 });
 encryptForm.addEventListener('submit', (event) => {
   event.preventDefault();
@@ -88,21 +100,10 @@ encryptForm.addEventListener('submit', (event) => {
 init();
 
 async function init() {
-  const data = await browser.storage.local.get({
-    settings: {
-      passwordStorage: 'storage.local'
-    }
-  });
-  const { settings } = data;
-  if (
-    !settings ||
-    !settings.passwordStorage ||
-    settings.passwordStorage === 'storage.local') {
-    checkRadioByValue(radioList, 'storage.local');
-  } else {
-    checkRadioByValue(radioList, 'sessionStorage');
-  }
+  const storageArea = await getPasswordStorageArea();
+  checkRadioByValue(radioList, storageArea);
   setConfirmBtnStatus();
+  setForgetBtnStatus();
 }
 function forEach(arrayLike, func) {
   if (arrayLike && arrayLike.length > 0) {
@@ -152,4 +153,12 @@ function checkRadioByValue(radioList, value) {
       radio.checked = false;
     }
   });
+}
+async function setForgetBtnStatus() {
+  const passwordInfo = await getPasswordInfo();
+  if (passwordInfo.isEncrypted && passwordInfo.password && passwordInfo.encryptIV) {
+    forgetBtn.removeAttribute('disabled')
+  } else {
+    forgetBtn.setAttribute('disabled', 'true');
+  }
 }

@@ -38,21 +38,6 @@ formBox.addEventListener('submit', (event) => {
     const form = target.parentNode.parentNode.parentNode;
     submitInfos([getInfoFormValues(form)]);
 });
-const lockAsyncFunc = (asyncFunc) => {
-    // pending, finish
-    let status = 'finish';
-    const wrapped = async function(...args) {
-        status = 'pending';
-        await asyncFunc(...args);
-        status = 'finish';
-    };
-    return function(...args) {
-        if (status === 'pending') {
-            return;
-        }
-        wrapped(...args);
-    };
-};
 const submitInfos = lockAsyncFunc(async (updateInfos) => {
     const accountInfos = await getAccountInfos();
     updateInfos.forEach((info) => {

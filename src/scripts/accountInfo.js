@@ -95,22 +95,22 @@ function getDefaultAccountInfo() {
         localOTPDigits: '6'
     };
 }
+async function getPasswordStorageArea() {
+    const data = await browser.storage.local.get({
+        settings: {
+            passwordStorage: 'storage.local'
+        }
+    });
+    if (!data.settings || !data.settings.passwordStorage) {
+        return 'storage.local';
+    } else {
+        return data.settings.passwordStorage;
+    }
+}
 async function getPasswordInfo() {
     function base64Decode(str, encoding = 'utf-8') {
         var bytes = base64js.toByteArray(str);
         return new(TextDecoder || TextDecoderLite)(encoding).decode(bytes);
-    }
-    async function getPasswordStorageArea() {
-        const data = await browser.storage.local.get({
-            settings: {
-                passwordStorage: 'storage.local'
-            }
-        });
-        if (!data.settings || !data.settings.passwordStorage) {
-            return 'storage.local';
-        } else {
-            return data.settings.passwordStorage;
-        }
     }
 
     storageArea = await getPasswordStorageArea();
@@ -152,7 +152,9 @@ async function savePasswordInfo(nextStorageArea, {
         return base64js.fromByteArray(bytes);
     }
     nextPassword = base64Encode(nextPassword || '');
-    nextEncryptIV = Array.from(nextEncryptIV);
+    if (nextEncryptIV) {
+        nextEncryptIV = Array.from(nextEncryptIV);
+    }
     const data = {
         encryptPassword: nextPassword,
         encryptIV: nextEncryptIV
