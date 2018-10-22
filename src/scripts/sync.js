@@ -44,13 +44,16 @@ const radioList = document.getElementsByName('rememPass');
 const doResetAccountInfos = lockAsyncFunc(
   async (nextStorageArea, nextPassword) => {
     const infos = await getAccountInfos();
-    await browser.storage.local.remove('encryptPassword');
-    sessionStorage.removeItem('encryptPassword');
+    await browser.storage.local.remove('passwordInfo');
+    sessionStorage.removeItem('passwordInfo');
     const settingsData = await browser.storage.local.get({
       settings: {}
     });
     const settings = settingsData.settings;
-    await setNextPassword(nextStorageArea, nextPassword);
+    await savePasswordInfo(nextStorageArea, {
+      nextPassword,
+      nextEncryptIV: window.crypto.getRandomValues(new Uint8Array(12))
+    })
     await browser.storage.local.set({
       settings: {
         ...settings,
@@ -79,7 +82,7 @@ encryptForm.addEventListener('submit', (event) => {
     passwordTwo.length > 0 &&
     passwordOne === passwordTwo
   ) {
-    // doResetAccountInfos(getCheckedRadioValue(radioList), passwordOne);
+    doResetAccountInfos(getCheckedRadioValue(radioList), passwordOne);
   }
 });
 init();
@@ -149,19 +152,4 @@ function checkRadioByValue(radioList, value) {
       radio.checked = false;
     }
   });
-}
-
-async function setNextPassword(nextStorageArea, nextPassword) {
-  function base64Encode(str, encoding = 'utf-8') {
-    var bytes = new (TextEncoder || TextEncoderLite)(encoding).encode(str);        
-    return base64js.fromByteArray(bytes);
-  }
-  nextPassword = base64Encode(nextPassword || '');
-  if (nextStorageArea === 'storage.local') {
-    await browser.storage.local.set({
-      encryptPassword: nextPassword
-    });
-  } else {
-    sessionStorage.setItem('encryptPassword', JSON.stringify(nextPassword));
-  }
 }
