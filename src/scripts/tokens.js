@@ -78,10 +78,10 @@
   tokenSearch.addEventListener('input', (event) => {
     debounce(handleSearch, 300)
   });
-  browser.storage.onChanged.addListener((changes, areaName) => {
+  browser.storage.onChanged.addListener(async (changes, areaName) => {
     if (areaName !== 'local') return;
     if (!changes.accountInfos) return;
-    const { newValue } = changes.accountInfos;
+    const newValue = await getAccountInfos();
     cachedAccountInfos = newValue;
     updateAllInfoForm(formBox, {
       infos: newValue,
