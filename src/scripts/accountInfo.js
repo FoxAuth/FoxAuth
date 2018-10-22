@@ -2,19 +2,23 @@ async function getAccountInfos() {
     let accountInfos = [];
     accountInfos = await getInfosFromLocal();
     accountInfos = Array.isArray(accountInfos) ? accountInfos : [];
-    const storageArea = await getPasswordStorageArea();
-    const passwordInfo = await getPasswordInfo(storageArea);
-    if (passwordInfo.isEncrypted && passwordInfo.password) {
-        accountInfos = await decryptAccountInfos(accountInfos, passwordInfo.password);
+    const passwordInfo = await getPasswordInfo();
+    if (passwordInfo.isEncrypted && passwordInfo.password && passwordInfo.encryptIV) {
+        accountInfos = await decryptAccountInfos(accountInfos, {
+            encryptPassword: passwordInfo.password,
+            encryptIV: passwordInfo.encryptIV
+        });
     }
     return accountInfos;
 }
 
 async function saveAccountInfos(infos) {
-    const storageArea = await getPasswordStorageArea();
-    const passwordInfo = await getPasswordInfo(storageArea);
-    if (passwordInfo.isEncrypted && passwordInfo.password) {
-        infos = await encryptAccountInfos(infos, passwordInfo.password);
+    const passwordInfo = await getPasswordInfo();
+    if (passwordInfo.isEncrypted && passwordInfo.password && passwordInfo.encryptIV) {
+        infos = await encryptAccountInfos(infos, {
+            encryptPassword: passwordInfo.password,
+            encryptIV: passwordInfo.encryptIV
+        });
     }   
     await saveInfosToLocal(infos);
 }
@@ -32,20 +36,27 @@ function saveInfosToLocal(infos) {
     });
 }
 // encrypt account name/secret tokens/recovery
-function encryptAccountInfos(infos, password) {
-    return __encryptAndDecrypt(infos, password, 'encrypt');
+function encryptAccountInfos(infos, passwordInfo) {
+    return __encryptAndDecrypt(infos, {
+        ...passwordInfo,
+        invokeFuncName: 'encrypt'
+    });
 }
 // decrypt account name/secret tokens/recovery
-function decryptAccountInfos(infos, password) {
-    return __encryptAndDecrypt(infos, password, 'decrypt');
+function decryptAccountInfos(infos, passwordInfo) {
+    return __encryptAndDecrypt(infos, {
+        ...passwordInfo,
+        invokeFuncName: 'decrypt'
+    });
 }
-async function __encryptAndDecrypt(infos, password, invokeFuncName) {
-    const crypto = new MessageEncryption(password);
+async function __encryptAndDecrypt(infos, encryptInfo) {
+    const crypto = new MessageEncryption(encryptInfo.password);
+    crypto.instance.iv = encryptInfo.encryptIV;
     const promiseArr = infos.reduce((result, info) => {
         const arr = ['localAccountName', 'localSecretToken', 'localRecovery']
             .reduce((result, key) => {
                     result.push(
-                        crypto[invokeFuncName](info[key] || '')
+                        crypto[encryptInfo.invokeFuncName](info[key] || '')
                         .then(value => info[key] = value)
                     );
                     return result;
@@ -56,8 +67,6 @@ async function __encryptAndDecrypt(infos, password, invokeFuncName) {
         return result;
     }, []);
     await Promise.all(promiseArr);
-    const a = new MessageEncryption('123')
-    a.decrypt(infos[0].localAccountName).then(a => console.log(a))
     return infos;
 }
 
@@ -86,41 +95,75 @@ function getDefaultAccountInfo() {
         localOTPDigits: '6'
     };
 }
-async function getPasswordStorageArea() {
-    const data = await browser.storage.local.get({
-        settings: {
-            passwordStorage: 'storage.local'
-        }
-    });
-    if (!data.settings || !data.settings.passwordStorage) {
-        return 'storage.local';
-    } else {
-        return data.settings.passwordStorage;
-    }
-}
-async function getPasswordInfo(storageArea) {
+async function getPasswordInfo() {
     function base64Decode(str, encoding = 'utf-8') {
         var bytes = base64js.toByteArray(str);
         return new(TextDecoder || TextDecoderLite)(encoding).decode(bytes);
     }
+    async function getPasswordStorageArea() {
+        const data = await browser.storage.local.get({
+            settings: {
+                passwordStorage: 'storage.local'
+            }
+        });
+        if (!data.settings || !data.settings.passwordStorage) {
+            return 'storage.local';
+        } else {
+            return data.settings.passwordStorage;
+        }
+    }
+
+    storageArea = await getPasswordStorageArea();
     const data = await browser.storage.local.get({
         isEncrypted: false,
     });
     const isEncrypted = data.isEncrypted || false;
+    let passwordInfo = {};
     let password = '';
+    let encryptIV = null;
     if (storageArea === 'storage.local') {
         const data = await browser.storage.local.get({
-            encryptPassword: '',
+            passwordInfo: {
+                encryptPassword: '',
+                encryptIV: null
+            }
         });
-        password = data.encryptPassword || '';
+        passwordInfo = data.passwordInfo || {};
     } else {
-        password = jsonParse(sessionStorage.getItem('encryptPassword')) || '';
+        passwordInfo = jsonParse(sessionStorage.getItem('passwordInfo')) || {};
     }
-    password = base64Decode(password);
+    password = base64Decode(passwordInfo.encryptPassword || '');
+    encryptIV = passwordInfo.encryptIV || null;
+    if (encryptIV) {
+        encryptIV = Uint8Array.from(encryptIV);
+    }
     return {
         isEncrypted,
-        password
+        password,
+        encryptIV
     };
+}
+async function savePasswordInfo(nextStorageArea, {
+    nextPassword,
+    nextEncryptIV
+}) {
+    function base64Encode(str, encoding = 'utf-8') {
+        var bytes = new (TextEncoder || TextEncoderLite)(encoding).encode(str);        
+        return base64js.fromByteArray(bytes);
+    }
+    nextPassword = base64Encode(nextPassword || '');
+    nextEncryptIV = Array.from(nextEncryptIV);
+    const data = {
+        encryptPassword: nextPassword,
+        encryptIV: nextEncryptIV
+    };
+    if (nextStorageArea === 'storage.local') {
+        await browser.storage.local.set({
+            passwordInfo: data
+        });
+    } else {
+        sessionStorage.setItem('passwordInfo', JSON.stringify(data));
+    }
 }
 
 function jsonParse(str) {
