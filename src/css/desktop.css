@@ -1,4 +1,9 @@
 body {
-    width: 600px;
-    padding-right: 12px;
+    max-width: 500px;
+}
+
+@media (max-width: 499px) {
+    body {
+        max-width: none;
+    }
 }
