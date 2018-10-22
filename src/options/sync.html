@@ -62,25 +62,25 @@
             <a href="#"><img class="eye" src="../icons/options/show-password.svg"></a><br>
             <span class="caption">WARNING: <span id="specialCapt"><strong>NO ONE</strong></span> can help if you lost
                 this.</span><br>
-            <button type="submit">
+            <button id="confirmBtn" type="submit" disabled>
                 <img src="../icons/options/Login.svg" style="vertical-align: middle"> <span class="btnText">Confirm</span>
             </button>
         </fieldset>
         <ul class="ulPass">
             <li>
-                <div class="radio-box"><input type="radio" id="rememPass" name="rememPass"><label class="radio-label" for="rememPass">
+                <div class="radio-box"><input type="radio" id="rememPass" name="rememPass" value="storage.local"><label class="radio-label" for="rememPass">
                         Store encryption password in Firefox password storage.
                     </label>
                 </div>
             </li>
             <li>
-                <div class="radio-box"><input type="radio" id="rememPassSession" name="rememPass"><label class="radio-label" for="rememPassSession">
+                <div class="radio-box"><input type="radio" id="rememPassSession" name="rememPass" value="sessionstorage"><label class="radio-label" for="rememPassSession">
                         Store during only one browser session.
                     </label>
                 </div>
             </li>
         </ul>
-        <button disabled><img src="../icons/options/Forget.svg" style="vertical-align: middle"> <span class="btnText">Forget password</span></button>
+        <button id="forgetBtn" disabled><img src="../icons/options/Forget.svg" style="vertical-align: middle"> <span class="btnText">Forget password</span></button>
     </form>
     <div class="btnGroup" style="display: none">
         <h3>Import or export your account info</h3><br>
@@ -102,6 +102,7 @@
     <script src="../scripts/encryption/keychain.js"></script>
     <script src="../scripts/encryption/MessageEncryption.js"></script>
     <script src="../scripts/accountInfo.js"></script>
+    <script src="../scripts/lockAsyncFunc.js"></script>
     <script src="../scripts/sync.js"></script>
 </body>
 
