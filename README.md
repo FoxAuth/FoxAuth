@@ -57,7 +57,7 @@ Here is how this project gets revisioning:
 
 ## Security
 
-We use encryption code from [Firefox Send](github.com/mozilla/send) in WebCrypto API and store encryption password in Firefox password storage. Welcome as we are to any security review, it shall be more efficiently to perform it at that side.
+We use encryption code from [Firefox Send](github.com/mozilla/send) in WebCrypto API. Welcome as we are to any security review, it shall be more efficiently to perform it at that side.
 
 ## License
 
