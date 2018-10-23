@@ -81,6 +81,9 @@ const doForgetPassword = lockAsyncFunc(
 passwordInput.addEventListener('input', () => {
   setConfirmBtnStatus();
 });
+reconfirmInput.addEventListener('input', () => {
+  setConfirmBtnStatus();
+});
 forgetBtn.addEventListener('click', (event) => {
   event.preventDefault();
   doForgetPassword();
@@ -130,7 +133,7 @@ function findBy(arrayLike, func) {
   }
 }
 function setConfirmBtnStatus() {
-  if (passwordInput.value.length > 0) {
+  if (passwordInput.value == reconfirmInput.value) {
     confirmBtn.removeAttribute('disabled');
   } else {
     confirmBtn.setAttribute('disabled', 'true');
