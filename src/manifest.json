@@ -26,18 +26,33 @@
   },
   "background": {
     "scripts": [
+      "scripts/dependency/jsOTP.min.js",
       "scripts/dependency/qr-scanner.min.js",
+      "scripts/encryption/base-64.js",
       "scripts/background.js",
-      "scripts/accountInfo.js"
+      "scripts/accountInfo.js",
+      "scripts/message.js"
     ]
   },
   "permissions": [
     "tabs",
+    "cookies",
     "storage",
     "unlimitedStorage",
     "contextMenus",
     "notifications",
     "contextualIdentities",
+    "activeTab",
     "<all_urls>"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": [
+        "scripts/dependency/jsOTP.min.js",
+        "scripts/accountInfo.js",
+        "scripts/autofill.js"
+      ]
+    }
   ]
 }

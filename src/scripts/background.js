@@ -151,7 +151,7 @@ browser.contextualIdentities.onRemoved.addListener((changeInfo) => {
     browser.storage.local.set({
         accountInfos: [
             {
-                containerAssign: result[0].cookieStoreId,
+                containerAssign: '',
                 localIssuer: 'GitHub',
                 localAccountName: 'GitHubExample',
                 localSecretToken: 'JBSWY3DPEHPK3PXZ',
@@ -170,16 +170,6 @@ browser.contextualIdentities.onRemoved.addListener((changeInfo) => {
                 localOTPAlgorithm: 'SHA-1',
                 localOTPPeriod: '60',
                 localOTPDigits: '8'
-            }, {
-                containerAssign: undefined,
-                localIssuer: 'Microsoft',
-                localAccountName: 'MicrosoftExample',
-                localSecretToken: 'JBSWY3DPEHPK3PXZ',
-                localRecovery: 'MyRecovery4',
-                localOTPType: 'Time based',
-                localOTPAlgorithm: 'SHA-1',
-                localOTPPeriod: '30',
-                localOTPDigits: '6'
             }
         ]
     });
