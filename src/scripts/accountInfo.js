@@ -1,7 +1,20 @@
+async function getInfosFromLocal() {
+    const obj = await browser.storage.local.get('accountInfos');
+    const {
+        accountInfos
+    } = obj;
+    return Array.isArray(accountInfos) ? accountInfos : [];
+}
+
+function saveInfosToLocal(infos) {
+    return browser.storage.local.set({
+        accountInfos: infos
+    });
+}
+
 async function getAccountInfos() {
     let accountInfos = [];
     accountInfos = await getInfosFromLocal();
-    accountInfos = Array.isArray(accountInfos) ? accountInfos : [];
     const passwordInfo = await getPasswordInfo();
     if (passwordInfo.isEncrypted && passwordInfo.password && passwordInfo.encryptIV) {
         accountInfos = await decryptAccountInfos(accountInfos, {
@@ -23,7 +36,7 @@ async function saveAccountInfos(infos) {
     let { accountInfoVersion } = await browser.storage.local.get({
         accountInfoVersion: 0
     });
-    if (typeof accountInfoVersion !== 'number' || accountInfoVersion > Number.MAX_SAFE_INTEGER + 1) {
+    if (typeof accountInfoVersion !== 'number') {
         accountInfoVersion = 1;
     } else {
         accountInfoVersion += 1;
@@ -31,19 +44,6 @@ async function saveAccountInfos(infos) {
     await saveInfosToLocal(infos);
     await browser.storage.local.set({
         accountInfoVersion
-    });
-}
-async function getInfosFromLocal() {
-    const obj = await browser.storage.local.get('accountInfos');
-    const {
-        accountInfos
-    } = obj;
-    return accountInfos;
-}
-
-function saveInfosToLocal(infos) {
-    return browser.storage.local.set({
-        accountInfos: infos
     });
 }
 // encrypt account name/secret tokens/recovery
@@ -155,7 +155,9 @@ async function getPasswordInfo(storageArea) {
         storageArea
     };
 }
-async function savePasswordInfo(nextStorageArea, {
+async function savePasswordInfo({
+    isEncrypted,
+    nextStorageArea,
     nextPassword,
     nextEncryptIV
 }) {
@@ -163,14 +165,31 @@ async function savePasswordInfo(nextStorageArea, {
         var bytes = new (TextEncoder || TextEncoderLite)(encoding).encode(str);        
         return base64js.fromByteArray(bytes);
     }
-    nextPassword = base64Encode(nextPassword || '');
-    if (nextEncryptIV) {
+    if (typeof isEncrypted !== 'boolean') return;
+    await browser.storage.local.set({
+        isEncrypted
+    });
+    if (!isEncrypted) return;
+    if (!nextStorageArea) return;
+    const settingsData = await browser.storage.local.get({
+        settings: {}
+    });
+    const settings = settingsData.settings;
+    await browser.storage.local.set({
+        settings: {
+            ...settings,
+            passwordStorage: nextStorageArea
+        },
+    });
+    if (nextEncryptIV && nextEncryptIV.length > 0) {
         nextEncryptIV = Array.from(nextEncryptIV);
     }
     const data = {
-        encryptPassword: nextPassword,
         encryptIV: nextEncryptIV
     };
+    if (nextPassword) {
+        data.encryptPassword = base64Encode(nextPassword || '');
+    }
     if (nextStorageArea === 'storage.local') {
         await browser.storage.local.set({
             passwordInfo: data

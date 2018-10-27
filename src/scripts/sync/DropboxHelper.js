@@ -37,12 +37,9 @@
     // };
     // const syncState = {
     //     idle: 'idle',
-    //     ready: 'ready',
     //     syncing: 'syncing',
     //     error: 'error'
     // };
-    const errorHandler = () => {
-    }
     /**
      * merge two infos into one, from right to left.
      * @param {Array} infosOne
@@ -68,9 +65,87 @@
             }, [...infosOne]);
         }
     }
-    function diff(infosOne, infosTwo) {
+    // merge local data and remote data
+    async function mergeLocalAndRemote({
+        localData,
+        localVersion
+    }, {
+        remoteData,
+        remoteVersion
+    }) {
+        if (remoteVersion === 0 || remoteVersion === localVersion) {
+            return localData;
+        } else {
+            let result = {};
+            const { accountInfos: remoteAccountInfos, ...otherRemoteData } = remoteData;
+            const { accountInfos: localAccountInfos, ...otherLocalData } = localData;
+            if (remoteVersion < localVersion) {
+                if (otherRemoteData.isEncrypted === false && otherLocalData.isEncrypted === true) {
+                    const localPasswordInfo = await getPasswordInfo();
+                    result = {
+                        accountInfos: await encryptAccountInfos(remoteAccountInfos, {
+                            encryptPassword: localPasswordInfo.password,
+                            encryptIV: localPasswordInfo.encryptIV
+                        }),
+                        ...otherRemoteData,
+                        ...otherLocalData
+                    };
+                } else if (otherRemoteData.isEncrypted === true && otherLocalData.isEncrypted === false) {
+                    result = {
+                        accountInfos: localAccountInfos,
+                        ...otherLocalData
+                    };
+                    // TODO: warning
+                } else {
+                    result = {
+                        accountInfos: mergeAccountInfos(remoteAccountInfos, localAccountInfos),
+                        ...otherRemoteData,
+                        ...otherLocalData
+                    };
+                }
+            } else {
+                if (otherRemoteData.isEncrypted === false && otherLocalData.isEncrypted === true) {
+                    const localPasswordInfo = await getPasswordInfo();
+                    result = {
+                        accountInfos: await decryptAccountInfos(localAccountInfos, {
+                            encryptPassword: localPasswordInfo.password,
+                            encryptIV: localPasswordInfo.encryptIV
+                        }),
+                        ...otherLocalData,
+                        ...otherRemoteData,
+                    };
+                } else if (otherRemoteData.isEncrypted === true && otherLocalData.isEncrypted === false) {
+                    result = {
+                        accountInfos: remoteAccountInfos,
+                        ...otherRemoteData
+                    };
+                    // TODO: warning
+                } else {
+                    result = {
+                        accountInfos: mergeAccountInfos(localAccountInfos, remoteAccountInfos),
+                        ...otherLocalData,
+                        ...otherRemoteData,
+                    };
+                }
+            }
+            return result;
+        }
     }
-
+    async function getLocalData() {
+        const localPasswordInfo = await getPasswordInfo();
+        const localInfos = await getInfosFromLocal();
+        return {
+            accountInfos: localInfos,
+            isEncrypted: localPasswordInfo.isEncrypted,
+            settings: {
+                passwordStorage: localPasswordInfo.storageArea
+            },
+            passwordInfo: {
+                encryptIV: localPasswordInfo.encryptIV ? Array.from(localPasswordInfo.encryptIV) : null
+            },
+        }
+    }
+    // read blob as json
     function readAsJSON(blob) {
         return new Promise((resolve, reject) => {
             const fr = new FileReader();
@@ -83,7 +158,7 @@
                     reject(err);
                 }
             };
-            file.onerror = () => {
+            fr.onerror = () => {
                 const err = new Error('Invalid file');
                 err.type = 'READ_FILE_ERROR';
                 reject(err);
@@ -91,9 +166,9 @@
             fr.readAsText(blob);
         });
     }
-    // 轮询一天最多24次
-    // 采用版本号比对判断是否更新
-    // 同步： 下载-》diff-》上传
+
+    let warningMsg = (msg) => alert(msg);
+    let errorMsg = (msg) => alert(msg);
 
     class DropboxHelper {
         constructor() {
@@ -103,8 +178,8 @@
             });
             this.config = {
                 accessToken: 'cm0b3triqimfrty',
-                accountInfoPath: 'accountInfos',
-                accountInfoVersionPath: 'accountInfoVersion'
+                accountInfoPath: 'AccountInfo',
+                accountInfoVersionPath: 'AccountInfoVersion',
             };
             this.authState = 'unauthorized';
             this.syncState = 'idle';
@@ -201,34 +276,113 @@
             const data = await readAsJSON(fileBlob);
             return data;
         }
+        async getRemoteData() {
+            try {
+                let data = await this.fileDownload({
+                    path: this.config.accountInfoPath
+                });
+                data = {
+                    accountInfos: [],
+                    isEncrypted: false,
+                    passwordInfo: {
+                        encryptIV: null
+                    },
+                    settings: {
+                        passwordStorage: "storage.local"
+                    },
+                    ...data
+                };
+                return data;
+            } catch (error) {
+                if (error.status === 409) {
+                    return null;
+                }
+                throw error;
+            }
+        }
+        async getRemoteAccountInfoVersion() {
+            try {
+                const version = await this.fileDownload({
+                    path: this.config.accountInfoVersionPath
+                });
+                if (typeof version !== 'number') return 0;
+                return version;
+            } catch (error) {
+                // file not found
+                if (error.status === 409) {
+                    return 0;
+                }
+                throw error;
+            }
+        }
         async sync() {
             if (this.authState !== 'authorized' || this.syncState === 'syncing') {
                 return;
             }
+            console.log('start sync');
             this.syncState = 'syncing';
-            let remoteData = [];
             try {
-                // await this.fileDownload();
-                // diff
-                // await this.fileUpload()
-            } catch (error) {
-                if (error.status && error.status === 409) {
-                    remoteData = [];
+                const remoteVersion = await this.getRemoteAccountInfoVersion();
+                const versionData = await browser.storage.local.get({
+                    accountInfoVersion: 1
+                });
+                const { accountInfoVersion: localVersion } = versionData;
+                // unfortunately, localversion equal remoteversion will cause some problems
+                const localData = await getLocalData();
+                const remoteData = await this.getRemoteData();
+                const result = await mergeLocalAndRemote({
+                    localData,
+                    localVersion
+                }, {
+                    remoteData,
+                    remoteVersion
+                });
+                console.log('remote and local merge: ', result);
+                await this.fileUpload({
+                    path: this.config.accountInfoPath,
+                    contents: result
+                });
+                if (localVersion >= remoteVersion) {
+                    await this.fileUpload({
+                        path: this.config.accountInfoVersionPath,
+                        contents: localVersion
+                    });
+                    await browser.storage.local.set({
+                        accountInfos: result.accountInfos,
+                        accountInfoVersion: localVersion,
+                    });
+                    console.log('local overwrite remote');
                 } else {
-                    // TODO: handle error
+                    await this.fileUpload({
+                        path: this.config.accountInfoVersionPath,
+                        contents: remoteVersion
+                    });
+                    await browser.storage.local.set({
+                        accountInfos: result.accountInfos,
+                        accountInfoVersion: remoteVersion,
+                    });
+                    savePasswordInfo({
+                        isEncrypted: result.isEncrypted,
+                        nextStorageArea: result.settings.passwordStorage,
+                        nextEncryptIV: result.passwordInfo.encryptIV
+                    });
+                    console.log('remote overwrite local');
                 }
-                console.log(error);
+                console.log('end sync');
+            } catch (error) {
+                // TODO: handler error
+                console.log(error)
+            } finally {
+                this.syncState = 'idle';
             }
-            // get remote data and get local data
-            // diff remote and local
-            // put remote data
         }
         fileUpload({
             path,
-            contents = '',
+            contents,
             mode = { '.tag': 'overwrite' }
         }) {
             path = '/' + path;
+            contents = JSON.stringify(contents) || '';
             return this.service.filesUpload({
                 path,
                 contents,

@@ -50,23 +50,13 @@ const doResetAccountInfos = lockAsyncFunc(
     const prevPasswordInfo = await getPasswordInfo();
     await browser.storage.local.remove('passwordInfo');
     sessionStorage.removeItem('passwordInfo');
-    const settingsData = await browser.storage.local.get({
-      settings: {}
-    });
-    const settings = settingsData.settings;
     // if user forget previous password, use previous encryptIV
-    await savePasswordInfo(nextStorageArea, {
+    await savePasswordInfo({
+      isEncrypted: true,
+      nextStorageArea,
       nextPassword,
       nextEncryptIV: prevPasswordInfo.isEncrypted ? prevPasswordInfo.encryptIV : window.crypto.getRandomValues(new Uint8Array(12))
     })
-    await browser.storage.local.set({
-      settings: {
-        ...settings,
-        passwordStorage: nextStorageArea
-      },
-      isEncrypted: true,
-    });
-    console.log(Boolean((!prevPasswordInfo.isEncrypted) || (prevPasswordInfo.password && prevPasswordInfo.encryptIV)));
     // if user forget previous password, don't encrypt it again
     if ((!prevPasswordInfo.isEncrypted) || (prevPasswordInfo.password && prevPasswordInfo.encryptIV)) {
       await saveAccountInfos(infos);
@@ -76,7 +66,9 @@ const doResetAccountInfos = lockAsyncFunc(
 const doForgetPassword = lockAsyncFunc(
   async () => {
     const passwordInfo = await getPasswordInfo();
-    await savePasswordInfo(passwordInfo.storageArea, {
+    await savePasswordInfo({
+      isEncrypted: true,
+      nextStorageArea: passwordInfo.storageArea,
       nextPassword: '',
       nextEncryptIV: passwordInfo.encryptIV
     });
@@ -119,6 +111,11 @@ encryptForm.addEventListener('submit', async (event) => {
     setConfirmBtnStatus();
     setForgetBtnStatus();
   }
+});
+browser.storage.onChanged.addListener((changes, areaName) => {
+  if (areaName !== 'local') return;
+  if (!changes.accountInfos) return;
+  dropboxHelper.sync();
 });
 init();
 
