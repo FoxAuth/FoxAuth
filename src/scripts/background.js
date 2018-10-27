@@ -161,8 +161,18 @@ browser.contextualIdentities.onRemoved.addListener((changeInfo) => {
                 localOTPPeriod: '30',
                 localOTPDigits: '6'
             }, {
-                containerAssign: result[1].cookieStoreId,
+                containerAssign: '',
                 localIssuer: 'Dropbox',
+                localAccountName: 'DropboxExample',
+                localSecretToken: 'JBSWY3DPEHPK3PXZ',
+                localRecovery: 'MyRecovery4',
+                localOTPType: 'Time based',
+                localOTPAlgorithm: 'SHA-1',
+                localOTPPeriod: '60',
+                localOTPDigits: '8'
+            }, {
+                containerAssign: '',
+                localIssuer: 'Protonmail',
                 localAccountName: 'DropboxExample',
                 localSecretToken: 'JBSWY3DPEHPK3PXZ',
                 localRecovery: 'MyRecovery4',
