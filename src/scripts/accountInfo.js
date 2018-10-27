@@ -61,7 +61,7 @@ function decryptAccountInfos(infos, passwordInfo) {
     });
 }
 async function __encryptAndDecrypt(infos, encryptInfo) {
-    const crypto = new MessageEncryption(encryptInfo.password);
+    const crypto = new MessageEncryption(encryptInfo.encryptPassword);
     crypto.instance.iv = encryptInfo.encryptIV;
     const promiseArr = infos.reduce((result, info) => {
         const arr = ['localAccountName', 'localSecretToken', 'localRecovery']

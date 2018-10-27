@@ -47,15 +47,17 @@ const dropboxHelper = new DropboxHelper();
 const doResetAccountInfos = lockAsyncFunc(
   async (nextStorageArea, nextPassword) => {
     const infos = await getAccountInfos();
+    const prevPasswordInfo = await getPasswordInfo();
     await browser.storage.local.remove('passwordInfo');
     sessionStorage.removeItem('passwordInfo');
     const settingsData = await browser.storage.local.get({
       settings: {}
     });
     const settings = settingsData.settings;
+    // if user forget previous password, use previous encryptIV
     await savePasswordInfo(nextStorageArea, {
       nextPassword,
-      nextEncryptIV: window.crypto.getRandomValues(new Uint8Array(12))
+      nextEncryptIV: prevPasswordInfo.isEncrypted ? prevPasswordInfo.encryptIV : window.crypto.getRandomValues(new Uint8Array(12))
     })
     await browser.storage.local.set({
       settings: {
@@ -64,18 +66,19 @@ const doResetAccountInfos = lockAsyncFunc(
       },
       isEncrypted: true,
     });
-    await saveAccountInfos(infos);
-    passwordInput.value = '';
-    reconfirmInput.value = '';
-    setConfirmBtnStatus();
+    console.log(Boolean((!prevPasswordInfo.isEncrypted) || (prevPasswordInfo.password && prevPasswordInfo.encryptIV)));
+    // if user forget previous password, don't encrypt it again
+    if ((!prevPasswordInfo.isEncrypted) || (prevPasswordInfo.password && prevPasswordInfo.encryptIV)) {
+      await saveAccountInfos(infos);
+    }
   }
 );
 const doForgetPassword = lockAsyncFunc(
   async () => {
-    const storageArea = await getPasswordStorageArea();
-    await savePasswordInfo(storageArea, {
+    const passwordInfo = await getPasswordInfo();
+    await savePasswordInfo(passwordInfo.storageArea, {
       nextPassword: '',
-      nextEncryptIV: null
+      nextEncryptIV: passwordInfo.encryptIV
     });
     await setForgetBtnStatus();
   }
@@ -101,7 +104,7 @@ forgetBtn.addEventListener('click', (event) => {
   event.preventDefault();
   doForgetPassword();
 });
-encryptForm.addEventListener('submit', (event) => {
+encryptForm.addEventListener('submit', async (event) => {
   event.preventDefault();
   const { value: passwordOne } = passwordInput;
   const { value: passwordTwo } = reconfirmInput;
@@ -110,7 +113,11 @@ encryptForm.addEventListener('submit', (event) => {
     passwordTwo.length > 0 &&
     passwordOne === passwordTwo
   ) {
-    doResetAccountInfos(getCheckedRadioValue(radioList), passwordOne);
+    await doResetAccountInfos(getCheckedRadioValue(radioList), passwordOne);
+    passwordInput.value = '';
+    reconfirmInput.value = '';
+    setConfirmBtnStatus();
+    setForgetBtnStatus();
   }
 });
 init();

@@ -10,6 +10,6 @@ const lockAsyncFunc = (asyncFunc) => {
         if (status === 'pending') {
             return;
         }
-        wrapped(...args);
+        return wrapped(...args);
     };
 };
