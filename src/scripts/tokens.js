@@ -80,13 +80,19 @@
   });
   browser.storage.onChanged.addListener(async (changes, areaName) => {
     if (areaName !== 'local') return;
-    if (!changes.accountInfos) return;
-    const newValue = await getAccountInfos();
-    cachedAccountInfos = newValue;
-    updateAllInfoForm(formBox, {
-      infos: newValue,
-      defaultAccountInfoForm,
-    });
+    if (changes.accountInfos) {
+      const newValue = await getAccountInfos();
+      cachedAccountInfos = newValue;
+      updateAllInfoForm(formBox, {
+        infos: newValue,
+        defaultAccountInfoForm,
+      });
+    } else if ((changes.isEncrypted && changes.isEncrypted.newValue !== false) || changes.passwordInfo) {
+      checkPasswordInfo();
+    }
+  });
+  window.addEventListener('storage', () => {
+    checkPasswordInfo();
   });
 
   init();
@@ -110,6 +116,7 @@
     htmlBrandNewChildren(formBox, forms);
 
     setForHightlight();
+    checkPasswordInfo();
   }
 
   function getQueryString(name) {
@@ -261,6 +268,32 @@
       } else {
         children[i].style.display = 'none';
       }
+    }
+  }
+  async function checkPasswordInfo() {
+    const passwordInfo = await getPasswordInfo();
+    if (passwordInfo.isEncrypted && (!passwordInfo.password || !passwordInfo.encryptIV)) {
+      setFormSecureInputStatus(formBox.children, 'disable');
+    } else {
+      setFormSecureInputStatus(formBox.children, 'enable');
+    }
+  }
+  function setFormSecureInputStatus(formList, status) {
+    const { length } = formList;
+    for (let i = 0; i < length; i++) {
+      const form = formList[i];
+      ['localAccountName', 'localSecretToken', 'localRecovery'].forEach(
+        (fName) => {
+          const element = form.querySelector(`[name=${fName}]`);
+          if (element) {
+            if (status === 'disable') {
+              element.setAttribute('disabled', '');
+            } else {
+              element.removeAttribute('disabled');
+            }
+          }
+        }
+      )
     }
   }
 

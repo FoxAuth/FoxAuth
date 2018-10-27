@@ -2,13 +2,14 @@
 const otpFormStack = [];
 const otpBasicForm = document.querySelector('.newOTP').cloneNode(true);
 const formBox = document.getElementById('otpFormBox');
+const submitAll = document.getElementById('submitAll');
 
 //create new OTP form
 document.querySelector('#otpNewBtn').addEventListener("click", () => {
     const otpFormBox = document.querySelector('#otpFormBox');
-    const node = otpFormStack.length? otpFormStack.pop() : otpBasicForm.cloneNode(true);
+    const node = otpFormStack.length ? otpFormStack.pop() : otpBasicForm.cloneNode(true);
     // otpFormBox.appendChild(node);
-    otpFormBox.insertBefore(node,otpFormBox.firstChild);
+    otpFormBox.insertBefore(node, otpFormBox.firstChild);
 });
 
 //delete OTP form
@@ -19,11 +20,11 @@ document.body.addEventListener("click", (e) => {
     }
     const node = t.parentNode.parentNode.parentNode;
     if (node.parentNode) {
-      otpFormStack.push(node.parentNode.removeChild(node));
+        otpFormStack.push(node.parentNode.removeChild(node));
     }
 });
 
-document.getElementById('submitAll').addEventListener('click', () => {
+submitAll.addEventListener('click', () => {
     const { children } = formBox;
     const { length } = children;
     const result = [];
@@ -37,6 +38,15 @@ formBox.addEventListener('submit', (event) => {
     const { target } = event;
     const form = target.parentNode.parentNode.parentNode;
     submitInfos([getInfoFormValues(form)]);
+});
+browser.storage.onChanged.addListener(async (changes, areaName) => {
+    if (areaName !== 'local') return;
+    if ((changes.isEncrypted && changes.isEncrypted.newValue !== false) || changes.passwordInfo) {
+        checkPasswordInfo();
+    }
+});
+window.addEventListener('storage', () => {
+    checkPasswordInfo();
 });
 const submitInfos = lockAsyncFunc(async (updateInfos) => {
     const accountInfos = await getAccountInfos();
@@ -88,6 +98,7 @@ async function init() {
         document.querySelector('[name=localSecretToken]').value = scannedotp.get('key')
         document.querySelector('[name=localIssuer]').value = scannedotp.get('issuer')
     }
+    checkPasswordInfo();
 }
 function getInfoFormValues(form) {
     return accountInfoKeys.reduce((result, key) => {
@@ -97,4 +108,25 @@ function getInfoFormValues(form) {
         }
         return result;
     }, {});
+}
+async function checkPasswordInfo() {
+    const passwordInfo = await getPasswordInfo();
+    if (passwordInfo.isEncrypted && (!passwordInfo.password || !passwordInfo.encryptIV)) {
+        submitAll.setAttribute('disabled', '');
+        setFormSecureInputStatus(formBox.children, 'disable');
+    } else {
+        submitAll.removeAttribute('disabled');
+        setFormSecureInputStatus(formBox.children, 'enable');
+    }
+}
+function setFormSecureInputStatus(formList, status) {
+    const { length } = formList;
+    for (let i = 0; i < length; i++) {
+        const form = formList[i];
+        if (status === 'disable') {
+            form.querySelector('button').setAttribute('disabled', '');
+        } else {
+            form.querySelector('button').removeAttribute('disabled');
+        }
+    }
 }

@@ -37,6 +37,9 @@ button {
     width: auto;
     min-width: 132px;
 }
+button:disabled {
+    opacity: .3;
+}
 
 button:hover {
     background-color: #003eaa;
@@ -122,6 +125,11 @@ select:active {
 input[type=text]:checked,
 input[type=password]:checked {
     color: #0a84ff;
+}
+
+input[type=text]:disabled,
+input[type=password]:disabled {
+    opacity: .3;
 }
 
 .caption {
