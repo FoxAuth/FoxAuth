@@ -41,6 +41,9 @@ const reconfirmInput = document.getElementById('reconfirmPass');
 const confirmBtn = document.getElementById('confirmBtn');
 const forgetBtn = document.getElementById('forgetBtn');
 const radioList = document.getElementsByName('rememPass');
+const dropboxBtn = document.getElementsByClassName('syncbtn')[0];
+const dropboxTextElement = dropboxBtn.getElementsByClassName('syncBtnText')[0];
+const dropboxHelper = new DropboxHelper();
 const doResetAccountInfos = lockAsyncFunc(
   async (nextStorageArea, nextPassword) => {
     const infos = await getAccountInfos();
@@ -78,6 +81,16 @@ const doForgetPassword = lockAsyncFunc(
   }
 )
 
+dropboxBtn.addEventListener('click', async () => {
+  if (dropboxHelper.authState === 'unauthorized') {
+    dropboxHelper.authorize(() => {
+      setDropboxText();
+    });
+  } else {
+    await dropboxHelper.disconnect();
+    setDropboxText();
+  }
+});
 passwordInput.addEventListener('input', () => {
   setConfirmBtnStatus();
 });
@@ -107,6 +120,8 @@ async function init() {
   checkRadioByValue(radioList, storageArea);
   setConfirmBtnStatus();
   setForgetBtnStatus();
+  await dropboxHelper.init();
+  setDropboxText();
 }
 function forEach(arrayLike, func) {
   if (arrayLike && arrayLike.length > 0) {
@@ -163,5 +178,12 @@ async function setForgetBtnStatus() {
     forgetBtn.removeAttribute('disabled')
   } else {
     forgetBtn.setAttribute('disabled', 'true');
+  }
+}
+function setDropboxText() {
+  if (dropboxHelper.authState === 'authorized') {
+    dropboxTextElement.textContent = 'Disconnect';
+  } else {
+    dropboxTextElement.textContent = 'Dropbox';
   }
 }

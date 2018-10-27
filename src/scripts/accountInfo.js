@@ -19,8 +19,19 @@ async function saveAccountInfos(infos) {
             encryptPassword: passwordInfo.password,
             encryptIV: passwordInfo.encryptIV
         });
-    }   
+    }
+    let { accountInfoVersion } = await browser.storage.local.get({
+        accountInfoVersion: 0
+    });
+    if (typeof accountInfoVersion !== 'number' || accountInfoVersion > Number.MAX_SAFE_INTEGER + 1) {
+        accountInfoVersion = 1;
+    } else {
+        accountInfoVersion += 1;
+    }
     await saveInfosToLocal(infos);
+    await browser.storage.local.set({
+        accountInfoVersion
+    });
 }
 async function getInfosFromLocal() {
     const obj = await browser.storage.local.get('accountInfos');
@@ -107,13 +118,13 @@ async function getPasswordStorageArea() {
         return data.settings.passwordStorage;
     }
 }
-async function getPasswordInfo() {
+async function getPasswordInfo(storageArea) {
     function base64Decode(str, encoding = 'utf-8') {
         var bytes = base64js.toByteArray(str);
         return new(TextDecoder || TextDecoderLite)(encoding).decode(bytes);
     }
 
-    storageArea = await getPasswordStorageArea();
+    storageArea = storageArea || await getPasswordStorageArea();
     const data = await browser.storage.local.get({
         isEncrypted: false,
     });
@@ -140,7 +151,8 @@ async function getPasswordInfo() {
     return {
         isEncrypted,
         password,
-        encryptIV
+        encryptIV,
+        storageArea
     };
 }
 async function savePasswordInfo(nextStorageArea, {
