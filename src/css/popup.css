@@ -141,3 +141,10 @@ body.scanning::after {
     text-decoration: none;
     color: inherit;
 }
+.popup-error {
+    color: red;
+    font-size: 15px;
+    text-align: center;
+    padding: 32px 0;
+    font-weight: 600;
+}

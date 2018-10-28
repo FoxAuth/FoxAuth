@@ -123,15 +123,19 @@ function autoFillButtonInit(){
       }
     )
   });
-  // const autofillOTPForm = document.querySelector('#autofillOTPForm');
-  // autofillOTPForm.addEventListener(async e=>{
-  //   const tab = browser.tabs.getCurren
-  // })
 }
 
 (async function () {
-  // try {
     console.log(233);
+    const passwordInfo = await getPasswordInfo();
+    if(passwordInfo.isEncrypted && !passwordInfo.password) {
+      const errorDom = document.createElement('div');
+      errorDom.setAttribute('class', 'popup-error');
+      errorDom.innerText = 'ENCRYPTED OR ERROR';
+      document.body.appendChild(errorDom);
+      return;
+    }
+    
     const accountInfosPromise = getAccountInfos();
     const contextualIdentitiesPromise = browser.contextualIdentities.query({});
     const accountInfos = await accountInfosPromise;
