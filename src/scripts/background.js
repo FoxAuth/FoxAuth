@@ -173,7 +173,7 @@ browser.contextualIdentities.onRemoved.addListener((changeInfo) => {
             }, {
                 containerAssign: '',
                 localIssuer: 'Protonmail',
-                localAccountName: 'DropboxExample',
+                localAccountName: 'ProtonmailExample',
                 localSecretToken: 'JBSWY3DPEHPK3PXZ',
                 localRecovery: 'MyRecovery4',
                 localOTPType: 'Time based',

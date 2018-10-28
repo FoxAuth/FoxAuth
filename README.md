@@ -45,12 +45,15 @@ FoxAuth is an [TOTP](https://wikipedia.org/wiki/Time-based_One-time_Password_alg
 - __Dropbox /__ (in upcoming releases) __FxA__ sync
 - [Photon Design](https://design.firefox.com/photon)
 
-## Disclaims
+## Disclaimers
 
 During sync, you are **NOT** supposed to do any of the listed behaviors or you are totally responsible for your data loss:
 
 1. Moving, renaming, deleting or manually editting any file in our app folder (copying and pasting shall not cause issues though).
 1. operate account info between several devices in a **REALLY** frequent rate.
+1. use different encryption passwords among different devices.
+
+You shall also note that if you connect a Firefox with encrypted FoxAuth database, all unecrypted Firefox FoxAuth databases will be override.
 
 ## Revisioning
 
