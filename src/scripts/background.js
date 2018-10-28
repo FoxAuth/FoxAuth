@@ -151,7 +151,7 @@ browser.contextualIdentities.onRemoved.addListener((changeInfo) => {
     browser.storage.local.set({
         accountInfos: [
             {
-                containerAssign: '',
+                containerAssign: result[1].cookieStoreId,
                 localIssuer: 'GitHub',
                 localAccountName: 'GitHubExample',
                 localSecretToken: 'JBSWY3DPEHPK3PXZ',

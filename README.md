@@ -1,3 +1,5 @@
+## THIS IS STILL UNDER EARLY DEVELOPMENT. PLS COMMENT BASED ON THE POINT.
+
 # FoxAuth Firefox TOTP Extension
 
 <div align='center'>
