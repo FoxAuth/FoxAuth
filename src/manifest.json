@@ -26,7 +26,11 @@
   },
   "background": {
     "scripts": [
+      "scripts/dependency/jsOTP.min.js",
+      "scripts/dependency/qr-scanner.min.js",
+      "scripts/encryption/base-64.js",
       "scripts/background.js",
+      "scripts/accountInfo.js",
       "scripts/message.js"
     ]
   },

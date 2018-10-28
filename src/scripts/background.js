@@ -36,7 +36,7 @@ browser.contextMenus.create({
     The click event listener, where we perform the appropriate action given the
     ID of the menu item that was clicked.
 */
-browser.contextMenus.onClicked.addListener((info, ignored) => {
+browser.contextMenus.onClicked.addListener(async (info, ignored) => {
     if (info.menuItemId === "scanQR") {
         if(info.mediaType !== 'image') {
             showErrorMsg('Can not found Image.')
@@ -54,6 +54,17 @@ browser.contextMenus.onClicked.addListener((info, ignored) => {
             img.src = info.srcUrl
         }
         //decode(info.srcUrl);
+    } else if (info.menuItemId === "autfillOTP") {
+        console.log('innnnnnnnnnnnnnnnnnnnn', info);
+        console.log('clicked');
+        const tabInfo = await browser.tabs.query({ active: true });
+        console.log('tabinfo', tabInfo[0].id);
+        browser.tabs.executeScript(
+          tabInfo[0].id,
+          {
+              code: `fillKeyToActiveEl()`,
+          }
+        )
     }
 });
 

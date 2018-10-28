@@ -1,4 +1,17 @@
 console.log('2333333', window.location.host);
+const sessionKey = 'foxauthWebsiteHasInputPassword';
+function getSessionValue() {
+  return sessionStorage.getItem(sessionKey);
+}
+function setSessionValue() {
+  sessionStorage.setItem(sessionKey, '1');
+}
+function clearSessionValue() {
+  sessionStorage.setItem(sessionKey, '');
+}
+function isVisible(elem) {
+  return !!(elem.offsetWidth || elem.offsetHeight || elem.getClientRects().length);
+};
 
 //autfill matching
 function matchOTP() {
@@ -30,10 +43,7 @@ function matchOTP() {
   return matchIssuer;
 };
 
-(async function () {
-  console.log('autofitttttll', window.location.host);
-
-  const sessionKey = 'foxauthWebsiteHasInputPassword';
+async function getTotpKey() {
 
   const issuer = matchOTP();
 
@@ -44,41 +54,67 @@ function matchOTP() {
   console.log('received: ', accountInfos, tabInfo);
 
   const account = accountInfos.find(account => {
+    console.log(1);
     let cookieStoreIdMatch = false;
     if (
       (tabInfo.cookieStoreId === 'firefox-default' && (!account.containerAssign))
       ||
       (tabInfo.cookieStoreId === account.containerAssign)
     ) {
+      console.log(2);
       cookieStoreIdMatch = true;
     }
     if (!cookieStoreIdMatch) {
+      console.log(3);
       return false;
     }
     if (account.localIssuer.toLowerCase() === issuer.toLowerCase()) {
+      console.log(4);
       return true;
     }
+    console.log(5);
   });
 
+  console.log(6);
   if (!account) {
     return;
   }
+  console.log(7);
 
-  const totp = new jsOTP.totp(account.localOTPPeriod || 30, account.localOTPDigits || 6);
-  const totpKey = totp.getOtp(account.localSecretToken);
 
-  const getSessionValue = function () {
-    return sessionStorage.getItem(sessionKey);
+  console.log(8);
+
+
+  const totpKey = await browser.runtime.sendMessage({
+    id: 'getTotpKey',
+    period: account.localOTPPeriod,
+    digits: account.localOTPDigits,
+    token: account.localSecretToken
+  });
+  console.log(9);
+  return totpKey;
+}
+
+async function fillKeyToActiveEl() {
+  if(document.activeElement.tagName==='INPUT'){
+    const key = await getTotpKey();
+    console.log('menu key', key);
+    document.activeElement.value = key;
   }
-  const setSessionValue = function () {
-    sessionStorage.setItem(sessionKey, '1');
+}
+
+(async function () {
+  console.log('autofitttttll', window.location.host);
+
+  console.log('browser', browser);
+  const obj = await browser.storage.local.get('settings') || {};
+  const { settings } = obj||{};
+
+  if (settings && settings.disableAutofill) {
+    return;
   }
-  const clearSessionValue = function () {
-    sessionStorage.setItem(sessionKey, '');
-  }
-  const isVisible = function (elem) {
-    return !!(elem.offsetWidth || elem.offsetHeight || elem.getClientRects().length);
-  };
+
+  const totpKey = await getTotpKey();
 
   function watchDom() {
     console.log('watchdom');

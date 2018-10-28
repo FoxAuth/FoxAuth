@@ -24,7 +24,7 @@ const template_totp = ef.t`
       >span.fl
         .{{issuer}}
       >span.fr
-        #style = color:{{containerColor}}
+        #style = color:{{containerColorCode}}
         .{{container}}
     >div.popup-content
       >div.popup-row
@@ -37,8 +37,9 @@ const template_totp = ef.t`
             #href = /options/tokens.html?index={{index}}
             #target = _blank
             .{{OTP}}
-        >div.popup-right
-          >img.popup-icon
+        >div.popup-right.container-icon-box
+          #data-color = {{containerColor}}
+          >img.popup-icon.container-icon
             #style = display:{{containerIconDisplay}}
             #onerror = containerIconOnError(this)
             #src = {{containerIcon}}
@@ -60,7 +61,8 @@ function addOTP(issuer, containerObj = {}, key, expiry = 30, code_length = 6, op
       container: containerObj.name,
       containerIcon: containerObj.iconUrl,
       containerIconDisplay: containerObj.iconUrl? 'block': 'none',
-      containerColor: containerObj.colorCode,
+      containerColorCode: containerObj.colorCode,
+      containerColor: containerObj.color,
       progress_max: expiry,
       progress: expiry - (Math.round(new Date().getTime() / 1000.0) % expiry),
       index: option.index
@@ -108,23 +110,46 @@ function initSearch() {
   })
 }
 
-(async function () {
-  const accountInfosPromise = getAccountInfos();
-  const contextualIdentitiesPromise = browser.contextualIdentities.query({});
-  const accountInfos = await accountInfosPromise;
-  const contextualIdentities = await contextualIdentitiesPromise;
-  accountInfos.forEach((e, i) => {
-    addOTP(
-      e.localIssuer,
-      contextualIdentities.find(el => el.cookieStoreId === e.containerAssign),
-      e.localSecretToken,
-      e.localOTPPeriod,
-      e.localOTPDigits,
+function autoFillButtonInit(){
+  console.log('document', document);
+  document.querySelector('#autofillOTPForm').addEventListener('click',async ()=>{
+    console.log('clicked');
+    const tabInfo = await browser.tabs.query({ active: true });
+    console.log('tabinfo', tabInfo[0].id);
+    browser.tabs.executeScript(
+      tabInfo[0].id,
       {
-        index: i,
+        file: '/scripts/manualCopy.js'
       }
     )
   });
+  // const autofillOTPForm = document.querySelector('#autofillOTPForm');
+  // autofillOTPForm.addEventListener(async e=>{
+  //   const tab = browser.tabs.getCurren
+  // })
+}
 
-  initSearch();
+(async function () {
+  // try {
+    console.log(233);
+    const accountInfosPromise = getAccountInfos();
+    const contextualIdentitiesPromise = browser.contextualIdentities.query({});
+    const accountInfos = await accountInfosPromise;
+    const contextualIdentities = await contextualIdentitiesPromise;
+    console.log('acin', accountInfos);
+    accountInfos.forEach((e, i) => {
+      addOTP(
+        e.localIssuer,
+        contextualIdentities.find(el => el.cookieStoreId === e.containerAssign),
+        e.localSecretToken,
+        e.localOTPPeriod,
+        e.localOTPDigits,
+        {
+          index: i,
+        }
+      )
+    });
+  
+    initSearch();    
+    autoFillButtonInit();
 })();
