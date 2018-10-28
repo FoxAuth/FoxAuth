@@ -95,7 +95,6 @@
                         accountInfos: localAccountInfos,
                         ...otherLocalData
                     };
-                    // TODO: warning
                 } else {
                     result = {
                         accountInfos: mergeAccountInfos(remoteAccountInfos, localAccountInfos),
@@ -119,7 +118,6 @@
                         accountInfos: remoteAccountInfos,
                         ...otherRemoteData
                     };
-                    // TODO: warning
                 } else {
                     result = {
                         accountInfos: mergeAccountInfos(localAccountInfos, remoteAccountInfos),
@@ -167,22 +165,26 @@
         });
     }
 
-    let warningMsg = (msg) => alert(msg);
-    let errorMsg = (msg) => alert(msg);
-
     class DropboxHelper {
-        constructor() {
+        constructor({
+            warning,
+            error,
+        }) {
             this.service = new Dropbox.Dropbox({
                 fetch,
                 clientId: '5vxzgtarlxe6sio',
             });
             this.config = {
-                accessToken: 'cm0b3triqimfrty',
+                accessToken: '',
                 accountInfoPath: 'AccountInfo',
                 accountInfoVersionPath: 'AccountInfoVersion',
             };
             this.authState = 'unauthorized';
             this.syncState = 'idle';
+            this.Message = {
+                warning,
+                error
+            };
         }
         async init() {
             this.service.setClientSecret('');
@@ -262,6 +264,9 @@
                 this.sync();
             } catch (error) {
                 // TODO: handle error
+                this.Message.error({
+                    message: error.message || (error.response && error.response.statusText) || 'Oops: unknown error occurs'
+                });
                 this.authState = 'unauthorized';
             }
         }
@@ -277,25 +282,28 @@
             return data;
         }
         async getRemoteData() {
+            const defaultData = {
+                accountInfos: [],
+                isEncrypted: false,
+                passwordInfo: {
+                    encryptIV: null
+                },
+                settings: {
+                    passwordStorage: "storage.local"
+                },
+            };
             try {
                 let data = await this.fileDownload({
                     path: this.config.accountInfoPath
                 });
                 data = {
-                    accountInfos: [],
-                    isEncrypted: false,
-                    passwordInfo: {
-                        encryptIV: null
-                    },
-                    settings: {
-                        passwordStorage: "storage.local"
-                    },
+                    ...defaultData,
                     ...data
                 };
                 return data;
             } catch (error) {
                 if (error.status === 409) {
-                    return null;
+                    return defaultData;
                 }
                 throw error;
             }
@@ -330,47 +338,47 @@
                 // unfortunately, localversion equal remoteversion will cause some problems
                 const localData = await getLocalData();
                 const remoteData = await this.getRemoteData();
-                const result = await mergeLocalAndRemote({
-                    localData,
-                    localVersion
-                }, {
-                    remoteData,
-                    remoteVersion
-                });
-                console.log('remote and local merge: ', result);
-                await this.fileUpload({
-                    path: this.config.accountInfoPath,
-                    contents: result
-                });
-                if (localVersion >= remoteVersion) {
-                    await this.fileUpload({
-                        path: this.config.accountInfoVersionPath,
-                        contents: localVersion
-                    });
-                    await browser.storage.local.set({
-                        accountInfos: result.accountInfos,
-                        accountInfoVersion: localVersion,
-                    });
-                    console.log('local overwrite remote');
+                console.log('localversion', localVersion, 'localdata: ', localData);
+                console.log('remoteversion', remoteVersion, 'remotedata: ', remoteData);
+                if (remoteData.isEncrypted !== localData.isEncrypted) {
+                    if (remoteVersion > localVersion) {
+                        const result = await this.Message.warning({
+                            message: 'Your local data will be overwritten by remote data due to the different encryption settings',
+                            confirmBtnText: 'confirm'
+                        });
+                        if (result) {
+                            await this.doMergeAndUpload({
+                                localData, localVersion
+                            }, {
+                                remoteData, remoteVersion
+                            });
+                        }
+                    } else {
+                        const result = await this.Message.warning({
+                            message: 'Your remote data will be overwritten by local data due to the different encryption settings',
+                            confirmBtnText: 'confirm'
+                        });
+                        if (result) {
+                            await this.doMergeAndUpload({
+                                localData, localVersion
+                            }, {
+                                remoteData, remoteVersion
+                            });
+                        }
+                    }
                 } else {
-                    await this.fileUpload({
-                        path: this.config.accountInfoVersionPath,
-                        contents: remoteVersion
+                    await this.doMergeAndUpload({
+                        localData, localVersion
+                    }, {
+                        remoteData, remoteVersion
                     });
-                    await browser.storage.local.set({
-                        accountInfos: result.accountInfos,
-                        accountInfoVersion: remoteVersion,
-                    });
-                    savePasswordInfo({
-                        isEncrypted: result.isEncrypted,
-                        nextStorageArea: result.settings.passwordStorage,
-                        nextEncryptIV: result.passwordInfo.encryptIV
-                    });
-                    console.log('remote overwrite local');
                 }
                 console.log('end sync');
             } catch (error) {
                 // TODO: handler error
+                this.Message.error({
+                    message: error.message || (error.response && error.response.statusText) || 'Oops: unknown error occurs'
+                });
                 console.log(error)
             } finally {
                 this.syncState = 'idle';
@@ -396,6 +404,52 @@
                 accessToken: ''
             });
             this.authState = 'unauthorized';
+        }
+        async doMergeAndUpload({
+            localData,
+            localVersion
+        }, {
+            remoteData,
+            remoteVersion
+        }) {
+            const result = await mergeLocalAndRemote({
+                localData,
+                localVersion
+            }, {
+                remoteData,
+                remoteVersion
+            });
+            console.log('remote and local merge: ', result);
+            await this.fileUpload({
+                path: this.config.accountInfoPath,
+                contents: result
+            });
+            if (localVersion >= remoteVersion) {
+                await this.fileUpload({
+                    path: this.config.accountInfoVersionPath,
+                    contents: localVersion
+                });
+                await browser.storage.local.set({
+                    accountInfos: result.accountInfos,
+                    accountInfoVersion: localVersion,
+                });
+                console.log('local overwrite remote');
+            } else {
+                await this.fileUpload({
+                    path: this.config.accountInfoVersionPath,
+                    contents: remoteVersion
+                });
+                await browser.storage.local.set({
+                    accountInfos: result.accountInfos,
+                    accountInfoVersion: remoteVersion,
+                });
+                savePasswordInfo({
+                    isEncrypted: result.isEncrypted,
+                    nextStorageArea: result.settings.passwordStorage,
+                    nextEncryptIV: result.passwordInfo.encryptIV
+                });
+                console.log('remote overwrite local');
+            }
         }
     }
     global.DropboxHelper = DropboxHelper;

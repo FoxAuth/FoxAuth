@@ -38,12 +38,23 @@
             </a>
         </div>
     </div>
-    <div class="genericMsg">
-        <span class="genericMsgTxt"><img class="genericIcon" src="../icons/options/Identity Icon Hover.svg"><span class="genericMsgContent">You have to disconnect current service before connecting to another.</span><img class="genericMsgCloseBtn" src="../icons/options/Close.svg"></span>
+    <div class="warning-cover"></div>
+    <div class="warningMsg">
+        <img class="warningIcon" src="../icons/options/Warning.svg"/>
+        <div class="warningMsgTxt"><span class="warningMsgContent">Warning</span><button class="warningMsgBtn">Confirm</button></div>
+        <img class="warningMsgCloseBtn" src="../icons/options/Close.svg">
     </div>
+    <div class="errorMsg">
+        <img class="errorIcon" src="../icons/options/error.svg"/>
+        <div class="errorMsgTxt"><span class="errorMsgContent">Error</span><button class="errorMsgBtn">Retry</button></div>
+        <img class="errorMsgCloseBtn" src="../icons/options/Close-white.svg">
+    </div>
+    <!-- <div class="genericMsg">
+        <span class="genericMsgTxt"><img class="genericIcon" src="../icons/options/Identity Icon Hover.svg"><span class="genericMsgContent">You have to disconnect current service before connecting to another.</span><img class="genericMsgCloseBtn" src="../icons/options/Close.svg"></span>
+    </div> -->
     <div class="btnGroup">
         <h3>Choose service you prefer to sync your data</h3><br>
-        <button class="syncbtn" disabled>
+        <button class="syncbtn">
             <img src="../icons/service/dropbox.svg" width="32px" height="32px">
             <div class="syncBtnText">Dropbox</div>
         </button>
