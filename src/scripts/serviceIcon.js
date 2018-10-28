@@ -42,6 +42,7 @@ function getServiceIconNames(){
     'xiaomi',
     'yahoo',
     'zoho',
+    'ubisoft'
   ];
   return arr
 }
