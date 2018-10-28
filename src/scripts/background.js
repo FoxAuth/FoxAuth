@@ -55,10 +55,7 @@ browser.contextMenus.onClicked.addListener(async (info, ignored) => {
         }
         //decode(info.srcUrl);
     } else if (info.menuItemId === "autfillOTP") {
-        console.log('innnnnnnnnnnnnnnnnnnnn', info);
-        console.log('clicked');
         const tabInfo = await browser.tabs.query({ active: true });
-        console.log('tabinfo', tabInfo[0].id);
         browser.tabs.executeScript(
           tabInfo[0].id,
           {

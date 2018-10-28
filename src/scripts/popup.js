@@ -1,11 +1,8 @@
 const serviceIconNames = getServiceIconNames();
 const iconOnError = function (e) {
-  console.log('icon', e);
   e.src = '../icons/service/fallback.svg';
 }
 const containerIconOnError = function (e) {
-  console.log('container', e);
-  console.log(e.parentNode);
   e.parentNode.removeChild(e);
 }
 const popupSearchInput = document.querySelector('#popupSearchInput');
@@ -111,11 +108,8 @@ function initSearch() {
 }
 
 function autoFillButtonInit(){
-  console.log('document', document);
   document.querySelector('#autofillOTPForm').addEventListener('click',async ()=>{
-    console.log('clicked');
     const tabInfo = await browser.tabs.query({ active: true });
-    console.log('tabinfo', tabInfo[0].id);
     browser.tabs.executeScript(
       tabInfo[0].id,
       {
@@ -126,7 +120,6 @@ function autoFillButtonInit(){
 }
 
 (async function () {
-    console.log(233);
     const passwordInfo = await getPasswordInfo();
     if(passwordInfo.isEncrypted && !passwordInfo.password) {
       const errorDom = document.createElement('div');
@@ -140,7 +133,6 @@ function autoFillButtonInit(){
     const contextualIdentitiesPromise = browser.contextualIdentities.query({});
     const accountInfos = await accountInfosPromise;
     const contextualIdentities = await contextualIdentitiesPromise;
-    console.log('acin', accountInfos);
     accountInfos.forEach((e, i) => {
       addOTP(
         e.localIssuer,

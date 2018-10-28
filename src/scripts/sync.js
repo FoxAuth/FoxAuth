@@ -4,7 +4,6 @@
     if (!p) return;
     const parent = p.querySelector('input[type=checkbox]');
     const cp = p.querySelector('ul');
-    console.log(parent, cp);
     if (cp) {
       const children = cp.children;
       parent.addEventListener('input', () => {
