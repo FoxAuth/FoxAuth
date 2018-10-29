@@ -30,8 +30,10 @@
       // and other operations
       const index = findIndex(formBox.children, node);
       removeInfo(cachedAccountInfos, index);
-      // need re search
-      handleSearch();
+      if (tokenSearch.value.length > 0) {
+        // need re search
+        handleSearch();
+      }
     }
     warningCloseFun = function () {
       warningMsgBtn.removeEventListener('click', confirmFun);
@@ -83,8 +85,11 @@
     if (changes.accountInfos) {
       const newValue = await getAccountInfos();
       cachedAccountInfos = newValue;
+      if (cachedAccountInfos.length === 0) {
+        cachedAccountInfos = [getDefaultAccountInfo()];
+      }
       updateAllInfoForm(formBox, {
-        infos: newValue,
+        infos: cachedAccountInfos,
         defaultAccountInfoForm,
       });
     } else if ((changes.isEncrypted && changes.isEncrypted.newValue !== false) || changes.passwordInfo) {
@@ -110,7 +115,6 @@
     } else {
       // give some samples
       cachedAccountInfos = [getDefaultAccountInfo()];
-      saveAccountInfos(cachedAccountInfos);
     }
     const forms = generateInfoFormList(cachedAccountInfos, getBrowserContainers());
     htmlBrandNewChildren(formBox, forms);
@@ -184,11 +188,7 @@
   }
   function removeInfo(infos, index) {
     if (index < 0) return;
-    if (infos.length > 1) {
-      infos.splice(index, 1);
-    } else {
-      infos.splice(0, 1, getDefaultAccountInfo());
-    }
+    infos.splice(index, 1);
     saveAccountInfos(infos);
   }
   let timer = null;
