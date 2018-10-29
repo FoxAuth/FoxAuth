@@ -143,14 +143,14 @@ body.scanning::after {
 }
 .popup-error {
     color: red;
-    font-size: 15px;
+    font-size: 22px;
     text-align: center;
     padding: 32px 0;
     font-weight: 600;
 }
 .popup-empty {
     color: #2a2a2e;
-    font-size: 15px;
+    font-size: 22px;
     padding: 32px 0;
     font-weight: 500;
     display: flex;
@@ -159,9 +159,9 @@ body.scanning::after {
 }
 .popup-empty img {
     display: block;
-    padding-top: 2px;
-    height: 24px;
-    width: 24px;
+    padding-top: 4px;
+    height: 30px;
+    width: 30px;
     object-fit: contain;
     margin-right: 8px;
 }
