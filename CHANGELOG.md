@@ -1,5 +1,5 @@
 # Changelog
-All changes per revisioning to this project will be documented in this file.
+All changes per revisioning to this project will be documented in this file. All dates used in this file are recorded as UTC+8.
 
 ## v 1.0.0 BETA - Oct 29th 2018
 ### New 💡
