@@ -135,7 +135,7 @@ function autoFillButtonInit(){
     if(!accountInfos || !accountInfos.length) {
       const emptyDom = document.createElement('div');
       emptyDom.setAttribute('class', 'popup-empty');
-      emptyDom.innerHTML='<img src="../icons/options/starfleet.svg"/><div>Live long and prosperous</div>';
+      emptyDom.innerHTML='<img src="../icons/options/starfleet.svg"/><div>Live long and prosper</div>';
       document.body.appendChild(emptyDom);
       return;
     }
