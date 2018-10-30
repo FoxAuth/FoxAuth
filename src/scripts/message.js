@@ -18,9 +18,7 @@ try {
   }
 
   function getTotpKey(period = 30, digits = 6, token) {
-    const totp = new jsOTP.totp(period, digits);
-    const totpKey = totp.getOtp(token);
-    return totpKey;
+    return KeyUtilities.generate(OTPType.totp, token, digits, period);
   }
 
   (async function () {

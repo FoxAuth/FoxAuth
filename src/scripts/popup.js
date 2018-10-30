@@ -51,7 +51,7 @@ function addOTP(issuer, containerObj = {}, key, expiry = 30, code_length = 6, op
   var otpKey;
   var otpKeyClassName = 'popup-link';
   try {
-    otpKey = KeyUtilities.generate(1, key, code_length, expiry);
+    otpKey = KeyUtilities.generate(OTPType.totp, key, code_length, expiry);
   } catch (error) {
     console.error(error);
     otpKey = 'ERROR';
