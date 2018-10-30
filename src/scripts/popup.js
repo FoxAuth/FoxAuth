@@ -30,7 +30,8 @@ const template_totp = ef.t`
             #onerror = iconOnError(this)
             #src = ../icons/service/{{issuerIcon}}.svg
         >div.popup-row-item
-          >a.popup-link
+          >a
+            #class = {{otpKeyClassName}}
             #href = /options/tokens.html?index={{index}}
             #target = _blank
             .{{OTP}}
@@ -47,29 +48,41 @@ const template_totp = ef.t`
 otpContainer.$mount({ target: document.getElementById('otpContainer'), option: 'replace' })
 var otpStoreInterval = []
 function addOTP(issuer, containerObj = {}, key, expiry = 30, code_length = 6, option = {}) {
-  var totp = new jsOTP.totp(expiry, code_length)
-  key = base32tohex(key)
-  var id = otpContainer.otppoint.push(new template_totp({
-    $data: {
-      i18n_Copy: 'Copy',
-      i18n_Edit: 'Edit',
-      OTP: totp.getOtp(key),
-      issuer: issuer,
-      issuerIcon: serviceIconNames.find(e => issuer.toLowerCase().indexOf(e) >= 0 ) || 'fallback',
-      container: containerObj.name,
-      containerIcon: containerObj.iconUrl,
-      containerIconDisplay: containerObj.iconUrl? 'block': 'none',
-      containerColorCode: containerObj.colorCode,
-      containerColor: containerObj.color,
-      progress_max: expiry,
-      progress: expiry - (Math.round(new Date().getTime() / 1000.0) % expiry),
-      index: option.index
+  var otpKey;
+  var otpKeyClassName = 'popup-link';
+  try {
+    var totp = new jsOTP.totp(expiry, code_length)
+    key = base32tohex(key);
+    otpKey = totp.getOtp(key);
+  } catch (error) {
+    console.error(error);
+    otpKey = 'ERROR';
+    otpKeyClassName = 'popup-link-error'
+  }
+    var id = otpContainer.otppoint.push(new template_totp({
+      $data: {
+        i18n_Copy: 'Copy',
+        i18n_Edit: 'Edit',
+        OTP: otpKey,
+        issuer: issuer,
+        issuerIcon: serviceIconNames.find(e => issuer.toLowerCase().indexOf(e) >= 0 ) || 'fallback',
+        otpKeyClassName: otpKeyClassName,
+        container: containerObj.name,
+        containerIcon: containerObj.iconUrl,
+        containerIconDisplay: containerObj.iconUrl? 'block': 'none',
+        containerColorCode: containerObj.colorCode,
+        containerColor: containerObj.color,
+        progress_max: expiry,
+        progress: expiry - (Math.round(new Date().getTime() / 1000.0) % expiry),
+        index: option.index
+      }
+    })) - 1;
+    if(otpKey!=='ERROR') {
+      otpStoreInterval.push(setInterval(function () {
+        otpContainer.otppoint[id].$data.OTP = totp.getOtp(key)
+        otpContainer.otppoint[id].$data.progress = expiry - (Math.round(new Date().getTime() / 1000.0) % expiry)
+      }, 500))    
     }
-  })) - 1
-  otpStoreInterval.push(setInterval(function () {
-    otpContainer.otppoint[id].$data.OTP = totp.getOtp(key)
-    otpContainer.otppoint[id].$data.progress = expiry - (Math.round(new Date().getTime() / 1000.0) % expiry)
-  }, 500))
 }
 function clearOTP() {
   for (id in otpStoreInterval) {

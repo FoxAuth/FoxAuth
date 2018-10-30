@@ -137,9 +137,17 @@ body.scanning::after {
     text-decoration: none;
     color: inherit;
 }
+.popup-link-error {
+    color: red;
+    text-decoration: none;
+}
 .popup-link:hover {
     text-decoration: none;
     color: inherit;
+}
+.popup-link-error:hover {
+    text-decoration: none;
+    color: red;
 }
 .popup-error {
     color: red;
