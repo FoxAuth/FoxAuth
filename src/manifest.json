@@ -26,6 +26,7 @@
   },
   "background": {
     "scripts": [
+      "../scripts/dependency/url-otpauth-ng.browser.js",
       "scripts/dependency/jsOTP.min.js",
       "scripts/dependency/qr-scanner.min.js",
       "scripts/encryption/base-64.js",

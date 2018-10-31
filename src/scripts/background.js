@@ -38,21 +38,13 @@ browser.contextMenus.create({
 */
 browser.contextMenus.onClicked.addListener(async (info, ignored) => {
     if (info.menuItemId === "scanQR") {
-        if(info.mediaType !== 'image') {
-            showErrorMsg('Can not found Image.')
-        } else {
-            var img = new Image()
-            var canvas = document.createElement('canvas')
-            var ctx = canvas.getContext("2d")
-            img.crossOrigin = ''
-            img.onload = function () {
-                canvas.width = img.width
-                canvas.height = img.height
-                ctx.drawImage(img, 0, 0, img.width, img.height)
-                decodeQr(canvas)
-            }
-            img.src = info.srcUrl
-        }
+        const activeTabs = await browser.tabs.query({
+            active: true
+        });
+        if (activeTabs.length !== 1) return;
+        const activeTab = activeTabs[0];
+        const dataURL = await browser.tabs.captureTab(activeTab.id);
+        decodeQr(dataURL);
         //decode(info.srcUrl);
     } else if (info.menuItemId === "autfillOTP") {
         const tabInfo = await browser.tabs.query({ active: true });
@@ -65,15 +57,14 @@ browser.contextMenus.onClicked.addListener(async (info, ignored) => {
     }
 });
 
-function decodeQr(canvas) {
-    var dataURL = canvas.toDataURL("image/png")
+function decodeQr(dataURL) {
     QrScanner.scanImage(dataURL)
       .then(result => {
         // validate and parse URL
         const otpInfo = urlOtpauth.parse(result)
         const params = new URLSearchParams(otpInfo)
         browser.tabs.create({
-          url: `otpinfo.html?${params.toString()}`
+          url: `options/otpinfo.html?${params.toString()}`
         })
       })
       .catch(error => {
