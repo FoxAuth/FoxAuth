@@ -38,14 +38,11 @@ browser.contextMenus.create({
 */
 browser.contextMenus.onClicked.addListener(async (info, ignored) => {
     if (info.menuItemId === "scanQR") {
-        const activeTabs = await browser.tabs.query({
-            active: true
-        });
-        if (activeTabs.length !== 1) return;
-        const activeTab = activeTabs[0];
-        const dataURL = await browser.tabs.captureTab(activeTab.id);
-        decodeQr(dataURL);
-        //decode(info.srcUrl);
+        try {
+            await doScanQR()
+        } catch (error) {
+            console.log(error || 'No QR code found.')
+        }
     } else if (info.menuItemId === "autfillOTP") {
         const tabInfo = await browser.tabs.query({ active: true });
         browser.tabs.executeScript(
@@ -57,11 +54,12 @@ browser.contextMenus.onClicked.addListener(async (info, ignored) => {
     }
 });
 
-function decodeQr(dataURL) {
+function decodeQr(dataURL, tab) {
     QrScanner.scanImage(dataURL)
       .then(result => {
         // validate and parse URL
         const otpInfo = urlOtpauth.parse(result)
+        otpInfo.container = tab.cookieStoreId;
         const params = new URLSearchParams(otpInfo)
         browser.tabs.create({
           url: `options/otpinfo.html?${params.toString()}`

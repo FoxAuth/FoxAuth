@@ -94,6 +94,7 @@ async function init() {
     });
     if (qrresult.length > 0) {
         var scannedotp = new URLSearchParams(qrresult)
+        document.querySelector('[name=containerAssign]').value = scannedotp.get('container')
         document.querySelector('[name=localAccountName]').value = scannedotp.get('account')
         document.querySelector('[name=localSecretToken]').value = scannedotp.get('key')
         document.querySelector('[name=localIssuer]').value = scannedotp.get('issuer')

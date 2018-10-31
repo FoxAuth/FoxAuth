@@ -31,6 +31,7 @@
       "scripts/dependency/qr-scanner.min.js",
       "scripts/encryption/base-64.js",
       "scripts/dependency/key-utilities.js",
+      "scripts/doScanQR.js",
       "scripts/background.js",
       "scripts/accountInfo.js",
       "scripts/message.js"
