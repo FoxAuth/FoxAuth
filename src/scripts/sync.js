@@ -38,6 +38,7 @@ const encryptForm = document.getElementById('encryptForm');
 const passwordInput = document.getElementById('encryptPass');
 const reconfirmInput = document.getElementById('reconfirmPass');
 const confirmBtn = document.getElementById('confirmBtn');
+const decryptBtn = document.getElementById('decryptBtn');
 const forgetBtn = document.getElementById('forgetBtn');
 const radioList = document.getElementsByName('rememPass');
 const dropboxBtn = document.getElementsByClassName('syncbtn')[0];
@@ -179,10 +180,48 @@ dropboxBtn.addEventListener('click', async () => {
 });
 passwordInput.addEventListener('input', () => {
   setConfirmBtnStatus();
+  setDecryptBtnStatus();
 });
 reconfirmInput.addEventListener('input', () => {
   setConfirmBtnStatus();
+  setDecryptBtnStatus();
 });
+decryptBtn.addEventListener('click', async (event) => {
+  event.preventDefault();
+  const { value: passwordOne } = passwordInput;
+  const { value: passwordTwo } = reconfirmInput;
+  if (
+    passwordOne.length > 0 &&
+    passwordTwo.length > 0 &&
+    passwordOne === passwordTwo
+  ) {
+    try {
+      let infos = await getInfosFromLocal();
+      const passwordInfo = await getPasswordInfo();
+      infos = await decryptAccountInfos(infos, {
+        encryptPassword: passwordOne,
+        encryptIV: passwordInfo.encryptIV
+      });
+      await browser.storage.local.remove(['isEncrypted', 'passwordInfo']);
+      sessionStorage.removeItem('passwordInfo');
+      saveAccountInfos(infos);
+      passwordInput.value = '';
+      reconfirmInput.value = '';
+      setConfirmBtnStatus();
+      setForgetBtnStatus();
+      setDecryptBtnStatus();
+    } catch (error) {
+      console.log(error);
+      showErrorMessage({
+        message: 'Wrong password'
+      });  
+    }
+  } else {
+    showErrorMessage({
+      message: 'Please input the same password twice'
+    });
+  }
+})
 forgetBtn.addEventListener('click', (event) => {
   event.preventDefault();
   doForgetPassword();
@@ -196,11 +235,22 @@ encryptForm.addEventListener('submit', async (event) => {
     passwordTwo.length > 0 &&
     passwordOne === passwordTwo
   ) {
-    await doResetAccountInfos(getCheckedRadioValue(radioList), passwordOne);
-    passwordInput.value = '';
-    reconfirmInput.value = '';
-    setConfirmBtnStatus();
-    setForgetBtnStatus();
+    try {
+      await doResetAccountInfos(getCheckedRadioValue(radioList), passwordOne);
+      passwordInput.value = '';
+      reconfirmInput.value = '';
+      setConfirmBtnStatus();
+      setForgetBtnStatus();
+      setDecryptBtnStatus();
+    } catch (error) {
+      showErrorMessage({
+        message: 'Error occurred during encrypting/decrypting'
+      });  
+    }
+  } else {
+    showErrorMessage({
+      message: 'Please input the same password twice'
+    });
   }
 });
 browser.storage.onChanged.addListener((changes, areaName) => {
@@ -215,6 +265,7 @@ async function init() {
   checkRadioByValue(radioList, storageArea);
   setConfirmBtnStatus();
   setForgetBtnStatus();
+  setDecryptBtnStatus();
   await dropboxHelper.init();
   setDropboxText();
 }
@@ -243,7 +294,7 @@ function findBy(arrayLike, func) {
   }
 }
 function setConfirmBtnStatus() {
-  if (passwordInput.value == reconfirmInput.value) {
+  if (passwordInput.value && reconfirmInput.value && passwordInput.value == reconfirmInput.value) {
     confirmBtn.removeAttribute('disabled');
   } else {
     confirmBtn.setAttribute('disabled', 'true');
@@ -270,9 +321,16 @@ function checkRadioByValue(radioList, value) {
 async function setForgetBtnStatus() {
   const passwordInfo = await getPasswordInfo();
   if (passwordInfo.isEncrypted && passwordInfo.password && passwordInfo.encryptIV) {
-    forgetBtn.removeAttribute('disabled')
+    forgetBtn.removeAttribute('disabled');
   } else {
     forgetBtn.setAttribute('disabled', 'true');
+  }
+}
+async function setDecryptBtnStatus() {
+  if (passwordInput.value && reconfirmInput.value && passwordInput.value == reconfirmInput.value) {
+    decryptBtn.removeAttribute('disabled');
+  } else {
+    decryptBtn.setAttribute('disabled', 'true');
   }
 }
 function setDropboxText() {
