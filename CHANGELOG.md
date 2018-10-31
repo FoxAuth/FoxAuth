@@ -1,9 +1,26 @@
 # Changelog
 All changes per revisioning to this project will be documented in this file. All dates used in this file are recorded as UTC+8.
 
+## v 1.0.4 - Oct 31st 2018
+### New 💡
+- button for completely decrypting.
+### Changes 📝
+1. Container name will be fetched upon QR scanning.
+1. other minor changes.
+1. new icon for IFTTT.
+### Fixed 🔨
+1. can't scan QR via context menu.
+1. UI doesn't look right on Android.
+1. autofill failure in Container tabs.
+### Known issues 🐛
+1. No mean to import/export database manually yet.
+1. FxA sycn not working yet.
+1. Dropbox sync won't process deletion.
+1. Autofill may not work on some sites.
+
 ## v 1.0.3 - Oct 30th 2018
 ### New 💡
-- new popup content when no accont info found.
+- new popup content when no account info found.
 ### Changes 📝
 1. popup now catches error from invalid secret tokens.
 1. new icon for QR scanning.
