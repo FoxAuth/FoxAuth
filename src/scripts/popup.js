@@ -5,7 +5,7 @@ const iconOnError = function (e) {
 const containerIconOnError = function (e) {
   e.parentNode.removeChild(e);
 }
-const getSvgNameByIssuer = function(i) {
+const getSvgNameByIssuer = function (i) {
   switch (i) {
     case 'z.cn':
       return 'amazon';
@@ -19,6 +19,66 @@ const getSvgNameByIssuer = function(i) {
     default:
       return i.toLowerCase();
   }
+}
+/**
+ * 
+ * @param {string} issuer
+ * @param {string} url https://www.amazon.com/
+ */
+const isIssuerMatchedUrl = function (issuer, url) {
+  if (!issuer || !url) {
+    return false;
+  }
+  const reg = /:\/\/(.*?)\//i;
+  const res = reg.exec(url);
+  if (!res || !res[1]) {
+    return false;
+  }
+  const hostnameReversedArray = res[1].split('.').reverse();
+  let issuerStr;
+  switch (issuer) {
+    case 'z.cn':
+      issuerStr = 'amazon.cn';
+      break;
+    case 'Amazon Web Services':
+      issuerStr = 'aws.amazon.com';
+      break;
+    case 'Keeper':
+      issuerStr = 'keepersecurity.com';
+      break;
+    case 'Microsoft':
+      issuerStr = 'live.com';
+      break;
+    case 'Discord':
+      issuerStr = 'discordapp.com';
+      break;
+    default:
+      issuerStr = '';
+      break;
+  }
+
+  if (issuerStr) {
+    if (hostnameReversedArray.join('.').indexOf(issuerStr.split('.').reverse().join('.')) === 0) {
+      return true;
+    } else {
+      return false;
+    }
+  } else {
+    if (hostnameReversedArray.findIndex(e => e === issuer) >= 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+}
+const isContainerMatched = function (account, tab) {
+  if (!account && tab === 'firefox-default') {
+    return true;
+  }
+  if (account === tab) {
+    return true;
+  }
+  return false;
 }
 const popupSearchInput = document.querySelector('#popupSearchInput');
 const otpContainer = new (ef.t`
@@ -158,8 +218,10 @@ function autoFillButtonInit() {
 
   const accountInfosPromise = getAccountInfos();
   const contextualIdentitiesPromise = browser.contextualIdentities.query({});
+  const tabInfoPromise = browser.tabs.query({ active: true });
   const accountInfos = await accountInfosPromise;
   const contextualIdentities = await contextualIdentitiesPromise;
+  const tabInfo = (await tabInfoPromise)[0];
   if (!accountInfos || !accountInfos.length) {
     const emptyDom = document.createElement('div');
     emptyDom.setAttribute('class', 'popup-empty');
@@ -167,7 +229,13 @@ function autoFillButtonInit() {
     document.body.appendChild(emptyDom);
     return;
   }
-  accountInfos.forEach((e, i) => {
+  let filteredAccountInfos = accountInfos.filter(e =>
+    isIssuerMatchedUrl(e.localIssuer, tabInfo.url) && isContainerMatched(e.containerAssign, tabInfo.cookieStoreId)
+  );
+  if (filteredAccountInfos.length === 0) {
+    filteredAccountInfos = accountInfos;
+  }
+  filteredAccountInfos.forEach((e, i) => {
     addOTP(
       e.localIssuer,
       contextualIdentities.find(el => el.cookieStoreId === e.containerAssign),
