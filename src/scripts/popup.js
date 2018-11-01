@@ -13,9 +13,6 @@ const getSvgNameByIssuer = function(i) {
     case 'Amazon Web Services':
       return 'aws';
       break;
-    case 'z.cn':
-      return 'amazon';
-      break;
     case 'WordPress.com':
       return 'wordpress';
       break;
