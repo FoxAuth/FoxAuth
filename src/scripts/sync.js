@@ -52,6 +52,10 @@ const errorMsgContent = errorMsgDiv.querySelector('.errorMsgContent');
 const errorConfirmBtn = errorMsgDiv.querySelector('.errorMsgBtn');
 const errorCloseBtn = errorMsgDiv.querySelector('.errorMsgCloseBtn');
 const shadowCover = document.querySelector('.warning-cover');
+const exportBtn = document.getElementById('exportBtn');
+const importBtn = document.getElementById('importBtn');
+const importFileInput = document.getElementById('fileElem');
+
 const openMessage = (function() {
   let zIndex = 11;
   return function ({
@@ -252,6 +256,28 @@ encryptForm.addEventListener('submit', async (event) => {
       message: 'Please input the same password twice'
     });
   }
+});
+exportBtn.addEventListener('click', async () => {
+  const data = await browser.storage.local.get();
+  const str = JSON.stringify(data);
+  const dataURL = `data:application/json;charset=utf-8,${encodeURIComponent(str)}`;
+  const anchor = document.createElement('a');
+  anchor.download = 'Foxauth_export.json';
+  anchor.href = dataURL;
+  anchor.style.display = 'none';
+  document.body.appendChild(anchor);
+  requestAnimationFrame(() => {
+    anchor.click();
+    requestAnimationFrame(() => {
+      document.body.removeChild(anchor);
+    });
+  });
+});
+importBtn.addEventListener('click', (event) => {
+  event.preventDefault();
+  browser.tabs.create({
+    url: '/options/about.html'
+  });
 });
 browser.storage.onChanged.addListener((changes, areaName) => {
   if (areaName !== 'local') return;
