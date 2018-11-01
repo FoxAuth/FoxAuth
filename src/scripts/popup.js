@@ -5,6 +5,24 @@ const iconOnError = function (e) {
 const containerIconOnError = function (e) {
   e.parentNode.removeChild(e);
 }
+const getSvgNameByIssuer = function(i) {
+  switch (i) {
+    case 'z.cn':
+      return 'amazon';
+      break;
+    case 'Amazon Web Services':
+      return 'aws';
+      break;
+    case 'z.cn':
+      return 'amazon';
+      break;
+    case 'WordPress.com':
+      return 'wordpress';
+      break;
+    default:
+      return i.toLowerCase();
+  }
+}
 const popupSearchInput = document.querySelector('#popupSearchInput');
 const otpContainer = new (ef.t`
 >div.container
@@ -63,7 +81,7 @@ function addOTP(issuer, containerObj = {}, key, expiry = 30, code_length = 6, op
       i18n_Edit: 'Edit',
       OTP: otpKey,
       issuer: issuer,
-      issuerIcon: serviceIconNames.find(e => issuer.toLowerCase().indexOf(e) >= 0) || 'fallback',
+      issuerIcon: serviceIconNames.find(e => getSvgNameByIssuer(issuer).indexOf(e) >= 0) || 'fallback',
       otpKeyClassName: otpKeyClassName,
       container: containerObj.name,
       containerIcon: containerObj.iconUrl,
