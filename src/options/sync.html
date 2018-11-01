@@ -97,14 +97,14 @@
         </ul>
         <button id="forgetBtn" disabled><img src="../icons/options/Forget.svg" style="vertical-align: middle"> <span class="btnText">Forget password</span></button>
     </form>
-    <div class="btnGroup" style="display: none">
+    <div class="btnGroup">
         <h3>Import or export your account info</h3><br>
-        <button class="operatebtn">
-            <input type="file" id="fileElem" multiple accept="image/*" style="display:none" onchange="handleFiles(this.files)">
+        <button class="operatebtn" id="importBtn" style="display: none">
+            <input type="file" id="fileElem" accept="application/json" style="display: none">
             <a href="#" id="fileSelect"><img src="../icons/options/import.svg" width="32px" height="32px"></a>
             <div class="operateBtnText">Import</div>
         </button>
-        <button class="operatebtn">
+        <button class="operatebtn" id="exportBtn">
             <img src="../icons/options/export.svg" width="32px" height="32px">
             <div class="operateBtnText">Export</div>
         </button><br>
