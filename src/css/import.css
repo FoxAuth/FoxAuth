@@ -14,3 +14,10 @@ span {
 :disabled {
     opacity: 0.4;
 }
+
+.warningMsg,
+.errorMsg {
+    position: absolute;
+    left: 0;
+    top: 0;
+}

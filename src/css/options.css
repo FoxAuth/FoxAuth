@@ -494,3 +494,69 @@ input::selection {
   line-height: 1.5;
   margin-right: 4px;
 }
+
+
+/* Error message */
+.errorMsg {
+  background-color: #d70022;
+  color: #fff;
+  min-height: 32px;
+  /* display: flex; */
+  justify-content: flex-start;
+  align-items: flex-start;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.3s;
+  display: none;
+  left: 2px;
+  right: 2px;
+  border-radius: 2px;
+  padding-right: 40px;
+}
+.errorMsgTxt, .genericMsgTxt {
+  padding: 0 4px;
+  line-height: 32px;
+}
+.errorMsgTxt {
+  display: flex;
+  flex-wrap: wrap;
+}
+.errorMsgBtn {
+  padding-left: 8px;
+  background-color: #a4000f;
+  color: #fff;
+  border: 0;
+  cursor: pointer;
+  margin-left: 0;
+}
+.errorMsgBtn:hover {
+  background-color: #5a0002;
+}
+.errorMsgBtn:active {
+  background-color: #3e0200;
+  box-shadow: none;
+}
+.errorIcon {
+  height: 24px;
+  width: 24px;
+  display: block;
+  padding: 4px;
+  margin: 4px 4px;
+}
+.errorMsgTxt, .errorMsgCloseBtn, .errorIcon {
+  vertical-align: middle;
+}
+.errorMsgCloseBtn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  cursor: pointer;
+  padding: 4px;
+  margin: 4px 4px;
+}
+.errorMsgContent {
+  color: #fff;
+  padding: 7px 0;
+  line-height: 1.5;
+  margin-right: 4px;
+}

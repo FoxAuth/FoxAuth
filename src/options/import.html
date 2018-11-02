@@ -7,12 +7,13 @@
     <link rel="icon" href="../icons/icon.svg">
     <title>Import Database</title>
     <link href="../css/main.css" rel="stylesheet">
+    <link href="../css/options.css" rel="stylesheet">
     <link href="../css/import.css" rel="stylesheet">
 </head>
 
 <body style="text-align:center">
     <h2>Own Database</h2>
-    <div class="importGroup">
+    <div class="importGroup" id="foxauth">
         <img src="../icons/icon.svg" height="48px" width="48px"> FoxAuth JSON
     </div>
     <h2>Other Authenticators</h2>
@@ -28,10 +29,29 @@
     <div class="importGroup">
         <img src="../icons/options/lastpassauth.svg" height="48px" width="48px"> LastPass Authenticator
     </div>
-    <div class="importGroup">
+    <div class="importGroup" id="authenticator">
         <img src="../icons/options/authext.svg" height="48px" width="48px"> Authenticator Extension
     </div>
     <span class="caption"><strong>WARNING</strong><br>You must decrypt it at the first place and provide file location.</span>
+    <input id="file" type="file" style="display: none;">
+    <div class="warning-cover"></div>
+    <div class="warningMsg">
+        <img class="warningIcon" src="../icons/options/Warning.svg"/>
+        <div class="warningMsgTxt"><span class="warningMsgContent">Warning</span><button class="warningMsgBtn">Confirm</button></div>
+        <img class="warningMsgCloseBtn" src="../icons/options/Close.svg">
+    </div>
+    <div class="errorMsg">
+        <img class="errorIcon" src="../icons/options/error.svg"/>
+        <div class="errorMsgTxt"><span class="errorMsgContent">Error</span><button class="errorMsgBtn">Retry</button></div>
+        <img class="errorMsgCloseBtn" src="../icons/options/Close-white.svg">
+    </div>
+    <script src="../scripts/encryption/base-64.js"></script>
+    <script src="../scripts/encryption/keychain.js"></script>
+    <script src="../scripts/encryption/MessageEncryption.js"></script>
+    <script src="../scripts/accountInfo.js"></script>
+    <script src="../scripts/dependency/Dropbox-sdk.min.js"></script>
+    <script src="../scripts/sync/DropboxHelper.js"></script>
+    <script src="../scripts/import.js"></script>
 </body>
 
 </html>
