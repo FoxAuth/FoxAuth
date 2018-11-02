@@ -47,6 +47,7 @@ FoxAuth is an [TOTP](https://wikipedia.org/wiki/Time-based_One-time_Password_alg
     - [ ] [Google Authenticator](https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en_us)
     - [ ] [Microsoft Authenticator](https://play.google.com/store/apps/details?id=com.azure.authenticator&hl=en_US)
     - [ ] [LastPass Authenticator](https://play.google.com/store/apps/details?id=com.lastpass.authenticator&hl=en_US)
+    - [ ] [Authenticator](https://github.com/Authenticator-Extension/Authenticator)
 
 - (Password based) account list __encryption__
 - Autofill __TOTP__ form

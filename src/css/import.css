@@ -10,3 +10,7 @@ div img {
 span {
     color: #0a84ff;
 }
+
+:disabled {
+    opacity: 0.4;
+}
