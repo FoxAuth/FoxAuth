@@ -99,16 +99,15 @@
     </form>
     <div class="btnGroup">
         <h3>Import or export your account info</h3><br>
-        <button class="operatebtn" id="importBtn" style="display: none">
-            <input type="file" id="fileElem" accept="application/json" style="display: none">
-            <a href="#" id="fileSelect"><img src="../icons/options/import.svg" width="32px" height="32px"></a>
-            <div class="operateBtnText">Import</div>
+        <button class="operatebtn" id="importBtn">
+            <a href="import.html"><img src="../icons/options/import.svg" width="32px" height="32px">
+            <div class="operateBtnText">Import</div></a>
         </button>
         <button class="operatebtn" id="exportBtn">
             <img src="../icons/options/export.svg" width="32px" height="32px">
             <div class="operateBtnText">Export</div>
         </button><br>
-        <span class="caption">DO NOTE that exporting will <strong>NOT</strong> excute decrypting.</span>
+        <span class="caption">DO NOTE that exporting will <strong>NOT</strong> execute decrypting.</span>
     </div>
     <script src="../scripts/dependency/Dropbox-sdk.min.js"></script>
     <script src="../scripts/menu.js"></script>
