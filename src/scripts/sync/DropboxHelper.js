@@ -191,6 +191,10 @@
             await this.getFromLocal();
             await this.prepare();
         }
+        async initSync() {
+            await this.init();
+            await this.sync();
+        }
         async getFromLocal() {
             const data = await browser.storage.local.get({
                 dropbox: {}
@@ -261,7 +265,6 @@
                 this.authState = 'authorizing';
                 const user = await this.service.usersGetCurrentAccount();
                 this.authState = 'authorized';
-                this.sync();
             } catch (error) {
                 // TODO: handle error
                 this.Message.error({
@@ -379,7 +382,7 @@
                 this.Message.error({
                     message: error.message || (error.response && error.response.statusText) || 'Oops: unknown error occurs'
                 });
-                console.log(error)
+                console.log(error);
             } finally {
                 this.syncState = 'idle';
             }
@@ -405,6 +408,7 @@
             });
             this.authState = 'unauthorized';
         }
+        // merge local and remote data, upload the combinded
         async doMergeAndUpload({
             localData,
             localVersion

@@ -79,6 +79,7 @@ const openMessage = (function() {
       cancelBtn.removeEventListener('click', cancelFunc);
       setTimeout(() => {
         container.style.display = 'none';
+        shadowCover.style.display = 'block';
       }, 300);
     };
     cancelBtn.addEventListener('click', cancelFunc);
@@ -94,6 +95,7 @@ const openMessage = (function() {
         cancelFunc('close');
       };
       confirmBtn.addEventListener('click', confirmFunc);
+      shadowCover.style.display = 'block';
     }
     container.style.zIndex = zIndex++;
     container.style.display = 'flex';
@@ -276,7 +278,7 @@ exportBtn.addEventListener('click', async () => {
 importBtn.addEventListener('click', (event) => {
   event.preventDefault();
   browser.tabs.create({
-    url: '/options/about.html'
+    url: '/options/import.html'
   });
 });
 browser.storage.onChanged.addListener((changes, areaName) => {
@@ -292,7 +294,7 @@ async function init() {
   setConfirmBtnStatus();
   setForgetBtnStatus();
   setDecryptBtnStatus();
-  await dropboxHelper.init();
+  await dropboxHelper.initSync();
   setDropboxText();
 }
 function forEach(arrayLike, func) {
