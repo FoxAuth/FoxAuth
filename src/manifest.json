@@ -30,6 +30,8 @@
       "scripts/dependency/jsOTP.min.js",
       "scripts/dependency/qr-scanner.min.js",
       "scripts/encryption/base-64.js",
+      "scripts/encryption/keychain.js",
+      "scripts/encryption/MessageEncryption.js",
       "scripts/dependency/key-utilities.js",
       "scripts/doScanQR.js",
       "scripts/background.js",
