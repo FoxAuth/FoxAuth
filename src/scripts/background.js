@@ -133,7 +133,6 @@ window.addEventListener('load', () => {
         }
     );
     const dropboxHelper = new DropboxHelper();
-    wrapAsyncError(dropboxHelper.initSync.bind(dropboxHelper))();
     browser.storage.onChanged.addListener(wrapAsyncError(async (changes, areaName) => {
         if (areaName !== 'local') return;
         if (changes.dropbox ) {
@@ -154,6 +153,9 @@ window.addEventListener('load', () => {
         } else {
             debounce(wrapAsyncError(async () => {
                 console.log('backgorund sync');
+                if (dropboxHelper.authState === 'unauthorized') {
+                    await dropboxHelper.init();
+                }
                 await dropboxHelper.sync();
             }), 10000);
         }
