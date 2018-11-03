@@ -1,12 +1,19 @@
 # Changelog
 All changes per revisioning to this project will be documented in this file. All dates used in this file are recorded as UTC+8.
 
+## v 1.1.2 - Nov 2nd 2018
+### New 💡
+- import database manually.
+  - import from any other authenticators is not yet supported.
+### Known issues 🐛
+1. FxA sycn not working yet.
+1. Dropbox sync won't process deletion.
+1. autofill may not work on some sites.
+
 ## v 1.1.0 - Nov 1st 2018
 ### New 💡
 1. export database manually.
 1. autohide irrelevant account in popup.
-### Removed 🚫
-- removed popup searchbox (pointless with the new popup feature).
 ### Fixed 🔨
 1. icons display for z.cn, AWS and WordPress.
 1. QR scanning failure in certain cases.
