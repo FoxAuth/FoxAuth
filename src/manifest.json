@@ -26,7 +26,7 @@
   },
   "background": {
     "scripts": [
-      "../scripts/dependency/url-otpauth-ng.browser.js",
+      "scripts/dependency/url-otpauth-ng.browser.js",
       "scripts/dependency/jsOTP.min.js",
       "scripts/dependency/qr-scanner.min.js",
       "scripts/encryption/base-64.js",
@@ -34,9 +34,11 @@
       "scripts/encryption/MessageEncryption.js",
       "scripts/dependency/key-utilities.js",
       "scripts/doScanQR.js",
-      "scripts/background.js",
       "scripts/accountInfo.js",
-      "scripts/message.js"
+      "scripts/dependency/Dropbox-sdk.min.js",
+      "scripts/sync/DropboxHelper.js",
+      "scripts/message.js",
+      "scripts/background.js"
     ]
   },
   "permissions": [

@@ -129,20 +129,6 @@
             return result;
         }
     }
-    async function getLocalData() {
-        const localPasswordInfo = await getPasswordInfo();
-        const localInfos = await getInfosFromLocal();
-        return {
-            accountInfos: localInfos,
-            isEncrypted: localPasswordInfo.isEncrypted,
-            settings: {
-                passwordStorage: localPasswordInfo.storageArea
-            },
-            passwordInfo: {
-                encryptIV: localPasswordInfo.encryptIV ? Array.from(localPasswordInfo.encryptIV) : null
-            },
-        }
-    }
     // read blob as json
     function readAsJSON(blob) {
         return new Promise((resolve, reject) => {
@@ -166,10 +152,7 @@
     }
 
     class DropboxHelper {
-        constructor({
-            warning,
-            error,
-        }) {
+        constructor() {
             this.service = new Dropbox.Dropbox({
                 fetch,
                 clientId: '5vxzgtarlxe6sio',
@@ -181,10 +164,6 @@
             };
             this.authState = 'unauthorized';
             this.syncState = 'idle';
-            this.Message = {
-                warning,
-                error
-            };
         }
         async init() {
             this.service.setClientSecret('');
@@ -266,11 +245,12 @@
                 const user = await this.service.usersGetCurrentAccount();
                 this.authState = 'authorized';
             } catch (error) {
-                // TODO: handle error
-                this.Message.error({
-                    message: error.message || (error.response && error.response.statusText) || 'Oops: unknown error occurs'
-                });
-                this.authState = 'unauthorized';
+                // TODO: handler error
+                console.log(error);
+                if (typeof error === 'string') throw new Error(error);
+                else if (typeof error.message) throw error;
+                else if (error.response && error.response.statusText) throw new Error(error.response.statusText);
+                else throw new Error('Oops: unknown error occurs');
             }
         }
         async fileDownload({
@@ -283,6 +263,20 @@
             const { fileBlob } = file;
             const data = await readAsJSON(fileBlob);
             return data;
+        }
+        async getLocalData() {
+            const localPasswordInfo = await getPasswordInfo();
+            const localInfos = await getInfosFromLocal();
+            return {
+                accountInfos: localInfos,
+                isEncrypted: localPasswordInfo.isEncrypted,
+                settings: {
+                    passwordStorage: localPasswordInfo.storageArea
+                },
+                passwordInfo: {
+                    encryptIV: localPasswordInfo.encryptIV ? Array.from(localPasswordInfo.encryptIV) : null
+                },
+            }
         }
         async getRemoteData() {
             const defaultData = {
@@ -326,6 +320,7 @@
                 throw error;
             }
         }
+        // TODO
         async sync() {
             if (this.authState !== 'authorized' || this.syncState === 'syncing') {
                 return;
@@ -338,37 +333,14 @@
                     accountInfoVersion: 1
                 });
                 const { accountInfoVersion: localVersion } = versionData;
-                // unfortunately, localversion equal remoteversion will cause some problems
-                const localData = await getLocalData();
+                if (localVersion === remoteVersion) return;
+                const localData = await this.getLocalData();
                 const remoteData = await this.getRemoteData();
                 console.log('localversion', localVersion, 'localdata: ', localData);
                 console.log('remoteversion', remoteVersion, 'remotedata: ', remoteData);
-                if (remoteData.isEncrypted !== localData.isEncrypted) {
-                    if (remoteVersion > localVersion) {
-                        const result = await this.Message.warning({
-                            message: 'Your local data will be overwritten by remote data due to the different encryption settings',
-                            confirmBtnText: 'confirm'
-                        });
-                        if (result) {
-                            await this.doMergeAndUpload({
-                                localData, localVersion
-                            }, {
-                                remoteData, remoteVersion
-                            });
-                        }
-                    } else {
-                        const result = await this.Message.warning({
-                            message: 'Your remote data will be overwritten by local data due to the different encryption settings',
-                            confirmBtnText: 'confirm'
-                        });
-                        if (result) {
-                            await this.doMergeAndUpload({
-                                localData, localVersion
-                            }, {
-                                remoteData, remoteVersion
-                            });
-                        }
-                    }
+                // unfortunately, different encryption settings will cause some bugs
+                if (Boolean(remoteData.isEncrypted) !== Boolean(localData.isEncrypted)) {
+                    throw new Error('Please open sync page to see details');
                 } else {
                     await this.doMergeAndUpload({
                         localData, localVersion
@@ -379,10 +351,11 @@
                 console.log('end sync');
             } catch (error) {
                 // TODO: handler error
-                this.Message.error({
-                    message: error.message || (error.response && error.response.statusText) || 'Oops: unknown error occurs'
-                });
                 console.log(error);
+                if (typeof error === 'string') throw new Error(error);
+                else if (typeof error.message) throw error;
+                else if (error.response && error.response.statusText) throw new Error(error.response.statusText);
+                else throw new Error('Oops: unknown error occurs');
             } finally {
                 this.syncState = 'idle';
             }

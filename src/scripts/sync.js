@@ -79,7 +79,7 @@ const openMessage = (function() {
       cancelBtn.removeEventListener('click', cancelFunc);
       setTimeout(() => {
         container.style.display = 'none';
-        shadowCover.style.display = 'block';
+        shadowCover.style.display = 'none';
       }, 300);
     };
     cancelBtn.addEventListener('click', cancelFunc);
@@ -137,10 +137,7 @@ function showErrorMessage({
     });
   });
 }
-const dropboxHelper = new DropboxHelper({
-  warning: showWarningMessage,
-  error: showErrorMessage
-});
+const dropboxHelper = new DropboxHelper();
 
 const doResetAccountInfos = lockAsyncFunc(
   async (nextStorageArea, nextPassword) => {
@@ -178,6 +175,7 @@ dropboxBtn.addEventListener('click', async () => {
   if (dropboxHelper.authState === 'unauthorized') {
     dropboxHelper.authorize(() => {
       setDropboxText();
+      syncWithDropbox();
     });
   } else {
     await dropboxHelper.disconnect();
@@ -284,7 +282,7 @@ importBtn.addEventListener('click', (event) => {
 browser.storage.onChanged.addListener((changes, areaName) => {
   if (areaName !== 'local') return;
   if (!changes.accountInfos) return;
-  dropboxHelper.sync();
+  syncWithDropbox();
 });
 init();
 
@@ -294,8 +292,15 @@ async function init() {
   setConfirmBtnStatus();
   setForgetBtnStatus();
   setDecryptBtnStatus();
-  await dropboxHelper.initSync();
-  setDropboxText();
+  try {
+    await dropboxHelper.init();
+    setDropboxText();
+    syncWithDropbox();
+  } catch (error) {
+    showErrorMessage({
+      message: error.message
+    });
+  }
 }
 function forEach(arrayLike, func) {
   if (arrayLike && arrayLike.length > 0) {
@@ -367,5 +372,53 @@ function setDropboxText() {
   } else {
     dropboxTextElement.textContent = 'Dropbox';
   }
+}
 
+// TODO
+async function syncWithDropbox() {
+  try {
+    if (dropboxHelper.authState !== 'authorized' || dropboxHelper.syncState === 'syncing') {
+      return;
+    }
+    const remoteVersion = await dropboxHelper.getRemoteAccountInfoVersion();
+    const versionData = await browser.storage.local.get({
+        accountInfoVersion: 1
+    });
+    const { accountInfoVersion: localVersion } = versionData;
+    if (localVersion === remoteVersion) return;
+    console.log('sync page start to sync');
+    const localData = await dropboxHelper.getLocalData();
+    const remoteData = await dropboxHelper.getRemoteData();
+    if (Boolean(remoteData.isEncrypted) !== Boolean(localData.isEncrypted)) {
+        if (remoteVersion > localVersion) {
+            const result = await showWarningMessage({
+                message: 'Your local data will be overwritten by remote data due to the different encryption settings',
+                confirmBtnText: 'confirm'
+            });
+            if (result) {
+                await dropboxHelper.doMergeAndUpload({
+                    localData, localVersion
+                }, {
+                    remoteData, remoteVersion
+                });
+            }
+        } else {
+            const result = await showWarningMessage({
+                message: 'Your remote data will be overwritten by local data due to the different encryption settings',
+                confirmBtnText: 'confirm'
+            });
+            if (result) {
+                await dropboxHelper.doMergeAndUpload({
+                    localData, localVersion
+                }, {
+                    remoteData, remoteVersion
+                });
+            }
+        }
+    }
+  } catch (error) {
+    showErrorMessage({
+      message: error.message,
+    });
+  }
 }
