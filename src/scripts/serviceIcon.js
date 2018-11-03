@@ -6,7 +6,7 @@ function getServiceIconNames(){
     'battle',
     'bitbucket',
     'bitwarden',
-    'cloudfare',
+    'cloudflare',
     'dashlane',
     'digitalocean',
     'discord',
