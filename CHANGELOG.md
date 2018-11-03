@@ -1,7 +1,7 @@
 # Changelog
 All changes per revisioning to this project will be documented in this file. All dates used in this file are recorded as UTC+8.
 
-## v 1.1.2 - Nov 2nd 2018
+## v 1.1.2 - Nov 3rd 2018
 ### New 💡
 - import database manually.
   - import from any other authenticators is not yet supported.

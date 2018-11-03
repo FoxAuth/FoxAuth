@@ -21,3 +21,7 @@ span {
     left: 0;
     top: 0;
 }
+
+.importGroup {
+    cursor: pointer;
+}
