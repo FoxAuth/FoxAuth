@@ -32,7 +32,7 @@
 
 ## Introduction
 
-FoxAuth is an [TOTP](https://wikipedia.org/wiki/Time-based_One-time_Password_algorithm) browser client with autofill support for __FireFox__ and __FireFox Android__
+FoxAuth is an [TOTP](https://wikipedia.org/wiki/Time-based_One-time_Password_algorithm) browser client with autofill support for __Firefox__ and __Firefox Android__
 
 > 2FA made no longer annoying but enjoyable
 
@@ -44,9 +44,9 @@ FoxAuth is an [TOTP](https://wikipedia.org/wiki/Time-based_One-time_Password_alg
 - __import / export__
   - import from other authenticators
     - [ ] [Authy](https://authy.com/)
-    - [ ] [Google Authenticator](https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en_us)
-    - [ ] [Microsoft Authenticator](https://play.google.com/store/apps/details?id=com.azure.authenticator&hl=en_US)
-    - [ ] [LastPass Authenticator](https://play.google.com/store/apps/details?id=com.lastpass.authenticator&hl=en_US)
+    - [ ] [Google Authenticator](https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2)
+    - [ ] [Microsoft Authenticator](https://play.google.com/store/apps/details?id=com.azure.authenticator)
+    - [ ] [LastPass Authenticator](https://play.google.com/store/apps/details?id=com.lastpass.authenticator)
     - [ ] [Authenticator](https://github.com/Authenticator-Extension/Authenticator)
 
 - (Password based) account list __encryption__
@@ -83,7 +83,7 @@ We use encryption code from [Firefox Send](github.com/mozilla/send) in WebCrypto
 FoxAuth is licensed under __GNU General Public License 3.0__
 
 ```plain
-FoxAuth is a Firefox(Android) authenticator that can autofill TOTP codes
+FoxAuth is a Firefox (for Desktop / Android) authenticator that can autofill TOTP codes
 Copyright (C) 2018 FoxAuth contributors
 
 This program is free software: you can redistribute it and/or modify
