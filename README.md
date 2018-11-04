@@ -62,7 +62,7 @@ During sync, you are **NOT** supposed to do any of the listed behaviors or you a
 1. operate account info between several devices in a **REALLY** frequent rate.
 1. use different encryption passwords among different devices.
 
-You shall also note that if you connect a Firefox with encrypted FoxAuth database, all unecrypted Firefox FoxAuth databases will be override.
+You shall also note that if you connect an encrypted FoxAuth database to any sync service, **ALL OTHER** unecrypted FoxAuth databases on this service will be override.
 
 ## Revisioning
 
