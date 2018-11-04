@@ -305,3 +305,9 @@
 
 })();
 
+document.getElementById("tokenClearSearch").addEventListener("click", clearSearch);
+
+function clearSearch () {
+  clearPopupSearch = document.querySelector('[name=popupSearch]')
+  clearPopupSearch.value = ""
+};
