@@ -78,7 +78,7 @@
   formBox.addEventListener('input', valueChangeHandler);
   formBox.addEventListener('change', valueChangeHandler);
   tokenSearch.addEventListener('input', (event) => {
-    debounce(handleSearch, 300)
+    handleSearch();
   });
   browser.storage.onChanged.addListener(async (changes, areaName) => {
     if (areaName !== 'local') return;
@@ -99,6 +99,10 @@
   window.addEventListener('storage', () => {
     checkPasswordInfo();
   });
+  document.getElementById('tokenClearSearch').addEventListener('click', () => {
+    tokenSearch.value = '';
+    handleSearch();
+  })
 
   init();
   async function init() {
@@ -191,16 +195,18 @@
     infos.splice(index, 1);
     saveAccountInfos(infos);
   }
-  let timer = null;
-  function debounce(func, wait) {
-    if (timer) {
-      clearTimeout(timer);
+  const debounce = (func, wait) => {
+    let timer = null;
+    return function () {
+      if (timer) {
+        clearTimeout(timer);
+      }
+      timer = setTimeout(() => {
+        func();
+        timer = null;
+      }, wait);
     }
-    timer = setTimeout(() => {
-      func();
-      timer = null;
-    }, wait);
-  }
+  };
   function updateInfos(infos, records) {
     records.forEach((record) => {
       if (record.index >= 0) {
@@ -258,7 +264,7 @@
     return false;
   }
   // handle search for issuers, containers name or account name
-  function handleSearch() {
+  const handleSearch = debounce(() => {
     const result = searchAccountInfos(tokenSearch.value.trim(), cachedAccountInfos);
     const { children } = formBox;
     const { length } = children;
@@ -269,7 +275,7 @@
         children[i].style.display = 'none';
       }
     }
-  }
+  }, 200);
   async function checkPasswordInfo() {
     const passwordInfo = await getPasswordInfo();
     if (passwordInfo.isEncrypted && (!passwordInfo.password || !passwordInfo.encryptIV)) {
