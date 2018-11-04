@@ -251,3 +251,10 @@ function autoFillButtonInit() {
   initSearch();
   autoFillButtonInit();
 })();
+
+document.getElementById("popupClearSearch").addEventListener("click", clearSearch);
+
+function clearSearch () {
+  clearPopupSearch = document.querySelector('[name=popupSearch]')
+  clearPopupSearch.value = ""
+};
