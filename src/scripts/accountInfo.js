@@ -62,7 +62,7 @@ function decryptAccountInfos(infos, passwordInfo) {
 }
 async function __encryptAndDecrypt(infos, encryptInfo) {
     const crypto = new MessageEncryption(encryptInfo.encryptPassword);
-    crypto.instance.iv = encryptInfo.encryptIV;
+    crypto.instance.iv = Uint8Array.from(encryptInfo.encryptIV);
     const promiseArr = infos.reduce((result, info) => {
         const arr = ['localAccountName', 'localSecretToken', 'localRecovery']
             .reduce((result, key) => {
@@ -146,7 +146,7 @@ async function getPasswordInfo(storageArea) {
     password = base64Decode(passwordInfo.encryptPassword || '');
     encryptIV = passwordInfo.encryptIV || null;
     if (encryptIV) {
-        encryptIV = Uint8Array.from(encryptIV);
+        encryptIV = Array.from(encryptIV);
     }
     return {
         isEncrypted,
@@ -165,28 +165,31 @@ async function savePasswordInfo({
         var bytes = new (TextEncoder || TextEncoderLite)(encoding).encode(str);        
         return base64js.fromByteArray(bytes);
     }
-    if (typeof isEncrypted !== 'boolean') return;
-    await browser.storage.local.set({
-        isEncrypted
-    });
-    if (!isEncrypted) return;
-    if (!nextStorageArea) return;
-    const settingsData = await browser.storage.local.get({
+    if (typeof isEncrypted === 'boolean') {
+        await browser.storage.local.set({
+            isEncrypted
+        });
+    }
+    const { settings } = await browser.storage.local.get({
         settings: {}
     });
-    const settings = settingsData.settings;
+    const prevPasswordInfo = await getPasswordInfo();
+    nextStorageArea = nextStorageArea || prevPasswordInfo.storageArea;
     await browser.storage.local.set({
         settings: {
             ...settings,
             passwordStorage: nextStorageArea
         },
     });
+
+    const data = {
+        encryptIV: prevPasswordInfo.encryptIV,
+        password: prevPasswordInfo.password
+    };
     if (nextEncryptIV && nextEncryptIV.length > 0) {
         nextEncryptIV = Array.from(nextEncryptIV);
+        data.encryptIV = nextEncryptIV;
     }
-    const data = {
-        encryptIV: nextEncryptIV
-    };
     if (nextPassword) {
         data.encryptPassword = base64Encode(nextPassword || '');
     }

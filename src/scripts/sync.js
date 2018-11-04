@@ -150,7 +150,7 @@ const doResetAccountInfos = lockAsyncFunc(
       isEncrypted: true,
       nextStorageArea,
       nextPassword,
-      nextEncryptIV: prevPasswordInfo.isEncrypted ? prevPasswordInfo.encryptIV : window.crypto.getRandomValues(new Uint8Array(12))
+      nextEncryptIV: prevPasswordInfo.encryptIV ? prevPasswordInfo.encryptIV : window.crypto.getRandomValues(new Uint8Array(12))
     })
     // if user forget previous password, don't encrypt it again
     if ((!prevPasswordInfo.isEncrypted) || (prevPasswordInfo.password && prevPasswordInfo.encryptIV)) {
@@ -374,47 +374,66 @@ function setDropboxText() {
   }
 }
 
+async function processDifferentEncryption(remoteData) {
+  // remote encrypted
+  if (Boolean(remoteData.isEncrypted)) {
+    if (remoteData.passwordInfo && remoteData.passwordInfo.encryptIV) {
+      await savePasswordInfo({
+        isEncrypted: false,
+        nextStorageArea: (remoteData.settings && remoteData.settings.passwordStorage) ? remoteData.settings.passwordStorage : 'storage.local',
+        nextEncryptIV: remoteData.passwordInfo.encryptIV,
+      });
+      // TODO: highlight password input
+      showWarningMessage({
+        message: 'Please input your encrypt password to decrypt data'
+      });
+    } else {
+      throw new Error('Important encryption settings lost in your remote data. (encryptIV not found)');
+    }
+  } else {
+  // local encrypted
+    const passwordInfo = await getPasswordInfo();
+    if (passwordInfo.password && passwordInfo.encryptIV) {
+      remoteData.accountInfos = encryptAccountInfos(remoteData.accountInfos, {
+        encryptPassword: passwordInfo.password,
+        encryptIV: passwordInfo.encryptIV
+      });
+    } else if (!passwordInfo.encryptIV) {
+      throw new Error('Important encryption settings lost in your local data. (encryptIV not found)');
+    } else {
+      // TODO: highlight password input
+      throw new Error('Please input your local password');
+    }
+  }
+}
 // TODO
 async function syncWithDropbox() {
   try {
     if (dropboxHelper.authState !== 'authorized' || dropboxHelper.syncState === 'syncing') {
       return;
     }
-    const remoteVersion = await dropboxHelper.getRemoteAccountInfoVersion();
-    const versionData = await browser.storage.local.get({
-        accountInfoVersion: 1
-    });
-    const { accountInfoVersion: localVersion } = versionData;
-    if (localVersion === remoteVersion) return;
+    const {
+      remoteVersion,
+      localVersion,
+      localData,
+      remoteData
+    } = await dropboxHelper.getLocalAndRemote();
     console.log('sync page start to sync');
-    const localData = await dropboxHelper.getLocalData();
-    const remoteData = await dropboxHelper.getRemoteData();
     if (Boolean(remoteData.isEncrypted) !== Boolean(localData.isEncrypted)) {
-        if (remoteVersion > localVersion) {
-            const result = await showWarningMessage({
-                message: 'Your local data will be overwritten by remote data due to the different encryption settings',
-                confirmBtnText: 'confirm'
-            });
-            if (result) {
-                await dropboxHelper.doMergeAndUpload({
-                    localData, localVersion
-                }, {
-                    remoteData, remoteVersion
-                });
-            }
-        } else {
-            const result = await showWarningMessage({
-                message: 'Your remote data will be overwritten by local data due to the different encryption settings',
-                confirmBtnText: 'confirm'
-            });
-            if (result) {
-                await dropboxHelper.doMergeAndUpload({
-                    localData, localVersion
-                }, {
-                    remoteData, remoteVersion
-                });
-            }
-        }
+      if (Boolean(localData.isEncrypted)) {
+        const result = await showWarningMessage({
+          message: 'Your remote data will be encrypted due to the different encryption settings',
+          confirmBtnText: 'confirm'
+        });
+        if (!result) return;
+      }
+      await processDifferentEncryption(remoteData);
+      await dropboxHelper.doDiffAndPatch({
+          localData, localVersion
+      }, {
+          remoteData, remoteVersion
+      });
+      console.log('sync page end sync');
     }
   } catch (error) {
     showErrorMessage({

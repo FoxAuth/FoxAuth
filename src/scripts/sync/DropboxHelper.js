@@ -40,95 +40,7 @@
     //     syncing: 'syncing',
     //     error: 'error'
     // };
-    /**
-     * merge two infos into one, from right to left.
-     * @param {Array} infosOne
-     * @param {Array} infosTwo
-     */
-    function mergeAccountInfos(infosOne, infosTwo) {
-        if (infosOne.length === 0) {
-            return Array.isArray(infosTwo) ? [...infosTwo] : [];
-        } else if (infosTwo.length === 0) {
-            return Array.isArray(infosOne) ? [...infosOne] : [];
-        } else {
-            return infosTwo.reduce((result, info) => {
-                const index = findIndexOfSameAccountInfo(result, info);
-                if (index >= 0) {
-                    result[index] = {
-                        ...(result[index]),
-                        ...info
-                    };
-                } else {
-                    result.push(info);
-                }
-                return result;
-            }, [...infosOne]);
-        }
-    }
-    // merge local data and remote data
-    async function mergeLocalAndRemote({
-        localData,
-        localVersion
-    }, {
-        remoteData,
-        remoteVersion
-    }) {
-        if (remoteVersion === 0 || remoteVersion === localVersion) {
-            return localData;
-        } else {
-            let result = {};
-            const { accountInfos: remoteAccountInfos, ...otherRemoteData } = remoteData;
-            const { accountInfos: localAccountInfos, ...otherLocalData } = localData;
-            if (remoteVersion < localVersion) {
-                if (otherRemoteData.isEncrypted === false && otherLocalData.isEncrypted === true) {
-                    const localPasswordInfo = await getPasswordInfo();
-                    result = {
-                        accountInfos: await encryptAccountInfos(remoteAccountInfos, {
-                            encryptPassword: localPasswordInfo.password,
-                            encryptIV: localPasswordInfo.encryptIV
-                        }),
-                        ...otherRemoteData,
-                        ...otherLocalData
-                    };
-                } else if (otherRemoteData.isEncrypted === true && otherLocalData.isEncrypted === false) {
-                    result = {
-                        accountInfos: localAccountInfos,
-                        ...otherLocalData
-                    };
-                } else {
-                    result = {
-                        accountInfos: mergeAccountInfos(remoteAccountInfos, localAccountInfos),
-                        ...otherRemoteData,
-                        ...otherLocalData
-                    };
-                }
-            } else {
-                if (otherRemoteData.isEncrypted === false && otherLocalData.isEncrypted === true) {
-                    const localPasswordInfo = await getPasswordInfo();
-                    result = {
-                        accountInfos: await decryptAccountInfos(localAccountInfos, {
-                            encryptPassword: localPasswordInfo.password,
-                            encryptIV: localPasswordInfo.encryptIV
-                        }),
-                        ...otherLocalData,
-                        ...otherRemoteData,
-                    };
-                } else if (otherRemoteData.isEncrypted === true && otherLocalData.isEncrypted === false) {
-                    result = {
-                        accountInfos: remoteAccountInfos,
-                        ...otherRemoteData
-                    };
-                } else {
-                    result = {
-                        accountInfos: mergeAccountInfos(localAccountInfos, remoteAccountInfos),
-                        ...otherLocalData,
-                        ...otherRemoteData,
-                    };
-                }
-            }
-            return result;
-        }
-    }
+
     // read blob as json
     function readAsJSON(blob) {
         return new Promise((resolve, reject) => {
@@ -320,6 +232,15 @@
                 throw error;
             }
         }
+        async getLocalAndRemote() {
+            const remoteVersion = await this.getRemoteAccountInfoVersion();
+            const { accountInfoVersion: localVersion } = await browser.storage.local.get({
+                accountInfoVersion: 1
+            });
+            const localData = await this.getLocalData();
+            const remoteData = await this.getRemoteData();
+            return { remoteVersion, localVersion, localData, remoteData };
+        }
         // TODO
         async sync() {
             if (this.authState !== 'authorized' || this.syncState === 'syncing') {
@@ -328,21 +249,19 @@
             console.log('start sync');
             this.syncState = 'syncing';
             try {
-                const remoteVersion = await this.getRemoteAccountInfoVersion();
-                const versionData = await browser.storage.local.get({
-                    accountInfoVersion: 1
-                });
-                const { accountInfoVersion: localVersion } = versionData;
-                if (localVersion === remoteVersion) return;
-                const localData = await this.getLocalData();
-                const remoteData = await this.getRemoteData();
+                const {
+                    remoteVersion,
+                    localVersion,
+                    localData,
+                    remoteData
+                } = await this.getLocalAndRemote();
                 console.log('localversion', localVersion, 'localdata: ', localData);
                 console.log('remoteversion', remoteVersion, 'remotedata: ', remoteData);
                 // unfortunately, different encryption settings will cause some bugs
                 if (Boolean(remoteData.isEncrypted) !== Boolean(localData.isEncrypted)) {
-                    throw new Error('Please open sync page to see details');
+                    throw new Error('Please open sync page to see more details');
                 } else {
-                    await this.doMergeAndUpload({
+                    await this.doDiffAndPatch({
                         localData, localVersion
                     }, {
                         remoteData, remoteVersion
@@ -382,50 +301,74 @@
             this.authState = 'unauthorized';
         }
         // merge local and remote data, upload the combinded
-        async doMergeAndUpload({
+        async doDiffAndPatch({
             localData,
             localVersion
         }, {
             remoteData,
             remoteVersion
         }) {
-            const result = await mergeLocalAndRemote({
-                localData,
-                localVersion
-            }, {
-                remoteData,
-                remoteVersion
-            });
-            console.log('remote and local merge: ', result);
-            await this.fileUpload({
-                path: this.config.accountInfoPath,
-                contents: result
-            });
+            const delta = localVersion >= remoteVersion ?
+                diffPatcher.diff(remoteData, localData) :
+                diffPatcher.diff(localData, remoteData);
+            if (!delta) {
+                console.log('no difference, do nothing');
+                return;
+            }
+            if (
+                Object.keys(delta).length === 1 &&
+                delta.passwordInfo &&
+                Object.keys(delta.passwordInfo).length === 1 &&
+                delta.passwordInfo.password
+            ) {
+                console.log('the only difference is password, do nothing');
+                return;
+            }
+            // we need both same encyrptPassword and encryptIV to encrypt/decrypt data
+            if (
+                delta.passwordInfo &&
+                delta.passwordInfo.encryptIV &&
+                localData.passwordInfo &&
+                localData.passwordInfo.encryptIV
+            ) {
+                throw new Error('Please decrypt your local data first.(different encryptIV)');
+            }
+            console.log('find difference, apply patch');
+            // local overwrite remote
             if (localVersion >= remoteVersion) {
+                // do not upload local password
+                if (localData.passwordInfo && localData.passwordInfo.password) {
+                    delete localData.passwordInfo.password;
+                }
+                await this.fileUpload({
+                    path: this.config.accountInfoPath,
+                    contents: localData
+                });
                 await this.fileUpload({
                     path: this.config.accountInfoVersionPath,
                     contents: localVersion
                 });
-                await browser.storage.local.set({
-                    accountInfos: result.accountInfos,
-                    accountInfoVersion: localVersion,
-                });
-                console.log('local overwrite remote');
             } else {
-                await this.fileUpload({
-                    path: this.config.accountInfoVersionPath,
-                    contents: remoteVersion
-                });
-                await browser.storage.local.set({
-                    accountInfos: result.accountInfos,
-                    accountInfoVersion: remoteVersion,
-                });
-                savePasswordInfo({
-                    isEncrypted: result.isEncrypted,
-                    nextStorageArea: result.settings.passwordStorage,
-                    nextEncryptIV: result.passwordInfo.encryptIV
-                });
-                console.log('remote overwrite local');
+            // remote overwrite local
+                const needToSave = {
+                    accountInfoVersion: remoteVersion
+                };
+                if (delta.accountInfos) {
+                    needToSave.accountInfos = remoteData.accountInfos;
+                }
+                let promiseTwo = Promise.resolve();
+                if (
+                    delta.isEncrypted ||
+                    (delta.settings && delta.settings.passwordStorage)
+                ) {
+                    // do not patch password and encryptIV
+                    promiseTwo = savePasswordInfo({
+                        isEncrypted: remoteData.isEncrypted,
+                        nextStorageArea: remoteData.settings.passwordStorage
+                    });
+                }
+                const promiseOne = browser.storage.local.set(needToSave);
+                await Promise.all([promiseOne, promiseTwo]);
             }
         }
     }

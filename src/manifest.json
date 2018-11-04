@@ -35,9 +35,12 @@
       "scripts/dependency/key-utilities.js",
       "scripts/doScanQR.js",
       "scripts/accountInfo.js",
+      "scripts/dependency/jsondiffpatch.umd.slim.js",
+      "scripts/sync/diffPatcher.js",
       "scripts/dependency/Dropbox-sdk.min.js",
       "scripts/sync/DropboxHelper.js",
       "scripts/message.js",
+      "scripts/sync/storage-listener.js",
       "scripts/background.js"
     ]
   },
