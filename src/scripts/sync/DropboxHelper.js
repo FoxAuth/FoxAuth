@@ -71,8 +71,8 @@
             });
             this.config = {
                 accessToken: '',
-                accountInfoPath: 'AccountInfo',
-                accountInfoVersionPath: 'AccountInfoVersion',
+                accountInfoPath: 'AccountInfo.json',
+                accountInfoVersionPath: 'AccountInfoVersion.json',
             };
             this.authState = 'unauthorized';
             this.syncState = 'idle';
