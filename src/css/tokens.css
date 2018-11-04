@@ -32,3 +32,11 @@
     box-shadow: none;
   }
 }
+
+#tokenClearSearch {
+  opacity: 0.6;
+  position: relative;
+  top: 8px;
+  right: 32px;
+  cursor: pointer;
+}

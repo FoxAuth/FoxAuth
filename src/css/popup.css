@@ -173,3 +173,11 @@ body.scanning::after {
     object-fit: contain;
     margin-right: 8px;
 }
+
+#popupClearSearch {
+    opacity: 0.6;
+    position: relative;
+    top: 4px;
+    right: 24px;
+    cursor: pointer;
+}
