@@ -257,4 +257,6 @@ document.getElementById("popupClearSearch").addEventListener("click", clearSearc
 function clearSearch () {
   clearPopupSearch = document.querySelector('[name=popupSearch]')
   clearPopupSearch.value = ""
+  const event = new Event('input')
+  popupSearchInput.dispatchEvent(event)
 };
