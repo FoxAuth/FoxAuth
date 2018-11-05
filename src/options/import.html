@@ -17,23 +17,23 @@
         <img src="../icons/icon.svg" height="48px" width="48px"> FoxAuth JSON
     </div>
     <h2>Other Authenticators</h2>
-    <div class="importGroup">
+    <div class="importGroup" style="display: none">
         <img src="../icons/options/authy.svg" height="48px" width="48px"> Authy
     </div>
-    <div class="importGroup">
+    <div class="importGroup" style="display: none">
         <img src="../icons/options/ggauth.svg" height="48px" width="48px"> Google Authenticator
     </div>
-    <div class="importGroup">
+    <div class="importGroup" style="display: none">
         <img src="../icons/options/msauth.svg" height="48px" width="48px"> Microsoft Authenticator
     </div>
-    <div class="importGroup">
+    <div class="importGroup" style="display: none">
         <img src="../icons/options/lastpassauth.svg" height="48px" width="48px"> LastPass Authenticator
     </div>
     <div class="importGroup" id="authenticator">
         <img src="../icons/options/authext.svg" height="48px" width="48px"> Authenticator Extension
     </div>
     <span class="caption"><strong>WARNING</strong><br>You must decrypt it at the first place and provide file location.</span>
-    <input id="file" type="file" accept="application/json" style="display: none;">
+    <input id="jsonFile" type="file" accept="application/json" style="display: none;">
     <div class="warning-cover"></div>
     <div class="warningMsg">
         <img class="warningIcon" src="../icons/options/Warning.svg"/>
@@ -45,6 +45,12 @@
         <div class="errorMsgTxt"><span class="errorMsgContent">Error</span><button class="errorMsgBtn">Retry</button></div>
         <img class="errorMsgCloseBtn" src="../icons/options/Close-white.svg">
     </div>
+    <script src="../scripts/encryption/base-64.js"></script>
+    <script src="../scripts/encryption/keychain.js"></script>
+    <script src="../scripts/encryption/MessageEncryption.js"></script>
+    <script src="../scripts/accountInfo.js"></script>
+    <script src="../scripts/dependency/jsondiffpatch.umd.slim.js"></script>
+    <script src="../scripts/sync/diffPatcher.js"></script>
     <script src="../scripts/import.js"></script>
 </body>
 

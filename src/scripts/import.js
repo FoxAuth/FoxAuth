@@ -2,8 +2,8 @@
 (function () {
     const fromFoxAuth = document.getElementById('foxauth');
     const fromAuthenticator = document.getElementById('authenticator');
-    const fileInput = document.getElementById('file');
-    const overwriteKeys = ['accountInfos', 'isEncrypted', 'passwordInfo', 'settings'];
+    const jsonFileInput = document.getElementById('jsonFile');
+    const overwriteKeys = ['accountInfos', 'isEncrypted', 'passwordInfo', 'settings', 'dropbox'];
     const warningMsgDiv = document.querySelector('.warningMsg');
     const warningMsgContent = warningMsgDiv.querySelector('.warningMsgContent');
     const warningConfirmBtn = warningMsgDiv.querySelector('.warningMsgBtn');
@@ -65,13 +65,13 @@
 
     fromFoxAuth.addEventListener('click', (event) => {
         importFrom = 'foxauth';
-        fileInput.click();
+        jsonFileInput.click();
     });
     fromAuthenticator.addEventListener('click', (event) => {
         importFrom = 'authenticator';
-        fileInput.click();
+        jsonFileInput.click();
     });
-    fileInput.addEventListener('change', async (event) => {
+    jsonFileInput.addEventListener('change', async (event) => {
         const { files } = event.target;
         if (files.length === 0) return;
         const file = files[0];
@@ -93,34 +93,143 @@
                 return data;
         }
     }
+    
+    function base64Decode(str, encoding = 'utf-8') {
+        var bytes = base64js.toByteArray(str);
+        return new(TextDecoder || TextDecoderLite)(encoding).decode(bytes);
+    }
+    function base64Encode(str, encoding = 'utf-8') {
+        var bytes = new (TextEncoder || TextEncoderLite)(encoding).encode(str);        
+        return base64js.fromByteArray(bytes);
+    }
+    // accountInfo
     async function doImport(importData) {
         try {
-            const otherLocalData = await browser.storage.local.get({
-                accountInfos: [],
-                isEncrypted: false,
-                passwordInfo: {},
-                settings: {}
-            });
-            if (Boolean(otherLocalData.isEncrypted) !== Boolean(importData.isEncrypted)) {
-                // different encryption setting
-                throw new Error('Import error due to different encryption setting');
+            const localData = await getLocalData();
+            const importIsEncrypted = Boolean(importData.isEncrypted);
+            const localIsEncrypted = Boolean(localData.isEncrypted);
+
+            if (importIsEncrypted !== localIsEncrypted) {
+                // local encrypted
+                if (localIsEncrypted) {
+                    const { passwordInfo, settings } = localData;
+                    importData.accountInfos = await encryptAccountInfos(
+                        importData.accountInfos,
+                        {
+                            encryptPassword: passwordInfo.encryptPassword,
+                            encryptIV: passwordInfo.encryptIV,
+                        }
+                    );
+                    importData.isEncrypted = true;
+                    importData.passwordInfo = {
+                        encryptPassword: base64Encode(passwordInfo.encryptPassword),
+                        encryptIV: passwordInfo.encryptIV
+                    };
+                    if (importData.settings) {
+                        importData.settings.passwordStorage = settings.passwordStorage;
+                    } else {
+                        importData.settings = { passwordStorage: settings.passwordStorage };
+                    }
+                } else {
+                // import encrypted
+                    const { passwordInfo = {}, settings = {} } = importData;
+                    if (!passwordInfo || !passwordInfo.encryptIV) {
+                        throw new Error('Import data lost important settings.(encryptIV)');
+                    } else if (!passwordInfo.encryptPassword) {
+                        await savePasswordInfo({
+                            isEncrypted: false,
+                            nextEncryptIV: passwordInfo.encryptIV,
+                            nextStorageArea: (settings && settings.passwordStorage) ? settings.passwordStorage : 'storage.local'
+                        });
+                        throw new Error('Password not found. Please enter it in sync page');
+                    }
+                    localData.accountInfos = await encryptAccountInfos(
+                        localData.accountInfos,
+                        {
+                            encryptPassword: base64Decode(passwordInfo.encryptPassword),
+                            encryptIV: passwordInfo.encryptIV,
+                        }
+                    );
+                }
+            } else if (importIsEncrypted) {
+            // both encrypted
+                const delta = diffPatcher.diff(localData.passwordInfo, importData.passwordInfo);
+                if (delta.encryptIV) throw new Error('JSON encrypted or corrupt.(different encryptIV)');
+                if (delta.password) throw new Error('JSON encrypted or corrupt.(different password)');
             }
-            const mergedResult = {
-                ...otherLocalData,
-                ...importData
-            };
-            const localVersoinData = await browser.storage.local.get({
+
+            const mergedResult = mergeLocalAndImport(localData, importData);
+            const { accountInfoVersion } = await browser.storage.local.get({
                 accountInfoVersion: 1
             });
-            await browser.storage.local.set({
-                accountInfoVersion: localVersoinData.accountInfoVersion + 1,
-                ...mergedResult,
-            });
+            await Promise.all([
+                browser.storage.local.set({
+                    accountInfoVersion: accountInfoVersion + 1,
+                    ...mergedResult,
+                }),
+                savePasswordInfo({
+                    nextStorageArea: mergedResult.settings.passwordStorage || 'storage.local',
+                    isEncrypted: Boolean(importData.isEncrypted),
+                    nextEncryptIV: (importData.passwordInfo && importData.passwordInfo.encryptIV) || null,
+                    nextPassword: base64Decode((importData.passwordInfo && importData.passwordInfo.encryptPassword) || '')
+                })
+            ]);
         } catch (error) {
             console.log(error);
             showErrorMessage({
-                message: error.message
+                message: error.message || 'JSON encrypted or corrupt.(unknown error)'
             });
+        }
+    }
+    async function getLocalData() {
+        const [
+            localPasswordInfo,
+            localInfos,
+            services,
+        ] = await Promise.all([
+            getPasswordInfo(),
+            getInfosFromLocal(),
+            browser.storage.local.get({
+                dropbox: {}
+            })
+        ]);
+        return {
+            accountInfos: localInfos,
+            isEncrypted: localPasswordInfo.isEncrypted,
+            settings: {
+                passwordStorage: localPasswordInfo.storageArea
+            },
+            passwordInfo: {
+                encryptIV: localPasswordInfo.encryptIV ? Array.from(localPasswordInfo.encryptIV) : null,
+                encryptPassword: localPasswordInfo.password,
+            },
+            dropbox: services.dropbox || {}
+        }
+    }
+    function mergeLocalAndImport(localData, importData) {
+        const accountInfos = (importData.accountInfos || []).reduce((result, info) => {
+            const index = findIndexOfSameAccountInfo(result, info);
+            if (index > -1) {
+                result[index] = {
+                    ...(result[index]),
+                    ...info
+                };
+            } else {
+                result.push(info);
+            }
+            return result;
+        }, [...(localData.accountInfos || [])]);
+        return {
+            accountInfos,
+            isEncrypted: importData.isEncrypted,
+            settings: {
+                ...(localData.settings || {}),
+                ...(importData.settings || {})
+            },
+            dropbox: {
+                ...(localData.dropbox || {}),
+                ...(importData.dropbox || {})
+            }
         }
     }
     function readJSON(file) {
