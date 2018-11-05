@@ -129,19 +129,23 @@ async function getPasswordInfo(storageArea) {
         isEncrypted: false,
     });
     const isEncrypted = data.isEncrypted || false;
-    let passwordInfo = {};
+    let { passwordInfo } = await browser.storage.local.get({
+        passwordInfo: {
+            encryptIV: null
+        }
+    });
     let password = '';
     let encryptIV = null;
     if (storageArea === 'storage.local') {
         const data = await browser.storage.local.get({
             passwordInfo: {
                 encryptPassword: '',
-                encryptIV: null
             }
         });
-        passwordInfo = data.passwordInfo || {};
+        passwordInfo.encryptPassword = data.passwordInfo.encryptPassword || '';
     } else {
-        passwordInfo = jsonParse(sessionStorage.getItem('passwordInfo')) || {};
+        const data = jsonParse(sessionStorage.getItem('passwordInfo')) || {};
+        passwordInfo.encryptPassword = data.encryptPassword || '';
     }
     password = base64Decode(passwordInfo.encryptPassword || '');
     encryptIV = passwordInfo.encryptIV || null;
@@ -182,22 +186,25 @@ async function savePasswordInfo({
         },
     });
 
-    const data = {
-        encryptIV: prevPasswordInfo.encryptIV,
-        password: prevPasswordInfo.password
-    };
+    const data = {};
+    if (nextPassword) {
+        data.encryptPassword = base64Encode(nextPassword || '');
+    }
     if (nextEncryptIV && nextEncryptIV.length > 0) {
         nextEncryptIV = Array.from(nextEncryptIV);
         data.encryptIV = nextEncryptIV;
-    }
-    if (nextPassword) {
-        data.encryptPassword = base64Encode(nextPassword || '');
     }
     if (nextStorageArea === 'storage.local') {
         await browser.storage.local.set({
             passwordInfo: data
         });
     } else {
+        await browser.storage.local.set({
+            passwordInfo: {
+                encryptIV: data.encryptIV
+            }
+        });
+        delete data.encryptIV;
         sessionStorage.setItem('passwordInfo', JSON.stringify(data));
     }
 }
