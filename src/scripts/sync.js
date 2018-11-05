@@ -404,6 +404,14 @@ async function processDifferentEncryption(remoteData) {
         encryptPassword: passwordInfo.password,
         encryptIV: passwordInfo.encryptIV
       });
+      remoteData.settings = {
+        ...remoteData.settings,
+        storageArea: passwordInfo.storageArea
+      };
+      remoteData.isEncrypted = true;
+      remoteData.passwordInfo = {
+        encryptIV: passwordInfo.encryptIV
+      };
     } else if (!passwordInfo.encryptIV) {
       throw new Error('Important encryption settings lost in your local data. (encryptIV not found)');
     } else {
@@ -439,8 +447,8 @@ async function syncWithDropbox() {
       }, {
           remoteData, remoteVersion
       });
-      console.log('sync page end sync');
     }
+    console.log('sync page end sync');
   } catch (error) {
     showErrorMessage({
       message: error.message,

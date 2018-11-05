@@ -324,14 +324,14 @@
                 console.log('the only difference is password, do nothing');
                 return;
             }
-            // we need both same encyrptPassword and encryptIV to encrypt/decrypt data
+            // we need both same encryptIV to encrypt/decrypt data
             if (
+                localData.isEncrypted &&
+                remoteData.isEncrypted &&
                 delta.passwordInfo &&
-                delta.passwordInfo.encryptIV &&
-                localData.passwordInfo &&
-                localData.passwordInfo.encryptIV
+                delta.passwordInfo.encryptIV
             ) {
-                throw new Error('Please decrypt your local data first.(different encryptIV)');
+                throw new Error('Please decrypt your local/remote data first (different encrypt public key).');
             }
             console.log('find difference, apply patch');
             // local overwrite remote

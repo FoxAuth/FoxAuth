@@ -1,9 +1,15 @@
 # Changelog
 All changes per revisioning to this project will be documented in this file. All dates used in this file are recorded as UTC+8.
 
+## v 1.2.2 - Nov 5th 2018
+### Fixed 🔨
+- sync hotfix.
+### Changes 📝
+- new icon for Secret Tokens page.
+
 ## v 1.2.1 - Nov 5th 2018
 ### Fixed 🔨
-- bugs when editting info on Secret Tokens page.
+- bugs when editing info on Secret Tokens page.
 
 ## v 1.2.0 - Nov 5th 2018
 ### New 💡
