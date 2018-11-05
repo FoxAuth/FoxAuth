@@ -1,6 +1,15 @@
 # Changelog
 All changes per revisioning to this project will be documented in this file. All dates used in this file are recorded as UTC+8.
 
+## v 1.2.5 - Nov 6th 2018
+### New 💡
+- message bar for account added.
+### Changes 📝
+- import and other logic changes.
+### Known issues 🐛
+1. FxA sync not working yet.
+1. autofill may not work on some sites.
+
 ## v 1.2.4 - Nov 5th 2018
 ### Fixed 🔨
 1. search result won't update on search string cleared.
@@ -36,6 +45,8 @@ All changes per revisioning to this project will be documented in this file. All
 1. FxA sync not working yet.
 1. autofill may not work on some sites.
 
+---
+
 ## v 1.1.2 - Nov 3rd 2018
 ### New 💡
 - import database manually.
@@ -62,6 +73,8 @@ All changes per revisioning to this project will be documented in this file. All
 1. FxA sync not working yet.
 1. Dropbox sync won't process deletion.
 1. Autofill may not work on some sites.
+
+---
 
 ## v 1.0.4 - Oct 31st 2018
 ### New 💡
