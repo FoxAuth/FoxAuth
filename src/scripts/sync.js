@@ -360,7 +360,13 @@ async function setForgetBtnStatus() {
   }
 }
 async function setDecryptBtnStatus() {
-  if (passwordInput.value && reconfirmInput.value && passwordInput.value == reconfirmInput.value) {
+  const passwordInfo = await getPasswordInfo();
+  if (
+    passwordInfo.isEncrypted &&
+    passwordInput.value &&
+    reconfirmInput.value &&
+    passwordInput.value == reconfirmInput.value
+  ) {
     decryptBtn.removeAttribute('disabled');
   } else {
     decryptBtn.setAttribute('disabled', 'true');

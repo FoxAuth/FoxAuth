@@ -1,6 +1,10 @@
 # Changelog
 All changes per revisioning to this project will be documented in this file. All dates used in this file are recorded as UTC+8.
 
+## v 1.2.1 - Nov 5th 2018
+### Fixed 🔨
+- bugs when editting info on Secret Tokens page.
+
 ## v 1.2.0 - Nov 5th 2018
 ### New 💡
 - clear search button.
@@ -12,7 +16,7 @@ All changes per revisioning to this project will be documented in this file. All
 1. autofill may fail on CloudFlare.
 1. sync will now process deletion.
 ### Known issues 🐛
-1. FxA sycn not working yet.
+1. FxA sync not working yet.
 1. autofill may not work on some sites.
 
 ## v 1.1.2 - Nov 3rd 2018
@@ -20,9 +24,13 @@ All changes per revisioning to this project will be documented in this file. All
 - import database manually.
   - import from any other authenticators is not yet supported.
 ### Known issues 🐛
-1. FxA sycn not working yet.
+1. FxA sync not working yet.
 1. Dropbox sync won't process deletion.
 1. autofill may not work on some sites.
+
+## v 1.1.1 - Nov 2nd 2018
+### Fixed 🔨
+- autofill hotfix
 
 ## v 1.1.0 - Nov 1st 2018
 ### New 💡
@@ -34,7 +42,7 @@ All changes per revisioning to this project will be documented in this file. All
 1. autofill failure in certain cases.
 ### Known issues 🐛
 1. No mean to import database manually yet.
-1. FxA sycn not working yet.
+1. FxA sync not working yet.
 1. Dropbox sync won't process deletion.
 1. Autofill may not work on some sites.
 
@@ -51,7 +59,7 @@ All changes per revisioning to this project will be documented in this file. All
 1. autofill failure in Container tabs.
 ### Known issues 🐛
 1. No mean to import/export database manually yet.
-1. FxA sycn not working yet.
+1. FxA sync not working yet.
 1. Dropbox sync won't process deletion.
 1. Autofill may not work on some sites.
 
@@ -66,7 +74,7 @@ All changes per revisioning to this project will be documented in this file. All
 ### Known issues 🐛
 1. No mean to decrypt database completely yet.
 1. No mean to import/export database manually yet.
-1. FxA sycn not working yet.
+1. FxA sync not working yet.
 1. Dropbox sync won't process deletion.
 1. Autofill may not work on some sites.
 
@@ -78,7 +86,7 @@ All changes per revisioning to this project will be documented in this file. All
 ### Known issues 🐛
 1. No mean to decrypt database completely yet.
 1. No mean to import/export database manually yet.
-1. FxA sycn not working yet.
+1. FxA sync not working yet.
 1. Dropbox sync won't process deletion.
 1. Autofill may not work on some sites.
 
@@ -88,7 +96,7 @@ All changes per revisioning to this project will be documented in this file. All
 ### Known issues 🐛
 1. No mean to decrypt database completely yet.
 1. No mean to import/export database manually yet.
-1. FxA sycn not working yet.
+1. FxA sync not working yet.
 1. Dropbox sync won't process deletion.
 1. Autofill may not work on some sites.
 
@@ -98,6 +106,6 @@ All changes per revisioning to this project will be documented in this file. All
 ### Known issues 🐛
 1. No mean to decrypt database completely yet.
 1. No mean to import/export database manually yet.
-1. FxA sycn not working yet.
+1. FxA sync not working yet.
 1. Dropbox sync won't process deletion.
 1. Autofill may not work on some sites.

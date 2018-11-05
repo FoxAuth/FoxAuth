@@ -8,6 +8,23 @@
   const formBox = document.getElementById('otpFormBox');
   const warningCover = document.querySelector('.warning-cover');
   const defaultAccountInfoForm = formBox.children[0];
+  const debounce = (func, wait) => {
+    let timer = null;
+    return function () {
+      if (timer) {
+        clearTimeout(timer);
+      }
+      timer = setTimeout(() => {
+        func();
+        timer = null;
+      }, wait);
+    }
+  };
+  const applyBatchUpdate = debounce(() => {
+    // save to storage
+    updateInfos(cachedAccountInfos, accountInfoUpdateRecord);
+    accountInfoUpdateRecord = [];
+  }, 100);
   let confirmFun = function () { };
   let warningCloseFun = function () { };
   let cachedAccountInfos = [];
@@ -46,6 +63,7 @@
     warningMsgCloseBtn.addEventListener('click', warningCloseFun);
 
   });
+
   const valueChangeHandler = (event) => {
     const { target } = event;
     if (
@@ -64,15 +82,7 @@
           [target.name]: value
         }
       });
-      debounce(() => {
-        const { form } = target;
-        if (!form) {
-          return;
-        }
-        // save to storage
-        updateInfos(cachedAccountInfos, accountInfoUpdateRecord);
-        accountInfoUpdateRecord = [];
-      }, 100);
+      applyBatchUpdate();
     }
   };
   formBox.addEventListener('input', valueChangeHandler);
@@ -195,18 +205,6 @@
     infos.splice(index, 1);
     saveAccountInfos(infos);
   }
-  const debounce = (func, wait) => {
-    let timer = null;
-    return function () {
-      if (timer) {
-        clearTimeout(timer);
-      }
-      timer = setTimeout(() => {
-        func();
-        timer = null;
-      }, wait);
-    }
-  };
   function updateInfos(infos, records) {
     records.forEach((record) => {
       if (record.index >= 0) {
