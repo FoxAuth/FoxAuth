@@ -1,9 +1,18 @@
 # Changelog
 All changes per revisioning to this project will be documented in this file. All dates used in this file are recorded as UTC+8.
 
+## v 1.2.3 - Nov 5th 2018
+### Fixed 🔨
+1. search result won't update on search string cleared.
+1. icon for Backup & Sync page.
+1. decryption error when store password for only one browser session.
+### Known issues 🐛
+1. FxA sync not working yet.
+1. autofill may not work on some sites.
+
 ## v 1.2.2 - Nov 5th 2018
 ### Fixed 🔨
-- sync hotfix.
+- sync hot-fix.
 ### Changes 📝
 - new icon for Secret Tokens page.
 
