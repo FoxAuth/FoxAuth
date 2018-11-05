@@ -7,10 +7,12 @@
     <link rel="icon" href="../icons/icon.svg">
     <title>New Credential</title>
     <link href="../css/main.css" rel="stylesheet">
+    <link href="../css/options.css" rel="stylesheet">
     <link href="../css/otp.css" rel="stylesheet">
+    <link href="../css/otpinfo.css" rel="stylesheet">
 </head>
 
-<body>
+<body style="padding-top: 0;">
     <div class="otpinfo-head">
         <img class="otpLogo" src="../icons/icon.svg" height="32px" width="32px">
         <span id="btnWrapper">
@@ -82,6 +84,9 @@
                 </p>
             </fieldset>
         </form>
+    </div>
+    <div class="genericMsg" id="genericMsg">
+        <span class="genericMsgTxt"><img class="genericIcon" src="../icons/options/Identity Icon Hover.svg"><span class="genericMsgContent">You have to disconnect current service before connecting to another.</span><img class="genericMsgCloseBtn" src="../icons/options/Close.svg"></span>
     </div>
     <script src="../scripts/formAction.js"></script>
     <script src="../scripts/lockAsyncFunc.js"></script>

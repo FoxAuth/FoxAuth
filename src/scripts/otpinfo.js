@@ -3,6 +3,8 @@ const otpFormStack = [];
 const otpBasicForm = document.querySelector('.newOTP').cloneNode(true);
 const formBox = document.getElementById('otpFormBox');
 const submitAll = document.getElementById('submitAll');
+const genericMsgDiv = document.getElementById('genericMsg');
+const genericMsgContent = genericMsgDiv.querySelector('.genericMsgContent');
 
 //create new OTP form
 document.querySelector('#otpNewBtn').addEventListener("click", () => {
@@ -66,6 +68,7 @@ const submitInfos = lockAsyncFunc(async (updateInfos) => {
     });
     await saveAccountInfos(accountInfos);
     htmlBrandNewChildren(formBox, otpBasicForm.cloneNode(true));
+    popupGenericMsg('Accounts added');
 });
 
 init();
@@ -130,4 +133,15 @@ function setFormSecureInputStatus(formList, status) {
             form.querySelector('button').removeAttribute('disabled');
         }
     }
+}
+function popupGenericMsg(msg) {
+    genericMsgContent.textContent = msg;
+    genericMsgDiv.style.display = 'block';
+    genericMsgDiv.style.opacity = 1;
+    setTimeout(() => {
+        genericMsgDiv.style.opacity = 0;
+        setTimeout(() => {
+            genericMsgDiv.style.display = 'none';
+        }, 300);
+    }, 3000);
 }
