@@ -177,8 +177,10 @@
             return data;
         }
         async getLocalData() {
-            const localPasswordInfo = await getPasswordInfo();
-            const localInfos = await getInfosFromLocal();
+            const [
+                localPasswordInfo,
+                localInfos
+            ] = await Promise.all([getPasswordInfo(), getInfosFromLocal()]);
             return {
                 accountInfos: localInfos,
                 isEncrypted: localPasswordInfo.isEncrypted,

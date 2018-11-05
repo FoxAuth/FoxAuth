@@ -390,9 +390,7 @@ async function processDifferentEncryption(remoteData) {
         nextEncryptIV: remoteData.passwordInfo.encryptIV,
       });
       // TODO: highlight password input
-      showWarningMessage({
-        message: 'Please input your encrypt password to decrypt data'
-      });
+      throw new Error('Please input your encrypt password to decrypt data');
     } else {
       throw new Error('Important encryption settings lost in your remote data. (encryptIV not found)');
     }
