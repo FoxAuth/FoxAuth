@@ -1,6 +1,20 @@
 # Changelog
 All changes per revisioning to this project will be documented in this file. All dates used in this file are recorded as UTC+8.
 
+## v 1.2.0 - Nov 4th 2018
+### New 💡
+- clear search button.
+### Changes 📝
+1. min_ver raised to 60+.
+1. sync will work in diff mode.
+1. other minor changes.
+### Fixed 🔨
+1. auofill may fail on CloudFlare.
+1. sync will now process deletion.
+### Known issues 🐛
+1. FxA sycn not working yet.
+1. autofill may not work on some sites.
+
 ## v 1.1.2 - Nov 3rd 2018
 ### New 💡
 - import database manually.

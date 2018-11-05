@@ -42,7 +42,7 @@ FoxAuth is an [TOTP](https://wikipedia.org/wiki/Time-based_One-time_Password_alg
 - __QR code__ / manually add account info
 - __Container tab__ support to autofill multiple same-domain accounts
 - __import / export__
-  - import from other authenticators
+  - import from other authenticators (in progress)
     - [ ] [Authy](https://authy.com/)
     - [ ] [Google Authenticator](https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2)
     - [ ] [Microsoft Authenticator](https://play.google.com/store/apps/details?id=com.azure.authenticator)
