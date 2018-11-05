@@ -1,7 +1,7 @@
 # Changelog
 All changes per revisioning to this project will be documented in this file. All dates used in this file are recorded as UTC+8.
 
-## v 1.2.3 - Nov 5th 2018
+## v 1.2.4 - Nov 5th 2018
 ### Fixed 🔨
 1. search result won't update on search string cleared.
 1. icon for Backup & Sync page.
@@ -9,6 +9,8 @@ All changes per revisioning to this project will be documented in this file. All
 ### Known issues 🐛
 1. FxA sync not working yet.
 1. autofill may not work on some sites.
+
+>1.2.3 is skipped due to release accident
 
 ## v 1.2.2 - Nov 5th 2018
 ### Fixed 🔨
