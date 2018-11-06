@@ -51,21 +51,8 @@ window.addEventListener('storage', () => {
     checkPasswordInfo();
 });
 const submitInfos = lockAsyncFunc(async (updateInfos) => {
-    const accountInfos = await getAccountInfos();
-    updateInfos.forEach((info) => {
-        const index = findIndexOfSameAccountInfo(accountInfos, info);
-        if (index >= 0) {
-            accountInfos.splice(index, 1, {
-                ...accountInfos[index],
-                ...info
-            });
-        } else {
-            accountInfos.push({
-                ...getDefaultAccountInfo(),
-                ...info
-            });
-        }
-    });
+    let accountInfos = await getAccountInfos();
+    accountInfos = mergeAccountInfos(accountInfos, updateInfos);
     await saveAccountInfos(accountInfos);
     htmlBrandNewChildren(formBox, otpBasicForm.cloneNode(true));
     popupGenericMsg('Accounts added');

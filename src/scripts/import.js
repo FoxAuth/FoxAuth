@@ -203,18 +203,7 @@
         }
     }
     function mergeLocalAndImport(localData, importData) {
-        const accountInfos = (importData.accountInfos || []).reduce((result, info) => {
-            const index = findIndexOfSameAccountInfo(result, info);
-            if (index > -1) {
-                result[index] = {
-                    ...(result[index]),
-                    ...info
-                };
-            } else {
-                result.push(info);
-            }
-            return result;
-        }, [...(localData.accountInfos || [])]);
+        const accountInfos = mergeAccountInfos(localData.accountInfos, importData.accountInfos);
         return {
             accountInfos,
             isEncrypted: importData.isEncrypted,

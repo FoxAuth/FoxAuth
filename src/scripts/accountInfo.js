@@ -216,3 +216,24 @@ function jsonParse(str) {
         return null;
     }
 }
+
+// merge right accountInfos to left
+function mergeAccountInfos(left, right) {
+    if (!Array.isArray(left)) left = [];
+    if (!Array.isArray(right)) right = [];
+    return [...right].reduce((result, info) => {
+        const index = findIndexOfSameAccountInfo(result, info);
+        if (index > -1) {
+            result[index] = {
+                ...(result[index]),
+                ...info
+            };
+        } else {
+            result.push({
+                ...(getDefaultAccountInfo()),
+                ...info
+            });
+        }
+        return result;
+    }, [...left]);
+}

@@ -7,6 +7,20 @@ async function doScanQR() {
             image.src = url
         });
     }
+    function transform(otpInfo) {
+        return {
+            containerAssign: otpInfo.container || '',
+            localIssuer: otpInfo.issuer || '',
+            localAccountName: otpInfo.account || '',
+            localSecretToken: otpInfo.key || '',
+            localRecovery: '',
+            localOTPType: otpInfo.type === 'totp' ? 'Time based' : 'Counter based',
+            localOTPAlgorithm: 'SHA-1',
+            localOTPPeriod: '30',
+            localOTPDigits: String(otpInfo.digits) || '6'
+        }
+    }
+
     const activeTabs = await browser.tabs.query({
         active: true
     })
@@ -16,10 +30,10 @@ async function doScanQR() {
     const image = await getImage(dataURL)
     const result = await QrScanner.scanImage(image)
     // validate and parse URL
-    const otpInfo = urlOtpauth.parse(result)
+    let otpInfo = urlOtpauth.parse(result)
     otpInfo.container = activeTab.cookieStoreId === 'firefox-default' ? '' : activeTab.cookieStoreId
-    const params = new URLSearchParams(otpInfo)
-    browser.tabs.create({
-        url: `/options/otpinfo.html?${params.toString()}`
-    })
+    otpInfo = transform(otpInfo)
+    let infos = await getAccountInfos();
+    infos = mergeAccountInfos(infos, [otpInfo]);
+    await saveAccountInfos(infos);
 }
