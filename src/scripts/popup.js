@@ -64,7 +64,7 @@ const isIssuerMatchedUrl = function (issuer, url) {
       return false;
     }
   } else {
-    if (hostnameReversedArray.findIndex(e => e === issuer) >= 0) {
+    if (hostnameReversedArray.findIndex(e => e === issuer.toLowerCase()) >= 0) {
       return true;
     } else {
       return false;
