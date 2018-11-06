@@ -310,9 +310,18 @@
             remoteData,
             remoteVersion
         }) {
-            const delta = localVersion >= remoteVersion ?
-                diffPatcher.diff(remoteData, localData) :
-                diffPatcher.diff(localData, remoteData);
+            let delta = null;
+            if (localVersion > remoteVersion) {
+                delta = diffPatcher.diff(remoteData, localData);
+            } else if (localVersion < remoteVersion) {
+                delta = diffPatcher.diff(localData, remoteData);
+            } else {
+                if (localData.isEncrypted) {
+                    delta = diffPatcher.diff(remoteData, localData);
+                } else {
+                    delta = diffPatcher.diff(localData, remoteData);
+                }
+            }
             if (!delta) {
                 console.log('no difference, do nothing');
                 return;
@@ -366,7 +375,8 @@
                     // do not patch password and encryptIV
                     promiseTwo = savePasswordInfo({
                         isEncrypted: remoteData.isEncrypted,
-                        nextStorageArea: remoteData.settings.passwordStorage
+                        nextStorageArea: (remoteData.settings && remoteData.settings.passwordStorage) || 'storage.local',
+                        nextEncryptIV: (remoteData.passwordInfo && remoteData.passwordInfo.encryptIV) || null
                     });
                 }
                 const promiseOne = browser.storage.local.set(needToSave);
