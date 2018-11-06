@@ -80,7 +80,7 @@ We use encryption code from [Firefox Send](github.com/mozilla/send) in WebCrypto
 
 ## Third-party Branding
 
-<a href="https://www.appinn.com/foxauth/"><img src="https://img3.appinn.com/images/appinn-small.png" alt="appinn" style="width:96px"></a>
+<a href="https://www.appinn.com/foxauth/"><img src="https://img3.appinn.com/images/appinn-small.png" alt="appinn" width="96px" ></a>
 
 ## License
 
