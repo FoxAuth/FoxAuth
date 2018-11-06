@@ -78,6 +78,10 @@ Here is how this project gets revisioning:
 
 We use encryption code from [Firefox Send](github.com/mozilla/send) in WebCrypto API. Welcome as we are to any security review, it shall be more efficiently to perform it at that side.
 
+## Third-party Branding
+
+<a href="https://www.appinn.com/foxauth/"><img src="https://img3.appinn.com/images/appinn-small.png" alt="appinn" style="width:96px"></a>
+
 ## License
 
 FoxAuth is licensed under __GNU General Public License 3.0__
