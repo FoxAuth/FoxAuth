@@ -98,10 +98,6 @@
         var bytes = base64js.toByteArray(str);
         return new(TextDecoder || TextDecoderLite)(encoding).decode(bytes);
     }
-    function base64Encode(str, encoding = 'utf-8') {
-        var bytes = new (TextEncoder || TextEncoderLite)(encoding).encode(str);        
-        return base64js.fromByteArray(bytes);
-    }
     // accountInfo
     async function doImport(importData) {
         try {
@@ -122,7 +118,7 @@
                     );
                     importData.isEncrypted = true;
                     importData.passwordInfo = {
-                        encryptPassword: base64Encode(passwordInfo.encryptPassword),
+                        encryptPassword: passwordInfo.encryptPassword,
                         encryptIV: passwordInfo.encryptIV
                     };
                     if (importData.settings) {
@@ -146,7 +142,7 @@
                     localData.accountInfos = await encryptAccountInfos(
                         localData.accountInfos,
                         {
-                            encryptPassword: base64Decode(passwordInfo.encryptPassword),
+                            encryptPassword: passwordInfo.encryptPassword,
                             encryptIV: passwordInfo.encryptIV,
                         }
                     );
@@ -171,7 +167,7 @@
                     nextStorageArea: mergedResult.settings.passwordStorage || 'storage.local',
                     isEncrypted: Boolean(importData.isEncrypted),
                     nextEncryptIV: (importData.passwordInfo && importData.passwordInfo.encryptIV) || null,
-                    nextPassword: base64Decode((importData.passwordInfo && importData.passwordInfo.encryptPassword) || '')
+                    nextPassword: (importData.passwordInfo && importData.passwordInfo.encryptPassword) || ''
                 })
             ]);
         } catch (error) {
@@ -253,6 +249,11 @@
         const keys = Object.keys(data);
         return keys.reduce((result, key) => {
             if (overwriteKeys.indexOf(key) >= 0) {
+                if (key === 'passwordInfo') {
+                    if (data[key] && data[key].encryptPassword) {
+                        data[key].encryptPassword = base64Decode(data[key].encryptPassword);
+                    }
+                }
                 result[key] = data[key];
             }
             return result;
