@@ -345,43 +345,68 @@
                 throw new Error('Please decrypt your local/remote data first (different encrypt public key).');
             }
             console.log('find difference, apply patch');
+            const localOverwriteRemote = () => this.localOverwriteRemote({
+                localData,
+                localVersion
+            });
+            const remoteOverwriteLocal = () => this.remoteOverwriteLocal({
+                remoteData, remoteVersion, delta
+            });
             // local overwrite remote
-            if (localVersion >= remoteVersion) {
-                // do not upload local password
-                if (localData.passwordInfo && localData.passwordInfo.password) {
-                    delete localData.passwordInfo.password;
-                }
-                await this.fileUpload({
-                    path: this.config.accountInfoPath,
-                    contents: localData
-                });
-                await this.fileUpload({
-                    path: this.config.accountInfoVersionPath,
-                    contents: localVersion
-                });
-            } else {
+            if (localVersion > remoteVersion) {
+                await localOverwriteRemote();
+            } else if (localVersion < remoteVersion) {
             // remote overwrite local
-                const needToSave = {
-                    accountInfoVersion: remoteVersion
-                };
-                if (delta.accountInfos) {
-                    needToSave.accountInfos = remoteData.accountInfos;
+                await remoteOverwriteLocal();
+            } else {
+                if (localData.isEncrypted) {
+                    await localOverwriteRemote();
+                } else {
+                    await remoteOverwriteLocal();
                 }
-                let promiseTwo = Promise.resolve();
-                if (
-                    delta.isEncrypted ||
-                    (delta.settings && delta.settings.passwordStorage)
-                ) {
-                    // do not patch password and encryptIV
-                    promiseTwo = savePasswordInfo({
-                        isEncrypted: remoteData.isEncrypted,
-                        nextStorageArea: (remoteData.settings && remoteData.settings.passwordStorage) || 'storage.local',
-                        nextEncryptIV: (remoteData.passwordInfo && remoteData.passwordInfo.encryptIV) || null
-                    });
-                }
-                const promiseOne = browser.storage.local.set(needToSave);
-                await Promise.all([promiseOne, promiseTwo]);
             }
+        }
+
+        async localOverwriteRemote({
+            localData, localVersion
+        }) {
+            // do not upload local password
+            if (localData.passwordInfo && localData.passwordInfo.password) {
+                delete localData.passwordInfo.password;
+            }
+            await this.fileUpload({
+                path: this.config.accountInfoPath,
+                contents: localData
+            });
+            await this.fileUpload({
+                path: this.config.accountInfoVersionPath,
+                contents: localVersion
+            });
+        }
+        async remoteOverwriteLocal({
+            remoteData, remoteVersion, delta
+        }) {
+            const needToSave = {
+                accountInfoVersion: remoteVersion
+            };
+            if (delta.accountInfos) {
+                needToSave.accountInfos = remoteData.accountInfos;
+            }
+            let promiseTwo = Promise.resolve();
+            if (
+                delta.isEncrypted ||
+                (delta.settings && delta.settings.passwordStorage) ||
+                (delta.passwordInfo && delta.passwordInfo.encryptIV)
+            ) {
+                // do not patch password and encryptIV
+                promiseTwo = savePasswordInfo({
+                    isEncrypted: remoteData.isEncrypted,
+                    nextStorageArea: (remoteData.settings && remoteData.settings.passwordStorage) || 'storage.local',
+                    nextEncryptIV: (remoteData.passwordInfo && remoteData.passwordInfo.encryptIV) || null
+                });
+            }
+            const promiseOne = browser.storage.local.set(needToSave);
+            await Promise.all([promiseOne, promiseTwo]);
         }
     }
     global.DropboxHelper = DropboxHelper;
