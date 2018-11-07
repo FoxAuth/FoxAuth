@@ -22,15 +22,22 @@ browser.contextMenus.create({
     }
 });
 
-browser.contextMenus.create({
-    id: "autfillOTP",
-    title: "Autofill OTP code",
-    contexts: ["editable"],
-    icons: {
-        "16": "../icons/foxauth16.png",
-        "32": "../icons/foxauth32.png"
+(async function () {
+    const obj = await browser.storage.local.get('settings');
+    const { settings } = obj;
+    if (settings && settings['disableContext']) {
+        return;
     }
-});
+    browser.contextMenus.create({
+        id: "autfillOTP",
+        title: "Autofill OTP code",
+        contexts: ["editable"],
+        icons: {
+            "16": "../icons/foxauth16.png",
+            "32": "../icons/foxauth32.png"
+        }
+    });
+})();
 
 /*
     The click event listener, where we perform the appropriate action given the
@@ -52,28 +59,29 @@ browser.contextMenus.onClicked.addListener(async (info, ignored) => {
     } else if (info.menuItemId === "autfillOTP") {
         const tabInfo = await browser.tabs.query({ active: true });
         browser.tabs.executeScript(
-          tabInfo[0].id,
-          {
-              code: `fillKeyToActiveEl()`,
-          }
+            tabInfo[0].id,
+            {
+                code: `fillKeyToActiveEl()`,
+            }
         )
     }
 });
 
 function decodeQr(dataURL, tab) {
     QrScanner.scanImage(dataURL)
-      .then(result => {
-        // validate and parse URL
-        const otpInfo = urlOtpauth.parse(result)
-        otpInfo.container = tab.cookieStoreId;
-        const params = new URLSearchParams(otpInfo)
-        browser.tabs.create({
-          url: `options/otpinfo.html?${params.toString()}`
+        .then(result => {
+            // validate and parse URL
+            const otpInfo = urlOtpauth.parse(result)
+            otpInfo.container = tab.cookieStoreId;
+            const params = new URLSearchParams(otpInfo)
+            browser.tabs.create({
+                url: `options/otpinfo.html?${params.toString()}`
+            })
         })
-      })
-      .catch(error => {
-        console.log(error || 'No QR code found.')
-      })}
+        .catch(error => {
+            console.log(error || 'No QR code found.')
+        })
+}
 
 function showErrorMsg(msg) {
     browser.notifications.create({
@@ -84,12 +92,12 @@ function showErrorMsg(msg) {
     });
 }
 var injectQr_1 = document.createElement('script')
-injectQr_1.onload = function() {
+injectQr_1.onload = function () {
     qrcode.callback = function (/*err,*/ result) {
         if (result === 'error decoding QR Code') {
             showErrorMsg('Qrcode decode error.')
         } else {
-            if(result.startsWith('otpauth://totp/' | 'otpauth://hotp/')) {
+            if (result.startsWith('otpauth://totp/' | 'otpauth://hotp/')) {
                 browser.tabs.create({
                     url: browser.runtime.getURL("options/otpinfo.html") + "?" + result
                 });

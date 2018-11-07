@@ -10,15 +10,36 @@ function saveSettings(obj) {
   });
 }
 
+function toggleContextMenu(isAble) {
+  if (isAble) {
+    browser.contextMenus.remove('autfillOTP');
+  } else {
+    browser.contextMenus.create({
+      id: "autfillOTP",
+      title: "Autofill OTP code",
+      contexts: ["editable"],
+      icons: {
+        "16": "../icons/foxauth16.png",
+        "32": "../icons/foxauth32.png"
+      }
+    });
+  }
+}
+
 document.querySelectorAll('.settings-checkbox').forEach(el => el.addEventListener('change', async e => {
   const settings = await getSettings();
   if (e.target.dataset.key) {
     saveSettings({
       ...settings,
       [e.target.dataset.key]: e.target.checked,
-    })
+    });
+    if (e.target.dataset.key === 'disableContext') {
+      toggleContextMenu(e.target.checked);
+    }
   }
 }));
+
+
 
 function checkAndroidBrowser() {
   const u = navigator.userAgent;
