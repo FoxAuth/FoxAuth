@@ -97,7 +97,7 @@ injectQr_1.onload = function () {
         if (result === 'error decoding QR Code') {
             showErrorMsg('Qrcode decode error.')
         } else {
-            if (result.startsWith('otpauth://totp/' | 'otpauth://hotp/')) {
+            if (result.startsWith('otpauth://totp/') || result.startsWith('otpauth://hotp/')) {
                 browser.tabs.create({
                     url: browser.runtime.getURL("options/otpinfo.html") + "?" + result
                 });
