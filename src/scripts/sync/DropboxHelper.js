@@ -183,7 +183,7 @@
             ] = await Promise.all([getPasswordInfo(), getInfosFromLocal()]);
             return {
                 accountInfos: localInfos,
-                isEncrypted: localPasswordInfo.isEncrypted,
+                isEncrypted: Boolean(localPasswordInfo.isEncrypted),
                 settings: {
                     passwordStorage: localPasswordInfo.storageArea
                 },
@@ -208,8 +208,14 @@
                     path: this.config.accountInfoPath
                 });
                 data = {
-                    ...defaultData,
-                    ...data
+                    accountInfos: Array.isArray(data.accountInfos) ? data.accountInfos : [],
+                    isEncrypted: Boolean(data.isEncrypted),
+                    passwordInfo: {
+                        encryptIV: (data.passwordInfo && data.passwordInfo.encryptIV) || null
+                    },
+                    settings: {
+                        passwordStorage: (data.settings && data.settings.passwordStorage) || "storage.local"
+                    },
                 };
                 return data;
             } catch (error) {
@@ -326,15 +332,6 @@
                 console.log('no difference, do nothing');
                 return;
             }
-            if (
-                Object.keys(delta).length === 1 &&
-                delta.passwordInfo &&
-                Object.keys(delta.passwordInfo).length === 1 &&
-                delta.passwordInfo.password
-            ) {
-                console.log('the only difference is password, do nothing');
-                return;
-            }
             // we need both same encryptIV to encrypt/decrypt data
             if (
                 localData.isEncrypted &&
@@ -370,10 +367,6 @@
         async localOverwriteRemote({
             localData, localVersion
         }) {
-            // do not upload local password
-            if (localData.passwordInfo && localData.passwordInfo.password) {
-                delete localData.passwordInfo.password;
-            }
             await this.fileUpload({
                 path: this.config.accountInfoPath,
                 contents: localData
@@ -401,8 +394,8 @@
                 // do not patch password and encryptIV
                 promiseTwo = savePasswordInfo({
                     isEncrypted: remoteData.isEncrypted,
-                    nextStorageArea: (remoteData.settings && remoteData.settings.passwordStorage) || 'storage.local',
-                    nextEncryptIV: (remoteData.passwordInfo && remoteData.passwordInfo.encryptIV) || null
+                    nextStorageArea: remoteData.settings.passwordStorage,
+                    nextEncryptIV: remoteData.passwordInfo.encryptIV
                 });
             }
             const promiseOne = browser.storage.local.set(needToSave);
