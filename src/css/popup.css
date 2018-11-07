@@ -31,7 +31,7 @@ input {
     border: 1px solid rgba(12, 12, 13, 0.3);
     border-radius: 2px;
     color: #0c0c0d;
-    width: 100%;
+    width: 75%;
 }
 
 input:hover {
@@ -45,30 +45,13 @@ input:active {
     box-shadow: 0 0 0 1px #0a84ff, 0 0 0 4px rgba(10, 132, 255, 0.3);
 }
 
-.popup-head-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 4px;
-    margin-bottom: 4px;
-    padding: 0 8px;
-}
-
 #popupSearch {
-    /* text-align: center; */
-    position: relative;
-    flex: 1 1 100px;
+    text-align: center;
+    margin-bottom: 4px;
 }
 
 input::selection {
     background: #0a84ff;
-}
-.popup-head-icon {
-    margin-left: 8px;
-    margin-right: 2px;
-}
-.popup-head-icon > img {
-    display: block;
 }
 
 body.scanning::after {
@@ -193,8 +176,12 @@ body.scanning::after {
 
 #popupClearSearch {
     opacity: 0.6;
-    position: absolute;
-    top: 8px;
-    right: 8px;
+    position: relative;
+    top: 4px;
+    right: 24px;
     cursor: pointer;
+}
+
+.popup-right > .popup-icon {
+    filter: url(/icons/filters.svg#fill);
 }
