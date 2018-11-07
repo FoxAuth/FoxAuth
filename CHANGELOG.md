@@ -1,6 +1,19 @@
 # Changelog
 All changes per revisioning to this project will be documented in this file. All dates used in this file are recorded as UTC+8.
 
+## v 1.2.7 -Nov 7th 2018
+### New 💡
+- camera access on Firefox Andoird.
+### Fixed 🔨
+1. checkboxes on general options page don't actually do anything.
+1. some unnecessary autofill.
+1. button for QR scanning on popup isn't working properly on Android.
+### Changes 📝
+- Container icons are now colorized on Firefox desktop.
+### Known issues 🐛
+1. FxA sync not working yet.
+1. autofill may not work on some sites.
+
 ## v 1.2.6 - Nov 6th 2018
 ### New 💡
 - button for control on popup autohide.
