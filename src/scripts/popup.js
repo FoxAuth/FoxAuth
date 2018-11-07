@@ -64,7 +64,7 @@ const isIssuerMatchedUrl = function (issuer, url) {
       return false;
     }
   } else {
-    if (hostnameReversedArray.findIndex(e => e === issuer) >= 0) {
+    if (hostnameReversedArray.findIndex(e => e === issuer.toLowerCase()) >= 0) {
       return true;
     } else {
       return false;
@@ -80,6 +80,12 @@ const isContainerMatched = function (account, tab) {
   }
   return false;
 }
+
+const isVisible = function (elem) {
+  return !!(elem.offsetWidth || elem.offsetHeight || elem.getClientRects().length);
+};
+const toggleAccountsLess = document.querySelector('.toggleAccounts[data-type=less]');
+const toggleAccountsMore = document.querySelector('.toggleAccounts[data-type=more]');
 const popupSearchInput = document.querySelector('#popupSearchInput');
 const otpContainer = new (ef.t`
 >div.container
@@ -91,6 +97,7 @@ const template_totp = ef.t`
 >div.column.col-12.mt-1.account-item
   #data-issuer = {{issuer}}
   #data-container-name = {{container}}
+  #data-flag = {{flag}}
   >div.card.popup-card
     >div.popup-header.popup-text
       >span.fl
@@ -147,7 +154,8 @@ function addOTP(issuer, containerObj = {}, key, expiry = 30, code_length = 6, op
       containerColor: containerObj.color,
       progress_max: expiry,
       progress: expiry - (Math.round(new Date().getTime() / 1000.0) % expiry),
-      index: option.index
+      index: option.index,
+      flag: option.flag,
     }
   })) - 1;
   if (otpKey !== 'ERROR') {
@@ -165,6 +173,23 @@ function clearOTP() {
   otpStoreInterval.empty()
 }
 
+const handleListItemFilter = function () {
+  const isMore = isVisible(toggleAccountsLess) || (!isVisible(toggleAccountsLess) && !isVisible(toggleAccountsMore));
+  const keyword = (popupSearchInput.value.trim() || '').toLowerCase();
+  const domList = document.querySelectorAll('.account-item');
+  [...domList].forEach(e => {
+    const data = e.dataset;
+    if (
+      [data.issuer, data.containerName].some(str => str.toLowerCase().indexOf(keyword) >= 0)
+      &&
+      (isMore || data.flag === 'matched')
+    ) {
+      e.style.display = 'block';
+    } else {
+      e.style.display = 'none';
+    }
+  })
+}
 
 function initSearch() {
   let timer = null;
@@ -177,21 +202,22 @@ function initSearch() {
       timer = null;
     }, wait);
   }
-  const handleSearch = function () {
-    const keyword = (popupSearchInput.value.trim() || '').toLowerCase();
-    const domList = document.querySelectorAll('.account-item');
-    [...domList].forEach(e => {
-      const data = e.dataset;
-      if ([data.issuer, data.containerName].some(str => str.toLowerCase().indexOf(keyword) >= 0)) {
-        e.style.display = 'block';
-      } else {
-        e.style.display = 'none';
-      }
-    })
-  }
   popupSearchInput.addEventListener('input', e => {
-    debounce(handleSearch, 300)
+    debounce(handleListItemFilter, 300)
   })
+}
+
+function initMoreOrLess() {
+  toggleAccountsLess.addEventListener('click', e => {
+    toggleAccountsLess.style.display = 'none';
+    toggleAccountsMore.style.display = 'block';
+    handleListItemFilter();
+  });
+  toggleAccountsMore.addEventListener('click', e => {
+    toggleAccountsLess.style.display = 'block';
+    toggleAccountsMore.style.display = 'none';
+    handleListItemFilter();
+  });
 }
 
 function autoFillButtonInit() {
@@ -229,13 +255,12 @@ function autoFillButtonInit() {
     document.body.appendChild(emptyDom);
     return;
   }
-  let filteredAccountInfos = accountInfos.filter(e =>
-    isIssuerMatchedUrl(e.localIssuer, tabInfo.url) && isContainerMatched(e.containerAssign, tabInfo.cookieStoreId)
-  );
-  if (filteredAccountInfos.length === 0) {
-    filteredAccountInfos = accountInfos;
-  }
-  filteredAccountInfos.forEach((e, i) => {
+  let hasMatch = false;
+  accountInfos.forEach((e, i) => {
+    const isMatch = isIssuerMatchedUrl(e.localIssuer, tabInfo.url) && isContainerMatched(e.containerAssign, tabInfo.cookieStoreId);
+    if (isMatch) {
+      hasMatch = true;
+    }
     addOTP(
       e.localIssuer,
       contextualIdentities.find(el => el.cookieStoreId === e.containerAssign),
@@ -244,12 +269,23 @@ function autoFillButtonInit() {
       e.localOTPDigits,
       {
         index: i,
+        flag: isMatch ? 'matched' : 'other',
       }
     )
-  });
+    console.log('hasma', hasMatch);
+    if (hasMatch) {
+      toggleAccountsMore.style.display = 'block';
+      [...document.querySelectorAll('.account-item[data-flag=other]')].forEach(e => {
+        e.style.display = 'none';
+      });
+      initMoreOrLess();
+    } else {
+      toggleAccountsMore.style.display = 'none';
+    }
 
-  initSearch();
-  autoFillButtonInit();
+    initSearch();
+    autoFillButtonInit();
+  })
 })();
 
 document.getElementById("popupClearSearch").addEventListener("click", clearSearch);
