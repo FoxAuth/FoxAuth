@@ -69,7 +69,7 @@ async function getTotpKey() {
   });
 
   if (!account) {
-    return 'ERROR';
+    return '';
   }
 
 
