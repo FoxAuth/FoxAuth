@@ -201,3 +201,11 @@ body.scanning::after {
 .popup-right > .popup-icon {
     filter: url(/icons/filters.svg#fill);
 }
+
+.scan-preview {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}

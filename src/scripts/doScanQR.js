@@ -33,7 +33,7 @@ async function doScanQR() {
     let otpInfo = urlOtpauth.parse(result)
     otpInfo.container = activeTab.cookieStoreId === 'firefox-default' ? '' : activeTab.cookieStoreId
     otpInfo = transform(otpInfo)
-    let infos = await getAccountInfos();
-    infos = mergeAccountInfos(infos, [otpInfo]);
-    await saveAccountInfos(infos);
+    let infos = await getAccountInfos()
+    infos = mergeAccountInfos(infos, [otpInfo])
+    await saveAccountInfos(infos)
 }
