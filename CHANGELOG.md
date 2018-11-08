@@ -3,7 +3,7 @@ All changes per revisioning to this project will be documented in this file. All
 
 ## v 1.2.7 -Nov 7th 2018
 ### New 💡
-- camera access on Firefox Andoird.
+- camera access on Firefox Android.
 ### Fixed 🔨
 1. checkboxes on general options page don't actually do anything.
 1. some unnecessary autofill.
