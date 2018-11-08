@@ -202,10 +202,40 @@ body.scanning::after {
     filter: url(/icons/filters.svg#fill);
 }
 
-.scan-preview {
+/* web camera */
+.webcam-box {
     position: fixed;
     left: 0;
     top: 0;
+    display: none;
+    width: 100%;
+    height: 100%;
+}
+.webcam-box > .webcam-cover {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 9;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .7);
+}
+.webcam-box > .webcam-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 99999;
+    display: block;
+    width: 12vmin;
+    height: 12vmin;
+    filter: url(/icons/filters.svg#fill);
+    fill: red;
+}
+.webcam-box > .webcam-record {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 99;
     width: 100%;
     height: 100%;
 }
