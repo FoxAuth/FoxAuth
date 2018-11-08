@@ -221,14 +221,21 @@ function initMoreOrLess() {
 }
 
 function autoFillButtonInit() {
-  document.querySelector('#autofillOTPForm').addEventListener('click', async () => {
-    const tabInfo = await browser.tabs.query({ active: true });
+  document.getElementById('autofillOTPForm').addEventListener('click', async () => {
+    const tabInfo = await browser.tabs.query({ active: true })
     browser.tabs.executeScript(
       tabInfo[0].id,
       {
         file: '/scripts/manualCopy.js'
       }
     )
+    if (/android/i.test(navigator.userAgent)) {
+      const tabs = await browser.tabs.query({})
+      const tab = tabs.find((tab) => tab.url.indexOf('popup.html') >= 0)
+      if (tab) {
+        browser.tabs.remove(tab.id)
+      }
+    }
   });
 }
 
