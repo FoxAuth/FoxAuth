@@ -233,7 +233,7 @@ function autoFillButtonInit() {
     browser.tabs.executeScript(
       tabInfo[0].id,
       {
-        file: '/scripts/webpage/manualCopy.js'
+        file: '/scripts/content/manualCopy.js'
       }
     )
     if (/android/i.test(navigator.userAgent)) {
