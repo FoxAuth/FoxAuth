@@ -1,7 +1,21 @@
 # Changelog
 All changes per revisioning to this project will be documented in this file. All dates used in this file are recorded as UTC+8.
 
-## v 1.2.7 -Nov 7th 2018
+## v 1.3.0 - Nov 10th 2018
+### New 💡
+- Android QR scanning masking and quitting button.
+### Fixed 🔨
+- button for TOTP code filling on popup isn't working properly on Android.
+### Changes 📝
+1. changes on popup buttons:
+    - website icons are now used to edit forms linking instead of numbers.
+    - numbers are now used to correspond code filling.
+1. code ES modulized to improve performance.
+1. autohide no longer shows up when only one account exists.
+
+---
+
+## v 1.2.7 - Nov 7th 2018
 ### New 💡
 - camera access on Firefox Android.
 ### Fixed 🔨
