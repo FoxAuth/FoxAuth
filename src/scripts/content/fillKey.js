@@ -1,6 +1,5 @@
 (async function () {
   const { tempKey } = await browser.storage.local.get('tempKey') || {};
-  console.log('tttttttt', tempKey);
   if (!tempKey) {
     return;
   }
