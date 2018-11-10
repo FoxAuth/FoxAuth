@@ -114,15 +114,16 @@ const template_totp = ef.t`
         .{{container}}
     >div.popup-content
       >div.popup-row
-        >div.popup-left
+        >a.popup-left
+          #href = /options/tokens.html?index={{index}}
+          #target = _blank
           >img.popup-icon.issuer-icon
             #onerror = iconOnError(this)
             #src = ../icons/service/{{issuerIcon}}.svg
         >div.popup-row-item
-          >a
+          >span
+            #href = javascript:void(0);
             #class = {{otpKeyClassName}}
-            #href = /options/tokens.html?index={{index}}
-            #target = _blank
             .{{OTP}}
         >div.popup-right.container-icon-box
           #data-color = {{containerColor}}
@@ -230,7 +231,7 @@ function initMoreOrLess() {
 function autoFillButtonInit() {
   document.getElementById('autofillOTPForm').addEventListener('click', async () => {
     const tabInfo = await browser.tabs.query({ active: true })
-    browser.tabs.executeScript(
+    await browser.tabs.executeScript(
       tabInfo[0].id,
       {
         file: '/scripts/content/manualCopy.js'
@@ -243,6 +244,39 @@ function autoFillButtonInit() {
         browser.tabs.remove(tab.id)
       }
     }
+  });
+}
+
+function otpKeyClickInit() {
+  document.querySelector('body').addEventListener('click', async (event) => {
+    const e = event.target;
+    if (!([...document.querySelectorAll('.popup-row-item>span')].some(el => el === e))) {
+      return;
+    }
+    if(!e.innerText) {
+      return;
+    }
+    await browser.storage.local.set({
+      tempKey: e.innerText,
+    });
+        
+    const tabInfo = await browser.tabs.query({ active: true })
+    await browser.tabs.executeScript(
+      tabInfo[0].id,
+      {
+        file: '/scripts/content/fillKey.js'
+      }
+    );
+    await browser.storage.local.remove('tempKey');
+    
+    if (/android/i.test(navigator.userAgent)) {
+      const tabs = await browser.tabs.query({})
+      const tab = tabs.find((tab) => tab.url.indexOf('popup.html') >= 0)
+      if (tab) {
+        browser.tabs.remove(tab.id)
+      }
+    }
+
   });
 }
 
@@ -299,12 +333,13 @@ function autoFillButtonInit() {
 
     initSearch();
     autoFillButtonInit();
+    otpKeyClickInit();
   })
 })();
 
 document.getElementById("popupClearSearch").addEventListener("click", clearSearch);
 
-function clearSearch () {
+function clearSearch() {
   const clearPopupSearch = document.querySelector('[name=popupSearch]')
   clearPopupSearch.value = ""
   const event = new Event('input')

@@ -160,6 +160,7 @@ body.scanning::after {
 .popup-link:hover {
     text-decoration: none;
     color: inherit;
+    cursor: pointer;
 }
 .popup-link-error:hover {
     text-decoration: none;
