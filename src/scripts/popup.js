@@ -253,13 +253,13 @@ function otpKeyClickInit() {
     if (!([...document.querySelectorAll('.popup-row-item>span')].some(el => el === e))) {
       return;
     }
-    if(!e.innerText) {
+    if (!e.innerText) {
       return;
     }
     await browser.storage.local.set({
       tempKey: e.innerText,
     });
-        
+
     const tabInfo = await browser.tabs.query({ active: true })
     await browser.tabs.executeScript(
       tabInfo[0].id,
@@ -268,7 +268,7 @@ function otpKeyClickInit() {
       }
     );
     await browser.storage.local.remove('tempKey');
-    
+
     if (/android/i.test(navigator.userAgent)) {
       const tabs = await browser.tabs.query({})
       const tab = tabs.find((tab) => tab.url.indexOf('popup.html') >= 0)
@@ -320,21 +320,20 @@ function otpKeyClickInit() {
         flag: isMatch ? 'matched' : 'other',
       }
     )
-    console.log('hasma', hasMatch);
-    if (hasMatch) {
-      toggleAccountsMore.style.display = 'block';
-      [...document.querySelectorAll('.account-item[data-flag=other]')].forEach(e => {
-        e.style.display = 'none';
-      });
-      initMoreOrLess();
-    } else {
-      toggleAccountsMore.style.display = 'none';
-    }
-
-    initSearch();
-    autoFillButtonInit();
-    otpKeyClickInit();
   })
+  if (hasMatch && !(accountInfos.length === 1)) {
+    toggleAccountsMore.style.display = 'block';
+    [...document.querySelectorAll('.account-item[data-flag=other]')].forEach(e => {
+      e.style.display = 'none';
+    });
+    initMoreOrLess();
+  } else {
+    toggleAccountsMore.style.display = 'none';
+  }
+
+  initSearch();
+  autoFillButtonInit();
+  otpKeyClickInit();
 })();
 
 document.getElementById("popupClearSearch").addEventListener("click", clearSearch);
