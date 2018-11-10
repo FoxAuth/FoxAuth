@@ -1,3 +1,5 @@
+import '/scripts/dependency/jsOTP.min.js'
+
 /**
  * file combining
  * transpiled by typescript compiler (see http://www.typescriptlang.org/play/index.html)
@@ -158,3 +160,5 @@ var KeyUtilities = /** @class */ (function () {
     };
     return KeyUtilities;
 }());
+
+export { OTPType, KeyUtilities };

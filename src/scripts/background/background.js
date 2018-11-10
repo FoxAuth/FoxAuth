@@ -1,3 +1,9 @@
+import './message.js';
+import './sync.js';
+import doScanQR from '/scripts/doScanQR.js';
+import { getAccountInfos, saveAccountInfos } from '/scripts/accountInfo.js';
+import { showErrorMsg } from './utils.js';
+
 //option page
 /*function openURL(url) {
     browser.tabs.create({
@@ -67,30 +73,6 @@ browser.contextMenus.onClicked.addListener(async (info, ignored) => {
     }
 });
 
-function decodeQr(dataURL, tab) {
-    QrScanner.scanImage(dataURL)
-        .then(result => {
-            // validate and parse URL
-            const otpInfo = urlOtpauth.parse(result)
-            otpInfo.container = tab.cookieStoreId;
-            const params = new URLSearchParams(otpInfo)
-            browser.tabs.create({
-                url: `options/otpinfo.html?${params.toString()}`
-            })
-        })
-        .catch(error => {
-            console.log(error || 'No QR code found.')
-        })
-}
-
-function showErrorMsg(msg) {
-    browser.notifications.create({
-        "type": "basic",
-        "iconUrl": "../icons/icon.svg",
-        "title": "FoxAuth Authenticator",
-        "message": msg
-    });
-}
 var injectQr_1 = document.createElement('script')
 injectQr_1.onload = function () {
     qrcode.callback = function (/*err,*/ result) {

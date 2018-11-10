@@ -13,3 +13,5 @@ const lockAsyncFunc = (asyncFunc) => {
         return wrapped(...args);
     };
 };
+
+export default lockAsyncFunc;

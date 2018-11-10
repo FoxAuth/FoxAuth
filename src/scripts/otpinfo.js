@@ -1,3 +1,19 @@
+import './formAction.js';
+import lockAsyncFunc from './lockAsyncFunc.js';
+import {
+    getAccountInfos,
+    mergeAccountInfos,
+    saveAccountInfos,
+    getDefaultAccountInfo,
+    getPasswordInfo
+} from './accountInfo.js'
+import {
+    htmlBrandNewChildren,
+    updateInfoForm,
+    getBrowserContainers,
+    initBrowserContainers
+} from './accountInfoFormAction.js';
+
 //init OTP form stack object
 const otpFormStack = [];
 const otpBasicForm = document.querySelector('.newOTP').cloneNode(true);
@@ -12,6 +28,7 @@ document.querySelector('#otpNewBtn').addEventListener("click", () => {
     const node = otpFormStack.length ? otpFormStack.pop() : otpBasicForm.cloneNode(true);
     // otpFormBox.appendChild(node);
     otpFormBox.insertBefore(node, otpFormBox.firstChild);
+    checkPasswordInfo();
 });
 
 //delete OTP form

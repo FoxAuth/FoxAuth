@@ -1,65 +1,13 @@
-async function getInfosFromLocal() {
-    const obj = await browser.storage.local.get('accountInfos');
-    const {
-        accountInfos
-    } = obj;
-    return Array.isArray(accountInfos) ? accountInfos : [];
+import MessageEncryption from './encryption/MessageEncryption.js';
+
+function jsonParse(str) {
+    try {
+        return JSON.parse(str);
+    } catch (error) {
+        return null;
+    }
 }
 
-function saveInfosToLocal(infos) {
-    return browser.storage.local.set({
-        accountInfos: infos
-    });
-}
-
-async function getAccountInfos() {
-    let accountInfos = [];
-    accountInfos = await getInfosFromLocal();
-    const passwordInfo = await getPasswordInfo();
-    if (passwordInfo.isEncrypted && passwordInfo.password && passwordInfo.encryptIV) {
-        accountInfos = await decryptAccountInfos(accountInfos, {
-            encryptPassword: passwordInfo.password,
-            encryptIV: passwordInfo.encryptIV
-        });
-    }
-    return accountInfos;
-}
-
-async function saveAccountInfos(infos) {
-    const passwordInfo = await getPasswordInfo();
-    if (passwordInfo.isEncrypted && passwordInfo.password && passwordInfo.encryptIV) {
-        infos = await encryptAccountInfos(infos, {
-            encryptPassword: passwordInfo.password,
-            encryptIV: passwordInfo.encryptIV
-        });
-    }
-    let { accountInfoVersion } = await browser.storage.local.get({
-        accountInfoVersion: 0
-    });
-    if (typeof accountInfoVersion !== 'number') {
-        accountInfoVersion = 1;
-    } else {
-        accountInfoVersion += 1;
-    }
-    await saveInfosToLocal(infos);
-    await browser.storage.local.set({
-        accountInfoVersion
-    });
-}
-// encrypt account name/secret tokens/recovery
-function encryptAccountInfos(infos, passwordInfo) {
-    return __encryptAndDecrypt(infos, {
-        ...passwordInfo,
-        invokeFuncName: 'encrypt'
-    });
-}
-// decrypt account name/secret tokens/recovery
-function decryptAccountInfos(infos, passwordInfo) {
-    return __encryptAndDecrypt(infos, {
-        ...passwordInfo,
-        invokeFuncName: 'decrypt'
-    });
-}
 async function __encryptAndDecrypt(infos, encryptInfo) {
     const crypto = new MessageEncryption(encryptInfo.encryptPassword);
     crypto.instance.iv = Uint8Array.from(encryptInfo.encryptIV);
@@ -81,19 +29,82 @@ async function __encryptAndDecrypt(infos, encryptInfo) {
     return infos;
 }
 
+export async function getInfosFromLocal() {
+    const obj = await browser.storage.local.get('accountInfos');
+    const {
+        accountInfos
+    } = obj;
+    return Array.isArray(accountInfos) ? accountInfos : [];
+}
+
+export function saveInfosToLocal(infos) {
+    return browser.storage.local.set({
+        accountInfos: infos
+    });
+}
+
+export async function getAccountInfos() {
+    let accountInfos = [];
+    accountInfos = await getInfosFromLocal();
+    const passwordInfo = await getPasswordInfo();
+    if (passwordInfo.isEncrypted && passwordInfo.password && passwordInfo.encryptIV) {
+        accountInfos = await decryptAccountInfos(accountInfos, {
+            encryptPassword: passwordInfo.password,
+            encryptIV: passwordInfo.encryptIV
+        });
+    }
+    return accountInfos;
+}
+
+export async function saveAccountInfos(infos) {
+    const passwordInfo = await getPasswordInfo();
+    if (passwordInfo.isEncrypted && passwordInfo.password && passwordInfo.encryptIV) {
+        infos = await encryptAccountInfos(infos, {
+            encryptPassword: passwordInfo.password,
+            encryptIV: passwordInfo.encryptIV
+        });
+    }
+    let { accountInfoVersion } = await browser.storage.local.get({
+        accountInfoVersion: 0
+    });
+    if (typeof accountInfoVersion !== 'number') {
+        accountInfoVersion = 1;
+    } else {
+        accountInfoVersion += 1;
+    }
+    await saveInfosToLocal(infos);
+    await browser.storage.local.set({
+        accountInfoVersion
+    });
+}
+// encrypt account name/secret tokens/recovery
+export function encryptAccountInfos(infos, passwordInfo) {
+    return __encryptAndDecrypt(infos, {
+        ...passwordInfo,
+        invokeFuncName: 'encrypt'
+    });
+}
+// decrypt account name/secret tokens/recovery
+export function decryptAccountInfos(infos, passwordInfo) {
+    return __encryptAndDecrypt(infos, {
+        ...passwordInfo,
+        invokeFuncName: 'decrypt'
+    });
+}
+
 // same issuer and containerId
-function isSameAccountInfo(info1, info2) {
+export function isSameAccountInfo(info1, info2) {
     return info1.containerAssign === info2.containerAssign &&
         info1.localIssuer !== '' &&
         info2.localIssuer !== '' &&
         info1.localIssuer === info2.localIssuer;
 }
 // check if same info exists.
-function findIndexOfSameAccountInfo(accountInfos, info) {
+export function findIndexOfSameAccountInfo(accountInfos, info) {
     return accountInfos.findIndex((item) => isSameAccountInfo(item, info));
 }
 // default account info
-function getDefaultAccountInfo() {
+export function getDefaultAccountInfo() {
     return {
         containerAssign: '',
         localIssuer: '',
@@ -106,7 +117,7 @@ function getDefaultAccountInfo() {
         localOTPDigits: '6'
     };
 }
-async function getPasswordStorageArea() {
+export async function getPasswordStorageArea() {
     const data = await browser.storage.local.get({
         settings: {
             passwordStorage: 'storage.local'
@@ -118,7 +129,7 @@ async function getPasswordStorageArea() {
         return data.settings.passwordStorage;
     }
 }
-async function getPasswordInfo(storageArea) {
+export async function getPasswordInfo(storageArea) {
     function base64Decode(str, encoding = 'utf-8') {
         var bytes = base64js.toByteArray(str);
         return new(TextDecoder || TextDecoderLite)(encoding).decode(bytes);
@@ -159,7 +170,7 @@ async function getPasswordInfo(storageArea) {
         storageArea
     };
 }
-async function savePasswordInfo({
+export async function savePasswordInfo({
     isEncrypted,
     nextStorageArea,
     nextPassword,
@@ -209,16 +220,8 @@ async function savePasswordInfo({
     }
 }
 
-function jsonParse(str) {
-    try {
-        return JSON.parse(str);
-    } catch (error) {
-        return null;
-    }
-}
-
 // merge right accountInfos to left
-function mergeAccountInfos(left, right) {
+export function mergeAccountInfos(left, right) {
     if (!Array.isArray(left)) left = [];
     if (!Array.isArray(right)) right = [];
     return [...right].reduce((result, info) => {

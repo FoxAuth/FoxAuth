@@ -1,3 +1,10 @@
+import './dependency/ef.min.js';
+import './dependency/jsOTP.min.js';
+import './scanQR.js';
+import { KeyUtilities, OTPType } from './dependency/key-utilities.js';
+import getServiceIconNames from './serviceIcon.js';
+import { getPasswordInfo, getAccountInfos } from './accountInfo.js';
+
 const serviceIconNames = getServiceIconNames();
 const iconOnError = function (e) {
   e.src = '../icons/service/fallback.svg';
@@ -226,7 +233,7 @@ function autoFillButtonInit() {
     browser.tabs.executeScript(
       tabInfo[0].id,
       {
-        file: '/scripts/manualCopy.js'
+        file: '/scripts/webpage/manualCopy.js'
       }
     )
     if (/android/i.test(navigator.userAgent)) {
@@ -298,7 +305,7 @@ function autoFillButtonInit() {
 document.getElementById("popupClearSearch").addEventListener("click", clearSearch);
 
 function clearSearch () {
-  clearPopupSearch = document.querySelector('[name=popupSearch]')
+  const clearPopupSearch = document.querySelector('[name=popupSearch]')
   clearPopupSearch.value = ""
   const event = new Event('input')
   popupSearchInput.dispatchEvent(event)

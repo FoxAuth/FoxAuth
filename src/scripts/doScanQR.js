@@ -1,4 +1,12 @@
-async function doScanQR() {
+import './dependency/url-otpauth-ng.browser.js';
+import QrScanner from './dependency/qr-scanner.min.js';
+import {
+    getAccountInfos,
+    saveAccountInfos,
+    mergeAccountInfos
+} from './accountInfo.js';
+
+export default async function doScanQR() {
     function getImage(url) {
         return new Promise((resolve, reject) => {
             const image = new Image()

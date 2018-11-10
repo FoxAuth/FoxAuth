@@ -1,3 +1,5 @@
+import './menu.js';
+
 async function getSettings() {
   const obj = await browser.storage.local.get('settings');
   const { settings } = obj;

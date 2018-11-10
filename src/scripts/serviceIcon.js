@@ -1,4 +1,4 @@
-function getServiceIconNames(){
+export default function getServiceIconNames(){
   const arr = [
     'amazon',
     'apple',

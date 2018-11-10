@@ -1,28 +1,30 @@
+import { getAccountInfos } from '/scripts/accountInfo.js';
+import { KeyUtilities, OTPType } from '/scripts/dependency/key-utilities.js';
 
-try {
-
-  async function getAccountAndContainer() {
+function getTotpKey(period = 30, digits = 6, token) {
+    return KeyUtilities.generate(OTPType.totp, token, digits, period);
+}
+async function getAccountAndContainer() {
 
     // get account and container or return
 
     // const accountInfosPromise = getAccountInfos();
     // const contextualIdentitiesPromise = browser.contextualIdentities.query({});
     // const tabInfoPromise = browser.tabs.query({acitve: true});
-    const accountInfos = await getAccountInfos();
     // const contextualIdentities = await contextualIdentitiesPromise;
-    const tabInfo = await browser.tabs.query({ active: true });
+    const [accountInfos, tabInfo] = await Promise.all(
+        [getAccountInfos(), browser.tabs.query({ active: true })]
+    )
     return {
-      accountInfos,
-      tabInfo: tabInfo[0]
+        accountInfos,
+        tabInfo: tabInfo[0]
     }
-  }
+}
 
-  function getTotpKey(period = 30, digits = 6, token) {
-    return KeyUtilities.generate(OTPType.totp, token, digits, period);
-  }
 
-  (async function () {
-    browser.runtime.onMessage.addListener(async obj => {
+
+browser.runtime.onMessage.addListener(async obj => {
+    try {
       let res = null;
       switch (obj.id) {
         case 'getAccountAndContainer':
@@ -35,15 +37,8 @@ try {
         default:
           break;
       }
-
       return Promise.resolve(res);
-
-    })
-
-
-  })();
-
-
-} catch (error) {
-  console.log(error.message);
-}
+    } catch (error) {
+      console.log(error.message);
+    }
+})

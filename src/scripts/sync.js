@@ -1,3 +1,17 @@
+import './menu.js';
+import './formAction.js';
+import DropboxHelper from './sync/DropboxHelper.js';
+import lockAsyncFunc from './lockAsyncFunc.js';
+import {
+  getPasswordInfo,
+  savePasswordInfo,
+  getAccountInfos,
+  saveAccountInfos,
+  getInfosFromLocal,
+  decryptAccountInfos,
+  getPasswordStorageArea,
+} from './accountInfo.js'
+
 //toggle checkbox
 [...document.getElementsByClassName('ulPass')].forEach(ul => {
   const applyNest = p => {
@@ -54,7 +68,6 @@ const errorCloseBtn = errorMsgDiv.querySelector('.errorMsgCloseBtn');
 const shadowCover = document.querySelector('.warning-cover');
 const exportBtn = document.getElementById('exportBtn');
 const importBtn = document.getElementById('importBtn');
-const importFileInput = document.getElementById('fileElem');
 
 const openMessage = (function() {
   let zIndex = 11;

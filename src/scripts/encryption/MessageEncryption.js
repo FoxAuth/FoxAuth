@@ -1,3 +1,4 @@
+import Keychain, { encoder, decoder } from './keychain.js';
 
 // source: http://stackoverflow.com/a/11058858
 function ab2str(buf) {
@@ -13,7 +14,7 @@ function str2ab(str) {
   return buf;
 }
 
-class MessageEncryption {
+export default class MessageEncryption {
   constructor(secretKey) {
     this.instance = new Keychain(btoa(secretKey))
   }

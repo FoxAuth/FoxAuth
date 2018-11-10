@@ -3,7 +3,7 @@
 	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('./empty'), require('./empty')) :
 	typeof define === 'function' && define.amd ? define(['exports', './empty', './empty'], factory) :
 	(factory((global.jsondiffpatch = {}),global['diff-match-patch'],global.chalk));
-}(this, (function (exports,dmp,chalk) { 'use strict';
+}(window, (function (exports,dmp,chalk) { 'use strict';
 
 dmp = dmp && dmp.hasOwnProperty('default') ? dmp['default'] : dmp;
 chalk = chalk && chalk.hasOwnProperty('default') ? chalk['default'] : chalk;
