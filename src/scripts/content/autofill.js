@@ -89,6 +89,21 @@ async function fillKeyToActiveEl() {
     }
 }
 
+function getActiveTab() {
+    return browser.runtime.sendMessage({
+        id: 'getActiveTab'
+    })
+}
+
+function execHackCode() {
+    const { href } = window.location
+    if (href.indexOf('protonmail.com/login') >= 0) {
+        browser.runtime.sendMessage({
+            id: 'execProtonmailHackCode'
+        })
+    }
+}
+
 (async function () {
 
     const obj = await browser.storage.local.get('settings') || {};
@@ -99,6 +114,7 @@ async function fillKeyToActiveEl() {
     }
 
     const totpKey = await getTotpKey();
+    execHackCode()
 
     function watchDom() {
         const passwordDom = [...document.querySelectorAll('input[type=password]')].filter(isVisible).reverse().find(e => e.type = 'password');
