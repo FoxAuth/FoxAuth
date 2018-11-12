@@ -28,7 +28,7 @@ async function execProtonmailHackCode() {
         await browser.tabs.executeScript(
             tab.id,
             {
-            file: '/scripts/content/hack/protonmail.js'
+                file: '/scripts/content/hack/protonmail.js'
             }
         )
     }
