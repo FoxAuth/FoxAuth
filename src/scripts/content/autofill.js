@@ -103,6 +103,16 @@ function execHackCode() {
         })
     }
 }
+function hackTotpDom(input) {
+    const { host } = window.location;
+
+    // hack for reddit
+    if (host.indexOf('reddit.com') >= 0) {
+        return document.getElementById('otpfield');
+    }
+
+    return input;
+}
 
 
 (async function () {
@@ -124,7 +134,8 @@ function execHackCode() {
             if (passwordDomIndex > -1) {
                 allInputDom = allInputDom.splice(passwordDomIndex + 1);
             }
-            const totpDom = allInputDom.find(e => e.tagName === 'INPUT' && (e.type === 'text' || e.type === 'tel' || e.type === 'number') && !e.value);
+            let totpDom = allInputDom.find(e => e.tagName === 'INPUT' && (e.type === 'text' || e.type === 'tel' || e.type === 'number') && !e.value);
+            totpDom = hackTotpDom(totpDom);
             if (totpDom) {
                 totpDom.value = totpKey;
                 clearSessionValue();
@@ -144,7 +155,8 @@ function execHackCode() {
             setSessionValue();
             watchDom();
         } else {
-            const totpDom = document.querySelector('input[type=text],input[type=tel],input[type=number]');
+            let totpDom = document.querySelector('input[type=text],input[type=tel],input[type=number]');
+            totpDom = hackTotpDom(totpDom);
             if (getSessionValue() && totpDom) {
                 totpDom.value = totpKey;
                 clearSessionValue();
