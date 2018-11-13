@@ -104,6 +104,7 @@ function execHackCode() {
     }
 }
 
+
 (async function () {
 
     const obj = await browser.storage.local.get('settings') || {};
@@ -114,7 +115,6 @@ function execHackCode() {
     }
 
     const totpKey = await getTotpKey();
-    execHackCode()
 
     function watchDom() {
         const passwordDom = [...document.querySelectorAll('input[type=password]')].filter(isVisible).reverse().find(e => e.type = 'password');
@@ -128,9 +128,10 @@ function execHackCode() {
             if (totpDom) {
                 totpDom.value = totpKey;
                 clearSessionValue();
-                const event = document.createEvent();
-                event.initEvent('focus', true, false);
-                totpDom.dispatchEvent(event);
+                totpDom.dispatchEvent(new Event('focus', {
+                    bubbles: true
+                }));
+                execHackCode();
             } else {
                 setTimeout(findTotpDom, 2000);
             }
@@ -147,9 +148,10 @@ function execHackCode() {
             if (getSessionValue() && totpDom) {
                 totpDom.value = totpKey;
                 clearSessionValue();
-                const event = document.createEvent();
-                event.initEvent('focus', true, false);
-                totpDom.dispatchEvent(event);
+                totpDom.dispatchEvent(new Event('focus', {
+                    bubbles: true
+                }));
+                execHackCode();
             } else {
                 setTimeout(watchPasswordDom, 2000);
             }

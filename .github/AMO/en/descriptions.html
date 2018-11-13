@@ -1,0 +1,43 @@
+Introduction 
+FoxAuth is an <a href="https://wikipedia.org/wiki/Time-based_One-time_Password_algorithm">TOTP</a> browser client with autofill support for <strong>FireFox</strong> and <strong>FireFox Android</strong>
+
+Features
+<ul>
+<li><strong>Firefox Android</strong> support</li>
+<li><strong>QR code</strong> / manually add account info</li>
+<li><strong>Container tab</strong> support to autofill multiple same-domain accounts</li>
+<ul>
+<li><strong>import / export</strong>
+<ul>
+<li>import from other authenticators (in progress)</li>
+</ul></li>
+</ul>
+<li>(Password based) account list <strong>encryption</strong></li>
+<li>Autofill <strong>TOTP</strong> form</li>
+<li><strong>Dropbox /</strong> (in upcoming releases) <strong>FxA</strong> sync</li>
+<li><a href="https://design.firefox.com/photon">Photon Design</a></li>
+</ul>
+
+Disclaimers
+During sync, you are <strong>NOT</strong> supposed to do any of the listed behaviors or you are totally responsible for your data loss:
+<ol type="1">
+<li>Moving, renaming, deleting or manually editting any file in our app folder (copying and pasting shall not cause issues though).</li>
+<li>operate account info between several devices in a <strong>REALLY</strong> frequent rate.</li>
+<li>use different encryption passwords among different devices.</li>
+</ol>
+
+You shall also note that if you connect a Firefox with encrypted FoxAuth database, all unecrypted Firefox FoxAuth databases will be override.
+
+Important note
+Please use <a herf="https://support.mozilla.org/en-US/kb/containers">Firefox Container</a>, either the built-in feature or the extension, to manager your multiple accounts. FoxAuth may override your older accounts info when you try to input multiple accounts info without Container specified.
+
+Revisioning
+Here is how this project gets revisioning:
+<ul>
+<li>a - major changes, represents a complete overhaul of the code in the file, hardly distinguishable from before; you probably will never need to bump this; when creating new files just give it a version of 1.0.0.</li>
+<li>b - mid-level changes, when you add or modify a significant chunk of code that alters the way the rest works; for instance when adding whole new features.</li>
+<li>c - minor changes, such as most bugfixes; this is probably what you will be bumping most often.</li>
+</ul>
+
+Security
+We use encryption code from <a href="github.com/mozilla/send">Firefox Send</a> in WebCrypto API. Welcome as we are to any security review, it shall be more efficiently to perform it at that side.
