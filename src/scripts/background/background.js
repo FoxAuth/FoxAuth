@@ -60,7 +60,7 @@ browser.contextMenus.onClicked.addListener(async (info, ignored) => {
                 "message": "Account added."
             })
         } catch (error) {
-            console.log(error || 'No QR code found.')
+            showErrorMsg(error || 'No QR code found.');
         }
     } else if (info.menuItemId === "autfillOTP") {
         const tabInfo = await browser.tabs.query({ active: true });
