@@ -1,6 +1,9 @@
 # Changelog
 All changes per revisioning to this project will be documented in this file. All dates used in this file are recorded as UTC+8.
 
+## v 1.3.1 - Nov 13th 2018
+- hotfix for Protonmail & Reddit.
+
 ## v 1.3.0 - Nov 10th 2018
 ### New 💡
 - Android QR scanning masking and quitting button.
