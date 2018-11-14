@@ -1,5 +1,5 @@
 import './dependency/url-otpauth-ng.browser.js';
-import QrScanner from './dependency/qr-scanner.min.js';
+import { scanImage } from './dependency/jsQRWrap.js';
 import {
     getAccountInfos,
     saveAccountInfos,
@@ -7,9 +7,9 @@ import {
 } from './accountInfo.js';
 
 export default async function doScanQR() {
-    function getImage(url) {
+    function getImage(url, width, height) {
         return new Promise((resolve, reject) => {
-            const image = new Image()
+            const image = new Image(width, height)
             image.onload = () => resolve(image)
             image.onerror = () => reject('Can\'t load scan result')
             image.src = url
@@ -35,8 +35,9 @@ export default async function doScanQR() {
     if (activeTabs.length !== 1) return
     const activeTab = activeTabs[0]
     const dataURL = await browser.tabs.captureTab(activeTab.id)
-    const image = await getImage(dataURL)
-    const result = await QrScanner.scanImage(image)
+    const image = await getImage(dataURL, activeTab.width, activeTab.height)
+    const result = await scanImage(image)
+    if (!result) throw new Error('QR code not found');
     // validate and parse URL
     let otpInfo = urlOtpauth.parse(result)
     otpInfo.container = activeTab.cookieStoreId === 'firefox-default' ? '' : activeTab.cookieStoreId

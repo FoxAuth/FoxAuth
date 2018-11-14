@@ -1,4 +1,4 @@
-import QrScanner from './dependency/qr-scanner.min.js';
+import { scanVideo } from './dependency/jsQRWrap.js';
 import doScanQR from './doScanQR.js';
 
 const webcamBox = document.querySelector('.webcam-box')
@@ -16,6 +16,8 @@ async function androidCamera() {
   webcamBox.style.display = 'block'
   const video = document.createElement('video')
   video.classList.add('webcam-record')
+  video.width = 320;
+  video.height = 320;
   video.srcObject = stream
   webcamBox.appendChild(video)
   video.play()
@@ -30,20 +32,30 @@ async function androidCamera() {
     webcamBox.style.display = 'none'
     webcamClose.removeEventListener('click', closeFunc)
   }
-  webcamClose.addEventListener('click', closeFunc)
-  new QrScanner(video, async (result) => {
-    closeFunc()
+  webcamClose.addEventListener('click', closeFunc);
+  const recursiveScan = async () => {
     try {
+      if (video.readyState !== video.HAVE_ENOUGH_DATA) {
+        requestAnimationFrame(recursiveScan);
+        return;
+      }
+      const result = await scanVideo(video);
+      if (!result) {
+        requestAnimationFrame(recursiveScan);
+        return;
+      }
+      closeFunc();
       const otpInfo = urlOtpauth.parse(result)
       otpInfo.container = ''
       const params = new URLSearchParams(otpInfo)
       browser.tabs.create({
         url: `/options/otpinfo.html?${params.toString()}`
-      })
+      }) 
     } catch (error) {
-      alert(error || 'No QR code found.')
+      alert(error || 'Invalid QR code');
     }
-  }, 400)
+  }
+  recursiveScan();
 }
 document.getElementById('scanQRPopup').addEventListener('click', async (e) => {
   const ua = navigator.userAgent
