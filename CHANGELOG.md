@@ -1,6 +1,14 @@
 # Changelog
 All changes per revisioning to this project will be documented in this file. All dates used in this file are recorded as UTC+8.
 
+## v 1.4.0 - Nov 15th 2018
+### Changes 📝
+- change QR scanning dependency to fix some errors.
+### Fixed 🔨
+- OTP urls with space are not recognized.
+
+---
+
 ## v 1.3.1 - Nov 13th 2018
 - hotfix for Protonmail & Reddit.
 
