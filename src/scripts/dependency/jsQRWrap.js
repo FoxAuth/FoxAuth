@@ -1,4 +1,4 @@
-import jsQR from './jsQR.js';
+import './jsQR.js';
 
 function scanImage(image) {
     if (!(image instanceof Image)) throw new Error('Invalid type of argument 1, required Image');
