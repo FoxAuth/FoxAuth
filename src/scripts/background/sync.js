@@ -31,7 +31,11 @@ const isExistedDropbox = async () => {
 
 const dropboxHelper = new DropboxHelper();
 const dropboxSync = debounce(wrapAsyncError(async () => {
-    await dropboxHelper.initSync();
+    if (dropboxHelper.authState === 'authorized') {
+        await dropboxHelper.sync();
+    } else {
+        await dropboxHelper.initSync();
+    }
 }), 5000);
 
 // TODO: not effient
@@ -64,4 +68,11 @@ browser.storage.onChanged.addListener(wrapAsyncError(async (changes, areaName) =
         }
     }
 }));
+browser.runtime.onMessage.addListener((obj) => {
+    if (obj.id === 'DropboxDoDiffAndPatch') {
+        const { remoteVersion, localVersion, localData, remoteData } = obj;
+        dropboxHelper.doDiffAndPatch({ localData, localVersion }, { remoteData, remoteVersion });
+    }
+})
+
 window.dropboxHelper = dropboxHelper;

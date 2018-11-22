@@ -416,7 +416,6 @@ async function syncWithDropbox() {
       message: 'Your remote data will be overwritten due to different encryption settings',
       confirmBtnText: 'confirm'
     });
-    console.log('sync page start to sync');
     if (remoteIsEncrypted !== localIsEncrypted) {
       let result = 0;
       if (remoteVersion > localVersion) {
@@ -431,16 +430,16 @@ async function syncWithDropbox() {
         }
       }
       if (!result) {
-        console.log('user cancel');
         return;
       }
-      await dropboxHelper.doDiffAndPatch({
-          localData, localVersion
-      }, {
-          remoteData, remoteVersion
+      browser.runtime.sendMessage({
+        id: 'DropboxDoDiffAndPatch',
+        remoteVersion,
+        localVersion,
+        localData,
+        remoteData
       });
     }
-    console.log('sync page end sync');
   } catch (error) {
     showErrorMessage({
       message: error.message,

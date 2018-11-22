@@ -41,16 +41,16 @@ browser.runtime.onMessage.addListener(async obj => {
       switch (obj.id) {
         case 'getAccountAndContainer':
           res = await getAccountAndContainer();
-          break;
+          return Promise.resolve(res);
         case 'getTotpKey':
           res = getTotpKey(obj.period, obj.digits, obj.token);
-          break;
+          return Promise.resolve(res);
         case 'execProtonmailHackCode':
-          res = execProtonmailHackCode()
+          res = execProtonmailHackCode();
+          return Promise.resolve(res);
         default:
           break;
       }
-      return Promise.resolve(res);
     } catch (error) {
       console.log(error.message);
     }
