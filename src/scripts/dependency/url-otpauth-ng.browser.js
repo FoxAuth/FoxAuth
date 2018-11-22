@@ -147,12 +147,12 @@
             ret.key = parameters.get('secret');
     
             // Issuer
-            if (parameters.has('issuer') && issuer && (parameters.get('issuer') !== issuer)) {
-                // If present, it must be equal to the "issuer" specified in the label.
-                throw new OtpauthInvalidURL(ErrorType.INVALID_ISSUER);
+            if (parameters.has('issuer')) {
+                // issuer field exits in search params would overwrite the same in pathname
+                issuer = parameters.get('issuer')
             }
-    
-            ret.issuer = issuer || parameters.get('issuer') || '';
+
+            ret.issuer = issuer;
     
             // OTP digits
             ret.digits = 6;  // Default is 6
