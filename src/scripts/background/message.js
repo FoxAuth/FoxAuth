@@ -35,19 +35,15 @@ async function execProtonmailHackCode() {
 }
 
 
-browser.runtime.onMessage.addListener(async obj => {
+browser.runtime.onMessage.addListener(obj => {
     try {
-      let res = null;
       switch (obj.id) {
         case 'getAccountAndContainer':
-          res = await getAccountAndContainer();
-          return Promise.resolve(res);
+          return getAccountAndContainer();
         case 'getTotpKey':
-          res = getTotpKey(obj.period, obj.digits, obj.token);
-          return Promise.resolve(res);
+          return Promise.resolve(getTotpKey(obj.period, obj.digits, obj.token));
         case 'execProtonmailHackCode':
-          res = execProtonmailHackCode();
-          return Promise.resolve(res);
+          return execProtonmailHackCode();
         default:
           break;
       }

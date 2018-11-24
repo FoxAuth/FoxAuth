@@ -1,5 +1,6 @@
 import diffPatcher from './diffPatcher.js';
-import { getPasswordInfo, getInfosFromLocal, savePasswordInfo } from '../accountInfo.js';
+import { getPasswordInfo, getInfosFromLocal, savePasswordInfo } from '/scripts/accountInfo.js';
+import { getOverwriteType } from './helpers.js';
 
 // const authState = {
 //     unauthorized: 'unauthorized',
@@ -11,11 +12,42 @@ import { getPasswordInfo, getInfosFromLocal, savePasswordInfo } from '../account
 //     syncing: 'syncing',
 // };
 
+async function sendOverwriteToSync(warningType, driveType, localAndRemoteData) {
+    let tabs = await browser.tabs.query({});
+    tabs = tabs.filter(tab => (tab.url.indexOf('/options/sync.html') >= 0));
+    let tab = tabs[0];
+    if (!tab) {
+        tab = await browser.tabs.create({
+            url: '/options/sync.html'
+        });
+    }
+    browser.tabs.update(tab.id, {
+        active: true
+    });
+    sendMessageWhenLoaded();
+
+    async function sendMessageWhenLoaded() {
+        // tab object wont' update when firefox tab information update
+        const nowTab = await browser.tabs.get(tab.id);
+        if (nowTab.status === 'complete') {
+            browser.tabs.sendMessage(tab.id, {
+                type: 'showOverwriteWarning',
+                warningType,
+                driveType,
+                localAndRemoteData
+            })
+        } else {
+            setTimeout(sendMessageWhenLoaded, 500);
+        }
+    }
+}
+
 class Base {
     constructor() {
         this.config = {};
         this.authState = 'unauthorized';
         this.syncState = 'idle';
+        this.driveType = 'base';
     }
     // child class should implement this
     init() {}
@@ -86,8 +118,17 @@ class Base {
             console.log('localversion', localVersion, 'localdata: ', localData);
             console.log('remoteversion', remoteVersion, 'remotedata: ', remoteData);
             // unfortunately, different encryption settings will cause some bugs
-            if (Boolean(remoteData.isEncrypted) !== Boolean(localData.isEncrypted)) {
-                throw new Error('Please open sync page to see more details');
+            if (remoteData.isEncrypted !== localData.isEncrypted) {
+                sendOverwriteToSync(
+                    getOverwriteType({
+                        localVersion,
+                        remoteVersion,
+                        localIsEncrypted: localData.isEncrypted
+                    }),
+                    this.driveType,
+                    { localData, localVersion, remoteData, remoteVersion }
+                );
+                throw new Error('Please switch to sync page to see more details');
             } else {
                 await this.doDiffAndPatch({
                     localData, localVersion
@@ -116,16 +157,15 @@ class Base {
         remoteVersion
     }) {
         let delta = null;
-        if (localVersion > remoteVersion) {
+        const overwriteType = getOverwriteType({
+            localVersion,
+            remoteVersion,
+            localIsEncrypted: localData.isEncrypted
+        });
+        if (overwriteType === 'overwriteRemote') {
             delta = diffPatcher.diff(remoteData, localData);
-        } else if (localVersion < remoteVersion) {
-            delta = diffPatcher.diff(localData, remoteData);
         } else {
-            if (localData.isEncrypted) {
-                delta = diffPatcher.diff(remoteData, localData);
-            } else {
-                delta = diffPatcher.diff(localData, remoteData);
-            }
+            delta = diffPatcher.diff(localData, remoteData);
         }
         if (!delta) {
             console.log('no difference, do nothing');
@@ -141,25 +181,15 @@ class Base {
             throw new Error('Please decrypt your local/remote data first (different encrypt public key).');
         }
         console.log('find difference, apply patch');
-        const localOverwriteRemote = () => this.localOverwriteRemote({
-            localData,
-            localVersion
-        });
-        const remoteOverwriteLocal = () => this.remoteOverwriteLocal({
-            remoteData, remoteVersion, delta
-        });
-        // local overwrite remote
-        if (localVersion > remoteVersion) {
-            await localOverwriteRemote();
-        } else if (localVersion < remoteVersion) {
-            // remote overwrite local
-            await remoteOverwriteLocal();
+        if (overwriteType === 'overwriteRemote') {
+            this.localOverwriteRemote({
+                localData,
+                localVersion
+            });
         } else {
-            if (localData.isEncrypted) {
-                await localOverwriteRemote();
-            } else {
-                await remoteOverwriteLocal();
-            }
+            this.remoteOverwriteLocal({
+                remoteData, remoteVersion, delta
+            });
         }
     }
 

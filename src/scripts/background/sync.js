@@ -22,12 +22,41 @@ const wrapAsyncError = (asyncFunc) => (
         }
     }
 );
-const isExistedDropbox = async () => {
-    const { dropbox } = await browser.storage.local.get({
-        dropbox: null
-    });
-    return dropbox ? Boolean(dropbox.accessToken) : false;
-};
+
+// TODO: not effient
+function loopSync() {
+    dropboxSync();
+    setTimeout(() => {
+        loopSync();
+    }, 1000 * 60 * 10)
+}
+
+function onMessageDropbox(message) {
+    if (!message) return;
+    const { id: type } = message;
+    if(type === 'doDiffAndPatch') {
+        const { remoteVersion, localVersion, localData, remoteData } = message;
+        return dropboxHelper.doDiffAndPatch({ localData, localVersion }, { remoteData, remoteVersion });
+    } else if (type === 'authorize') {
+        return new Promise((resolve) => {
+            dropboxHelper.authorize(() => {
+                dropboxSync();
+                resolve();
+            });
+        })
+    } else if (type === 'disconnect') {
+        return dropboxHelper.disconnect();
+    } else if (type === 'getLocalAndRemote') {
+        return dropboxHelper.getLocalAndRemote();
+    } else if (type === 'getAuthState') {
+        if (dropboxHelper.authState === 'authorizing') {
+            return Promise.resolve('unauthorized');
+        }
+        return Promise.resolve(dropboxHelper.authState);
+    } else if (type === 'getSyncState') {
+        return Promise.resolve(dropboxHelper.syncState);
+    }
+}
 
 const dropboxHelper = new DropboxHelper();
 const dropboxSync = debounce(wrapAsyncError(async () => {
@@ -37,24 +66,11 @@ const dropboxSync = debounce(wrapAsyncError(async () => {
         await dropboxHelper.initSync();
     }
 }), 5000);
-
-// TODO: not effient
-function loopSync() {
-    dropboxSync();
-    setTimeout(() => {
-        loopSync();
-    }, 1000 * 60 * 60 * 2)
-}
-
 loopSync();
+
+
 browser.storage.onChanged.addListener(wrapAsyncError(async (changes, areaName) => {
     if (areaName !== 'local') return;
-    if (changes.dropbox) {
-        const dpSetting = changes.dropbox.newValue;
-        if (!dpSetting || !dpSetting.accessToken) {
-            dropboxHelper.disconnect();
-        }
-    }
     if (
         !changes.accountInfos &&
         !changes.passwordInfo &&
@@ -63,16 +79,12 @@ browser.storage.onChanged.addListener(wrapAsyncError(async (changes, areaName) =
         !changes.settings) {
         return;
     } else {
-        if (await isExistedDropbox()) {
-            dropboxSync();
-        }
+        dropboxSync();
     }
 }));
 browser.runtime.onMessage.addListener((obj) => {
-    if (obj.id === 'DropboxDoDiffAndPatch') {
-        const { remoteVersion, localVersion, localData, remoteData } = obj;
-        dropboxHelper.doDiffAndPatch({ localData, localVersion }, { remoteData, remoteVersion });
+    switch(obj.id) {
+        case 'dropbox':
+            return onMessageDropbox(obj.dropbox);
     }
-})
-
-window.dropboxHelper = dropboxHelper;
+});

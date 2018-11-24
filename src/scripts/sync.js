@@ -1,6 +1,5 @@
 import './menu.js';
 import './formAction.js';
-import DropboxHelper from './sync/DropboxHelper.js';
 import lockAsyncFunc from './lockAsyncFunc.js';
 import {
   getPasswordInfo,
@@ -150,7 +149,6 @@ function showErrorMessage({
     });
   });
 }
-const dropboxHelper = new DropboxHelper();
 
 const doResetAccountInfos = lockAsyncFunc(
   async (nextStorageArea, nextPassword) => {
@@ -184,15 +182,35 @@ const doForgetPassword = lockAsyncFunc(
   }
 )
 
+browser.runtime.onMessage.addListener((message) => {
+  if (message.type === 'showOverwriteWarning') {
+    return showOverwriteWarning(message.warningType, message.driveType, message.localAndRemoteData);
+  }
+});
+
 dropboxBtn.addEventListener('click', async () => {
-  if (dropboxHelper.authState === 'unauthorized') {
-    dropboxHelper.authorize(() => {
-      setDropboxText();
-      syncWithDropbox();
+  const authState = await browser.runtime.sendMessage({
+    id: 'dropbox',
+    dropbox: {
+      id: 'getAuthState'
+    }
+  });
+  if (authState === 'unauthorized') {
+    await browser.runtime.sendMessage({
+      id: 'dropbox',
+      dropbox: {
+        id: 'authorize'
+      }
     });
+    setDropboxText('authorized');
   } else {
-    await dropboxHelper.disconnect();
-    setDropboxText();
+    await browser.runtime.sendMessage({
+      id: 'dropbox',
+      dropbox: {
+        id: 'disconnect'
+      }
+    });
+    setDropboxText('unauthorized');
   }
 });
 passwordInput.addEventListener('input', () => {
@@ -292,11 +310,6 @@ importBtn.addEventListener('click', (event) => {
     url: '/options/import.html'
   });
 });
-browser.storage.onChanged.addListener((changes, areaName) => {
-  if (areaName !== 'local') return;
-  if (!changes.accountInfos) return;
-  syncWithDropbox();
-});
 init();
 
 async function init() {
@@ -306,9 +319,13 @@ async function init() {
   setForgetBtnStatus();
   setDecryptBtnStatus();
   try {
-    await dropboxHelper.init();
-    setDropboxText();
-    syncWithDropbox();
+    const authState = await browser.runtime.sendMessage({
+      id: 'dropbox',
+      dropbox: {
+        id: 'getAuthState'
+      }
+    });
+    setDropboxText(authState);
   } catch (error) {
     showErrorMessage({
       message: error.message
@@ -385,64 +402,46 @@ async function setDecryptBtnStatus() {
     decryptBtn.setAttribute('disabled', 'true');
   }
 }
-function setDropboxText() {
-  if (dropboxHelper.authState === 'authorized') {
+function setDropboxText(authState) {
+  if (authState === 'authorized') {
     dropboxTextElement.textContent = 'Disconnect';
   } else {
     dropboxTextElement.textContent = 'Dropbox';
   }
 }
 
-// TODO
-async function syncWithDropbox() {
-  try {
-    if (dropboxHelper.authState !== 'authorized' || dropboxHelper.syncState === 'syncing') {
-      return;
-    }
-    const {
-      remoteVersion,
-      localVersion,
-      localData,
-      remoteData
-    } = await dropboxHelper.getLocalAndRemote();
+async function showOverwriteWarning(
+  warningType,
+  driveType,
+  {remoteVersion, localVersion, localData, remoteData}
+) {
+  if (!warningType) return;
 
-    const localIsEncrypted = Boolean(localData.isEncrypted);
-    const remoteIsEncrypted = Boolean(remoteData.isEncrypted);
-    const overwirteLocalWarning = () => showWarningMessage({
-      message: 'Your local data will be overwritten due to different encryption settings',
-      confirmBtnText: 'confirm'
-    });
-    const overwirteRemoteWarning = () => showWarningMessage({
-      message: 'Your remote data will be overwritten due to different encryption settings',
-      confirmBtnText: 'confirm'
-    });
-    if (remoteIsEncrypted !== localIsEncrypted) {
-      let result = 0;
-      if (remoteVersion > localVersion) {
-          result = await overwirteLocalWarning();
-      } else if (localVersion > remoteVersion) {
-        result = await overwirteRemoteWarning();
-      } else {
-        if (localIsEncrypted) {
-          result = await overwirteRemoteWarning();
-        } else {
-          result = await overwirteLocalWarning();
-        }
-      }
-      if (!result) {
-        return;
-      }
-      browser.runtime.sendMessage({
-        id: 'DropboxDoDiffAndPatch',
+  const overwirteLocalWarning = () => showWarningMessage({
+    message: 'Your local data will be overwritten due to different encryption settings',
+    confirmBtnText: 'confirm'
+  });
+  const overwirteRemoteWarning = () => showWarningMessage({
+    message: 'Your remote data will be overwritten due to different encryption settings',
+    confirmBtnText: 'confirm'
+  });
+  let result = 0;
+  if (warningType === 'overwriteRemote') {
+    result = await overwirteRemoteWarning()
+  } else {
+    result = await overwirteLocalWarning();
+  }
+  if (!result) return;
+  if (driveType === 'dropbox') {
+    browser.runtime.sendMessage({
+      id: 'dropbox',
+      dropbox: {
+        id: 'doDiffAndPatch',
         remoteVersion,
         localVersion,
         localData,
         remoteData
-      });
-    }
-  } catch (error) {
-    showErrorMessage({
-      message: error.message,
+      }
     });
   }
 }

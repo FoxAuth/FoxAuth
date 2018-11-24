@@ -16,6 +16,7 @@ export default class DropboxHelper extends Base {
         };
         this.authState = 'unauthorized';
         this.syncState = 'idle';
+        this.driveType = 'dropbox';
     }
     async init() {
         this.service.setClientSecret('');

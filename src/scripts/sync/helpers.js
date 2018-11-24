@@ -63,8 +63,27 @@ function transformRemoteData(remoteData) {
     };
 }
 
+function getOverwriteType({
+    localVersion,
+    remoteVersion,
+    localIsEncrypted
+}) {
+    if (localVersion > remoteVersion) {
+        return 'overwriteRemote';
+    } else if (localVersion < remoteVersion) {
+        return 'overwriteLocal';
+    } else {
+        if (localIsEncrypted) {
+            return 'overwriteRemote';
+        } else {
+            return 'overwriteLocal';
+        }
+    }
+}
+
 export {
     parseQueryString,
     readAsJSON,
-    transformRemoteData
+    transformRemoteData,
+    getOverwriteType
 }
