@@ -38,7 +38,7 @@ const applyBatchUpdate = debounce(() => {
   // save to storage
   updateInfos(cachedAccountInfos, accountInfoUpdateRecord);
   accountInfoUpdateRecord = [];
-}, 100);
+}, 400);
 let confirmFun = function () { };
 let warningCloseFun = function () { };
 let cachedAccountInfos = [];
