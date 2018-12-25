@@ -18,7 +18,7 @@ const wrapAsyncError = (asyncFunc) => (
         try {
             await asyncFunc(...args);
         } catch (error) {
-            showErrorMsg(error.message);
+            console.log(error.message);
         }
     }
 );
