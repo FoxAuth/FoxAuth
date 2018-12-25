@@ -36,6 +36,7 @@
     "notifications",
     "contextualIdentities",
     "activeTab",
+    "clipboardWrite",
     "<all_urls>"
   ],
   "content_scripts": [
