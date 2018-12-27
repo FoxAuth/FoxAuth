@@ -1,1 +1,0 @@
- 	A Firefox authenticator that can autofill TOTP codes with Firefox Android support.
