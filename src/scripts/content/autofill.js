@@ -34,6 +34,10 @@ function matchOTP() {
         case "wordpress.com":
             matchIssuer = "WordPress.com"
             break;
+        case 1: "store.steampowered.com"
+        case 2: "steamcommunity.com"
+            matchIssuer = "Steam"
+            break;
         default:
             matchTarget = matchTarget.split('.').reverse();
             matchIssuer = matchTarget[1] || matchTarget[0];
