@@ -1,6 +1,13 @@
 # Changelog
 All changes per revisioning to this project will be documented in this file. All dates used in this file are recorded as UTC+8.
 
+## v 1.4.2 - Jan 8th 2019
+### New 💡
+- new logo design
+### Changes 📝
+- faster sync intervals
+- small fixes
+
 ## v 1.4.1 - Nov 22th 2018
 - hotfix for Slack.
 
