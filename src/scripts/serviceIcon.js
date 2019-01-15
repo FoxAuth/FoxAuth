@@ -44,7 +44,8 @@ export default function getServiceIconNames(){
     'zoho',
     'ubisoft',
     'humblebundle',
-    'gandi'
+    'gandi',
+    'electronic arts'
   ];
   return arr
 }

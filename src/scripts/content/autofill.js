@@ -34,6 +34,9 @@ function matchOTP() {
         case "wordpress.com":
             matchIssuer = "WordPress.com"
             break;
+        case "signin.ea.com":
+            matchIssuer = "Electronic Arts"
+            break;
         case 1: "store.steampowered.com"
         case 2: "steamcommunity.com"
             matchIssuer = "Steam"
