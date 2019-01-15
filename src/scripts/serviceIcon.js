@@ -45,7 +45,8 @@ export default function getServiceIconNames(){
     'ubisoft',
     'humblebundle',
     'gandi',
-    'electronic arts'
+    'electronic arts',
+    'alibabacloud'
   ];
   return arr
 }
