@@ -43,7 +43,8 @@ export default function getServiceIconNames(){
     'yahoo',
     'zoho',
     'ubisoft',
-    'humblebundle'
+    'humblebundle',
+    'gandi'
   ];
   return arr
 }
