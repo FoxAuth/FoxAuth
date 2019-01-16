@@ -39,8 +39,7 @@ function matchOTP() {
             break;
         case 1: "account.alibabacloud.com"
         case 2: "account-jp.alibabacloud.com"
-        case 3: "account.aliyun.com"
-            matchIssuer = "Alibabacloud"
+            matchIssuer = "Aliyun"
             break;
         case 1: "store.steampowered.com"
         case 2: "steamcommunity.com"
