@@ -1,6 +1,9 @@
 # Changelog
 All changes per revisioning to this project will be documented in this file. All dates used in this file are recorded as UTC+8.
 
+## v 1.4.3 - Jan 18th 2019
+- small fixes & icons refine
+
 ## v 1.4.2 - Jan 8th 2019
 ### New 💡
 - new logo design
