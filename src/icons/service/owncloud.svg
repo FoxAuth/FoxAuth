@@ -1,21 +1,105 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!-- Generator: Adobe Illustrator 14.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 43363)  -->
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.1"
-	 id="svg8944" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:cc="http://creativecommons.org/ns#" xmlns:svg="http://www.w3.org/2000/svg" inkscape:version="0.91 r" sodipodi:docname="OwnCloud2-Logo.svg"
-	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="443.344px"
-	 height="218.91px" viewBox="0 0 443.344 218.91" enable-background="new 0 0 443.344 218.91" xml:space="preserve">
-<sodipodi:namedview  id="namedview24" guidetolerance="10" showgrid="false" inkscape:cx="196.87868" borderopacity="1" inkscape:cy="42.416955" objecttolerance="10" bordercolor="#666666" fit-margin-top="5" pagecolor="#ffffff" inkscape:zoom="1.4634505" gridtolerance="10" fit-margin-left="5" inkscape:pageopacity="0" inkscape:pageshadow="2" fit-margin-right="5" inkscape:window-height="718" fit-margin-bottom="5" inkscape:window-y="0" inkscape:current-layer="svg8944" inkscape:window-width="1366" inkscape:window-x="0" inkscape:window-maximized="1">
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   id="svg8944"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   sodipodi:docname="owncloud.svg"
+   x="0px"
+   y="0px"
+   width="279.75803"
+   height="159.561"
+   viewBox="0 0 279.75803 159.561"
+   enable-background="new 0 0 443.344 218.91"
+   xml:space="preserve"><metadata
+   id="metadata62"><rdf:RDF><cc:Work
+       rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata><defs
+   id="defs60" />
+<sodipodi:namedview
+   id="namedview24"
+   guidetolerance="10"
+   showgrid="false"
+   inkscape:cx="58.222686"
+   borderopacity="1"
+   inkscape:cy="-16.93204"
+   objecttolerance="10"
+   bordercolor="#666666"
+   fit-margin-top="5"
+   pagecolor="#ffffff"
+   inkscape:zoom="1.4634505"
+   gridtolerance="10"
+   fit-margin-left="5"
+   inkscape:pageopacity="0"
+   inkscape:pageshadow="2"
+   fit-margin-right="5"
+   inkscape:window-height="848"
+   fit-margin-bottom="5"
+   inkscape:window-y="-8"
+   inkscape:current-layer="svg8944"
+   inkscape:window-width="1600"
+   inkscape:window-x="-8"
+   inkscape:window-maximized="1">
 	</sodipodi:namedview>
-<circle id="circle265" fill="#1D2D44" stroke="#FFFFFF" stroke-width="4" cx="220.181" cy="43.648" r="20.332"/>
-<circle id="circle272" fill="#1D2D44" stroke="#FFFFFF" stroke-width="4" cx="182.898" cy="114.314" r="37.242"/>
-<circle id="circle279" fill="#1D2D44" stroke="#FFFFFF" stroke-width="4" cx="224.912" cy="89.533" r="40.261"/>
-<circle id="circle286" fill="#1D2D44" stroke="#FFFFFF" stroke-width="4" cx="307.021" cy="73.209" r="37.242"/>
-<circle id="circle293" fill="#1D2D44" stroke="#FFFFFF" stroke-width="4" cx="266.18" cy="44.241" r="37.241"/>
-<circle id="circle300" fill="#1D2D44" stroke="#FFFFFF" stroke-width="4" cx="390.114" cy="128.695" r="21.3"/>
-<circle id="circle307" fill="#1D2D44" stroke="#FFFFFF" stroke-width="4" cx="344.85" cy="112.3" r="40.261"/>
-<circle id="circle314" fill="#1D2D44" stroke="#FFFFFF" stroke-width="4" cx="222.449" cy="130.748" r="21.299"/>
-<path id="path321" inkscape:connector-curvature="0" fill="#1D2D44" stroke="#FFFFFF" stroke-width="4" d="M329.794,100.406
-	c0,28.348-22.984,51.328-51.334,51.328s-51.333-22.98-51.333-51.328c0-28.351,22.984-51.333,51.333-51.333
-	S329.794,72.055,329.794,100.406z"/>
+<circle
+   id="circle265"
+   cx="81.525009"
+   cy="43.647999"
+   r="20.332001"
+   style="fill:#1d2d44;stroke:#ffffff;stroke-width:4" />
+<circle
+   id="circle272"
+   cx="44.242001"
+   cy="114.314"
+   r="37.242001"
+   style="fill:#1d2d44;stroke:#ffffff;stroke-width:4" />
+<circle
+   id="circle279"
+   cx="86.256012"
+   cy="89.53299"
+   r="40.261002"
+   style="fill:#1d2d44;stroke:#ffffff;stroke-width:4" />
+<circle
+   id="circle286"
+   cx="168.36501"
+   cy="73.209"
+   r="37.242001"
+   style="fill:#1d2d44;stroke:#ffffff;stroke-width:4" />
+<circle
+   id="circle293"
+   cx="127.524"
+   cy="44.241001"
+   r="37.241001"
+   style="fill:#1d2d44;stroke:#ffffff;stroke-width:4" />
+<circle
+   id="circle300"
+   cx="251.45802"
+   cy="128.69501"
+   r="21.299999"
+   style="fill:#1d2d44;stroke:#ffffff;stroke-width:4" />
+<circle
+   id="circle307"
+   cx="206.19402"
+   cy="112.3"
+   r="40.261002"
+   style="fill:#1d2d44;stroke:#ffffff;stroke-width:4" />
+<circle
+   id="circle314"
+   cx="83.793015"
+   cy="130.748"
+   r="21.299"
+   style="fill:#1d2d44;stroke:#ffffff;stroke-width:4" />
+<path
+   id="path321"
+   inkscape:connector-curvature="0"
+   d="m 191.13801,100.406 c 0,28.348 -22.984,51.328 -51.334,51.328 -28.35,0 -51.333004,-22.98 -51.333004,-51.328 0,-28.351 22.984004,-51.333 51.333004,-51.333 28.349,0 51.334,22.982 51.334,51.333 z"
+   style="fill:#1d2d44;stroke:#ffffff;stroke-width:4" />
 </svg>
