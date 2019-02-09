@@ -47,7 +47,7 @@ export default function getServiceIconNames(){
     'gandi',
     'electronic arts',
     'aliyun',
-    'presearch',
+    'presearch.org',
     'fastmail'
   ];
   return arr
