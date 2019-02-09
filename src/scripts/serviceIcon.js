@@ -46,7 +46,9 @@ export default function getServiceIconNames(){
     'humblebundle',
     'gandi',
     'electronic arts',
-    'aliyun'
+    'aliyun',
+    'presearch',
+    'fastmail'
   ];
   return arr
 }
