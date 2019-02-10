@@ -38,7 +38,7 @@ FoxAuth is an [TOTP](https://wikipedia.org/wiki/Time-based_One-time_Password_alg
 
 - __Firefox Android__ support
 - __QR code__ / manually add account info
-- __Container tab__ support to autofill multiple same-domain accounts
+- [__Container tab__](https://support.mozilla.org/en-US/kb/containers) support to autofill multiple same-domain accounts
 - __import / export__
   - import from other authenticators (in progress)
     - [ ] [Authy](https://authy.com/)
@@ -61,10 +61,6 @@ During sync, you are **NOT** supposed to do any of the listed behaviors or you a
 1. use different encryption passwords among different devices.
 
 You shall also note that if you connect an encrypted FoxAuth database to any sync service, **ALL OTHER** unecrypted FoxAuth databases on this service will be override.
-
-## Important Note
-
-Please use [Firefox Container](https://support.mozilla.org/en-US/kb/containers), either the built-in feature or the extension, to manager your multiple accounts. FoxAuth may override your older accounts info when you try to input multiple accounts info without Container specified.
 
 ## Revisioning
 
