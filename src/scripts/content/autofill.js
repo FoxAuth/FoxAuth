@@ -38,7 +38,7 @@ function matchOTP() {
             matchIssuer = "Electronic Arts"
             break;
         case "presearch.org":
-            matchIssuer = "presearch.org"
+            matchIssuer = "www.presearch.org"
             break;
         case 1: "account.alibabacloud.com"
         case 2: "account-jp.alibabacloud.com"
