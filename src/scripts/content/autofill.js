@@ -40,6 +40,9 @@ function matchOTP() {
         case "presearch.org":
             matchIssuer = "www.presearch.org"
             break;
+        case "crowdin.com":
+            matchIssuer = "crowdin.com"
+            break;
         case 1: "account.alibabacloud.com"
         case 2: "account-jp.alibabacloud.com"
             matchIssuer = "Aliyun"
