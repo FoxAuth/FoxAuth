@@ -48,7 +48,8 @@ export default function getServiceIconNames(){
     'electronic arts',
     'aliyun',
     'presearch.org',
-    'fastmail'
+    'fastmail',
+    'crowdin.com'
   ];
   return arr
 }
