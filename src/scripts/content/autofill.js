@@ -1,4 +1,6 @@
 const sessionKey = 'foxauthWebsiteHasInputPassword';
+const sessionUserNameKey = 'foxauthWebsiteInputUserName';
+
 function getSessionValue() {
     return sessionStorage.getItem(sessionKey);
 }
@@ -58,7 +60,7 @@ function matchOTP() {
     return matchIssuer;
 };
 
-async function getTotpKey() {
+async function getTotpKey(userName) {
 
     const issuer = matchOTP();
 
@@ -79,7 +81,10 @@ async function getTotpKey() {
         if (!cookieStoreIdMatch) {
             return false;
         }
-        if (account.localIssuer.toLowerCase() === issuer.toLowerCase()) {
+        if (
+            account.localIssuer.toLowerCase() === issuer.toLowerCase() &&
+            (!userName || account.localAccountName === userName)
+        ) {
             return true;
         }
     });
@@ -101,8 +106,10 @@ async function getTotpKey() {
 }
 async function fillKeyToActiveEl() {
     if (document.activeElement.tagName === 'INPUT') {
-        const key = await getTotpKey();
+        const key = await getTotpKey(sessionStorage.getItem(sessionUserNameKey));
         document.activeElement.value = key;
+        clearSessionValue();
+        sessionStorage.setItem(sessionUserNameKey, '');
     }
 }
 
@@ -136,15 +143,26 @@ function hackTotpDom(input) {
 
     const obj = await browser.storage.local.get('settings') || {};
     const { settings } = obj || {};
+    const passwordDom = [...document.querySelectorAll('input[type=password]')].filter(isVisible).reverse().find(e => e.type = 'password');
+    const onInputUserName = (event) => {
+        sessionStorage.setItem(sessionUserNameKey, event.target.value);
+    }
 
     if (settings && settings.disableAutofill) {
         return;
     }
 
-    const totpKey = await getTotpKey();
+    async function doFillTotpDom(totpDom) {
+        totpDom.value = await getTotpKey(sessionStorage.getItem(sessionUserNameKey));
+        clearSessionValue();
+        sessionStorage.setItem(sessionUserNameKey, '');
+        totpDom.dispatchEvent(new Event('focus', {
+            bubbles: true
+        }));
+        execHackCode();
+    }
 
     function watchDom() {
-        const passwordDom = [...document.querySelectorAll('input[type=password]')].filter(isVisible).reverse().find(e => e.type = 'password');
         const findTotpDom = function () {
             let allInputDom = [...document.querySelectorAll('input[type=text],input[type=tel],input[type=number],input[type=password]')].filter(isVisible);
             const passwordDomIndex = allInputDom.findIndex(e => e === passwordDom);
@@ -154,17 +172,32 @@ function hackTotpDom(input) {
             let totpDom = allInputDom.find(e => e.tagName === 'INPUT' && (e.type === 'text' || e.type === 'tel' || e.type === 'number') && !e.value);
             totpDom = hackTotpDom(totpDom);
             if (totpDom) {
-                totpDom.value = totpKey;
-                clearSessionValue();
-                totpDom.dispatchEvent(new Event('focus', {
-                    bubbles: true
-                }));
-                execHackCode();
+                doFillTotpDom(totpDom);
             } else {
                 setTimeout(findTotpDom, 2000);
             }
         }
-        findTotpDom();
+
+        let userName = sessionStorage.getItem(sessionUserNameKey);
+        if (!userName) {
+            let allInputDom = [...document.querySelectorAll('input[type=text],input[type=tel],input[type=number],input[type=email],input[type=password]')];
+            const passwordDomIndex = allInputDom.findIndex(e => e === passwordDom);
+            if (passwordDomIndex > - 1) {
+                allInputDom = allInputDom.slice(0, passwordDomIndex).reverse();
+            }
+            const userNameDom = allInputDom.find(e => e.type === 'text' || e.type === 'tel' || e.type === 'number' || e.type === 'email');
+            if (!userNameDom) {
+                setTimeout(watchDom, 2000);
+            } else {
+                userNameDom.addEventListener('input', onInputUserName);
+                userNameDom.dispatchEvent(new Event('input', {
+                    bubbles: false,
+                }));
+                findTotpDom();
+            }
+        } else {
+            findTotpDom();
+        }
     };
 
     function watchPasswordDom() {
@@ -175,18 +208,14 @@ function hackTotpDom(input) {
             let totpDom = document.querySelector('input[type=text],input[type=tel],input[type=number]');
             totpDom = hackTotpDom(totpDom);
             if (getSessionValue() && totpDom) {
-                totpDom.value = totpKey;
-                clearSessionValue();
-                totpDom.dispatchEvent(new Event('focus', {
-                    bubbles: true
-                }));
-                execHackCode();
+                doFillTotpDom(totpDom);
             } else {
                 setTimeout(watchPasswordDom, 2000);
             }
         }
 
     }
+
     watchPasswordDom();
 
 })();
