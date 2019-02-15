@@ -105,11 +105,12 @@ async function getTotpKey(userName) {
     return totpKey;
 }
 async function fillKeyToActiveEl() {
-    if (document.activeElement.tagName === 'INPUT') {
-        const key = await getTotpKey(sessionStorage.getItem(sessionUserNameKey));
-        document.activeElement.value = key;
-        clearSessionValue();
-        sessionStorage.setItem(sessionUserNameKey, '');
+    let { activeElement } = document;
+    if (activeElement.tagName === 'IFRAME') {
+        activeElement = hackTotpDom(activeElement);
+    }
+    if (activeElement.tagName === 'INPUT') {
+        doFillTotpDom(activeElement, false);
     }
 }
 
@@ -127,15 +128,44 @@ function execHackCode() {
         })
     }
 }
+function getOtpOwnerDocument() {
+    const { host } = window.location;
+
+    // hack for reddit
+    if (host.indexOf('reddit.com') >= 0) {
+        const frames = Array.from(window.frames);
+        const loginFrame = frames.find((f) => {
+            try {
+                return f.location.href.indexOf('www.reddit.com/login') >= 0;
+            } catch(error) {
+                return false;
+            }
+        });
+        if (loginFrame) return loginFrame.document;
+    }
+    return window.document;
+}
 function hackTotpDom(input) {
     const { host } = window.location;
 
     // hack for reddit
     if (host.indexOf('reddit.com') >= 0) {
-        return document.getElementById('otpfield');
+        return getOtpOwnerDocument().getElementById('loginOtp');
     }
 
     return input;
+}
+
+async function doFillTotpDom(totpDom, isAutoFill = true) {
+    totpDom.value = await getTotpKey(sessionStorage.getItem(sessionUserNameKey));
+    clearSessionValue();
+    sessionStorage.setItem(sessionUserNameKey, '');
+    if (isAutoFill) {
+        totpDom.dispatchEvent(new Event('focus', {
+            bubbles: true
+        }));
+        execHackCode();
+    }
 }
 
 
@@ -143,7 +173,6 @@ function hackTotpDom(input) {
 
     const obj = await browser.storage.local.get('settings') || {};
     const { settings } = obj || {};
-    const passwordDom = [...document.querySelectorAll('input[type=password]')].filter(isVisible).reverse().find(e => e.type = 'password');
     const onInputUserName = (event) => {
         sessionStorage.setItem(sessionUserNameKey, event.target.value);
     }
@@ -152,19 +181,13 @@ function hackTotpDom(input) {
         return;
     }
 
-    async function doFillTotpDom(totpDom) {
-        totpDom.value = await getTotpKey(sessionStorage.getItem(sessionUserNameKey));
-        clearSessionValue();
-        sessionStorage.setItem(sessionUserNameKey, '');
-        totpDom.dispatchEvent(new Event('focus', {
-            bubbles: true
-        }));
-        execHackCode();
-    }
-
     function watchDom() {
+        const otpOwnerDocument = getOtpOwnerDocument();
+        let userName = sessionStorage.getItem(sessionUserNameKey);
+        const passwordDom = [...otpOwnerDocument.querySelectorAll('input[type=password]')].filter(isVisible).reverse().find(e => e.type = 'password');
+
         const findTotpDom = function () {
-            let allInputDom = [...document.querySelectorAll('input[type=text],input[type=tel],input[type=number],input[type=password]')].filter(isVisible);
+            let allInputDom = [...otpOwnerDocument.querySelectorAll('input[type=text],input[type=tel],input[type=number],input[type=password]')].filter(isVisible);
             const passwordDomIndex = allInputDom.findIndex(e => e === passwordDom);
             if (passwordDomIndex > -1) {
                 allInputDom = allInputDom.splice(passwordDomIndex + 1);
@@ -177,10 +200,23 @@ function hackTotpDom(input) {
                 setTimeout(findTotpDom, 2000);
             }
         }
+        const hackAndFindDom = function () {
+            // hack for reddit
+            if (location.host.indexOf('reddit.com') >= 0) {
+                const btnElement = otpOwnerDocument.querySelector('button[type=submit]');
+                const onRedditSubmitBtnClick = () => {
+                    setTimeout(findTotpDom, 500);
+                    btnElement.removeEventListener('click', onRedditSubmitBtnClick);
+                }
+                btnElement.addEventListener('click', onRedditSubmitBtnClick);
+                return;
+            }
 
-        let userName = sessionStorage.getItem(sessionUserNameKey);
+            findTotpDom();
+        }
+
         if (!userName) {
-            let allInputDom = [...document.querySelectorAll('input[type=text],input[type=tel],input[type=number],input[type=email],input[type=password]')];
+            let allInputDom = [...otpOwnerDocument.querySelectorAll('input[type=text],input[type=tel],input[type=number],input[type=email],input[type=password]')];
             const passwordDomIndex = allInputDom.findIndex(e => e === passwordDom);
             if (passwordDomIndex > - 1) {
                 allInputDom = allInputDom.slice(0, passwordDomIndex).reverse();
@@ -193,19 +229,21 @@ function hackTotpDom(input) {
                 userNameDom.dispatchEvent(new Event('input', {
                     bubbles: false,
                 }));
-                findTotpDom();
+                hackAndFindDom();
             }
         } else {
-            findTotpDom();
+            hackAndFindDom();
         }
     };
 
     function watchPasswordDom() {
-        if (document.querySelector('input[type=password]')) {
+        const otpOwnerDocument = getOtpOwnerDocument();
+
+        if (otpOwnerDocument.querySelector('input[type=password]')) {
             setSessionValue();
             watchDom();
         } else {
-            let totpDom = document.querySelector('input[type=text],input[type=tel],input[type=number]');
+            let totpDom = otpOwnerDocument.querySelector('input[type=text],input[type=tel],input[type=number]');
             totpDom = hackTotpDom(totpDom);
             if (getSessionValue() && totpDom) {
                 doFillTotpDom(totpDom);
