@@ -1,6 +1,14 @@
 # Changelog
 All changes per revisioning to this project will be documented in this file. All dates used in this file are recorded as UTC+8.
 
+## v 1.4.5 - Feb 19th 2019
+### New 💡
+- button for manual copying
+### Changes 📝
+- Container tab is now not compulsory for multi-account but still supported
+### Fixed 🔨
+- hack into Reddit iFrame for autofilling
+
 ## v 1.4.4 - Feb 9th 2019
 - hotfix addressing PreSearch
 
