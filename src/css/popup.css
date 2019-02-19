@@ -123,6 +123,7 @@ body.scanning::after {
     clear: both;
 }
 .popup-row-item {
+    position: relative;
     line-height: 28px;
     display: block;
     text-align: center;
@@ -189,6 +190,72 @@ body.scanning::after {
     width: 30px;
     object-fit: contain;
     margin-right: 8px;
+}
+.popup-row-item > span {
+    vertical-align: middle;
+}
+.popup-row-item > .icon-copy {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    margin-left: 10px;
+    background: url(/icons/options/Copy.svg) center center / 18px 18px no-repeat;
+    box-sizing: border-box;
+    border: 1px solid #e7e9ed;
+    border-radius: 50%;
+    cursor: pointer;
+    vertical-align: middle;
+}
+.popup-row-item > .copy-success-message {
+    z-index: 999;
+    position: absolute;
+    top: -28px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 84px;
+    height: 24px;
+    padding-right: 4px;
+    animation: 1.4s fade ease forwards;
+    opacity: 0;
+    line-height: 24px;
+    font-size: 0;
+    text-align: center;
+    background: #0060df;
+    border-radius: 4px;
+}
+.popup-row-item > .copy-success-message > svg {
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+}
+.popup-row-item > .copy-success-message > span {
+    color: #fff;
+    font-size: 14px;
+    vertical-align: middle;
+}
+.checkmark {
+    stroke: #fff;
+    fill: none;
+    stroke-dasharray: 0 24;
+    stroke-linejoin: round;
+    animation: .6s tick .1s ease-out forwards;
+}
+
+@keyframes fade {
+    40% {
+        opacity: 1;
+    }
+    70% {
+        opacity: 1;
+    }
+}
+@keyframes tick {
+    0% {
+        stroke-dasharray: 0 24;
+    }
+    100% {
+        stroke-dasharray: 24;
+    }
 }
 
 #popupClearSearch {

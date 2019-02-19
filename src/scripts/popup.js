@@ -125,6 +125,9 @@ const template_totp = ef.t`
             #href = javascript:void(0);
             #class = {{otpKeyClassName}}
             .{{OTP}}
+          >i.popup-icon.icon-copy
+            @click.stop = copyOtp
+          -copySuccessMessage
         >div.popup-right.container-icon-box
           #data-color = {{containerColor}}
           >img.popup-icon.container-icon
@@ -135,6 +138,20 @@ const template_totp = ef.t`
       #max={{progress_max}}
       %value={{progress}}
 `
+const template_copy_success = ef.t`
+>div.copy-success-message
+  #style = {{ style }}
+  @animationend.stop = onAnimationEnd
+  >svg
+    #xmlns = http://www.w3.org/2000/svg
+    #version = 1.2
+    #viewBox = 0 0 16 20
+    >path.checkmark
+      #d = M2 10 L 6 14 14 4
+  >span
+    .Copied!
+`;
+
 otpContainer.$mount({ target: document.getElementById('otpContainer'), option: 'replace' })
 var otpStoreInterval = []
 function addOTP(issuer, containerObj = {}, key, expiry = 30, code_length = 6, option = {}) {
@@ -164,6 +181,17 @@ function addOTP(issuer, containerObj = {}, key, expiry = 30, code_length = 6, op
       progress: expiry - (Math.round(new Date().getTime() / 1000.0) % expiry),
       index: option.index,
       flag: option.flag,
+    },
+    $methods: {
+      copyOtp({ state, e }) {
+        navigator
+          .clipboard
+          .writeText(state.$data.OTP)
+          .then(() => {
+            const { parentNode } = e.target;
+            mountCopySuccessMessage(state, parentNode);
+          });
+      }
     }
   })) - 1;
   if (otpKey !== 'ERROR') {
@@ -344,3 +372,23 @@ function clearSearch() {
   const event = new Event('input')
   popupSearchInput.dispatchEvent(event)
 };
+
+function mountCopySuccessMessage(component, rowItem) {
+  if (component.copySuccessMessage) {
+    return;
+  }
+
+  const { top } = rowItem.getBoundingClientRect();
+  component.copySuccessMessage = new template_copy_success({
+    $data: {
+      style: top > 28 ? 'top: -28px;' : 'top: calc(100% + 4px);'
+    },
+    $methods: {
+      onAnimationEnd({ e, state }) {
+        if (e.target === state.$element) {
+          state.$umount();
+        }
+      }
+    }
+  });
+}

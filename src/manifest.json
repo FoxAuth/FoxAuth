@@ -8,7 +8,7 @@
   "applications": {
     "gecko": {
       "id": "foxauth@foxauth",
-      "strict_min_version": "60.0"
+      "strict_min_version": "63.0"
     }
   },
   "icons": {
