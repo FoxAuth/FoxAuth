@@ -51,7 +51,8 @@ export default function getServiceIconNames(){
     'fastmail',
     'crowdin.com',
     'roboform',
-    'namecheap'
+    'namecheap',
+    'tutanota'
   ];
   return arr
 }
