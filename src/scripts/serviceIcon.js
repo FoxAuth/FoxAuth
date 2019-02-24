@@ -49,7 +49,8 @@ export default function getServiceIconNames(){
     'aliyun',
     'presearch.org',
     'fastmail',
-    'crowdin.com'
+    'crowdin.com',
+    'roboform'
   ];
   return arr
 }
