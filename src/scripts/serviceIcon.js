@@ -50,7 +50,8 @@ export default function getServiceIconNames(){
     'presearch.org',
     'fastmail',
     'crowdin.com',
-    'roboform'
+    'roboform',
+    'namecheap'
   ];
   return arr
 }
