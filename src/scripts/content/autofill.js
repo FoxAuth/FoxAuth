@@ -48,6 +48,9 @@ function matchOTP() {
         case "bugzilla.mozilla.org":
             matchIssuer = "Bugzilla@Mozilla"
             break;
+        case "posteo.de":
+            matchIssuer = "Posteo.de"
+            break;
         case 1: "account.alibabacloud.com"
         case 2: "account-jp.alibabacloud.com"
             matchIssuer = "Aliyun"
