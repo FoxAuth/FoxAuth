@@ -54,7 +54,9 @@ export default function getServiceIconNames(){
     'namecheap',
     'tutanota',
     'mega',
-    'uber'
+    'uber',
+    'bugzilla@mozilla',
+    'posteo'
   ];
   return arr
 }
