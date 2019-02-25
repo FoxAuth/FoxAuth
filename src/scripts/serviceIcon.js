@@ -53,7 +53,8 @@ export default function getServiceIconNames(){
     'roboform',
     'namecheap',
     'tutanota',
-    'mega'
+    'mega',
+    'uber'
   ];
   return arr
 }
