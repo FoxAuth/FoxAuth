@@ -52,7 +52,8 @@ export default function getServiceIconNames(){
     'crowdin.com',
     'roboform',
     'namecheap',
-    'tutanota'
+    'tutanota',
+    'mega'
   ];
   return arr
 }
