@@ -1,6 +1,9 @@
 # Changelog
 All changes per revisioning to this project will be documented in this file. All dates used in this file are recorded as UTC+8.
 
+## v 1.4.6 - Feb 27th 2019
+- multiple minor fixes
+
 ## v 1.4.5 - Feb 19th 2019
 ### New 💡
 - button for manual copying
