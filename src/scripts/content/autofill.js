@@ -152,7 +152,7 @@ function getOtpOwnerDocument() {
     return window.document;
 }
 function hackTotpDom(input) {
-    const { host } = window.location;
+    const { host, href } = window.location;
     const otpOwnerDoc = getOtpOwnerDocument();
 
     // hack for reddit
@@ -171,6 +171,13 @@ function hackTotpDom(input) {
         const pinInputs = [...(otpOwnerDoc.getElementsByClassName('pin-input'))];
         return pinInputs.find(isVisible);
     }
+    // hack for totanota
+    if (href.indexOf('mail.tutanota.com/login') >= 0) {
+        const modal = otpOwnerDoc.getElementById('modal');
+        if (!modal) return null;
+        const totpDom = modal.querySelector('input[type=text]');
+        return totpDom;
+    }
 
     return input;
 }
@@ -179,12 +186,20 @@ async function doFillTotpDom(totpDom, isAutoFill = true) {
     totpDom.value = await getTotpKey(sessionStorage.getItem(sessionUserNameKey));
     clearSessionValue();
     sessionStorage.setItem(sessionUserNameKey, '');
+    hackAfterFillTotpDom(totpDom);
     if (isAutoFill) {
         totpDom.dispatchEvent(new Event('focus', {
             bubbles: true
         }));
         execHackCode();
     }
+}
+
+function hackAfterFillTotpDom(totpDom) {
+    totpDom.dispatchEvent(new Event('input', {
+        bubbles: false,
+        cancelable: false,
+    }));
 }
 
 
