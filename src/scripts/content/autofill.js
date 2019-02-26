@@ -153,10 +153,11 @@ function getOtpOwnerDocument() {
 }
 function hackTotpDom(input) {
     const { host } = window.location;
+    const otpOwnerDoc = getOtpOwnerDocument();
 
     // hack for reddit
     if (host.indexOf('reddit.com') >= 0) {
-        return getOtpOwnerDocument().getElementById('loginOtp');
+        return otpOwnerDoc.getElementById('loginOtp');
     }
 
     return input;
