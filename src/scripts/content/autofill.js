@@ -159,6 +159,13 @@ function hackTotpDom(input) {
     if (host.indexOf('reddit.com') >= 0) {
         return otpOwnerDoc.getElementById('loginOtp');
     }
+    // hack for BMO
+    if (host.indexOf('bugzilla.mozilla.org') >= 0) {
+        const code = otpOwnerDoc.getElementById('code');
+        if (!code) return code;
+        if (!isVisible(code)) return null;
+        return code;
+    }
 
     return input;
 }
