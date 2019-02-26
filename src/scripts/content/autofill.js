@@ -166,6 +166,11 @@ function hackTotpDom(input) {
         if (!isVisible(code)) return null;
         return code;
     }
+    // hack for mega
+    if (host.indexOf('mega.nz') >= 0) {
+        const pinInputs = [...(otpOwnerDoc.getElementsByClassName('pin-input'))];
+        return pinInputs.find(isVisible);
+    }
 
     return input;
 }
