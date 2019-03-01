@@ -94,7 +94,8 @@ export function decryptAccountInfos(infos, passwordInfo) {
 
 // same issuer and containerId
 export function isSameAccountInfo(info1, info2) {
-    return info1.containerAssign === info2.containerAssign && info1.localAccountName === info2.localAccountName &&
+    return info1.containerAssign === info2.containerAssign &&
+        info1.localAccountName.toLowerCase() === info2.localAccountName.toLowerCase() &&
         info1.localIssuer !== '' &&
         info2.localIssuer !== '' &&
         info1.localIssuer === info2.localIssuer;
