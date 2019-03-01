@@ -40,7 +40,7 @@ function matchOTP() {
             matchIssuer = "Electronic Arts"
             break;
         case "presearch.org":
-            matchIssuer = "www.presearch.org"
+            matchIssuer = "presearch.org"
             break;
         case "crowdin.com":
             matchIssuer = "crowdin.com"
