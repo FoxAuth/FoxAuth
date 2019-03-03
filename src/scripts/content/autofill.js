@@ -51,6 +51,9 @@ function matchOTP() {
         case "posteo.de":
             matchIssuer = "Posteo.de"
             break;
+        case "adobeid-na1.services.adobe.com":
+            matchIssuer = "Adobe ID"
+            break;
         case 1: "account.alibabacloud.com"
         case 2: "account-jp.alibabacloud.com"
             matchIssuer = "Aliyun"

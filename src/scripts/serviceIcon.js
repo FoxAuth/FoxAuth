@@ -56,7 +56,9 @@ export default function getServiceIconNames(){
     'mega',
     'uber',
     'bugzilla@mozilla',
-    'posteo'
+    'posteo',
+    'sourceforge',
+    'adobe'
   ];
   return arr
 }
