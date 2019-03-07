@@ -54,6 +54,19 @@ function matchOTP() {
         case "adobeid-na1.services.adobe.com":
             matchIssuer = "Adobe ID"
             break;
+        case "accounts.nintendo.com":
+            matchIssuer = "Nintendo Account"
+            break;
+        case 1: "ru.wargaming.net"
+        case 2: "na.wargaming.net"
+        case 3: "eu.wargaming.net"
+        case 4: "asia.wargaming.net"
+            matchIssuer = "WarGame"
+            break;
+        case 1: "csp.he.net"
+        case 2: "www.tunnelbroker.net"
+            matchIssuer = "he.net"
+            break;
         case 1: "account.alibabacloud.com"
         case 2: "account-jp.alibabacloud.com"
             matchIssuer = "Aliyun"

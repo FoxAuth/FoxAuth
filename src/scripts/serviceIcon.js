@@ -58,7 +58,15 @@ export default function getServiceIconNames(){
     'bugzilla@mozilla',
     'posteo',
     'sourceforge',
-    'adobe'
+    'adobe',
+    '1password',
+    'he.net',
+    'nintendo account',
+    'pcloud',
+    'snapchat',
+    'synology',
+    'trello',
+    'wargame'
   ];
   return arr
 }
