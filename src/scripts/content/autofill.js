@@ -15,60 +15,59 @@ function isVisible(elem) {
 };
 //autfill matching
 function matchOTP() {
+    function eq(str) { return window.location.hostname === str}
+    function eqR(reg) { return reg.test(window.location.hostname) }
+  
     var matchTarget = window.location.hostname;
     var matchIssuer;
-    switch (matchTarget) {
-        case "www.amazon.cn":
+    switch (true) {
+        case eq("www.amazon.cn"):
             matchIssuer = "z.cn"
             break;
-        case "signin.aws.amazon.com":
+        case eq("signin.aws.amazon.com"):
             matchIssuer = "Amazon Web Services"
             break;
-        case "keepersecurity.com":
+        case eq("keepersecurity.com"):
             matchIssuer = "Keeper"
             break;
-        case "login.live.com":
+        case eq("login.live.com"):
             matchIssuer = "Microsoft"
             break;
-        case "discordapp.com":
+        case eq("discordapp.com"):
             matchIssuer = "Discord"
             break;
-        case "wordpress.com":
+        case eq("wordpress.com"):
             matchIssuer = "WordPress.com"
             break;
-        case "signin.ea.com":
+        case eq("signin.ea.com"):
             matchIssuer = "Electronic Arts"
             break;
-        case "presearch.org":
+        case eq("presearch.org"):
             matchIssuer = "presearch.org"
             break;
-        case "crowdin.com":
+        case eqR(/\.wargaming\.net$/):
+            matchIssuer = "WarGame"
+            break;
+        case eq("crowdin.com"):
             matchIssuer = "crowdin.com"
             break;
-        case "bugzilla.mozilla.org":
+        case eq("bugzilla.mozilla.org"):
             matchIssuer = "Bugzilla@Mozilla"
             break;
-        case "posteo.de":
+        case eq("posteo.de"):
             matchIssuer = "Posteo.de"
             break;
-        case "adobeid-na1.services.adobe.com":
+        case eqR(/\.services.adobe\.com$/):
             matchIssuer = "Adobe ID"
             break;
         case "accounts.nintendo.com":
             matchIssuer = "Nintendo Account"
             break;
-        case 1: "ru.wargaming.net"
-        case 2: "na.wargaming.net"
-        case 3: "eu.wargaming.net"
-        case 4: "asia.wargaming.net"
-            matchIssuer = "WarGame"
-            break;
-        case 1: "csp.he.net"
-        case 2: "www.tunnelbroker.net"
+        case eq("csp.he.net"):
+        case eq("www.tunnelbroker.net"):
             matchIssuer = "he.net"
             break;
-        case 1: "account.alibabacloud.com"
-        case 2: "account-jp.alibabacloud.com"
+        case eqR(/\.alibabacloud\.com$/):
             matchIssuer = "Aliyun"
             break;
         case 1: "store.steampowered.com"
