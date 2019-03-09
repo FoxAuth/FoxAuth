@@ -60,7 +60,7 @@ function matchOTP() {
         case eqR(/\.services.adobe\.com$/):
             matchIssuer = "Adobe ID"
             break;
-        case "accounts.nintendo.com":
+        case eq("accounts.nintendo.com"):
             matchIssuer = "Nintendo Account"
             break;
         case eq("csp.he.net"):
@@ -70,9 +70,12 @@ function matchOTP() {
         case eqR(/\.alibabacloud\.com$/):
             matchIssuer = "Aliyun"
             break;
-        case 1: "store.steampowered.com"
-        case 2: "steamcommunity.com"
+        case eq("store.steampowered.com"):
+        case eq("steamcommunity.com"):
             matchIssuer = "Steam"
+            break;
+        case eqR(/\.battle\.net$/):
+            matchIssuer = "Battle.Net"
             break;
         default:
             matchTarget = matchTarget.split('.').reverse();
