@@ -67,7 +67,7 @@ export default function getServiceIconNames(){
     'synology',
     'trello',
     'wargame',
-    'pronhub',
+    'pornhub',
     'twitch'
   ];
   return arr
