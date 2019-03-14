@@ -68,7 +68,9 @@ export default function getServiceIconNames(){
     'trello',
     'wargame',
     'pornhub',
-    'twitch'
+    'twitch',
+    'hetzner',
+    'office'
   ];
   return arr
 }

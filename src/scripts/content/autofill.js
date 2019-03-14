@@ -77,6 +77,9 @@ function matchOTP() {
         case eqR(/\.battle\.net$/):
             matchIssuer = "Battle.Net"
             break;
+        case eq("login.microsoftonline.com"):
+            matchIssuer = "Office"
+            break;
         default:
             matchTarget = matchTarget.split('.').reverse();
             matchIssuer = matchTarget[1] || matchTarget[0];
