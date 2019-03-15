@@ -70,7 +70,8 @@ export default function getServiceIconNames(){
     'pornhub',
     'twitch',
     'hetzner',
-    'office'
+    'office',
+    'zapier'
   ];
   return arr
 }
