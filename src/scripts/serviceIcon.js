@@ -72,7 +72,8 @@ export default function getServiceIconNames(){
     'hetzner',
     'office',
     'zapier',
-    'npmjs'
+    'npmjs',
+    'ciscooneidentity'
   ];
   return arr
 }

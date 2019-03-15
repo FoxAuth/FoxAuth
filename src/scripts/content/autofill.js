@@ -80,6 +80,9 @@ function matchOTP() {
         case eq("login.microsoftonline.com"):
             matchIssuer = "Office"
             break;
+        case eq("identity.cisco.com"):
+            matchIssuer = "CiscoOneIdentity"
+            break;
         default:
             matchTarget = matchTarget.split('.').reverse();
             matchIssuer = matchTarget[1] || matchTarget[0];
