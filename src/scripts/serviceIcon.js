@@ -71,7 +71,8 @@ export default function getServiceIconNames(){
     'twitch',
     'hetzner',
     'office',
-    'zapier'
+    'zapier',
+    'npmjs'
   ];
   return arr
 }
