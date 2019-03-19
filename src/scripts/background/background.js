@@ -23,8 +23,8 @@ browser.contextMenus.create({
     title: "Scan QR code to add TOTP",
     contexts: ["image", "page"],
     icons: {
-        "16": "../icons/foxauth16.png",
-        "32": "../icons/foxauth32.png"
+        "16": "../icons/icon.svg",
+        "32": "../icons/icon.svg"
     }
 });
 
@@ -39,8 +39,8 @@ browser.contextMenus.create({
         title: "Autofill OTP code",
         contexts: ["editable"],
         icons: {
-            "16": "../icons/foxauth16.png",
-            "32": "../icons/foxauth32.png"
+            "16": "../icons/icon.svg",
+            "32": "../icons/icon.svg"
         }
     });
 })();
