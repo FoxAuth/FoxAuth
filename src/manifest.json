@@ -8,7 +8,7 @@
   "applications": {
     "gecko": {
       "id": "foxauth@foxauth",
-      "strict_min_version": "63.0"
+      "strict_min_version": "66.0"
     }
   },
   "icons": {
@@ -46,5 +46,13 @@
         "scripts/content/autofill.js"
       ]
     }
-  ]
+  ],
+  "commands": {
+    "fillKeyToActiveEl": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+F"
+      },
+      "description": "Fill OTP code to input field"
+    }
+  }
 }

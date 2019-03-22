@@ -315,3 +315,9 @@ function hackAfterFillTotpDom(totpDom) {
     watchPasswordDom();
 
 })();
+
+browser.commands.onCommand.addListener(function(command) {
+    if (command == "fillKeyToActiveEl") {
+        fillKeyToActiveEl();
+    }
+});
