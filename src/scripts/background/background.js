@@ -111,3 +111,9 @@ browser.contextualIdentities.onRemoved.addListener((changeInfo) => {
     const { contextualIdentity } = changeInfo;
     setInfoNotFoundContainerToNone(contextualIdentity)
 });
+
+browser.commands.onCommand.addListener(function(command) {
+    if (command == "_execute_browser_action") {
+        browser.browserAction.openPopup();
+    }
+});
