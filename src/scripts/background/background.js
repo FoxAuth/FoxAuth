@@ -106,6 +106,14 @@ async function setInfoNotFoundContainerToNone(container) {
     saveAccountInfos(infos);
 }
 
+async function accountInfosChange(changes, areaName) {
+    if (changes.accountInfos && areaName === "local"){
+    var {accountInfos: arr} = await browser.storage.local.get("accountInfos");
+    var textString = arr.length.toString();
+    browser.browserAction.setBadgeText({text: textString});
+    }
+}
+
 //add listeners here
 browser.contextualIdentities.onRemoved.addListener((changeInfo) => {
     const { contextualIdentity } = changeInfo;
@@ -117,3 +125,5 @@ browser.commands.onCommand.addListener(function(command) {
         browser.browserAction.openPopup();
     }
 });
+
+browser.storage.onChanged.addListener(accountInfosChange);
