@@ -99,7 +99,8 @@
     
             var otpAlgo = decodeURIComponent(parsed.host);
     
-            if (otpAlgo !== 'hotp' && otpAlgo !== 'totp') {
+            // otpauth://yaotp/nwrllwwy?secret=CUVUDC2GUKCWSVD6H6X3IWYN3U&name=nwrllwwy
+            if (otpAlgo !== 'hotp' && otpAlgo !== 'totp' && otpAlgo !== 'yaotp') {
                 throw new OtpauthInvalidURL(ErrorType.UNKNOWN_OTP);
             }
     
@@ -147,6 +148,10 @@
             ret.key = parameters.get('secret');
     
             // Issuer
+            if (!issuer && ret.type === 'yaotp') {
+                issuer = 'Yandex';
+                ret.type = 'totp'
+            }
             if (parameters.has('issuer')) {
                 // issuer field exits in search params would overwrite the same in pathname
                 issuer = parameters.get('issuer')
