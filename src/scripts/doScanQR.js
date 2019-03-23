@@ -68,16 +68,6 @@ function hackOtpInfo(otpInfo, from) {
             otpInfo.issuer = 'Synology';
             otpInfo.account = '';
             break;
-        // otpauth://totp/npm%3Atesttotp?secret=S6OFIWGPEVVFZ6ZQHLSAKAWLWEXCC44X
-        case isLike(/npm/i):
-            {
-                const label = otpInfo.account;
-                if (/npm%3A/i.test(label)) {
-                    otpInfo.issuer = 'Npm';
-                    otpInfo.account = label.split('npm%3A')[1] || '';
-                }
-            }
-            break;
     }
     return otpInfo;
 }

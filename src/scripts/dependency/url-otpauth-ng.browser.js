@@ -110,7 +110,7 @@
             //
     
             var label = parsed.pathname.substring(1);
-            var labelComponents = label.split(':');
+            var labelComponents = label.split(~label.indexOf(':') ? ':' : '%3A');
             var issuer = '';
             var account = '';
     
