@@ -113,7 +113,7 @@ async function getTotpKey(userName) {
         }
         if (
             account.localIssuer.toLowerCase() === issuer.toLowerCase() &&
-            (!userName || account.localAccountName.toLowerCase() === userName.toLowerCase())
+            account.localAccountName.toLowerCase() === userName.toLowerCase()
         ) {
             return true;
         }
