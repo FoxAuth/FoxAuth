@@ -39,10 +39,45 @@ export default async function doScanQR() {
     const result = await scanImage(image)
     if (!result) throw new Error('QR code not found');
     // validate and parse URL
-    let otpInfo = urlOtpauth.parse(result)
+    let otpInfo = urlOtpauth.parse(result);
+    otpInfo = hackOtpInfo(otpInfo, activeTab.url);
     otpInfo.container = activeTab.cookieStoreId === 'firefox-default' ? '' : activeTab.cookieStoreId
     otpInfo = transform(otpInfo)
     let infos = await getAccountInfos()
     infos = mergeAccountInfos(infos, [otpInfo])
     await saveAccountInfos(infos)
+}
+
+function buildIsLike(url) {
+    return function(reg) {
+        return reg.test(url);
+    }
+}
+
+function hackOtpInfo(otpInfo, from) {
+    const isLike = buildIsLike(from);
+
+    otpInfo = {...otpInfo};
+    switch(true) {
+        // otpauth://totp/Autodesk?secret=G5XEYVZYNRXUEWSK
+        case isLike(/autodesk/i):
+            otpInfo.issuer = 'AutoDesk';
+            otpInfo.account = '';
+            break;
+        case isLike(/synology/i):
+            otpInfo.issuer = 'Synology';
+            otpInfo.account = '';
+            break;
+        // otpauth://totp/npm%3Atesttotp?secret=S6OFIWGPEVVFZ6ZQHLSAKAWLWEXCC44X
+        case isLike(/npm/i):
+            {
+                const label = otpInfo.account;
+                if (/npm%3A/i.test(label)) {
+                    otpInfo.issuer = 'Npm';
+                    otpInfo.account = label.split('npm%3A')[1] || '';
+                }
+            }
+            break;
+    }
+    return otpInfo;
 }
