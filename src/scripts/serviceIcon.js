@@ -74,7 +74,8 @@ export default function getServiceIconNames(){
     'zapier',
     'npmjs',
     'ciscooneidentity',
-    'autodesk'
+    'autodesk',
+    'yandex'
   ];
   return arr
 }
