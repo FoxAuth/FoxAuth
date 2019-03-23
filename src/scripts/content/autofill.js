@@ -90,6 +90,16 @@ function matchOTP() {
     return matchIssuer;
 };
 
+function splitEmailUserName(userName) {
+    userName = String(userName)
+    const atIndex = userName.indexOf('@');
+    if (atIndex < 0) {
+        return userName.toLowerCase();
+    } else {
+        return userName.slice(0, atIndex).toLowerCase();
+    }
+}
+
 async function getTotpKey(userName) {
 
     const issuer = matchOTP();
@@ -98,8 +108,14 @@ async function getTotpKey(userName) {
         id: 'getAccountAndContainer'
     })
 
+    userName = splitEmailUserName(userName)
+    const infos = accountInfos.map(item => ({
+        ...item,
+        localAccountName: splitEmailUserName(item.localAccountName)
+    }));
 
-    const account = accountInfos.find(account => {
+
+    const account = infos.find(account => {
         let cookieStoreIdMatch = false;
         if (
             (tabInfo.cookieStoreId === 'firefox-default' && (!account.containerAssign))
