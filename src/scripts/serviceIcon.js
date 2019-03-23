@@ -73,7 +73,8 @@ export default function getServiceIconNames(){
     'office',
     'zapier',
     'npmjs',
-    'ciscooneidentity'
+    'ciscooneidentity',
+    'autodesk'
   ];
   return arr
 }
