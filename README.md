@@ -6,11 +6,7 @@
   <strong>A Firefox authenticator that can autofill TOTP codes with Firefox Android support</strong>
   <br>
   <br>
-    <a href='https://addons.mozilla.org/firefox/addon/foxauth/'>
-      <img src='https://img.shields.io/amo/v/foxauth.svg?style=flat-square' alt='download' />
-    </a>
-  ·
-    <a href="https://github.com/FoxAuth/FoxAuth/">
+  <a href="https://github.com/FoxAuth/FoxAuth/">
       <img src="https://img.shields.io/github/languages/code-size/FoxAuth/FoxAuth.svg?style=flat-square" alt="codesize" />
     </a>
   ·
@@ -26,6 +22,8 @@
     <a href="https://gitter.im/FoxAuth/Lobby">
       <img src="https://img.shields.io/badge/Gitter-Join%20Chat-purple.svg?style=flat-square" alt="Telegram link" />
     </a>
+
+[![https://addons.mozilla.org/firefox/addon/foxauth](https://addons.cdn.mozilla.net/static/img/addons-buttons/AMO-button_2.png)](https://addons.mozilla.org/firefox/addon/foxauth)
 </div>
 
 ## Introduction
