@@ -80,7 +80,8 @@ export default function getServiceIconNames(){
     'codegiant',
     'packet',
     'plurk',
-    'squarespace'
+    'squarespace',
+    'oneprovider'
   ];
   return arr
 }

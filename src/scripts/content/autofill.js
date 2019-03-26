@@ -86,6 +86,9 @@ function matchOTP() {
         case eq("identity.cisco.com"):
             matchIssuer = "CiscoOneIdentity"
             break;
+        case eq("panel.op-net.com"):
+            matchIssuer = "OneProvider"
+            break;
         default:
             matchTarget = matchTarget.split('.').reverse();
             matchIssuer = matchTarget[1] || matchTarget[0];
