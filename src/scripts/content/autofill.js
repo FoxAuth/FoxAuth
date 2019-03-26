@@ -106,10 +106,16 @@ async function getTotpKey(userName) {
     })
 
     userName = ignoreFirstAtSymbol(userName)
-    const infos = accountInfos.map(item => ({
-        ...item,
-        localAccountName: ignoreFirstAtSymbol(item.localAccountName)
-    }));
+    const infos = accountInfos.map((item) => {
+        item = {...item};
+        if (window.location.hostname === "www.plurk.com") {
+            item.localAccountName = item.localAccountName.slice(0, -6);
+            return item;
+        }
+
+        item.localAccountName = ignoreFirstAtSymbol(item.localAccountName);
+        return item;
+    });
 
 
     const account = infos.find(account => {
