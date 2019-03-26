@@ -74,6 +74,9 @@ function matchOTP() {
         case eq("steamcommunity.com"):
             matchIssuer = "Steam"
             break;
+        case eq("www.hexonet.net"):
+            matchIssuer = "Control Panel LIVE System"
+            break;
         case eqR(/\.battle\.net$/):
             matchIssuer = "Battle.Net"
             break;

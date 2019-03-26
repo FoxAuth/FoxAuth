@@ -75,7 +75,8 @@ export default function getServiceIconNames(){
     'npmjs',
     'ciscooneidentity',
     'autodesk',
-    'yandex'
+    'yandex',
+    'controlpanellivesystem'
   ];
   return arr
 }
