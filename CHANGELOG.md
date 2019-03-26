@@ -1,6 +1,14 @@
 # Changelog
 All changes per revisioning to this project will be documented in this file. All dates used in this file are recorded as UTC+8.
 
+## v 1.4.8 - Mar 26th 2019
+### New 💡
+- massive amount of new service icons
+- autofill support on much more sites
+- keyboard shortcut for OTP code filling & opening popup
+### Changes 📝
+- context menu items use SVG icons
+
 ## v 1.4.7 - Mar 1st 2019
 - emergency hotfix
 
