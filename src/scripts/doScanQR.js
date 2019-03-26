@@ -68,6 +68,9 @@ function hackOtpInfo(otpInfo, from) {
             otpInfo.issuer = 'Synology';
             otpInfo.account = '';
             break;
+        case isLike(/codegiant/i):
+            otpInfo.issuer = "Codegiant";
+            break;
     }
     return otpInfo;
 }
