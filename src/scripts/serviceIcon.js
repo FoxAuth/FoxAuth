@@ -77,7 +77,10 @@ export default function getServiceIconNames(){
     'autodesk',
     'yandex',
     'controlpanellivesystem',
-    'codegiant'
+    'codegiant',
+    'packet',
+    'plurk',
+    'squarespace'
   ];
   return arr
 }
