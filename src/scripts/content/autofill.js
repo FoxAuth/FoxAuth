@@ -130,10 +130,6 @@ async function getTotpKey(userName) {
         if (!cookieStoreIdMatch) {
             return false;
         }
-        if (window.location.hostname === "www.plurk.com" &&
-            account.localAccountName.toLowerCase().slice(0, -6) === userName.toLowerCase()) {
-                return true;
-        }
         if (
             account.localIssuer.toLowerCase() === issuer.toLowerCase() &&
             account.localAccountName.toLowerCase() === userName.toLowerCase()
