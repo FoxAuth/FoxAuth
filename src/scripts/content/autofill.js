@@ -93,14 +93,8 @@ function matchOTP() {
     return matchIssuer;
 };
 
-function splitEmailUserName(userName) {
-    userName = String(userName)
-    const atIndex = userName.indexOf('@');
-    if (atIndex < 0) {
-        return userName.toLowerCase();
-    } else {
-        return userName.slice(0, atIndex).toLowerCase();
-    }
+function ignoreFirstAtSymbol(userName) {
+    return userName.replace(/@/, '');
 }
 
 async function getTotpKey(userName) {
@@ -111,10 +105,10 @@ async function getTotpKey(userName) {
         id: 'getAccountAndContainer'
     })
 
-    userName = splitEmailUserName(userName)
+    userName = ignoreFirstAtSymbol(userName)
     const infos = accountInfos.map(item => ({
         ...item,
-        localAccountName: splitEmailUserName(item.localAccountName)
+        localAccountName: ignoreFirstAtSymbol(item.localAccountName)
     }));
 
 
