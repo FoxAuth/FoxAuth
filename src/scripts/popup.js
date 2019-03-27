@@ -59,6 +59,9 @@ const isIssuerMatchedUrl = function (issuer, url) {
     case 'Discord':
       issuerStr = 'discordapp.com';
       break;
+    case 'Npm':
+      issuerStr = 'www.npmjs.com';
+      break;
     default:
       issuerStr = '';
       break;

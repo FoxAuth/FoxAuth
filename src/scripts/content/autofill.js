@@ -98,6 +98,9 @@ function matchOTP() {
         case eq("accounts.epicgames.com"):
             matchIssuer = "Epic Games"
             break;
+        case eq("www.npmjs.com"):
+            matchIssuer = "Npm"
+            break;
         default:
             matchTarget = matchTarget.split('.').reverse();
             matchIssuer = matchTarget[1] || matchTarget[0];
@@ -110,6 +113,29 @@ function ignoreFirstAtSymbol(userName) {
 }
 
 async function getTotpKey(userName) {
+    const removeAtIssuer = (function (issuers) {
+        return function(account) {
+            const { hostname: currentHost } = window.location;
+            let matched = issuers.find((issuer) => {
+                if (typeof issuer === 'string') {
+                    return issuer === currentHost;
+                } else {
+                    return issuer[0] === currentHost;
+                }
+            });
+            if (!matched) return account;
+            if (Array.isArray(matched)) {
+                matched = matched[1];
+            }
+            account = account.replace(new RegExp(`@${matched}$`), '');
+            return account;
+        }
+    })([
+        // [hostname to match, actual issuer]
+        ['www.plurk.com', 'plurk'],
+        // actual issuer
+        'console.online.net'
+    ]);
 
     const issuer = matchOTP();
 
@@ -120,21 +146,12 @@ async function getTotpKey(userName) {
     userName = ignoreFirstAtSymbol(userName)
     const infos = accountInfos.map((item) => {
         item = {...item};
-        if (window.location.hostname === "www.plurk.com") {
-            item.localAccountName = item.localAccountName.slice(0, -6);
-            return item;
-        }
-        if (window.location.hostname === "console.online.net") {
-            item.localAccountName = item.localAccountName.slice(0, -19);
-            return item;
-        }
-
-        item.localAccountName = ignoreFirstAtSymbol(item.localAccountName);
+        item.localAccountName = ignoreFirstAtSymbol(removeAtIssuer(item.localAccountName));
         return item;
     });
 
 
-    const account = infos.find(account => {
+    const filteredInfos = infos.filter(account => {
         let cookieStoreIdMatch = false;
         if (
             (tabInfo.cookieStoreId === 'firefox-default' && (!account.containerAssign))
@@ -146,13 +163,14 @@ async function getTotpKey(userName) {
         if (!cookieStoreIdMatch) {
             return false;
         }
-        if (
-            account.localIssuer.toLowerCase() === issuer.toLowerCase() &&
-            account.localAccountName.toLowerCase() === userName.toLowerCase()
-        ) {
-            return true;
-        }
+        return account.localIssuer.toLowerCase() === issuer.toLowerCase();
     });
+
+    const account = filteredInfos.length === 1 ? filteredInfos[0] :
+        filteredInfos.find(
+            info => info.localAccountName.toLowerCase() === userName.toLowerCase()
+        );
+
 
     if (!account) {
         return '';
