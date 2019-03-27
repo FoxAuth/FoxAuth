@@ -82,7 +82,8 @@ export default function getServiceIconNames(){
     'plurk',
     'squarespace',
     'oneprovider',
-    'online.net'
+    'online.net',
+    'epic games'
   ];
   return arr
 }
