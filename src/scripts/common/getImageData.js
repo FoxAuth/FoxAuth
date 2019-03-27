@@ -24,4 +24,4 @@ function getCanvasImageData(canvas) {
 }
 
 window.getImageData = getImageData;
-undefined
+undefined;

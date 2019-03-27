@@ -99,7 +99,7 @@ function matchOTP() {
             matchIssuer = "Epic Games"
             break;
         case eq("www.npmjs.com"):
-            matchIssuer = "Npm"
+            matchIssuer = "npmjs"
             break;
         default:
             matchTarget = matchTarget.split('.').reverse();
