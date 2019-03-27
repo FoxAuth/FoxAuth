@@ -83,7 +83,8 @@ export default function getServiceIconNames(){
     'squarespace',
     'oneprovider',
     'online.net',
-    'epic games'
+    'epic games',
+    'liuli'
   ];
   return arr
 }
