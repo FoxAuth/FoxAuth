@@ -1,26 +1,23 @@
 import './jsQR.js';
+import '/scripts/common/getImageData.js';
+
+function scanImageData(imageData) {
+    const data = jsQR(imageData.data, imageData.width, imageData.height, {
+        inversionAttempts: "dontInvert",
+      })
+    if (data) {
+        return data.data;
+    } else {
+        return null;
+    }
+}
 
 function scanImage(image) {
-    if (!(image instanceof Image)) throw new Error('Invalid type of argument 1, required Image');
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d');
-    const width = image.width;
-    const height = image.height;
-
-    canvas.width = width;
-    canvas.height = height;
-    ctx.drawImage(image, 0, 0, width, height);
-    return new Promise((resolve, reject) => {
-        const imageData = ctx.getImageData(0, 0, width, height);
-        const data = jsQR(imageData.data, width, height, {
-            inversionAttempts: "dontInvert",
-          })
-        if (data) {
-            resolve(data.data)
-        } else {
-            resolve(null)
-        }
-    })
+    const imageData = getImageData(image);
+    if (!imageData) {
+        return Promise.resolve(null);
+    }
+    return Promise.resolve(scanImageData(imageData));
 }
 
 function scanVideo(video) {
@@ -48,5 +45,6 @@ function scanVideo(video) {
 
 export {
     scanImage,
-    scanVideo
+    scanVideo,
+    scanImageData
 }

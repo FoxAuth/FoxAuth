@@ -52,7 +52,7 @@ browser.contextMenus.create({
 browser.contextMenus.onClicked.addListener(async (info, ignored) => {
     if (info.menuItemId === "scanQR") {
         try {
-            await doScanQR();
+            await doScanQR('contextMenu');
             browser.notifications.create({
                 "type": "basic",
                 "iconUrl": "../icons/icon.svg",
