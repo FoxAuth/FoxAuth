@@ -89,6 +89,9 @@ function matchOTP() {
         case eq("panel.op-net.com"):
             matchIssuer = "OneProvider"
             break;
+        case eq("console.online.net"):
+            matchIssuer = "Online.net"
+            break;
         default:
             matchTarget = matchTarget.split('.').reverse();
             matchIssuer = matchTarget[1] || matchTarget[0];
@@ -113,6 +116,10 @@ async function getTotpKey(userName) {
         item = {...item};
         if (window.location.hostname === "www.plurk.com") {
             item.localAccountName = item.localAccountName.slice(0, -6);
+            return item;
+        }
+        if (window.location.hostname === "console.online.net") {
+            item.localAccountName = item.localAccountName.slice(0, -19);
             return item;
         }
 
