@@ -37,7 +37,7 @@ export default function getServiceIconNames(){
     'twitter',
     'v2ex',
     'vultr',
-    'wikipedia',
+    'wikimedia',
     'wordpress',
     'xiaomi',
     'yahoo',
@@ -81,7 +81,8 @@ export default function getServiceIconNames(){
     'packet',
     'plurk',
     'squarespace',
-    'oneprovider'
+    'oneprovider',
+    'online.net'
   ];
   return arr
 }

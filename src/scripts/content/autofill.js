@@ -80,6 +80,9 @@ function matchOTP() {
         case eqR(/\.battle\.net$/):
             matchIssuer = "Battle.Net"
             break;
+        case eqR(/^.*\.wiki.*\.org$/):
+            matchIssuer = "Wikimedia"
+            break;
         case eq("login.microsoftonline.com"):
             matchIssuer = "Office"
             break;
