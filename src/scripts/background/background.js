@@ -106,6 +106,14 @@ async function setInfoNotFoundContainerToNone(container) {
     saveAccountInfos(infos);
 }
 
+async function setBadgeAsLength(details) {
+    if (details.reason === "install" || details.reason === "update") {
+        var {accountInfos: arr} = await browser.storage.local.get("accountInfos");
+        var textString = arr.length.toString();
+        browser.browserAction.setBadgeText({text: textString});
+    }
+}
+
 async function accountInfosChange(changes, areaName) {
     if (changes.accountInfos && areaName === "local"){
     var {accountInfos: arr} = await browser.storage.local.get("accountInfos");
@@ -127,3 +135,5 @@ browser.commands.onCommand.addListener(function(command) {
 });
 
 browser.storage.onChanged.addListener(accountInfosChange);
+
+browser.runtime.onInstalled.addListener(setBadgeAsLength);
