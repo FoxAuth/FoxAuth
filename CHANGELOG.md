@@ -1,9 +1,18 @@
 # Changelog
 All changes per revisioning to this project will be documented in this file. All dates used in this file are recorded as UTC+8.
 
+## v 1.4.9 - Mar 28th 2019
+### New 💡
+- several new website icons & autofill support
+### Changes 📝
+- autofill will now try to return without comparing account name if it can
+### Fixed 🔨
+- can't scan QR in certain cases
+
 ## v 1.4.8 - Mar 26th 2019
 ### New 💡
 - massive amount of new service icons
+- badge text as number of accounts added
 - autofill support on much more sites
 - keyboard shortcut for OTP code filling & opening popup
 ### Changes 📝
