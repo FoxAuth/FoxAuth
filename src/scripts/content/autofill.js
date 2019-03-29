@@ -1,6 +1,35 @@
 const sessionKey = 'foxauthWebsiteHasInputPassword';
 const sessionUserNameKey = 'foxauthWebsiteInputUserName';
 
+function isMatchCurrentSite(sites, compareType = 'hostname') {
+    const currentHost = compareType === 'hostname' ?
+        window.location.hostname : window.location.href;
+    return sites.some(site => currentHost.indexOf(site) >= 0);
+}
+// tell background script to execute specific content script
+function sendExecHackCodeMessage(filename, url = window.location.hostname) {
+    return browser.runtime.sendMessage({
+        id: 'execHackCode',
+        url,
+        filename,
+    });
+}
+async function hackFillTotpDom(totpDom, totpKey) {
+    if (isMatchCurrentSite([
+        'www.dropbox.com', 'discordapp.com'
+    ])) {
+        await sendExecHackCodeMessage('setInputValue.js');
+        __FOXAUTH_SetInputValue(totpDom, totpKey);
+    } else {
+        totpDom.value = totpKey;
+    }
+}
+function hackAfterFillTotoDom() {
+    if (isMatchCurrentSite(['mail.protonmail.com'])) {
+        sendExecHackCodeMessage('protonmail.js');
+    }
+}
+
 function getSessionValue() {
     return sessionStorage.getItem(sessionKey);
 }
@@ -203,14 +232,6 @@ function getActiveTab() {
     })
 }
 
-function execHackCode() {
-    const { href } = window.location
-    if (href.indexOf('protonmail.com/login') >= 0) {
-        browser.runtime.sendMessage({
-            id: 'execProtonmailHackCode'
-        })
-    }
-}
 function getOtpOwnerDocument() {
     const { host } = window.location;
 
@@ -260,23 +281,19 @@ function hackTotpDom(input) {
 }
 
 async function doFillTotpDom(totpDom, isAutoFill = true) {
-    totpDom.value = await getTotpKey(sessionStorage.getItem(sessionUserNameKey));
+    const totpKey = await getTotpKey(sessionStorage.getItem(sessionUserNameKey));
+    await hackFillTotpDom(totpDom, totpKey);
     clearSessionValue();
     sessionStorage.setItem(sessionUserNameKey, '');
-    hackAfterFillTotpDom(totpDom);
+    totpDom.dispatchEvent(new Event('input', {
+        bubbles: true
+    }));
     if (isAutoFill) {
         totpDom.dispatchEvent(new Event('focus', {
             bubbles: true
         }));
-        execHackCode();
+        hackAfterFillTotoDom();
     }
-}
-
-function hackAfterFillTotpDom(totpDom) {
-    totpDom.dispatchEvent(new Event('input', {
-        bubbles: false,
-        cancelable: false,
-    }));
 }
 
 

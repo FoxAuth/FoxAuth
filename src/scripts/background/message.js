@@ -21,17 +21,17 @@ async function getAccountAndContainer() {
     }
 }
 
-async function execProtonmailHackCode() {
-    const tabInfo = await browser.tabs.query({ active: true })
-    const tab = tabInfo[0]
-    if (tab.url.indexOf('protonmail.com/login') >= 0) {
-        await browser.tabs.executeScript(
-            tab.id,
-            {
-                file: '/scripts/content/hack/protonmail.js'
-            }
-        )
-    }
+async function execHackCode(url, filename) {
+  const tabInfo = await browser.tabs.query({ active: true })
+  const tab = tabInfo[0]
+  if (tab.url.indexOf(url) >= 0) {
+    return browser.tabs.executeScript(
+      tab.id,
+      {
+          file: `/scripts/content/hack/${filename}`
+      }
+    )
+  }
 }
 
 
@@ -42,8 +42,8 @@ browser.runtime.onMessage.addListener(obj => {
           return getAccountAndContainer();
         case 'getTotpKey':
           return Promise.resolve(getTotpKey(obj.period, obj.digits, obj.token));
-        case 'execProtonmailHackCode':
-          return execProtonmailHackCode();
+        case 'execHackCode':
+          return execHackCode(obj.url, obj.filename);
         default:
           break;
       }
