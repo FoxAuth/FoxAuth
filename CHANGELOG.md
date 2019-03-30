@@ -1,6 +1,9 @@
 # Changelog
 All changes per revisioning to this project will be documented in this file. All dates used in this file are recorded as UTC+8.
 
+## v 1.4.10 - Mar 30th 2019
+- multiple minor fixes
+
 ## v 1.4.9 - Mar 28th 2019
 ### New 💡
 - several new website icons & autofill support

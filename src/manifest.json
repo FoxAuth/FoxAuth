@@ -3,7 +3,7 @@
   "name": "FoxAuth Authenticator",
   "short_name": "FoxAuth",
   "homepage_url": "https://github.com/FoxAuth/FoxAuth/",
-  "version": "1.4.9",
+  "version": "1.4.10",
   "description": "A Firefox authenticator that can autofill TOTP codes with Firefox Android support",
   "applications": {
     "gecko": {
@@ -17,7 +17,7 @@
   },
   "browser_action": {
     "default_icon": "icons/icon.svg",
-    "default_title": "FoxAuth 1.4.9",
+    "default_title": "FoxAuth 1.4.10",
     "default_popup": "options/popup.html"
   },
   "options_ui": {
