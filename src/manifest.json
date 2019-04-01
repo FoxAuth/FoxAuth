@@ -56,7 +56,7 @@
     },
     "_execute_browser_action": {
       "suggested_key": {
-          "default": "F11"
+          "default": "F8"
       },
       "description": "Open popup"
     }
