@@ -389,9 +389,3 @@ async function doFillTotpDom(totpDom, isAutoFill = true) {
     watchPasswordDom();
 
 })();
-
-browser.commands.onCommand.addListener(function(command) {
-    if (command == "fillKeyToActiveEl") {
-        fillKeyToActiveEl();
-    }
-});
