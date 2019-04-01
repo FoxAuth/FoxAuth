@@ -16,7 +16,7 @@ function sendExecHackCodeMessage(filename, url = window.location.hostname) {
 }
 async function hackFillTotpDom(totpDom, totpKey) {
     if (isMatchCurrentSite([
-        'www.dropbox.com', 'discordapp.com'
+        'www.dropbox.com', 'discordapp.com', 'atlassian'
     ])) {
         await sendExecHackCodeMessage('setInputValue.js');
         __FOXAUTH_SetInputValue(totpDom, totpKey);

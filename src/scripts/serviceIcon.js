@@ -84,7 +84,8 @@ export default function getServiceIconNames(){
     'oneprovider',
     'online.net',
     'epic games',
-    'liuli'
+    'liuli',
+    'atlassian'
   ];
   return arr
 }
