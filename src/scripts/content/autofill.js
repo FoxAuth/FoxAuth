@@ -142,6 +142,7 @@ function ignoreFirstAtSymbol(userName) {
 }
 
 async function getTotpKey(userName) {
+    if (!userName) return '';
     const removeAtIssuer = (function (issuers) {
         return function(account) {
             const { hostname: currentHost } = window.location;
