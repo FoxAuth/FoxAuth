@@ -254,9 +254,9 @@ function hackTotpDom(input) {
     const { host, href } = window.location;
     const otpOwnerDoc = getOtpOwnerDocument();
 
-    // hack for reddit
-    if (host.indexOf('reddit.com') >= 0) {
-        return otpOwnerDoc.getElementById('loginOtp');
+    // hack for IFTTT
+    if (host.indexOf('ifttt.com') >= 0) {
+        return otpOwnerDoc.getElementById('user_tfa_code');
     }
     // hack for reddit
     if (host.indexOf('reddit.com') >= 0) {
