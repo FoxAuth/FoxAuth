@@ -54,6 +54,7 @@ export default function getServiceIconNames(){
     'online.net',
     'owncloud',
     'packet',
+    'paypal',
     'pcloud',
     'plurk',
     'pornhub',
