@@ -110,6 +110,7 @@ async function setBadgeAsLength() {
     var {accountInfos: arr} = await browser.storage.local.get("accountInfos");
     var textString = arr.length.toString();
     browser.browserAction.setBadgeText({text: textString});
+    browser.browserAction.setTitle({title: textString + " account(s) added."});
 }
 
 browser.browserAction.setBadgeBackgroundColor({color: "#0ff036"});
