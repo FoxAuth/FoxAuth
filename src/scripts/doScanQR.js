@@ -89,11 +89,9 @@ function hackOtpInfo(otpInfo, from) {
         // otpauth://totp/Autodesk?secret=G5XEYVZYNRXUEWSK
         case isLike(/autodesk/i):
             otpInfo.issuer = 'AutoDesk';
-            otpInfo.account = '';
             break;
         case isLike(/synology/i):
             otpInfo.issuer = 'Synology';
-            otpInfo.account = '';
             break;
         case isLike(/codegiant/i):
             otpInfo.issuer = "Codegiant";

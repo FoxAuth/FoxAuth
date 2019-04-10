@@ -127,9 +127,6 @@ function matchOTP() {
         case eq("accounts.epicgames.com"):
             matchIssuer = "Epic Games"
             break;
-        case eq("www.npmjs.com"):
-            matchIssuer = "npmjs"
-            break;
         default:
             matchTarget = matchTarget.split('.').reverse();
             matchIssuer = matchTarget[1] || matchTarget[0];
