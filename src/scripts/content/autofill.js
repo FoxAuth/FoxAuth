@@ -1,5 +1,54 @@
 const sessionKey = 'foxauthWebsiteHasInputPassword';
 const sessionUserNameKey = 'foxauthWebsiteInputUserName';
+const storage = {
+    session: {
+        set(key, value) {
+            sessionStorage.setItem(key, value)
+        },
+        get(key) {
+            return sessionStorage.getItem(key)
+        },
+        clear(key) {
+            sessionStorage.setItem(key, '')
+        },
+        remove(key) {
+            sessionStorage.removeItem(key)
+        }
+    },
+    cookie: {
+        set(key, value, options = {}) {
+            let str = `${key}=${value};`
+            options = {
+                path: '/',
+                secure: 'true',
+                samesite: 'strict',
+                ...options,
+            }
+            for (const key in options) {
+                if (options.hasOwnProperty(key)) {
+                    value = options[key]
+                    str += ` ${key}=${encodeURIComponent(value)};`
+                }
+            }
+            document.cookie = str;
+        },
+        get(key) {
+            const { cookie } = document;
+            const result = cookie
+                .split(';')
+                .map((pair) => pair.trim().split('='))
+                .find((pair) => pair[0] == key);
+            if (result) {
+                return result[1] || '';
+            } else {
+                return null;
+            }
+        },
+        clear(key) {
+            document.cookie = `${key}=;`;
+        },
+    }
+}
 
 function isMatchCurrentSite(sites, compareType = 'hostname') {
     const currentHost = compareType === 'hostname' ?
@@ -30,14 +79,14 @@ function hackAfterFillTotoDom() {
     }
 }
 
-function getSessionValue() {
-    return sessionStorage.getItem(sessionKey);
+function getSessionValue(key) {
+    return storage.session.get(key);
 }
-function setSessionValue() {
-    sessionStorage.setItem(sessionKey, '1');
+function setSessionValue(key, value) {
+    storage.session.set(key, value);
 }
-function clearSessionValue() {
-    sessionStorage.setItem(sessionKey, '');
+function clearSessionValue(key) {
+    storage.session.clear(key);
 }
 function isVisible(elem) {
     return !!(elem.offsetWidth || elem.offsetHeight || elem.getClientRects().length);
@@ -286,10 +335,10 @@ function hackTotpDom(input) {
 }
 
 async function doFillTotpDom(totpDom, isAutoFill = true) {
-    const totpKey = await getTotpKey(sessionStorage.getItem(sessionUserNameKey));
+    const totpKey = await getTotpKey(getSessionValue(sessionUserNameKey));
     await hackFillTotpDom(totpDom, totpKey);
-    clearSessionValue();
-    sessionStorage.setItem(sessionUserNameKey, '');
+    clearSessionValue(sessionKey);
+    clearSessionValue(sessionUserNameKey);
     totpDom.dispatchEvent(new Event('input', {
         bubbles: true
     }));
@@ -307,7 +356,7 @@ async function doFillTotpDom(totpDom, isAutoFill = true) {
     const obj = await browser.storage.local.get('settings') || {};
     const { settings } = obj || {};
     const onInputUserName = (event) => {
-        sessionStorage.setItem(sessionUserNameKey, event.target.value);
+        setSessionValue(sessionUserNameKey, event.target.value);
     }
 
     if (settings && settings.disableAutofill) {
@@ -316,7 +365,7 @@ async function doFillTotpDom(totpDom, isAutoFill = true) {
 
     function watchDom() {
         const otpOwnerDocument = getOtpOwnerDocument();
-        let userName = sessionStorage.getItem(sessionUserNameKey);
+        let userName = getSessionValue(sessionUserNameKey);
         const passwordDom = [...otpOwnerDocument.querySelectorAll('input[type=password]')].filter(isVisible).reverse().find(e => e.type = 'password');
 
         const findTotpDom = function () {
@@ -373,12 +422,12 @@ async function doFillTotpDom(totpDom, isAutoFill = true) {
         const otpOwnerDocument = getOtpOwnerDocument();
 
         if (otpOwnerDocument.querySelector('input[type=password]')) {
-            setSessionValue();
+            setSessionValue(sessionKey, '1');
             watchDom();
         } else {
             let totpDom = otpOwnerDocument.querySelector('input[type=text],input[type=tel],input[type=number]');
             totpDom = hackTotpDom(totpDom);
-            if (getSessionValue() && totpDom) {
+            if (getSessionValue(sessionKey) && totpDom) {
                 doFillTotpDom(totpDom);
             } else {
                 setTimeout(watchPasswordDom, 2000);
