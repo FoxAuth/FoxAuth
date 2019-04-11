@@ -121,6 +121,12 @@ async function accountInfosChange(changes, areaName) {
     }
 }
 
+async function handleInstalled(details) {
+    if (details.reason) {
+        setBadgeAsLength();
+    }
+}
+
 //add listeners here
 browser.contextualIdentities.onRemoved.addListener((changeInfo) => {
     const { contextualIdentity } = changeInfo;
@@ -136,3 +142,5 @@ browser.commands.onCommand.addListener(function(command) {
 browser.storage.onChanged.addListener(accountInfosChange);
 
 browser.runtime.onStartup.addListener(setBadgeAsLength);
+
+browser.runtime.onInstalled.addListener(handleInstalled);
