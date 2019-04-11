@@ -80,12 +80,23 @@ function hackAfterFillTotoDom() {
 }
 
 function getSessionValue(key) {
+    if (isMatchCurrentSite(['atlassian.com'])) {
+        return storage.cookie.get(key);
+    }
     return storage.session.get(key);
 }
 function setSessionValue(key, value) {
+    if (isMatchCurrentSite(['atlassian.com'])) {
+        return storage.cookie.set(key, value, {
+            domain: 'atlassian.com'
+        });
+    }
     storage.session.set(key, value);
 }
 function clearSessionValue(key) {
+    if (isMatchCurrentSite(['atlassian.com'])) {
+        return storage.cookie.clear(key);
+    }
     storage.session.clear(key);
 }
 function isVisible(elem) {
