@@ -56,6 +56,7 @@ export default function getServiceIconNames(){
     'packet',
     'paypal',
     'pcloud',
+    'phantom',
     'plurk',
     'pornhub',
     'posteo',

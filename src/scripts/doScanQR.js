@@ -102,6 +102,9 @@ function hackOtpInfo(otpInfo, from) {
         case isLike(/npmjs/i):
             otpInfo.issuer = "npmjs";
             break;
+        case isLike(/phantom/i):
+            otpInfo.issuer = "phantom-n";
+            break;
     }
     return otpInfo;
 }
