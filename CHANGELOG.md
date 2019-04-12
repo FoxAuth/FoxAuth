@@ -1,6 +1,19 @@
 # Changelog
 All changes per revisioning to this project will be documented in this file. All dates used in this file are recorded as UTC+8.
 
+## v 1.4.11 - Apr th 2019
+### New 💡
+- service icons for Atlassian, PayPal, BitWarden, Phantom & the default fallback one
+### Changes 📝
+- default shortcut for opening popup changed to F8
+### Fixed 🔨
+- get rid of unnecessary autofills
+- autofill adaption to Atlassian & IFTTT
+- badge text is more persistant
+- other minor refine
+### Removed 🚫
+- shorcut to autofill OTP code removed per upstream Firefox bug
+
 ## v 1.4.10 - Mar 30th 2019
 - multiple minor fixes
 
