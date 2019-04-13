@@ -35,6 +35,7 @@ FoxAuth is an [TOTP](https://wikipedia.org/wiki/Time-based_One-time_Password_alg
 ## Features
 
 - __Firefox Android__ support
+- __Steam OTP__ code supoort 
 - __QR code__ / manually add account info
 - [__Container tab__](https://support.mozilla.org/en-US/kb/containers) support to autofill multiple same-domain accounts
 - __import / export__

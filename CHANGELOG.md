@@ -1,8 +1,9 @@
 # Changelog
 All changes per revisioning to this project will be documented in this file. All dates used in this file are recorded as UTC+8.
 
-## v 1.4.11 - Apr th 2019
+## v 1.4.11 - Apr 13th 2019
 ### New 💡
+- Steam OTP code support
 - service icons for Atlassian, PayPal, BitWarden, Phantom & the default fallback one
 ### Changes 📝
 - default shortcut for opening popup changed to F8
