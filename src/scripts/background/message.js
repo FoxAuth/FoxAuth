@@ -1,8 +1,8 @@
 import { getAccountInfos } from '/scripts/accountInfo.js';
 import { KeyUtilities, OTPType } from '/scripts/dependency/key-utilities.js';
 
-function getTotpKey(period = 30, digits = 6, token) {
-    return KeyUtilities.generate(OTPType.totp, token, digits, period);
+function getTotpKey(token, otpType = OTPType.totp, period = 30, digits = 6) {
+    return KeyUtilities.generate(otpType, token, digits, period);
 }
 async function getAccountAndContainer() {
 
@@ -41,7 +41,7 @@ browser.runtime.onMessage.addListener(obj => {
         case 'getAccountAndContainer':
           return getAccountAndContainer();
         case 'getTotpKey':
-          return Promise.resolve(getTotpKey(obj.period, obj.digits, obj.token));
+          return Promise.resolve(getTotpKey(obj.token, obj.otpType, obj.period, obj.digits));
         case 'execHackCode':
           return execHackCode(obj.url, obj.filename);
         default:

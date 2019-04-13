@@ -152,13 +152,21 @@ const template_copy_success = ef.t`
     .Copied!
 `;
 
+function getOtpType(issuer) {
+  if (/steam/i.test(issuer)) {
+    return OTPType.steam;
+  } else {
+    return OTPType.totp;
+  }
+}
+
 otpContainer.$mount({ target: document.getElementById('otpContainer'), option: 'replace' })
 var otpStoreInterval = []
 function addOTP(issuer, containerObj = {}, key, expiry = 30, code_length = 6, option = {}) {
   var otpKey;
   var otpKeyClassName = 'popup-link';
   try {
-    otpKey = KeyUtilities.generate(OTPType.totp, key, code_length, expiry);
+    otpKey = KeyUtilities.generate(getOtpType(issuer), key, code_length, expiry);
   } catch (error) {
     console.error(error);
     otpKey = 'ERROR';
@@ -196,7 +204,7 @@ function addOTP(issuer, containerObj = {}, key, expiry = 30, code_length = 6, op
   })) - 1;
   if (otpKey !== 'ERROR') {
     otpStoreInterval.push(setInterval(function () {
-      otpContainer.otppoint[id].$data.OTP = KeyUtilities.generate(1, key, code_length, expiry)
+      otpContainer.otppoint[id].$data.OTP = KeyUtilities.generate(getOtpType(issuer), key, code_length, expiry)
       otpContainer.otppoint[id].$data.progress = expiry - (Math.round(new Date().getTime() / 1000.0) % expiry)
     }, 500))
   }
