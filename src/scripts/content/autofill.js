@@ -273,7 +273,8 @@ async function getTotpKey(userName) {
         id: 'getTotpKey',
         period: account.localOTPPeriod,
         digits: account.localOTPDigits,
-        token: account.localSecretToken
+        token: account.localSecretToken,
+        otpType: /steam/i.test(account.localIssuer) ? 4 : 1
     });
     return totpKey;
 }
