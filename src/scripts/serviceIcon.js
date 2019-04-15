@@ -43,6 +43,8 @@ export default function getServiceIconNames(){
     'lastpass',
     'linode',
     'liuli',
+    'logmein accounts',
+    'mailgun',
     'mega',
     'microsoft',
     'namecheap',

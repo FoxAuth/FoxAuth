@@ -190,6 +190,9 @@ function matchOTP() {
         case eqR(/www.phantom.*\.com$/):
             matchIssuer = "Phantom"
             break;
+        case eq("accounts.logme.in"):
+            matchIssuer = "LogMeIn Accounts"
+            break;
         default:
             matchTarget = matchTarget.split('.').reverse();
             matchIssuer = matchTarget[1] || matchTarget[0];
