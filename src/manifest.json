@@ -41,6 +41,13 @@
   ],
   "content_scripts": [
     {
+      "matches": ["https://account.ubisoft.com/*", "https://connect.ubisoft.com/*"],
+      "js": [
+        "scripts/content/autofill.js"
+      ],
+      "all_frames": true
+    },
+    {
       "matches": ["<all_urls>"],
       "js": [
         "scripts/content/autofill.js"

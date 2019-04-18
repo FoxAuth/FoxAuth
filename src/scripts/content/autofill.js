@@ -396,7 +396,7 @@ async function doFillTotpDom(totpDom, isAutoFill = true) {
             } else {
                 setTimeout(findTotpDom, 2000);
             }
-        }
+        };
         const hackAndFindDom = function () {
             // hack for reddit
             if (location.host.indexOf('reddit.com') >= 0) {
@@ -410,9 +410,8 @@ async function doFillTotpDom(totpDom, isAutoFill = true) {
             }
 
             findTotpDom();
-        }
-
-        if (!userName) {
+        };
+        const handleUserNameNotFound = function() {
             let allInputDom = [...otpOwnerDocument.querySelectorAll('input[type=text],input[type=tel],input[type=number],input[type=email],input[type=password]')];
             const passwordDomIndex = allInputDom.findIndex(e => e === passwordDom);
             if (passwordDomIndex > - 1) {
@@ -428,6 +427,24 @@ async function doFillTotpDom(totpDom, isAutoFill = true) {
                 }));
                 hackAndFindDom();
             }
+        };
+
+        if (!userName) {
+            if (isMatchCurrentSite(['connect.ubisoft.com/login'], 'href')) {
+                const playerInfo = document.getElementsByClassName('player-info')[0];
+                if (playerInfo) {
+                    const span = playerInfo.querySelector('span');
+                    if (span) {
+                        const txt = span.textContent;
+                        if (txt) {
+                            setSessionValue(sessionUserNameKey, txt);
+                            return hackAndFindDom();
+                        }
+                    }
+                }
+            }
+
+            handleUserNameNotFound();
         } else {
             hackAndFindDom();
         }
