@@ -14,6 +14,7 @@ export default function getServiceIconNames(){
     'bugzilla@mozilla',
     'ciscooneidentity',
     'cloudflare',
+    'codeberg',
     'codegiant',
     'controlpanellivesystem',
     'crowdin.com',
