@@ -53,12 +53,6 @@ browser.contextMenus.onClicked.addListener(async (info, ignored) => {
     if (info.menuItemId === "scanQR") {
         try {
             await doScanQR('contextMenu');
-            browser.notifications.create({
-                "type": "basic",
-                "iconUrl": "../icons/icon.svg",
-                "title": "FoxAuth Authenticator",
-                "message": "Account added."
-            })
         } catch (error) {
             if (error instanceof Error) {
                 showErrorMsg(error.message);
@@ -107,8 +101,8 @@ async function setInfoNotFoundContainerToNone(container) {
 }
 
 async function setBadgeAsLength() {
-    var {accountInfos: arr} = await browser.storage.local.get("accountInfos");
-    var textString = arr.length.toString();
+    var {accountInfos: arr} = await browser.storage.local.get("accountInfos"),
+        textString = arr.length.toString();
     browser.browserAction.setBadgeText({text: textString});
     browser.browserAction.setTitle({title: textString + " account(s) added."});
 }
@@ -118,7 +112,29 @@ browser.browserAction.setBadgeBackgroundColor({color: "#0ff036"});
 async function accountInfosChange(changes, areaName) {
     if (changes.accountInfos && areaName === "local"){
         setBadgeAsLength();
-    }
+        var oldLength = Number(changes.accountInfos.oldValue.length),
+            newLength = Number(changes.accountInfos.newValue.length);
+        }
+        var accountMessage = "";
+        function accountMessageTemplate(accountMessage) {
+            browser.notifications.create({
+                "type": "basic",
+                "iconUrl": "../icons/icon.svg",
+                "title": "FoxAuth Authenticator",
+                "message": accountMessage
+            });
+            console.log([oldLength,newLength]);
+        };
+        if (oldLength < newLength) {
+            accountMessage = "Account(s) added."
+            accountMessageTemplate(accountMessage);
+        } else if (oldLength = newLength) {
+            accountMessage = "Account(s) overridden."
+            accountMessageTemplate(accountMessage);
+        } else if (oldLength > newLength) {
+            accountMessage = "Account(s) removed."
+            accountMessageTemplate(accountMessage);
+        }
 }
 
 async function handleInstalled(details) {
