@@ -49,10 +49,29 @@ browser.contextMenus.create({
     The click event listener, where we perform the appropriate action given the
     ID of the menu item that was clicked.
 */
+
+var accountOverwrite = false;
+
+function accountMessageTemplate(accountMessage) {
+    browser.notifications.create({
+        "type": "basic",
+        "iconUrl": "../icons/icon.svg",
+        "title": "FoxAuth Authenticator",
+        "message": accountMessage
+    });
+};
+
+function handleOverwrite() {
+    accountMessageTemplate("Account(s) overwritten");
+}
+
 browser.contextMenus.onClicked.addListener(async (info, ignored) => {
     if (info.menuItemId === "scanQR") {
         try {
             await doScanQR('contextMenu');
+            if (accountOverwrite === true) {
+                handleOverwrite();
+            }
         } catch (error) {
             if (error instanceof Error) {
                 showErrorMsg(error.message);
@@ -112,28 +131,20 @@ browser.browserAction.setBadgeBackgroundColor({color: "#0ff036"});
 async function accountInfosChange(changes, areaName) {
     if (changes.accountInfos && areaName === "local"){
         setBadgeAsLength();
-        var oldLength = Number(changes.accountInfos.oldValue.length),
-            newLength = Number(changes.accountInfos.newValue.length);
+        var oldLength = changes.accountInfos.oldValue.length,
+            newLength = changes.accountInfos.newValue.length;
         }
         var accountMessage = "";
-        function accountMessageTemplate(accountMessage) {
-            browser.notifications.create({
-                "type": "basic",
-                "iconUrl": "../icons/icon.svg",
-                "title": "FoxAuth Authenticator",
-                "message": accountMessage
-            });
-            console.log([oldLength,newLength]);
-        };
         if (oldLength < newLength) {
             accountMessage = "Account(s) added."
             accountMessageTemplate(accountMessage);
-        } else if (oldLength = newLength) {
-            accountMessage = "Account(s) overridden."
-            accountMessageTemplate(accountMessage);
+            accountOverwrite = false;
+        } else if (oldLength == newLength && oldLength && newLength) {
+            accountOverwrite = true;
         } else if (oldLength > newLength) {
             accountMessage = "Account(s) removed."
             accountMessageTemplate(accountMessage);
+            accountOverwrite = false;
         }
 }
 

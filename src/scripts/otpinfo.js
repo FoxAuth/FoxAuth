@@ -72,7 +72,7 @@ const submitInfos = lockAsyncFunc(async (updateInfos) => {
     accountInfos = mergeAccountInfos(accountInfos, updateInfos);
     await saveAccountInfos(accountInfos);
     htmlBrandNewChildren(formBox, otpBasicForm.cloneNode(true));
-    popupGenericMsg('Accounts added');
+    // popupGenericMsg('Accounts added');
 });
 
 init();
@@ -138,14 +138,14 @@ function setFormSecureInputStatus(formList, status) {
         }
     }
 }
-function popupGenericMsg(msg) {
-    genericMsgContent.textContent = msg;
-    genericMsgDiv.style.display = 'block';
-    genericMsgDiv.style.opacity = 1;
-    setTimeout(() => {
-        genericMsgDiv.style.opacity = 0;
-        setTimeout(() => {
-            genericMsgDiv.style.display = 'none';
-        }, 300);
-    }, 3000);
-}
+// function popupGenericMsg(msg) {
+//     genericMsgContent.textContent = msg;
+//     genericMsgDiv.style.display = 'block';
+//     genericMsgDiv.style.opacity = 1;
+//     setTimeout(() => {
+//         genericMsgDiv.style.opacity = 0;
+//         setTimeout(() => {
+//             genericMsgDiv.style.display = 'none';
+//         }, 300);
+//     }, 3000);
+// }
