@@ -193,6 +193,9 @@ function matchOTP() {
         case eq("accounts.logme.in"):
             matchIssuer = "LogMeIn Accounts"
             break;
+        case eq("www.jianguoyun.com"):
+            matchIssuer = ["NutStore", "坚果云"]
+            break;
         default:
             matchTarget = matchTarget.split('.').reverse();
             matchIssuer = matchTarget[1] || matchTarget[0];
@@ -256,7 +259,11 @@ async function getTotpKey(userName) {
         if (!cookieStoreIdMatch) {
             return false;
         }
-        return account.localIssuer.toLowerCase() === issuer.toLowerCase();
+        if (Array.isArray(issuer)) {
+            return issuer.some(i => i.toLowerCase() === account.localIssuer.toLowerCase());
+          } else {
+           return account.localIssuer.toLowerCase() === issuer.toLowerCase();
+        }
     });
 
     const account = filteredInfos.length === 1 ? filteredInfos[0] :

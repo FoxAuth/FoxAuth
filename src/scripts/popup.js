@@ -47,6 +47,10 @@ const isIssuerMatchedUrl = function (issuer, url) {
     case 'z.cn':
       issuerStr = 'amazon.cn';
       break;
+    case 'NutStore':
+    case '坚果云':
+      issuerStr = 'www.jianguoyun.com';
+      break;
     case 'Amazon Web Services':
       issuerStr = 'aws.amazon.com';
       break;
