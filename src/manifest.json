@@ -27,6 +27,12 @@
   "background": {
     "page": "options/background.html"
   },
+  "sidebar_action": {
+    "default_icon": "icons/icon.svg",
+    "default_title": "FoxAuth Authenticator",
+    "default_panel": "options/popup.html",
+    "open_at_install":false
+  },
   "permissions": [
     "tabs",
     "cookies",
@@ -60,6 +66,12 @@
           "default": "F8"
       },
       "description": "Open popup"
+    },
+    "open-popup-in-sidebar": {
+      "suggested_key": {
+        "default": "F3"
+    },
+    "description": "Open popup in Firefox sidebar"
     }
   }
 }

@@ -163,6 +163,8 @@ browser.contextualIdentities.onRemoved.addListener((changeInfo) => {
 browser.commands.onCommand.addListener(function(command) {
     if (command == "_execute_browser_action") {
         browser.browserAction.openPopup();
+    } else if (command == "open-popup-in-sidebar") {
+        browser.sidebarAction.open();
     }
 });
 
