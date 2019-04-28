@@ -109,96 +109,89 @@ function matchOTP() {
   
     var matchTarget = window.location.hostname;
     var matchIssuer;
-    switch (true) {
-        case eq("www.amazon.cn"):
-            matchIssuer = "z.cn"
-            break;
-        case eq("signin.aws.amazon.com"):
-            matchIssuer = "Amazon Web Services"
-            break;
-        case eq("keepersecurity.com"):
-            matchIssuer = "Keeper"
-            break;
-        case eq("login.live.com"):
-            matchIssuer = "Microsoft"
-            break;
-        case eq("discordapp.com"):
-            matchIssuer = "Discord"
-            break;
-        case eq("wordpress.com"):
-            matchIssuer = "WordPress.com"
-            break;
-        case eq("signin.ea.com"):
-            matchIssuer = "Electronic Arts"
-            break;
-        case eq("presearch.org"):
-            matchIssuer = "presearch.org"
-            break;
-        case eqR(/\.wargaming\.net$/):
-            matchIssuer = "WarGame"
-            break;
-        case eq("crowdin.com"):
-            matchIssuer = "crowdin.com"
-            break;
-        case eq("bugzilla.mozilla.org"):
-            matchIssuer = "Bugzilla@Mozilla"
-            break;
-        case eq("posteo.de"):
-            matchIssuer = "Posteo.de"
-            break;
-        case eqR(/\.services.adobe\.com$/):
-            matchIssuer = "Adobe ID"
-            break;
-        case eq("accounts.nintendo.com"):
-            matchIssuer = "Nintendo Account"
-            break;
-        case eq("csp.he.net"):
-        case eq("www.tunnelbroker.net"):
-            matchIssuer = "he.net"
-            break;
-        case eqR(/\.alibabacloud\.com$/):
-            matchIssuer = "Aliyun"
-            break;
-        case eq("store.steampowered.com"):
-        case eq("steamcommunity.com"):
-            matchIssuer = "Steam"
-            break;
-        case eq("www.hexonet.net"):
-            matchIssuer = "Control Panel LIVE System"
-            break;
-        case eqR(/\.battle\.net$/):
-            matchIssuer = "Battle.Net"
-            break;
-        case eqR(/^.*\.wiki.*\.org$/):
-            matchIssuer = "Wikimedia"
-            break;
-        case eq("login.microsoftonline.com"):
-            matchIssuer = "Office"
-            break;
-        case eq("identity.cisco.com"):
-            matchIssuer = "CiscoOneIdentity"
-            break;
-        case eq("panel.op-net.com"):
-            matchIssuer = "OneProvider"
-            break;
-        case eq("console.online.net"):
-            matchIssuer = "Online.net"
-            break;
-        case eq("accounts.epicgames.com"):
-            matchIssuer = "Epic Games"
-            break;
-        case eqR(/www.phantom.*\.com$/):
-            matchIssuer = "Phantom"
-            break;
-        case eq("accounts.logme.in"):
-            matchIssuer = "LogMeIn Accounts"
-            break;
-        case eq("www.jianguoyun.com"):
-            matchIssuer = ["NutStore", "坚果云"]
-            break;
-        default:
-            matchTarget = matchTarget.split('.').reverse();
-            matchIssuer = matchTarget[1] || matchTarget[0];
+    const prematchedDomain = ["presearch.org", "crowdin.com", "posteo.de", "wordpress.com", "posteo.de", "gitlab.com"];
+    if (prematchedDomain.includes(matchTarget)) {
+        matchIssuer = matchTarget;
+    } else {
+        switch (true) {
+            case eq("www.amazon.cn"):
+                matchIssuer = "z.cn"
+                break;
+            case eq("signin.aws.amazon.com"):
+                matchIssuer = "Amazon Web Services"
+                break;
+            case eq("keepersecurity.com"):
+                matchIssuer = "Keeper"
+                break;
+            case eq("login.live.com"):
+                matchIssuer = "Microsoft"
+                break;
+            case eq("discordapp.com"):
+                matchIssuer = "Discord"
+                break;
+            case eq("signin.ea.com"):
+                matchIssuer = "Electronic Arts"
+                break;
+            case eqR(/\.wargaming\.net$/):
+                matchIssuer = "WarGame"
+                break;
+            case eq("bugzilla.mozilla.org"):
+                matchIssuer = "Bugzilla@Mozilla"
+                break;
+            case eqR(/\.services.adobe\.com$/):
+                matchIssuer = "Adobe ID"
+                break;
+            case eq("accounts.nintendo.com"):
+                matchIssuer = "Nintendo Account"
+                break;
+            case eq("csp.he.net"):
+            case eq("www.tunnelbroker.net"):
+                matchIssuer = "he.net"
+                break;
+            case eqR(/\.alibabacloud\.com$/):
+                matchIssuer = "Aliyun"
+                break;
+            case eq("store.steampowered.com"):
+            case eq("steamcommunity.com"):
+                matchIssuer = "Steam"
+                break;
+            case eq("www.hexonet.net"):
+                matchIssuer = "Control Panel LIVE System"
+                break;
+            case eqR(/\.battle\.net$/):
+                matchIssuer = "Battle.Net"
+                break;
+            case eqR(/^.*\.wiki.*\.org$/):
+                matchIssuer = "Wikimedia"
+                break;
+            case eq("login.microsoftonline.com"):
+                matchIssuer = "Office"
+                break;
+            case eq("identity.cisco.com"):
+                matchIssuer = "CiscoOneIdentity"
+                break;
+            case eq("panel.op-net.com"):
+                matchIssuer = "OneProvider"
+                break;
+            case eq("console.online.net"):
+                matchIssuer = "Online.net"
+                break;
+            case eq("accounts.epicgames.com"):
+                matchIssuer = "Epic Games"
+                break;
+            case eqR(/www.phantom.*\.com$/):
+                matchIssuer = "Phantom"
+                break;
+            case eq("accounts.logme.in"):
+                matchIssuer = "LogMeIn Accounts"
+                break;
+            case eq("www.jianguoyun.com"):
+                matchIssuer = ["NutStore", "坚果云"]
+                break;
+            default:
+                matchTarget = matchTarget.split('.').reverse();
+                matchIssuer = matchTarget[1] || matchTarget[0];
+        }
     }
     return matchIssuer;
 };

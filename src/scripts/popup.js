@@ -20,6 +20,10 @@ const getSvgNameByIssuer = function (i) {
     case 'Amazon Web Services':
       return 'aws';
       break;
+    case 'NutStore':
+    case '坚果云':
+      return 'nutstore';
+      break;
     case 'WordPress.com':
       return 'wordpress';
       break;
@@ -46,10 +50,6 @@ const isIssuerMatchedUrl = function (issuer, url) {
   switch (issuer) {
     case 'z.cn':
       issuerStr = 'amazon.cn';
-      break;
-    case 'NutStore':
-    case '坚果云':
-      issuerStr = 'www.jianguoyun.com';
       break;
     case 'Amazon Web Services':
       issuerStr = 'aws.amazon.com';
