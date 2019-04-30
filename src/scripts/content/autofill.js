@@ -188,6 +188,9 @@ function matchOTP() {
             case eq("www.jianguoyun.com"):
                 matchIssuer = ["NutStore", "坚果云"]
                 break;
+            case eq("app.vagrantup.com"):
+                matchIssuer = "Vagrant Cloud by HashiCorp"
+                break;
             default:
                 matchTarget = matchTarget.split('.').reverse();
                 matchIssuer = matchTarget[1] || matchTarget[0];
