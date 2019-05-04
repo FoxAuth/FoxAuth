@@ -22,40 +22,47 @@
         <div class="actions">
             <a href="options.html" class="action-group active">
                 <img class="icon" src="../icons/options/Preferences.svg" alt="">
-                <div class="action">General</div>
+                <div
+                    class="action"
+                    data-i18n="options_menu_general"></div>
             </a>
             <a href="tokens.html" class="action-group">
                 <img class="icon" src="../icons/options/tokens.svg" alt="">
-                <div class="action">Secret Tokens</div>
+                <div
+                    class="action"
+                    data-i18n="options_menu_secret_tokens"></div>
             </a>
             <a href="sync.html" class="action-group">
                 <img class="icon" src="../icons/options/Sync.svg" alt="">
-                <div class="action">Backup & Sync</div>
+                <div
+                    class="action"
+                    data-i18n="options_menu_backup_and_sync"></div>
             </a>
             <a href="about.html" class="action-group">
                 <img class="icon" src="../icons/options/about.svg" alt="">
-                <div class="action">About</div>
+                <div
+                    class="action"
+                    data-i18n="options_menu_about"></div>
             </a>
         </div>
     </div>
     <div class="content">
 
-        <p>Welcome to FoxAuth Authenticator.</p>
-        <p>Check out <a href="https://github.com/FoxAuth/FoxAuth/wiki">our wiki <img src="../icons/options/Open In New.svg"
-                    width="16px" height="16px"> </a> to get started.</p>
-        <h2>General Options</h2>
+        <p data-i18n="general_welcome"></p>
+        <p data-i18n-html="general_checkout_wiki"></p>
+        <h2 data-i18n="general_header_options"></h2>
 
         <div class="checkbox-group">
             <input class='settings-checkbox' type="checkbox" id="autofill" data-key='disableAutofill' name="autofill">
-            <label for="autofill">
-                Disable TOTP code autofill globally (so that codes must be filled manually via context menu or popup).
-            </label>
+            <label
+                for="autofill"
+                data-i18n="general_option_autofill"></label>
         </div>
         <div class="checkbox-group">
             <input class='settings-checkbox' type="checkbox" id="context" data-key='disableContext' name="context">
-            <label for="context">
-                Disable context menus. (so that codes can be only filled via manual typing or popup).
-            </label>
+            <label
+                for="context"
+                data-i18n="general_option_context_menus"></label>
 
         </div>
     </div>

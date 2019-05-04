@@ -12,11 +12,12 @@
 </head>
 
 <body style="text-align:center">
-    <h2>Own Database</h2>
+    <h2
+        data-i18n="import_own_database"></h2>
     <div class="importGroup" id="foxauth">
         <img src="../icons/icon.svg" height="48px" width="48px"> FoxAuth JSON
     </div>
-    <h2>Other Authenticators</h2>
+    <h2 data-i18n="import_other_databases"></h2>
     <div class="importGroup" style="display: none">
         <img src="../icons/options/authy.svg" height="48px" width="48px"> Authy
     </div>
@@ -32,7 +33,9 @@
     <div class="importGroup" id="authenticator">
         <img src="../icons/options/authext.svg" height="48px" width="48px"> Authenticator Extension
     </div>
-    <span class="caption"><strong>WARNING</strong><br>You must decrypt it at the first place and provide file location.</span>
+    <span
+        class="caption"
+        data-i18n-html="import_warning"></span>
     <input id="jsonFile" type="file" accept="application/json" style="display: none;">
     <div class="warning-cover"></div>
     <div class="warningMsg">

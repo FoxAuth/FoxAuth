@@ -17,24 +17,52 @@
 <body>
     <div class="top-bar">
         <div class="actions">
-            <a class="popup-group" target="_blank" href="options.html"><img src="../icons/options/Preferences.svg" title="Open options"
-                    height="26px" width="26px"></a>
-            <a class="popup-group" target="_blank" href="tokens.html"><img src="../icons/options/edit token.svg" title="See all tokens"
-                    height="26px" width="26px"></a>
-            <a class="popup-group" id="scanQRPopup" href="#"><img src="../icons/options/qr-scan.svg" title="Scan QR" height="26px"
-                    width="26px"></a>
-            <a class="popup-group" id="autofillOTPForm" href="#"><img src="../icons/options/Formfill.svg" title="Autofill OTP code"
-                    height="26px" width="26px"></a>
-            <a class="popup-group" id="newOTP" target="_blank" href="otpinfo.html"><img src="../icons/options/New.svg" title="Manually add OTP info" height="26px"
-                    width="26px"></a>
+            <a class="popup-group" target="_blank" href="options.html"><img
+                src="../icons/options/Preferences.svg"
+                data-i18n-title="popup_title_open_options"
+                height="26px"
+                width="26px"></a>
+            <a class="popup-group" target="_blank" href="tokens.html"><img
+                src="../icons/options/edit token.svg"
+                data-i18n-title="popup_title_open_tokens"
+                height="26px"
+                width="26px"></a>
+            <a class="popup-group" id="scanQRPopup" href="#"><img
+                src="../icons/options/qr-scan.svg"
+                data-i18n-title="popup_title_scan_qr"
+                height="26px"
+                width="26px"></a>
+            <a class="popup-group" id="autofillOTPForm" href="#"><img
+                src="../icons/options/Formfill.svg"
+                data-i18n-title="popup_title_autofill"
+                height="26px"
+                width="26px"></a>
+            <a class="popup-group" id="newOTP" target="_blank" href="otpinfo.html"><img
+                src="../icons/options/New.svg"
+                data-i18n-title="popup_title_open_otpinfo"
+                height="26px"
+                width="26px"></a>
         </div>
     </div>
     <div class="popup-head-row">
         <div id="popupSearch">
-            <input type="search" id='popupSearchInput' name="popupSearch" placeholder="&#128270; Search issuers or Containers name"><img src="../icons/options/clear.svg" width="16px" height="16px" id="popupClearSearch">
+            <input
+                type="search"
+                id='popupSearchInput'
+                name="popupSearch"
+                data-i18n-placeholder="popup_search_account_infos"
+            ><img src="../icons/options/clear.svg" width="16px" height="16px" id="popupClearSearch">
         </div>
-        <a class="popup-head-icon toggleAccounts" data-type='more' href="#" style="display: none;"><img src="../icons/options/Arrowhead Down.svg" title="Display all accounts" height="26px" width="26px"></a>
-        <a class="popup-head-icon toggleAccounts" data-type='less' href="#" style="display: none;"><img src="../icons/options/Arrowhead Up.svg" title="Hide other accounts" height="26px" width="26px"></a>
+        <a class="popup-head-icon toggleAccounts" data-type='more' href="#" style="display: none;"><img
+            src="../icons/options/Arrowhead Down.svg"
+            data-i18n-title="popup_title_display_all_accounts"
+            height="26px"
+            width="26px"></a>
+        <a class="popup-head-icon toggleAccounts" data-type='less' href="#" style="display: none;"><img
+            src="../icons/options/Arrowhead Up.svg"
+            data-i18n-title="popup_title_hide_other_accounts"
+            height="26px"
+            width="26px"></a>
     </div>
     <div id="otpContainer">
 

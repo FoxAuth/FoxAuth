@@ -3,6 +3,7 @@ import './sync.js';
 import doScanQR from '/scripts/doScanQR.js';
 import { getAccountInfos, saveAccountInfos } from '/scripts/accountInfo.js';
 import { showErrorMsg } from './utils.js';
+import * as i18n from '../i18n.js';
 
 //option page
 /*function openURL(url) {
@@ -62,7 +63,7 @@ function accountMessageTemplate(accountMessage) {
 };
 
 function handleOverwrite() {
-    accountMessageTemplate("Account(s) overwritten");
+    accountMessageTemplate(i18n.getMessage('background_account_overwritten'));
 }
 
 browser.contextMenus.onClicked.addListener(async (info, ignored) => {
@@ -76,7 +77,7 @@ browser.contextMenus.onClicked.addListener(async (info, ignored) => {
             if (error instanceof Error) {
                 showErrorMsg(error.message);
             } else {
-                showErrorMsg(typeof error === 'string' ? error : 'No QR code found.');
+                showErrorMsg(typeof error === 'string' ? error : i18n.getMessage('background_qr_not_found'));
             }
         }
     } else if (info.menuItemId === "autfillOTP") {
@@ -94,14 +95,14 @@ var injectQr_1 = document.createElement('script')
 injectQr_1.onload = function () {
     qrcode.callback = function (/*err,*/ result) {
         if (result === 'error decoding QR Code') {
-            showErrorMsg('Qrcode decode error.')
+            showErrorMsg(i18n.getMessage('background_qr_decode_error'))
         } else {
             if (result.startsWith('otpauth://totp/') || result.startsWith('otpauth://hotp/')) {
                 browser.tabs.create({
                     url: browser.runtime.getURL("options/otpinfo.html") + "?" + result
                 });
             } else {
-                showErrorMsg('OTP not found.')
+                showErrorMsg(i18n.getMessage('background_otp_not_found'))
             }
         }
     }
@@ -136,13 +137,13 @@ async function accountInfosChange(changes, areaName) {
         }
         var accountMessage = "";
         if (oldLength < newLength) {
-            accountMessage = "Account(s) added."
+            accountMessage = i18n.getMessage('background_account_added');
             accountMessageTemplate(accountMessage);
             accountOverwrite = false;
         } else if (oldLength == newLength && oldLength && newLength) {
             accountOverwrite = true;
         } else if (oldLength > newLength) {
-            accountMessage = "Account(s) removed."
+            accountMessage = i18n.getMessage('background_account_removed');
             accountMessageTemplate(accountMessage);
             accountOverwrite = false;
         }

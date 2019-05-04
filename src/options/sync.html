@@ -23,19 +23,27 @@
         <div class="actions">
             <a href="options.html" class="action-group">
                 <img class="icon" src="../icons/options/Preferences.svg" alt="">
-                <div class="action">General</div>
+                <div
+                    class="action"
+                    data-i18n="options_menu_general"></div>
             </a>
             <a href="tokens.html" class="action-group">
                 <img class="icon" src="../icons/options/tokens.svg" alt="">
-                <div class="action">Secret Tokens</div>
+                <div
+                    class="action"
+                    data-i18n="options_menu_secret_tokens"></div>
             </a>
             <a href="sync.html" class="action-group active">
                 <img class="icon" src="../icons/options/Sync.svg" alt="">
-                <div class="action">Backup & Sync</div>
+                <div
+                    class="action"
+                    data-i18n="options_menu_backup_and_sync"></div>
             </a>
             <a href="about.html" class="action-group">
                 <img class="icon" src="../icons/options/about.svg" alt="">
-                <div class="action">About</div>
+                <div
+                    class="action"
+                    data-i18n="options_menu_about"></div>
             </a>
         </div>
     </div>
@@ -54,7 +62,7 @@
         <span class="genericMsgTxt"><img class="genericIcon" src="../icons/options/Identity Icon Hover.svg"><span class="genericMsgContent">You have to disconnect current service before connecting to another.</span><img class="genericMsgCloseBtn" src="../icons/options/Close.svg"></span>
     </div> -->
     <div class="btnGroup">
-        <h3>Choose service you prefer to sync your data</h3><br>
+        <h3 data-i18n="sync_choose_service"></h3><br>
         <button class="syncbtn">
             <img src="../icons/service/dropbox.svg" width="32px" height="32px">
             <div class="syncBtnText">Dropbox</div>
@@ -64,50 +72,72 @@
             <div class="syncBtnText">Firefox account</div>
         </button>
     </div>
-    <h3>Encrypt &amp; Decrypt</h3>
+    <h3 data-i18n="sync_encrypt_descrypt"></h3>
     <form id="encryptForm">
         <fieldset style="border: 0;">
-            <input type="password" class="encryptPass" id="encryptPass" name="encryptPass" placeholder="Input encryption password">
+            <input
+                type="password"
+                class="encryptPass"
+                id="encryptPass"
+                name="encryptPass"
+                data-i18n-placeholder="sync_input_password">
             <a href="#"><img class="eye" src="../icons/options/show-password.svg"></a><br>
-            <span class="caption">Use this password to encrypt/decrypt your account info.</span><br>
+            <span
+                class="caption"
+                data-i18n="sync_password_tip"></span><br>
             <input type="password" class="encryptPass" id="reconfirmPass" name="reconfirmPass" placeholder="Reconfirm password">
             <a href="#"><img class="eye" src="../icons/options/show-password.svg"></a><br>
-            <span class="caption">WARNING: <span id="specialCapt"><strong>NO ONE</strong></span> can help if you lost
-                this.</span><br>
+            <span
+                class="caption"
+                data-i18n-html="sync_password_security"></span><br>
             <button id="confirmBtn" type="submit" disabled>
-                <img src="../icons/options/Login.svg" style="vertical-align: middle"> <span class="btnText">Confirm / Decrypt runtime</span>
+                <img src="../icons/options/Login.svg" style="vertical-align: middle"> <span
+                    class="btnText"
+                    data-i18n="sync_confirm_runtime"></span>
             </button>
             <button id="decryptBtn" type="button" disabled>
-                <img src="../icons/options/decrypt.svg" style="vertical-align: middle" width="16px" height="16px"> <span class="btnText">Completely decrypt</span>
+                <img src="../icons/options/decrypt.svg" style="vertical-align: middle" width="16px" height="16px"> <span
+                    class="btnText"
+                    data-i18n="sync_completely_decrypt"></span>
             </button>
         </fieldset>
         <ul class="ulPass">
             <li>
-                <div class="radio-box"><input type="radio" id="rememPass" name="rememPass" value="storage.local"><label class="radio-label" for="rememPass">
-                        Remember password.
-                    </label>
+                <div class="radio-box"><input type="radio" id="rememPass" name="rememPass" value="storage.local"><label
+                    class="radio-label"
+                    for="rememPass"
+                    data-i18n="sync_remember_password"></label>
                 </div>
             </li>
             <li>
-                <div class="radio-box"><input type="radio" id="rememPassSession" name="rememPass" value="sessionStorage"><label class="radio-label" for="rememPassSession">
-                        Store during only one browser session.
-                    </label>
+                <div class="radio-box"><input type="radio" id="rememPassSession" name="rememPass" value="sessionStorage"><label
+                    class="radio-label"
+                    for="rememPassSession"
+                    data-i18n="sync_store_password_during_session"></label>
                 </div>
             </li>
         </ul>
-        <button id="forgetBtn" disabled><img src="../icons/options/Forget.svg" style="vertical-align: middle"> <span class="btnText">Forget password</span></button>
+        <button id="forgetBtn" disabled><img src="../icons/options/Forget.svg" style="vertical-align: middle"> <span
+            class="btnText"
+            data-i18n="sync_forget_password"></span></button>
     </form>
     <div class="btnGroup">
-        <h3>Import or export your account info</h3><br>
+        <h3 data-i18n="sync_import_export"></h3><br>
         <button class="operatebtn" id="importBtn">
             <a href="import.html" target="_blank"><img src="../icons/options/import.svg" width="32px" height="32px">
-            <div class="operateBtnText">Import</div></a>
+            <div
+                class="operateBtnText"
+                data-i18n="import"></div></a>
         </button>
         <button class="operatebtn" id="exportBtn">
             <img src="../icons/options/export.svg" width="32px" height="32px">
-            <div class="operateBtnText">Export</div>
+            <div
+                class="operateBtnText"
+                data-i18n="export"></div>
         </button><br>
-        <span class="caption">DO NOTE that exporting will <strong>NOT</strong> execute decrypting.</span>
+        <span
+            class="caption"
+            data-i18n-html="sync_export_tip"></span>
     </div>
     <script src="../scripts/sync.js" type="module"></script>
 </body>

@@ -4,6 +4,9 @@ import './scanQR.js';
 import { KeyUtilities, OTPType } from './dependency/key-utilities.js';
 import getServiceIconNames from './serviceIcon.js';
 import { getPasswordInfo, getAccountInfos } from './accountInfo.js';
+import * as i18n from './i18n.js';
+
+i18n.render();
 
 const serviceIconNames = getServiceIconNames();
 const iconOnError = function (e) {
@@ -153,7 +156,7 @@ const template_copy_success = ef.t`
     >path.checkmark
       #d = M2 10 L 6 14 14 4
   >span
-    .Copied!
+    .{{copiedMessage}}
 `;
 
 function getOtpType(issuer) {
@@ -393,7 +396,8 @@ function mountCopySuccessMessage(component, rowItem) {
   const { top } = rowItem.getBoundingClientRect();
   component.copySuccessMessage = new template_copy_success({
     $data: {
-      style: top > 28 ? 'top: -28px;' : 'top: calc(100% + 4px);'
+      style: top > 28 ? 'top: -28px;' : 'top: calc(100% + 4px);',
+      copiedMessage: i18n.getMessage('popup_otp_copied')
     },
     $methods: {
       onAnimationEnd({ e, state }) {

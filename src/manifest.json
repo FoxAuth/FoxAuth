@@ -73,5 +73,6 @@
     },
     "description": "Open popup in Firefox sidebar"
     }
-  }
+  },
+  "default_locale": "en"
 }

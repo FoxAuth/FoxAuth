@@ -1,4 +1,7 @@
 import './menu.js';
+import * as i18n from './i18n.js';
+
+i18n.render();
 
 async function getSettings() {
   const obj = await browser.storage.local.get('settings');
@@ -66,4 +69,3 @@ function checkAndroidBrowser() {
   };
   checkAndroidBrowser();
 })();
-

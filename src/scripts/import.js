@@ -6,15 +6,15 @@ import {
     encryptAccountInfos
 } from './accountInfo.js';
 import diffPatcher from './sync/diffPatcher.js';
+import * as i18n from './i18n.js';
+
+i18n.render();
 
 const fromFoxAuth = document.getElementById('foxauth');
 const fromAuthenticator = document.getElementById('authenticator');
 const jsonFileInput = document.getElementById('jsonFile');
 const overwriteKeys = ['accountInfos', 'isEncrypted', 'passwordInfo', 'settings', 'dropbox'];
 const warningMsgDiv = document.querySelector('.warningMsg');
-const warningMsgContent = warningMsgDiv.querySelector('.warningMsgContent');
-const warningConfirmBtn = warningMsgDiv.querySelector('.warningMsgBtn');
-const warningCloseBtn = warningMsgDiv.querySelector('.warningMsgCloseBtn');
 const errorMsgDiv = document.querySelector('.errorMsg');
 const errorMsgContent = errorMsgDiv.querySelector('.errorMsgContent');
 const errorConfirmBtn = errorMsgDiv.querySelector('.errorMsgBtn');
@@ -137,14 +137,14 @@ async function doImport(importData) {
                 // import encrypted
                 const { passwordInfo = {}, settings = {} } = importData;
                 if (!passwordInfo || !passwordInfo.encryptIV) {
-                    throw new Error('Import data lost important settings.(encryptIV)');
+                    throw new Error(i18n.getMessage('import_error_imported_encryptIV'));
                 } else if (!passwordInfo.encryptPassword) {
                     await savePasswordInfo({
                         isEncrypted: false,
                         nextEncryptIV: passwordInfo.encryptIV,
                         nextStorageArea: (settings && settings.passwordStorage) ? settings.passwordStorage : 'storage.local'
                     });
-                    throw new Error('Password not found. Please enter it in sync page');
+                    throw new Error(i18n.getMessage('import_error_imported_password'));
                 }
                 localData.accountInfos = await encryptAccountInfos(
                     localData.accountInfos,
@@ -157,8 +157,8 @@ async function doImport(importData) {
         } else if (importIsEncrypted) {
             // both encrypted
             const delta = diffPatcher.diff(localData.passwordInfo, importData.passwordInfo);
-            if (delta.encryptIV) throw new Error('JSON encrypted or corrupt.(different encryptIV)');
-            if (delta.password) throw new Error('JSON encrypted or corrupt.(different password)');
+            if (delta.encryptIV) throw new Error(i18n.getMessage('import_error_different_encryptIV'));
+            if (delta.password) throw new Error(i18n.getMessage('import_error_different_password'));
         }
 
         const mergedResult = mergeLocalAndImport(localData, importData);
@@ -180,7 +180,7 @@ async function doImport(importData) {
     } catch (error) {
         console.log(error);
         showErrorMessage({
-            message: error.message || 'JSON encrypted or corrupt.(unknown error)'
+            message: error.message || i18n.getMessage('import_error_unknown')
         });
     }
 }
@@ -287,23 +287,6 @@ function transformAuthenticator(data) {
     };
 }
 
-function showWarningMessage({
-    message = 'Warning oops!',
-    confirmBtnText = ''
-}) {
-    return new Promise((resolve, reject) => {
-        openMessage({
-            message,
-            confirmBtn: warningConfirmBtn,
-            confirmBtnText,
-            container: warningMsgDiv,
-            confrimCallback: () => resolve(1),
-            cancelBtn: warningCloseBtn,
-            cancelCallback: () => resolve(0),
-            contentElement: warningMsgContent,
-        });
-    });
-}
 function showErrorMessage({
     message = 'Error oops!',
     confirmBtnText = ''

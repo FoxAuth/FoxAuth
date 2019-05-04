@@ -24,19 +24,27 @@
         <div class="actions">
             <a href="options.html" class="action-group">
                 <img class="icon" src="../icons/options/Preferences.svg" alt="">
-                <div class="action">General</div>
+                <div
+                    class="action"
+                    data-i18n="options_menu_general"></div>
             </a>
             <a href="tokens.html" class="action-group active">
                 <img class="icon" src="../icons/options/tokens.svg" alt="">
-                <div class="action">Secret Tokens</div>
+                <div
+                    class="action"
+                    data-i18n="options_menu_secret_tokens"></div>
             </a>
             <a href="sync.html" class="action-group">
                 <img class="icon" src="../icons/options/Sync.svg" alt="">
-                <div class="action">Backup & Sync</div>
+                <div
+                    class="action"
+                    data-i18n="options_menu_backup_and_sync"></div>
             </a>
             <a href="about.html" class="action-group">
                 <img class="icon" src="../icons/options/about.svg" alt="">
-                <div class="action">About</div>
+                <div
+                    class="action"
+                    data-i18n="options_menu_about"></div>
             </a>
         </div>
     </div>
@@ -44,55 +52,82 @@
         <div class="warning-cover"></div>
         <div class="warningMsg">
             <img class="warningIcon" src="../icons/options/Warning.svg"/>
-            <div class="warningMsgTxt"><span class="warningMsgContent">Deleting account info doesn't disable 2FA. Make sure you won't be locked out before proceed.</span><button class="warningMsgBtn">Confirm</button></div>
+            <div class="warningMsgTxt"><span
+                class="warningMsgContent"
+                data-i18n="tokens_warning_message_content"></span><button
+                class="warningMsgBtn"
+                data-i18n="confirm"></button></div>
             <img class="warningMsgCloseBtn" src="../icons/options/Close.svg">
         </div>        
         <div id="tokenSearch">
-            <input type="search" name="popupSearch" placeholder="&#128270; Search issuers, Containers name or Account name"><img src="../icons/options/clear.svg" width="16px" height="16px" id="tokenClearSearch">
+            <input
+                type="search"
+                name="popupSearch"
+                data-i18n-placeholder="tokens_search_account_infos"><!--
+        --><img
+                src="../icons/options/clear.svg"
+                width="16px"
+                height="16px"
+                id="tokenClearSearch">
         </div>
-        <h2 style="margin: 16px 16px">Locally stored account info</h2>
         <div id="otpFormBox">
             <form class="localOTP">
                 <fieldset>
                     <a href="#" class='delete-row'><img id="deleteOTP" class="deleteOTP" src="../icons/options/Close.svg" height="32px" width="32px"></a>
                     
                     <p class="form-row">
-                        <label class="containerAssign">Assigned container</label> <select name="containerAssign">
+                        <label
+                            class="containerAssign"
+                            data-i18n="label_assign_container"></label> <select name="containerAssign">
                             <option>none</option>
                         </select>
                     </p>
                     <p class="localIssuer form-row">
-                        <label>Issuer</label> <input type="text" name="localIssuer" required>
+                        <label
+                            data-i18n="label_issuer"></label> <input type="text" name="localIssuer" required>
                     </p>
                     <p class="localAccountName form-row">
-                        <label>Account name</label> <input type="text" name="localAccountName"
+                        <label
+                            data-i18n="label_account"></label> <input type="text" name="localAccountName"
                             required>
                     </p>
                     <p class="localSecretToken form-row">
-                        <label>Secret Tokens</label> <input type="password" class='input-password' name="localSecretToken"
+                        <label
+                            data-i18n="label_secret"></label> <input type="password" class='input-password' name="localSecretToken"
                             required pattern="[2-7][a-z][A-Z]{=}"> <a class='eye-box'><img class="eye" src="../icons/options/show-password.svg"></a>
                     </p>
                     <p class="localRecovery form-row">
-                            <label>Recovery</label> <input type="text" name="localRecovery">
+                            <label
+                                data-i18n="label_recovery"></label> <input type="text" name="localRecovery">
                         </p>
                         <a href="#" class='form-more'><img id="moreFormbtn" class="moreFormbtn" src="../icons/options/More horizontal.svg" height="32px" height="32px"></a>
                     <div id="moreFormItem" class="moreFormItem">
                     <p class='form-row-multi'>
-                        <label class='form-label first'>Type </label>
+                        <label
+                            class='form-label first'
+                            data-i18n="label_type"></label>
                         <select class="localOTPType form-input-multi" name="localOTPType">
-                            <option>Time based</option>
-                            <option>Counter based</option>
+                            <option
+                                data-i18n="label_algorithm_time"></option>
+                            <option
+                                data-i18n="label_algorithm_counter"></option>
                         </select>
-                        <label class='form-label second'>Algorithm </label>
+                        <label
+                            class='form-label second'
+                            data-i18n="label_algorithm"></label>
                         <select class="localOTPAlgorithm form-input-multi" name="localOTPAlgorithm">
                             <option>SHA-1</option>
                             <option>SHA-256</option>
                         </select>
                     </p>
                 <p class='form-row-multi'>
-                        <label class='form-label first'>Period </label>
+                        <label
+                            class='form-label first'
+                            data-i18n="label_period"></label>
                         <input class="localOTPPeriod form-input-multi" type="number" name="localOTPPeriod" value="30" min="30" max="99" step="1">
-                        <label class='form-label second'>Digits </label>
+                        <label
+                            class='form-label second'
+                            data-i18n="label_digits"></label>
                         <select  class="localOTPDigits form-input-multi" name="localOTPDigits">
                             <option>6</option>
                             <option>7</option>

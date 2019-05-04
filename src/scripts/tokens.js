@@ -14,6 +14,9 @@ import {
   initBrowserContainers,
   getBrowserContainers
 } from './accountInfoFormAction.js';
+import * as i18n from './i18n.js';
+
+i18n.render();
 
 const warningMsg = document.querySelector('.warningMsg');
 const warningMsgCloseBtn = warningMsg.querySelector('.warningMsgCloseBtn');

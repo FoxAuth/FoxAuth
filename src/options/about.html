@@ -20,38 +20,52 @@
         <div class="actions">
             <a href="options.html" class="action-group">
                 <img class="icon" src="../icons/options/Preferences.svg" alt="">
-                <div class="action">General</div>
+                <div
+                    class="action"
+                    data-i18n="options_menu_general"></div>
             </a>
             <a href="tokens.html" class="action-group">
                 <img class="icon" src="../icons/options/tokens.svg" alt="">
-                <div class="action">Secret Tokens</div>
+                <div
+                    class="action"
+                    data-i18n="options_menu_secret_tokens"></div>
             </a>
             <a href="sync.html" class="action-group">
                 <img class="icon" src="../icons/options/Sync.svg" alt="">
-                <div class="action">Backup & Sync</div>
+                <div
+                    class="action"
+                    data-i18n="options_menu_backup_and_sync"></div>
             </a>
             <a href="about.html" class="action-group active">
                 <img class="icon" src="../icons/options/about.svg" alt="">
-                <div class="action">About</div>
+                <div
+                    class="action"
+                    data-i18n="options_menu_about"></div>
             </a>
         </div>
     </div>
     <div class="content">
-        <h2>Acknowledgement</h2>
-        <p>Many 💖 to helpers during project building:</p>
+        <h2 data-i18n="about_acknowledgement"></h2>
+        <p data-i18n="about_acknowledgement_thanks_to_helpers"></p>
         <ul>
-            <li>Mozilla for <a href="https://design.firefox.com/photon">Photon Design <img src="../icons/options/Open In New.svg" width="16px" height="16px"></a> &amp; <a href="http://design.firefox.com/icons/">icon assets  <img src="../icons/options/Open In New.svg" width="16px" height="16px"> .</a></li>
-            <li><a href="https://github.com/nimiq/qr-scanner">QRScaner <img src="../icons/options/Open In New.svg" width="16px" height="16px"></a> for QR code manipulation & <a href="https://www.npmjs.com/package/jsotp/v/1.0.3">JSOTP <img src="../icons/options/Open In New.svg" width="16px" height="16px"></a> for TOTP code generation.</li>
-            <li><a href="https://github.com/Authenticator-Extension/Authenticator">Authenticator <img src="../icons/options/Open In New.svg" width="16px" height="16px"></a> &amp; <a href="https://github.com/Yubico/yubioath-desktop">Yubioath Desktop <img src="../icons/options/Open In New.svg" width="16px" height="16px"></a> for features inspiration.</li>
-            <li><a href="https://github.com/mozilla/send/">Firefox Send <img src="../icons/options/Open In New.svg" width="16px" height="16px"></a> for encryption code &amp; <a href="https://github.com/beatgammit/base64-js/">js-base64 <img src="../icons/options/Open In New.svg" width="16px" height="16px"></a> for base64 encoding.</li>
-            <li><a href="https://github.com/violentmonkey/violentmonkey">Violentmonkey <img src="../icons/options/Open In New.svg" width="16px" height="16px"></a> for Dropbox sync API manipulation.</li>
-            <li>Other project helpers &amp; brilliant minds.</li>
+            <li
+                data-i18n-html="about_acknowledgement_helper_first"></li>
+            <li
+                data-i18n-html="about_acknowledgement_helper_second"></li>
+            <li
+                data-i18n-html="about_acknowledgement_helper_third"></li>
+            <li
+                data-i18n-html="about_acknowledgement_helper_fourth"></li>
+            <li
+                data-i18n-html="about_acknowledgement_helper_fifth"></li>
+            <li
+                data-i18n-html="about_acknowledgement_helper_last"></li>
         </ul>
-        <h2>Other Info</h2>
-        <p>TOTP codes manipulation methods in this project respect <a href="https://tools.ietf.org/html/rfc6238">RFC 6238 <img src="../icons/options/Open In New.svg" width="16px" height="16px"> .</a></p>
-        <p>Except where otherwise noticed, this project is licensed under <a href="https://www.gnu.org/licenses/gpl-3.0.html">GNU General Public License 3.0 <img src="../icons/options/Open In New.svg" width="16px" height="16px"> </a>.</p>
+        <h2 data-i18n="about_other_info"></h2>
+        <p data-i18n-html="about_respected_RFC"></p>
+        <p data-i18n-html="about_license"></p>
     </div>
 
-    <script src="../scripts/menu.js" type="module"></script>
+    <script src="../scripts/about.js" type="module"></script>
 </body>
 </html>

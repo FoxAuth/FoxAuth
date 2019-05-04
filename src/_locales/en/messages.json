@@ -1,0 +1,346 @@
+{
+  "confirm": {
+    "message": "Confirm",
+    "description": "Yes. I am sure"
+  },
+  "none": {
+    "message": "none",
+    "description": "None"
+  },
+  "warning": {
+    "message": "Warning",
+    "description": "Warning"
+  },
+  "submit": {
+    "message": "Submit",
+    "description": "Submit"
+  },
+  "reset": {
+    "message": "Reset",
+    "description": "Reset"
+  },
+  "import": {
+    "message": "Import",
+    "description": "Import"
+  },
+  "export": {
+    "message": "Export",
+    "description": "Export"
+  },
+  "submit_all": {
+    "message": "Submit all",
+    "description": "Submit all"
+  },
+  "label_assign_container": {
+    "message": "Assigned container",
+    "description": "Assigned container"
+  },
+  "label_issuer": {
+    "message": "Issuer",
+    "description": "The site which generates OTP secret key"
+  },
+  "label_account": {
+    "message": "Account name",
+    "description": "OTP account name"
+  },
+  "label_secret": {
+    "message": "Secret Tokens",
+    "description": "OTP secret key"
+  },
+  "label_recovery": {
+    "message": "Recovery",
+    "description": "OTP recovery"
+  },
+  "label_type": {
+    "message": "Type",
+    "description": "OTP type"
+  },
+  "label_algorithm": {
+    "message": "Algorithm",
+    "description": "Used to calculate OTP"
+  },
+  "label_algorithm_time": {
+    "message": "Time based",
+    "description": "Algorithm that depends on time"
+  },
+  "label_algorithm_counter": {
+    "message": "Counter based",
+    "description": "Algorithm that depends on counter"
+  },
+  "label_period": {
+    "message": "Period",
+    "description": "OTP period"
+  },
+  "label_digits": {
+    "message": "Digits",
+    "description": "Length of OTP"
+  },
+  "options_menu_general": {
+    "message": "General",
+    "description": "Menu name: general"
+  },
+  "options_menu_secret_tokens": {
+    "message": "Secret Tokens",
+    "description": "Menu name: secret tokens"
+  },
+  "options_menu_backup_and_sync": {
+    "message": "Backup & Sync",
+    "description": "Menu name: backup & sync"
+  },
+  "options_menu_about": {
+    "message": "About",
+    "description": "Menu name: about"
+  },
+  "about_acknowledgement": {
+    "message": "Acknowledgement",
+    "description": "Acknowledgement"
+  },
+  "about_acknowledgement_thanks_to_helpers": {
+    "message": "Many 💖 to helpers during project building:",
+    "description": "Thanks to helpers"
+  },
+  "about_acknowledgement_helper_first": {
+    "message": "Mozilla for <a href=\"https://design.firefox.com/photon\">Photon Design <img src=\"../icons/options/Open In New.svg\" width=\"16px\" height=\"16px\"></a> &amp; <a href=\"http://design.firefox.com/icons/\">icon assets  <img src=\"../icons/options/Open In New.svg\" width=\"16px\" height=\"16px\"> .</a>",
+    "description": "Acknowledgement first"
+  },
+  "about_acknowledgement_helper_second": {
+    "message": "<a href=\"https://github.com/nimiq/qr-scanner\">QRScaner <img src=\"../icons/options/Open In New.svg\" width=\"16px\" height=\"16px\"></a> for QR code manipulation & <a href=\"https://www.npmjs.com/package/jsotp/v/1.0.3\">JSOTP <img src=\"../icons/options/Open In New.svg\" width=\"16px\" height=\"16px\"></a> for TOTP code generation.",
+    "description": "Acknowledgement second"
+  },
+  "about_acknowledgement_helper_third": {
+    "message": "<a href=\"https://github.com/Authenticator-Extension/Authenticator\">Authenticator <img src=\"../icons/options/Open In New.svg\" width=\"16px\" height=\"16px\"></a> &amp; <a href=\"https://github.com/Yubico/yubioath-desktop\">Yubioath Desktop <img src=\"../icons/options/Open In New.svg\" width=\"16px\" height=\"16px\"></a> for features inspiration.",
+    "description": "Acknowledgement third"
+  },
+  "about_acknowledgement_helper_fourth": {
+    "message": "<a href=\"https://github.com/mozilla/send/\">Firefox Send <img src=\"../icons/options/Open In New.svg\" width=\"16px\" height=\"16px\"></a> for encryption code &amp; <a href=\"https://github.com/beatgammit/base64-js/\">js-base64 <img src=\"../icons/options/Open In New.svg\" width=\"16px\" height=\"16px\"></a> for base64 encoding.",
+    "description": "Acknowledgement fourth"
+  },
+  "about_acknowledgement_helper_fifth": {
+    "message": "<a href=\"https://github.com/violentmonkey/violentmonkey\">Violentmonkey <img src=\"../icons/options/Open In New.svg\" width=\"16px\" height=\"16px\"></a> for Dropbox sync API manipulation.",
+    "description": "Acknowledgement fifth"
+  },
+  "about_acknowledgement_helper_last": {
+    "message": "Other project helpers &amp; brilliant minds.",
+    "description": "Acknowledgement last"
+  },
+  "about_other_info": {
+    "message": "Other Info",
+    "description": "About other info"
+  },
+  "about_respected_RFC": {
+    "message": "TOTP codes manipulation methods in this project respect <a href=\"https://tools.ietf.org/html/rfc6238\">RFC 6238 <img src=\"../icons/options/Open In New.svg\" width=\"16px\" height=\"16px\"> .</a>",
+    "description": "RFC"
+  },
+  "about_license": {
+    "message": "Except where otherwise noticed, this project is licensed under <a href=\"https://www.gnu.org/licenses/gpl-3.0.html\">GNU General Public License 3.0 <img src=\"../icons/options/Open In New.svg\" width=\"16px\" height=\"16px\"> </a>.",
+    "description": "License"
+  },
+  "general_welcome": {
+    "message": "Welcome to FoxAuth Authenticator.",
+    "description": "Welcome"
+  },
+  "general_checkout_wiki": {
+    "message": "Check out <a href=\"https://github.com/FoxAuth/FoxAuth/wiki\">our wiki <img src=\"../icons/options/Open In New.svg\" width=\"16px\" height=\"16px\"> </a> to get started.",
+    "description": "Checkout wiki to get started"
+  },
+  "general_header_options": {
+    "message": "General Options",
+    "description": "General options"
+  },
+  "general_option_autofill": {
+    "message": "Disable TOTP code autofill globally (so that codes must be filled manually via context menu or popup).",
+    "description": "Option: whether disable autofill"
+  },
+  "general_option_context_menus": {
+    "message": "Disable context menus. (so that codes can be only filled via manual typing or popup).",
+    "description": "Option: whether disable context menus"
+  },
+  "tokens_warning_message_content": {
+    "message": "Deleting account info doesn't disable 2FA. Make sure you won't be locked out before proceed.",
+    "description": "Deleting an account info should be careful"
+  },
+  "tokens_search_account_infos": {
+    "message": "🔎 Search issuers, Containers name or Account name",
+    "description": "Search account infos"
+  },
+  "import_own_database": {
+    "message": "Own Database",
+    "description": "Firefox authenticator"
+  },
+  "import_other_databases": {
+    "message": "Other Authenticators",
+    "description": "Other authenticators"
+  },
+  "import_error_unknown": {
+    "message": "Unknown Error occurred",
+    "description": "Unknown import error"
+  },
+  "import_error_imported_encryptIV": {
+    "message": "Imported data lost important settings.(encryptIV)",
+    "description": "Imported data's 'encryptIV' not found"
+  },
+  "import_error_imported_password": {
+    "message": "Password not found. Please enter it in sync page",
+    "description": "Imported data's 'password' not found"
+  },
+  "import_error_different_encryptIV": {
+    "message": "JSON encrypted or corrupted.(different encryptIV)",
+    "description": "Different encryptIV"
+  },
+  "import_error_different_password": {
+    "message": "JSON encrypted or corrupt.(different password)",
+    "description": "Different password"
+  },
+  "import_warning": {
+    "message": "<strong>WARNING</strong><br>You must decrypt it at the first place and provide file location.",
+    "description": "Warning"
+  },
+  "otpinfo_choose_container": {
+    "message": "Choose container",
+    "description": "Choose container"
+  },
+  "otpinfo_tip_issuer": {
+    "message": "This string is used to match domain for autofill. \"GitHub\" will match github.com, e.g., <span style=\"font-size: 1.25em\"><strong>case insensitive</strong></span>.",
+    "description": "Tip for issuer"
+  },
+  "otpinfo_tip_required": {
+    "message": "Required string to generate OTP codes.",
+    "description": "Tip for required string to generate OTP codes"
+  },
+  "otpinfo_tip_recovery": {
+    "message": "Given string in case OTP account info lost.",
+    "description": "Tip for recovery codes"
+  },
+  "popup_search_account_infos": {
+    "message": "🔎 Search issuers or Containers name",
+    "description": "Search account infos"
+  },
+  "popup_title_open_options": {
+    "message": "Open options",
+    "description": "Open options page"
+  },
+  "popup_title_open_tokens": {
+    "message": "See all tokens",
+    "description": "Open tokens page"
+  },
+  "popup_title_scan_qr": {
+    "message": "Scan QR",
+    "description": "Scan QR code"
+  },
+  "popup_title_autofill": {
+    "message": "Autofill OTP code",
+    "description": "Autofill OTP code"
+  },
+  "popup_title_open_otpinfo": {
+    "message": "Manually add OTP info",
+    "description": "Open otpinfo page"
+  },
+  "popup_title_display_all_accounts": {
+    "message": "Display all accounts",
+    "description": "Display all accounts"
+  },
+  "popup_title_hide_other_accounts": {
+    "message": "Hide other accounts",
+    "description": "Hide other accounts"
+  },
+  "popup_otp_copied": {
+    "message": "Copied!",
+    "description": "OTP has been copied to clipboard"
+  },
+  "sync_choose_service": {
+    "message": "Choose service you prefer to sync your data",
+    "description": "Choose service to sync data"
+  },
+  "sync_encrypt_descrypt": {
+    "message": "Encrypt & Decrypt",
+    "description": "Encrypt and decrypt"
+  },
+  "sync_password_tip": {
+    "message": "Use this password to encrypt/decrypt your account info.",
+    "description": "Encrypt or decrypt password"
+  },
+  "sync_input_password": {
+    "message": "Input encryption password",
+    "description": "Input encryption password"
+  },
+  "sync_reconfirm_password": {
+    "message": "Reconfirm password",
+    "description": "Reconfirm password"
+  },
+  "sync_password_security": {
+    "message": "WARNING: <span id=\"specialCapt\"><strong>NO ONE</strong></span> can help if you lost this.",
+    "description": "Lost password will lead to security issues"
+  },
+  "sync_confirm_runtime": {
+    "message": "Confirm / Decrypt runtime",
+    "description": "Encrypt and decrypt data on the fly"
+  },
+  "sync_completely_decrypt": {
+    "message": "Completely decrypt",
+    "description": "Completely decrypt data in the storage"
+  },
+  "sync_remember_password": {
+    "message": "Remember password.",
+    "description": "Remember password"
+  },
+  "sync_store_password_during_session": {
+    "message": "Store during only one browser session.",
+    "description": "Store password in sessionStorage"
+  },
+  "sync_forget_password": {
+    "message": "Forget password",
+    "description": "Forget password"
+  },
+  "sync_import_export": {
+    "message": "Import or export your account info",
+    "description": "Import or export"
+  },
+  "sync_export_tip": {
+    "message": "DO NOTE that exporting will <strong>NOT</strong> execute decrypting.",
+    "description": "Export raw data"
+  },
+  "sync_overwite_local_warning": {
+    "message": "Your local data will be overwritten due to different encryption settings",
+    "description": "Local data will be overwritten due to different encryption settings"
+  },
+  "sync_overwite_remote_warning": {
+    "message": "Your remote data will be overwritten due to different encryption settings",
+    "description": "Remote data will be overwritten due to different encryption settings"
+  },
+  "sync_wrong_password": {
+    "message": "Wrong password",
+    "description": "Wrong password"
+  },
+  "sync_not_the_same_password": {
+    "message": "Please input the same password twice",
+    "description": "Password are not the same"
+  },
+  "sync_encrypt_decrypt_error": {
+    "message": "Error occurred during encrypting/decrypting",
+    "description": "Encrypt or decrypt error"
+  },
+  "background_account_overwritten": {
+    "message": "Account(s) overwritten",
+    "description": "Account(s) overwritten"
+  },
+  "background_account_added": {
+    "message": "Account(s) added",
+    "description": "Account(s) added"
+  },
+  "background_account_removed": {
+    "message": "Account(s) removed",
+    "description": "Account(s) removed"
+  },
+  "background_qr_not_found": {
+    "message": "No QR code found.",
+    "description": "Qr code not found"
+  },
+  "background_qr_decode_error": {
+    "message": "Qrcode decode error.",
+    "description": "Qrcode decode error"
+  },
+  "background_otp_not_found": {
+    "message": "OTP not found.",
+    "description": "OTP not found"
+  }
+}

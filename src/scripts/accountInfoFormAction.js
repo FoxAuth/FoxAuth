@@ -1,3 +1,5 @@
+import * as i18n from './i18n.js';
+
 const formBox = document.getElementById('otpFormBox');
 const defaultAccountInfoForm = formBox.firstElementChild;
 let browserContainers = [];
@@ -115,7 +117,7 @@ export async function initBrowserContainers() {
     const result = await browser.contextualIdentities.query({});
     browserContainers = [{
         cookieStoreId: '',
-        name: 'none'
+        name: i18n.getMessage('none')
     }].concat(
         result
             .map((identities) => ({

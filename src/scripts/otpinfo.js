@@ -13,6 +13,9 @@ import {
     getBrowserContainers,
     initBrowserContainers
 } from './accountInfoFormAction.js';
+import * as i18n from './i18n.js';
+
+i18n.render();
 
 //init OTP form stack object
 const otpFormStack = [];

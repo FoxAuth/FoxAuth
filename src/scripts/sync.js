@@ -9,7 +9,10 @@ import {
   getInfosFromLocal,
   decryptAccountInfos,
   getPasswordStorageArea,
-} from './accountInfo.js'
+} from './accountInfo.js';
+import * as i18n from './i18n.js';
+
+i18n.render();
 
 //toggle checkbox
 [...document.getElementsByClassName('ulPass')].forEach(ul => {
@@ -248,12 +251,12 @@ decryptBtn.addEventListener('click', async (event) => {
     } catch (error) {
       console.log(error);
       showErrorMessage({
-        message: 'Wrong password'
+        message: i18n.getMessage('sync_wrong_password')
       });  
     }
   } else {
     showErrorMessage({
-      message: 'Please input the same password twice'
+      message: i18n.getMessage('sync_not_the_same_password')
     });
   }
 })
@@ -279,12 +282,12 @@ encryptForm.addEventListener('submit', async (event) => {
       setDecryptBtnStatus();
     } catch (error) {
       showErrorMessage({
-        message: 'Error occurred during encrypting/decrypting'
+        message: i18n.getMessage('sync_encrypt_decrypt_error')
       });  
     }
   } else {
     showErrorMessage({
-      message: 'Please input the same password twice'
+      message: i18n.getMessage('sync_not_the_same_password')
     });
   }
 });
@@ -418,12 +421,12 @@ async function showOverwriteWarning(
   if (!warningType) return;
 
   const overwirteLocalWarning = () => showWarningMessage({
-    message: 'Your local data will be overwritten due to different encryption settings',
-    confirmBtnText: 'confirm'
+    message: i18n.getMessage('sync_overwite_local_warning'),
+    confirmBtnText: i18n.getMessage('confirm')
   });
   const overwirteRemoteWarning = () => showWarningMessage({
-    message: 'Your remote data will be overwritten due to different encryption settings',
-    confirmBtnText: 'confirm'
+    message: i18n.getMessage('sync_overwite_remote_warning'),
+    confirmBtnText: i18n.getMessage('confirm')
   });
   let result = 0;
   if (warningType === 'overwriteRemote') {
