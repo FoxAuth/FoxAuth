@@ -1,6 +1,18 @@
 # Changelog
 All changes per revisioning to this project will be documented in this file. All dates used in this file are recorded as UTC+8.
 
+## v 1.5.0 - May th 2019
+### New 💡
+- i18n support, with the following locales added: Simplified Chinese(zh_CN)
+- shortcut to open popup content in Firefox sidebar
+### Changes 📝
+- new logo design
+### Fixed 🔨
+- popup icon viewport will now be resized properly
+- serveral website autofill refine
+
+---
+
 ## v 1.4.11 - Apr 13th 2019
 ### New 💡
 - Steam OTP code support
