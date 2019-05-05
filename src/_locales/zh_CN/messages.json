@@ -40,7 +40,7 @@
     "description": "Current Container which the account assigned onto"
   },
   "label_issuer": {
-    "message": "Issuer",
+    "message": "颁布网站",
     "description": "The site from which generates OTP secret key"
   },
   "label_account": {
@@ -124,7 +124,7 @@
     "description": "Acknowledgement fifth"
   },
   "about_acknowledgement_helper_last": {
-    "message": "其它帮助项目构建的第三方与智力",
+    "message": "其他帮助项目构建的第三方与智力",
     "description": "Acknowledgement last"
   },
   "about_other_info": {
