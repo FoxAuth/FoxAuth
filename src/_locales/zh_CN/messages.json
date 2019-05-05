@@ -350,5 +350,13 @@
   "badge_text_dymanic": {
     "message": " 个账户已添加",
     "description": "Badge text after any account added"
+  },
+  "context_qr": {
+    "message": "扫描 QR 码以添加 OTP 信息",
+    "description": "Context Menu item for QR scanning"
+  },
+  "context_autofill": {
+    "message": "自动填充 OTP 验证码",
+    "description": "Context Menu item for QR scanning"
   }
 }

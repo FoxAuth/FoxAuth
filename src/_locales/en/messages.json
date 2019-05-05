@@ -350,5 +350,13 @@
   "badge_text_dymanic": {
     "message": " account(s) added",
     "description": "Badge text after any account added"
+  },
+  "context_qr": {
+    "message": "Scan QR code to add OTP",
+    "description": "Context Menu item for QR scanning"
+  },
+  "context_autofill": {
+    "message": "Autofill OTP code",
+    "description": "Context Menu item for QR scanning"
   }
 }

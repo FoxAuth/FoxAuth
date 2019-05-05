@@ -21,7 +21,7 @@ browser.runtime.onInstalled.addListener(function () {
 */
 browser.contextMenus.create({
     id: "scanQR",
-    title: "Scan QR code to add TOTP",
+    title: i18n.getMessage('context_qr'),
     contexts: ["image", "page"],
     icons: {
         "16": "../icons/icon.svg",
@@ -37,7 +37,7 @@ browser.contextMenus.create({
     }
     browser.contextMenus.create({
         id: "autfillOTP",
-        title: "Autofill OTP code",
+        title: i18n.getMessage('context_autofill'),
         contexts: ["editable"],
         icons: {
             "16": "../icons/icon.svg",
