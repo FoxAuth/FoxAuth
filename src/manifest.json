@@ -4,7 +4,7 @@
   "short_name": "FoxAuth",
   "homepage_url": "https://github.com/FoxAuth/FoxAuth/",
   "version": "1.4.12",
-  "description": "A Firefox authenticator that can autofill TOTP codes with Firefox Android support",
+  "description": "__MSG_extensionDescription__",
   "applications": {
     "gecko": {
       "id": "foxauth@foxauth",

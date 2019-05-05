@@ -1,42 +1,42 @@
 {
   "extensionDescription": {
-    "message": "A Firefox authenticator that can autofill TOTP codes with Firefox Android support",
+    "message": "Firefox 二步验证器扩展，可自动填充二步验证码并支持 Firefox Android",
     "description": "Brief description of the extension"
   },
   "confirm": {
-    "message": "Confirm",
+    "message": "确认",
     "description": "Confirm button text before account deleted"
   },
   "none": {
-    "message": "none",
+    "message": "无",
     "description": "Displayed when no Container is assigned"
   },
   "warning": {
-    "message": "Warning",
-    "description": "Text in a warning"
+    "message": "警告",
+    "description": "Text in a warning message"
   },
   "submit": {
-    "message": "Submit",
+    "message": "提交",
     "description": "Submit form content as a new account"
   },
   "reset": {
-    "message": "Reset",
+    "message": "重置",
     "description": "Reset form to its initial status"
   },
   "import": {
-    "message": "Import",
+    "message": "导入",
     "description": "Import account externally"
   },
   "export": {
-    "message": "Export",
+    "message": "导出",
     "description": "Export all data to your disk"
   },
   "submit_all": {
-    "message": "Submit all",
+    "message": "全部提交",
     "description": "Submit all input account info"
   },
   "label_assign_container": {
-    "message": "Assigned Container",
+    "message": "对应的容器标签页",
     "description": "Current Container which the account assigned onto"
   },
   "label_issuer": {
@@ -44,75 +44,75 @@
     "description": "The site from which generates OTP secret key"
   },
   "label_account": {
-    "message": "Account name",
+    "message": "账户名",
     "description": "OTP account name param"
   },
   "label_secret": {
-    "message": "Secret Tokens",
+    "message": "预共享密钥",
     "description": "OTP secret key param"
   },
   "label_recovery": {
-    "message": "Recovery",
+    "message": "恢复码",
     "description": "OTP recovery code"
   },
   "label_type": {
-    "message": "Type",
+    "message": "类型",
     "description": "OTP type"
   },
   "label_algorithm": {
-    "message": "Algorithm",
+    "message": "散列算法",
     "description": "Hash algorithm used to manipulate Secret Tokens"
   },
   "label_algorithm_time": {
-    "message": "Time based",
+    "message": "基于时间",
     "description": "OTP type that based on time"
   },
   "label_algorithm_counter": {
-    "message": "Counter based",
+    "message": "基于计数器",
     "description": "OTP type that based on counter"
   },
   "label_period": {
-    "message": "Period",
+    "message": "周期",
     "description": "OTP period param"
   },
   "label_digits": {
-    "message": "Digits",
+    "message": "码长",
     "description": "Length of OTP code result"
   },
   "options_menu_general": {
-    "message": "General",
+    "message": "通用",
     "description": "Menu name: general"
   },
   "options_menu_secret_tokens": {
-    "message": "Secret Tokens",
+    "message": "预共享密钥",
     "description": "Menu name: secret tokens"
   },
   "options_menu_backup_and_sync": {
-    "message": "Backup & Sync",
+    "message": "备份同步",
     "description": "Menu name: backup & sync"
   },
   "options_menu_about": {
-    "message": "About",
+    "message": "关于",
     "description": "Menu name: about"
   },
   "about_acknowledgement": {
-    "message": "Acknowledgement",
+    "message": "鸣谢",
     "description": "Acknowledgement"
   },
   "about_acknowledgement_thanks_to_helpers": {
-    "message": "Many 💖 to helpers during project building:",
+    "message": "特别感谢 💖 下列在项目构建当中作出的贡献的第三方：",
     "description": "Thanks to helpers"
   },
   "about_acknowledgement_helper_first": {
-    "message": "Mozilla for <a href=\"https://design.firefox.com/photon\">Photon Design <img src=\"../icons/options/Open In New.svg\" width=\"16px\" height=\"16px\"></a> &amp; <a href=\"http://design.firefox.com/icons/\">icon assets  <img src=\"../icons/options/Open In New.svg\" width=\"16px\" height=\"16px\"> .</a>",
+    "message": "Mozilla 的 <a href=\"https://design.firefox.com/photon\">Photon Design 设计文档<img src=\"../icons/options/Open In New.svg\" width=\"16px\" height=\"16px\"></a> 与 <a href=\"http://design.firefox.com/icons/\">相关图标资源  <img src=\"../icons/options/Open In New.svg\" width=\"16px\" height=\"16px\"></a>",
     "description": "Acknowledgement first"
   },
   "about_acknowledgement_helper_second": {
-    "message": "<a href=\"https://github.com/nimiq/qr-scanner\">QRScaner <img src=\"../icons/options/Open In New.svg\" width=\"16px\" height=\"16px\"></a> for QR code manipulation & <a href=\"https://www.npmjs.com/package/jsotp/v/1.0.3\">JSOTP <img src=\"../icons/options/Open In New.svg\" width=\"16px\" height=\"16px\"></a> for TOTP code generation.",
+    "message": "<a href=\"https://github.com/nimiq/qr-scanner\">QRScaner <img src=\"../icons/options/Open In New.svg\" width=\"16px\" height=\"16px\"></a> QR 码处理代码与 <a href=\"https://www.npmjs.com/package/jsotp/v/1.0.3\">JSOTP <img src=\"../icons/options/Open In New.svg\" width=\"16px\" height=\"16px\"></a> TOTP 生成算法",
     "description": "Acknowledgement second"
   },
   "about_acknowledgement_helper_third": {
-    "message": "<a href=\"https://github.com/Authenticator-Extension/Authenticator\">Authenticator <img src=\"../icons/options/Open In New.svg\" width=\"16px\" height=\"16px\"></a> &amp; <a href=\"https://github.com/Yubico/yubioath-desktop\">Yubioath Desktop <img src=\"../icons/options/Open In New.svg\" width=\"16px\" height=\"16px\"></a> for features inspiration.",
+    "message": "<a href=\"https://github.com/Authenticator-Extension/Authenticator\">Authenticator <img src=\"../icons/options/Open In New.svg\" width=\"16px\" height=\"16px\"></a> 与 <a href=\"https://github.com/Yubico/yubioath-desktop\">Yubioath Desktop <img src=\"../icons/options/Open In New.svg\" width=\"16px\" height=\"16px\"></a> 当中的特性启发",
     "description": "Acknowledgement third"
   },
   "about_acknowledgement_helper_fourth": {
@@ -120,235 +120,235 @@
     "description": "Acknowledgement fourth"
   },
   "about_acknowledgement_helper_fifth": {
-    "message": "<a href=\"https://github.com/violentmonkey/violentmonkey\">Violentmonkey <img src=\"../icons/options/Open In New.svg\" width=\"16px\" height=\"16px\"></a> for Dropbox sync API manipulation.",
+    "message": "<a href=\"https://github.com/violentmonkey/violentmonkey\">Violentmonkey <img src=\"../icons/options/Open In New.svg\" width=\"16px\" height=\"16px\"></a> Dropbox API 操作算法",
     "description": "Acknowledgement fifth"
   },
   "about_acknowledgement_helper_last": {
-    "message": "Other project helpers &amp; brilliant minds.",
+    "message": "其它帮助项目构建的第三方与智力",
     "description": "Acknowledgement last"
   },
   "about_other_info": {
-    "message": "Other Info",
+    "message": "其它",
     "description": "About other info"
   },
   "about_respected_RFC": {
-    "message": "TOTP codes manipulation methods in this project respect <a href=\"https://tools.ietf.org/html/rfc6238\">RFC 6238 <img src=\"../icons/options/Open In New.svg\" width=\"16px\" height=\"16px\"> .</a>",
+    "message": "本项目当中的 TOTP 验证码处理算法源自 <a href=\"https://tools.ietf.org/html/rfc6238\">RFC 6238 <img src=\"../icons/options/Open In New.svg\" width=\"16px\" height=\"16px\"></a>",
     "description": "RFC"
   },
   "about_license": {
-    "message": "Except where otherwise noticed, this project is licensed under <a href=\"https://www.gnu.org/licenses/gpl-3.0.html\">GNU General Public License 3.0 <img src=\"../icons/options/Open In New.svg\" width=\"16px\" height=\"16px\"> </a>.",
+    "message": "除非另行明确声明，否则本项目协议均为 <a href=\"https://www.gnu.org/licenses/gpl-3.0.html\">GNU General Public License 3.0 <img src=\"../icons/options/Open In New.svg\" width=\"16px\" height=\"16px\"> </a>",
     "description": "License"
   },
   "general_welcome": {
-    "message": "Welcome to FoxAuth Authenticator.",
+    "message": "欢迎使用 FoxAuth Authenticator",
     "description": "Welcome message in option page"
   },
   "general_checkout_wiki": {
-    "message": "Check out <a href=\"https://github.com/FoxAuth/FoxAuth/wiki\">our wiki <img src=\"../icons/options/Open In New.svg\" width=\"16px\" height=\"16px\"> </a> to get started.",
+    "message": "阅读<a href=\"https://github.com/FoxAuth/FoxAuth/wiki\">帮助文档<img src=\"../icons/options/Open In New.svg\" width=\"16px\" height=\"16px\"></a>可以了解更多详情。",
     "description": "Wiki link for users guide"
   },
   "general_header_options": {
-    "message": "General Options",
+    "message": "通用设置",
     "description": "General options"
   },
   "general_option_autofill": {
-    "message": "Disable TOTP code autofill globally (so that codes must be filled manually via context menu or popup).",
+    "message": "禁用二步验证码自动填充（之后只能通过右键菜单或工具栏弹出窗口填充）",
     "description": "Option: whether disable autofill"
   },
   "general_option_context_menus": {
-    "message": "Disable context menus.",
+    "message": "禁用右键菜单",
     "description": "Option: whether disable context menus"
   },
   "tokens_warning_message_content": {
-    "message": "Deleting account info doesn't disable 2FA. Make sure you won't be locked out before proceed.",
+    "message": "删除账号信息不会禁用账号的二步验证。请确认您不会因此拒绝访问您的账号。",
     "description": "warning text before account deletion"
   },
   "tokens_search_account_infos": {
-    "message": "🔎 Search Issuers, Containers name or Account name",
+    "message": "🔎 搜索 Issuers，容器标签页名称或账户名",
     "description": "Search box placeholder in option page"
   },
   "import_own_database": {
-    "message": "Own Database",
+    "message": "自有数据库",
     "description": "Import from own database file"
   },
   "import_other_databases": {
-    "message": "Other Authenticators",
+    "message": "其它验证器",
     "description": "Import from other authenticators"
   },
   "import_error_unknown": {
-    "message": "Unknown Error occurred",
+    "message": "出现未知错误",
     "description": "Error message from import failure"
   },
   "import_error_imported_encryptIV": {
-    "message": "Target data file lost important encryption info.",
+    "message": "目标数据文件缺失重要解密信息。",
     "description": "Error message from decryption failure ftaer importing own database"
   },
   "import_error_imported_password": {
-    "message": "Password not found. Please enter it in Backup & Sync page",
+    "message": "未找到密码。请在备份与同步页面当中输出。",
     "description": "Imported data's 'password' not found"
   },
   "import_error_different_encryptIV": {
-    "message": "File encrypted or corrupted: different public key found.",
+    "message": "已加密或损坏的文件：发现不同的解密公钥。",
     "description": "Found different encrypt public key from that stored locally during importing"
   },
   "import_error_different_password": {
-    "message": "File encrypted or corrupted: different password found.",
+    "message": "已加密或损坏的文件：发现不同的解密密码。",
     "description": "Found different password from that stored locally during importing"
   },
   "import_warning": {
-    "message": "<strong>WARNING</strong><br>You must decrypt it at the first place and provide file location.",
+    "message": "<strong>警告</strong><br>您必须事先解密目标文件并提供文件目录。",
     "description": "Warning message on import UI"
   },
   "otpinfo_choose_container": {
-    "message": "Choose container",
+    "message": "选择容器标签页",
     "description": "Form label for Container in manually importing UI"
   },
   "otpinfo_tip_issuer": {
-    "message": "This string is used to match domain for autofill. \"GitHub\" will match github.com, e.g., <span style=\"font-size: 1.25em\"><strong>case insensitive</strong></span>.",
+    "message": "该字段用于匹配自动填充域名。例如， \"GitHub\" 将会与 github.com 匹配，<span style=\"font-size: 1.25em\"><strong>忽略</strong></span>大小写",
     "description": "Form description for Issuer in manually importing UI"
   },
   "otpinfo_tip_required": {
-    "message": "Required string to generate OTP codes.",
+    "message": "生成 OTP 验证码的必需字段",
     "description": "Form description in manually importing UI"
   },
   "otpinfo_tip_recovery": {
-    "message": "Given string in case OTP account info lost.",
+    "message": "以防 OTP 账户信息丢失给出的字段",
     "description": "Form description for Recovery in manually importing UI"
   },
   "popup_search_account_infos": {
-    "message": "🔎 Search issuers or Containers name",
+    "message": "🔎 搜索 Issuer 或是容器标签页名称",
     "description": "Search box placeholder in popup"
   },
   "popup_title_open_options": {
-    "message": "Open options",
+    "message": "打开设置页面",
     "description": "Tooltip for top buttons in popup"
   },
   "popup_title_open_tokens": {
-    "message": "See all tokens",
+    "message": "查看全部账户",
     "description": "Tooltip for top buttons in popup"
   },
   "popup_title_scan_qr": {
-    "message": "Scan QR",
+    "message": "扫描 QR 码",
     "description": "Tooltip for top buttons in popup"
   },
   "popup_title_autofill": {
-    "message": "Autofill OTP code",
+    "message": "自动填充 OTP 验证码",
     "description": "Tooltip for top buttons in popup"
   },
   "popup_title_open_otpinfo": {
-    "message": "Manually add OTP info",
+    "message": "手动添加 OTP 信息",
     "description": "Tooltip for top buttons in popup"
   },
   "popup_title_display_all_accounts": {
-    "message": "Display all accounts",
+    "message": "展示所有账号",
     "description": "Tooltip for autohide buttons in popup"
   },
   "popup_title_hide_other_accounts": {
-    "message": "Hide other accounts",
+    "message": "隐藏其它账号",
     "description": "Tooltip for autohide buttons in popup"
   },
   "popup_otp_copied": {
-    "message": "Copied!",
+    "message": "已复制",
     "description": "Message displayed after OTP code copied"
   },
   "sync_choose_service": {
-    "message": "Choose service you prefer to sync your data",
+    "message": "选择一个服务进行数据同步",
     "description": "Texture above sync buttons in Backup & Sync page"
   },
   "sync_encrypt_descrypt": {
-    "message": "Encrypt & Decrypt",
+    "message": "加密与加密",
     "description": "Texture above sync encryption form in Backup & Sync page"
   },
   "sync_password_tip": {
-    "message": "Use this password to encrypt/decrypt your account info.",
+    "message": "使用密码对账户信息进行加密或解密",
     "description": "Form label in encryption form in Backup & Sync page"
   },
   "sync_input_password": {
-    "message": "Input encryption password",
+    "message": "输入加密密码",
     "description": "Form placeholder in encryption form in Backup & Sync page"
   },
   "sync_reconfirm_password": {
-    "message": "Reconfirm password",
+    "message": "确认密码",
     "description": "Form placeholder in encryption form in Backup & Sync page"
   },
   "sync_password_security": {
-    "message": "WARNING: <span id=\"specialCapt\"><strong>NO ONE</strong></span> can help if you lost this.",
+    "message": "警告：<span id=\"specialCapt\">丢失密码 <strong>神仙难救</strong></span>",
     "description": "Form label in encryption form in Backup & Sync page"
   },
   "sync_confirm_runtime": {
-    "message": "Confirm / Decrypt runtime",
+    "message": "确认加密 / 运行中解密",
     "description": "Button text in encryption form in Backup & Sync page"
   },
   "sync_completely_decrypt": {
-    "message": "Completely decrypt",
+    "message": "完全解密",
     "description": "Button text in encryption form in Backup & Sync page"
   },
   "sync_remember_password": {
-    "message": "Remember password.",
+    "message": "记住密码",
     "description": "Radio form list text in encryption form in Backup & Sync page"
   },
   "sync_store_password_during_session": {
-    "message": "Store during only one browser session.",
+    "message": "仅保存于一个浏览器会话",
     "description": "Radio form list text in encryption form in Backup & Sync page"
   },
   "sync_forget_password": {
-    "message": "Forget password",
+    "message": "忘记密码",
     "description": "Button text in encryption form in Backup & Sync page"
   },
   "sync_import_export": {
-    "message": "Import or export your account info",
+    "message": "导入或导出账户信息",
     "description": "Texture above import buttons in Backup & Sync page"
   },
   "sync_export_tip": {
-    "message": "DO NOTE that exporting will <strong>NOT</strong> execute decrypting.",
+    "message": "请注意：导出过程<strong>不会</strong>执行解密",
     "description": "Texture under import buttons in Backup & Sync page"
   },
   "sync_overwite_local_warning": {
-    "message": "Your local data will be overwritten due to different encryption settings",
+    "message": "由于加密设置区别，本地数据将被覆盖",
     "description": "Message during sync for data overwriting confirmation"
   },
   "sync_overwite_remote_warning": {
-    "message": "Your remote data will be overwritten due to different encryption settings",
+    "message": "由于加密设置区别，远端数据将被覆盖",
     "description": "Message during sync for data overwriting confirmation"
   },
   "sync_wrong_password": {
-    "message": "Wrong password",
+    "message": "密码错误",
     "description": "Error message during decryption"
   },
   "sync_not_the_same_password": {
-    "message": "Please input the same password twice",
+    "message": "请输入两次前后一致的密码",
     "description": "Error message during encryption/decryption"
   },
   "sync_encrypt_decrypt_error": {
-    "message": "Error occurred during encrypting/decrypting",
+    "message": "加密/解密时出错",
     "description": "Error message during encryption/decryption"
   },
   "background_account_overwritten": {
-    "message": "Account(s) overwritten",
+    "message": "账户已覆盖",
     "description": "Notifi' when any account is overwritten"
   },
   "background_account_added": {
-    "message": "Account(s) added",
+    "message": "账户已添加",
     "description": "Notifi' when any account is added"
   },
   "background_account_removed": {
-    "message": "Account(s) removed",
+    "message": "账户已移除",
     "description": "Notifi' when any account is removed"
   },
   "background_qr_not_found": {
-    "message": "No QR code found.",
+    "message": "未发现 QR 码",
     "description": "Error message during QR scanning"
   },
   "background_qr_decode_error": {
-    "message": "QR decode error.",
+    "message": "QR 解码错误",
     "description": "Error message during QR scanning"
   },
   "background_otp_not_found": {
-    "message": "OTP info not found.",
+    "message": "未发现 OTP 信息",
     "description": "Error message during QR scanning"
   },
   "badge_text_dymanic": {
-    "message": " account(s) added",
+    "message": " 个账户已添加",
     "description": "Badge text after any account added"
   }
 }
