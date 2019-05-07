@@ -105,6 +105,9 @@ function hackOtpInfo(otpInfo, from) {
         case isLike(/inwx/i):
             otpInfo.issuer = "INWX";
             break;
+        case isLike(/docusign/i):
+            otpInfo.issuer = "DocuSign";
+        break;
     }
     return otpInfo;
 }

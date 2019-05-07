@@ -1,6 +1,7 @@
 export default function getServiceIconNames(){
   const arr = [
     '1password',
+    'adguard',
     'adobe',
     'aliyun',
     'amazon',
@@ -21,6 +22,7 @@ export default function getServiceIconNames(){
     'dashlane',
     'digitalocean',
     'discord',
+    'docusign',
     'dropbox',
     'electronic arts',
     'epic games',
