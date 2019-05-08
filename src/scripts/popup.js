@@ -408,3 +408,19 @@ function mountCopySuccessMessage(component, rowItem) {
     }
   });
 }
+
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.documentElement.scrollTop > 100) {
+    document.getElementById("btnToTop").style.display = "block";
+  } else {
+    document.getElementById("btnToTop").style.display = "none";
+  }
+}
+
+function topFunction() {
+  document.documentElement.scrollTop = 0;
+} 
+
+document.getElementById("btnToTop").addEventListener("click", topFunction);

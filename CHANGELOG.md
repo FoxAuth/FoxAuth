@@ -5,6 +5,7 @@ All changes per revisioning to this project will be documented in this file. All
 ### New 💡
 - i18n support, with the following locales added: Simplified Chinese (zh_CN), Japanese (ja_JP)
 - shortcut to open popup content in Firefox sidebar
+- go-to-top button in popup
 ### Changes 📝
 - new logo design
 ### Fixed 🔨
