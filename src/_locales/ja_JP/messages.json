@@ -164,7 +164,7 @@
     "description": "warning text before account deletion"
   },
   "tokens_search_account_infos": {
-    "message": "🔎 Issuers、コンテナ名とユーザー名から捜す",
+    "message": "🔎 発行者、コンテナ名とユーザー名から捜す",
     "description": "Search box placeholder in option page"
   },
   "import_own_database": {
@@ -216,7 +216,7 @@
     "description": "Form description for Recovery in manually importing UI"
   },
   "popup_search_account_infos": {
-    "message": "🔎 Issuerやコンテナ名から捜します",
+    "message": "🔎 発行者やコンテナ名から捜します",
     "description": "Search box placeholder in popup"
   },
   "popup_title_open_options": {
