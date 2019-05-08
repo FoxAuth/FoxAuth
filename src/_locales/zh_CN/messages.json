@@ -358,5 +358,17 @@
   "context_autofill": {
     "message": "自动填充 OTP 验证码",
     "description": "Context Menu item for QR scanning"
+  },
+  "about_acknowledgement_helper_translators": {
+    "message": "翻译人员",
+    "description": "Acknowledgement for translators"
+  },
+  "about_acknowledgement_translators_Chinese": {
+    "message": "中文：",
+    "description": "Chinese translators"
+  },
+  "about_acknowledgement_translators_Japanese": {
+    "message": "日文：",
+    "description": "Chinese translators"
   }
 }

@@ -358,5 +358,17 @@
   "context_autofill": {
     "message": "Autofill OTP code",
     "description": "Context Menu item for QR scanning"
+  },
+  "about_acknowledgement_helper_translators": {
+    "message": "Translators",
+    "description": "Acknowledgement for translators"
+  },
+  "about_acknowledgement_translators_Chinese": {
+    "message": "Chinese: ",
+    "description": "Chinese translators"
+  },
+  "about_acknowledgement_translators_Japanese": {
+    "message": "Japanese: ",
+    "description": "Chinese translators"
   }
 }

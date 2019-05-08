@@ -358,5 +358,17 @@
   "context_autofill": {
     "message": "OTPコードをオートフィルする",
     "description": "Context Menu item for QR scanning"
+  },
+  "about_acknowledgement_helper_translators": {
+    "message": "翻訳者",
+    "description": "Acknowledgement for translators"
+  },
+  "about_acknowledgement_translators_Chinese": {
+    "message": "中国語：",
+    "description": "Chinese translators"
+  },
+  "about_acknowledgement_translators_Japanese": {
+    "message": "日本語：",
+    "description": "Chinese translators"
   }
 }
