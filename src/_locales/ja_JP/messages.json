@@ -100,11 +100,11 @@
     "description": "Acknowledgement"
   },
   "about_acknowledgement_thanks_to_helpers": {
-    "message": "ありがとう！ 💖 このプロジェクトを支援したの皆さん",
+    "message": "ありがとう！ 💖 このプロジェクトを支援した皆さん",
     "description": "Thanks to helpers"
   },
   "about_acknowledgement_helper_first": {
-    "message": "Mozilla の <a href=\"https://design.firefox.com/photon\">Photon Design ドキュメント<img src=\"../icons/options/Open In New.svg\" width=\"16px\" height=\"16px\"></a> と <a href=\"http://design.firefox.com/icons/\">アイコン資源  <img src=\"../icons/options/Open In New.svg\" width=\"16px\" height=\"16px\"></a>",
+    "message": "Mozilla の <a href=\"https://design.firefox.com/photon\">Photon Design ドキュメント < img src=\"../icons/options/Open In New.svg\" width=\"16px\" height=\"16px\"></a> 又は <a href=\"http://design.firefox.com/icons/\"> アイコン資源  <img src=\"../icons/options/Open In New.svg\" width=\"16px\" height=\"16px\"></a>",
     "description": "Acknowledgement first"
   },
   "about_acknowledgement_helper_second": {
@@ -112,11 +112,11 @@
     "description": "Acknowledgement second"
   },
   "about_acknowledgement_helper_third": {
-    "message": "<a href=\"https://github.com/Authenticator-Extension/Authenticator\">Authenticator <img src=\"../icons/options/Open In New.svg\" width=\"16px\" height=\"16px\"></a> と <a href=\"https://github.com/Yubico/yubioath-desktop\">Yubioath Desktop <img src=\"../icons/options/Open In New.svg\" width=\"16px\" height=\"16px\"></a> は機能のインスピレーション",
+    "message": "<a href=\"https://github.com/Authenticator-Extension/Authenticator\">Authenticator <img src=\"../icons/options/Open In New.svg\" width=\"16px\" height=\"16px\"></a> と <a href=\"https://github.com/Yubico/yubioath-desktop\">Yubioath Desktop <img src=\"../icons/options/Open In New.svg\" width=\"16px\" height=\"16px\"></a> は機能のインスピレーションを与える。",
     "description": "Acknowledgement third"
   },
   "about_acknowledgement_helper_fourth": {
-    "message": "<a href=\"https://github.com/mozilla/send/\">Firefox Send <img src=\"../icons/options/Open In New.svg\" width=\"16px\" height=\"16px\"></a> for encryption code &amp; <a href=\"https://github.com/beatgammit/base64-js/\">js-base64 <img src=\"../icons/options/Open In New.svg\" width=\"16px\" height=\"16px\"></a> for base64 encoding.",
+    "message": "<a href=\"https://github.com/mozilla/send/\">Firefox Send <img src=\"../icons/options/Open In New.svg\" width=\"16px\" height=\"16px\"></a> でコードの暗号化に使用する &amp; <a href=\"https://github.com/beatgammit/base64-js/\">js-base64 <img src=\"../icons/options/Open In New.svg\" width=\"16px\" height=\"16px\"></a> で Base64 の復号化に使用する。",
     "description": "Acknowledgement fourth"
   },
   "about_acknowledgement_helper_fifth": {
@@ -124,7 +124,7 @@
     "description": "Acknowledgement fifth"
   },
   "about_acknowledgement_helper_last": {
-    "message": "その他のヘルパーたちと素晴らしいアイデア",
+    "message": "他のヘルパーたちと素晴らしいアイデア",
     "description": "Acknowledgement last"
   },
   "about_other_info": {
@@ -188,15 +188,15 @@
     "description": "Imported data's 'password' not found"
   },
   "import_error_different_encryptIV": {
-    "message": "ファイルが暗号化された、または破壊されています：異なるパブリックキーが発見されました。",
+    "message": "ファイルが暗号化された、又は破壊されています：異なるパブリックキーが発見されました。",
     "description": "Found different encrypt public key from that stored locally during importing"
   },
   "import_error_different_password": {
-    "message": "ファイルが暗号化された、または破壊されています：異なるパスワードが発見されました。",
+    "message": "ファイルが暗号化された、又は破壊されています：異なるパスワードが発見されました。",
     "description": "Found different password from that stored locally during importing"
   },
   "import_warning": {
-    "message": "<strong>警告</strong><br>暗号化解除又はファイル位置が必要です。",
+    "message": "<strong>警告</strong><br>暗号化解除とファイル位置が必要です。",
     "description": "Warning message on import UI"
   },
   "otpinfo_choose_container": {
