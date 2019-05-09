@@ -363,12 +363,12 @@
     "message": "翻訳者",
     "description": "Acknowledgement for translators"
   },
-  "about_acknowledgement_translators_Chinese": {
-    "message": "中国語：",
-    "description": "Chinese translators"
+  "about_acknowledgement_translators_zhCN": {
+    "message": "簡体字：",
+    "description": "zh_CN translators"
   },
-  "about_acknowledgement_translators_Japanese": {
+  "about_acknowledgement_translators_jaJP": {
     "message": "日本語：",
-    "description": "Chinese translators"
+    "description": "ja_JP translators"
   }
 }
