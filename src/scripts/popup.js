@@ -136,9 +136,10 @@ const template_totp = ef.t`
             @click.stop = copyOtp
           -copySuccessMessage
         >div.popup-right.container-icon-box
+          #style = display:{{containerIconDisplay}}
           #data-color = {{containerColor}}
           >img.popup-icon.container-icon
-            #style = display:{{containerIconDisplay}}; fill:{{containerColorCode}}
+            #style = fill:{{containerColorCode}}
             #onerror = containerIconOnError(this)
             #src = {{containerIcon}}
     >progress.progress

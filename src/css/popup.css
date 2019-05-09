@@ -147,7 +147,6 @@ body.scanning::after {
 .popup-icon {
     display: block;
     height: 32px;
-    width: 32px;
     object-fit: contain;
 }
 .popup-link {
