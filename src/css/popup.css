@@ -123,13 +123,14 @@ body.scanning::after {
     clear: both;
 }
 .popup-row-item {
-    position: relative;
-    line-height: 28px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     display: block;
     text-align: center;
-    font-size: 28px;
+    font-size: 0;
     color: #2a2a2e;
-    font-weight: 600;
     flex: 1 1 100px;
 }
 .popup-left {
@@ -191,6 +192,12 @@ body.scanning::after {
     margin-right: 8px;
 }
 .popup-row-item > span {
+    display: inline-block;
+    align-items: center;
+    height: 28px;
+    font-size: 28px;
+    line-height: 28px;
+    font-weight: 600;
     vertical-align: middle;
 }
 .popup-row-item > .icon-copy {
@@ -314,4 +321,20 @@ body.scanning::after {
     z-index: 99;
     display: none;
     cursor: pointer;
+}
+
+@media screen and (max-width: 499px) {
+    .popup-icon {
+        height: 5.6vmin;
+    }
+    .popup-row-item > span {
+        height: 5.6vmin;
+        font-size: 5.6vmin;
+        line-height: 5.6vmin;
+    }
+    .popup-row-item > .icon-copy {
+        width: 6.2vmin;
+        height: 6.2vmin;
+        background-size: 3.4875vmin 3.4875vmin;
+    }
 }
