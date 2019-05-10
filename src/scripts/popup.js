@@ -132,6 +132,7 @@ const template_totp = ef.t`
             #href = javascript:void(0);
             #class = {{otpKeyClassName}}
             .{{OTP}}
+        >div.popup-row-item
           >i.popup-icon.icon-copy
             @click.stop = copyOtp
           -copySuccessMessage

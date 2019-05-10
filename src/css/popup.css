@@ -207,6 +207,8 @@ body.scanning::after {
     border-radius: 50%;
     cursor: pointer;
     vertical-align: middle;
+    position: relative;
+    left: 140%;
 }
 .popup-row-item > .copy-success-message {
     z-index: 999;
