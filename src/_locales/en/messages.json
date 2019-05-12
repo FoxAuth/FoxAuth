@@ -144,7 +144,7 @@
     "description": "License"
   },
   "general_welcome": {
-    "message": "Welcome to FoxAuth Authenticator.",
+    "message": "Welcome to Auth Plus.",
     "description": "Welcome message in option page"
   },
   "general_checkout_wiki": {

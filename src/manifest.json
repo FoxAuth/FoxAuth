@@ -29,7 +29,7 @@
   },
   "sidebar_action": {
     "default_icon": "icons/icon.svg",
-    "default_title": "FoxAuth Authenticator",
+    "default_title": "Auth Plus",
     "default_panel": "options/popup.html",
     "open_at_install":false
   },
