@@ -371,6 +371,10 @@
     "message": "簡体字：",
     "description": "zh_CN translators"
   },
+  "about_acknowledgement_translators_zhTW": {
+    "message": "繁体字：",
+    "description": "zh_TW translators"
+  },
   "about_acknowledgement_translators_jaJP": {
     "message": "日本語：",
     "description": "ja_JP translators"

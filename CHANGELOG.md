@@ -1,9 +1,9 @@
 # Changelog
 All changes per revisioning to this project will be documented in this file. All dates used in this file are recorded as UTC+8.
 
-## v 1.5.0 - May th 2019
+## v 1.5.0 - May 12th 2019
 ### New 💡
-- i18n support, with the following locales added: Simplified Chinese (zh_CN), Japanese (ja_JP)
+- i18n support, with the following locales added: Simplified Chinese (zh_CN), Traditional Chinese (zh_TW), Japanese (ja_JP)
 - shortcut to open popup content in Firefox sidebar
 - go-to-top button in popup
 ### Changes 📝

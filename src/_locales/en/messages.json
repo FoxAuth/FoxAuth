@@ -374,5 +374,9 @@
   "about_acknowledgement_translators_jaJP": {
     "message": "Japanese: ",
     "description": "ja_JP translators"
+  },
+  "about_acknowledgement_translators_zhTW": {
+    "message": "Traditional Chinese: ",
+    "description": "zh_TW translators"
   }
 }
