@@ -7,7 +7,7 @@ All changes per revisioning to this project will be documented in this file. All
 - shortcut to open popup content in Firefox sidebar
 - go-to-top button in popup
 ### Changes 📝
-- new logo design
+- new logo design & new addon name
 ### Fixed 🔨
 - popup icon viewport will now be resized properly
 - serveral website autofill refine

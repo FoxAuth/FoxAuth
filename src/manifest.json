@@ -1,9 +1,9 @@
 {
   "manifest_version": 2,
-  "name": "FoxAuth Authenticator",
-  "short_name": "FoxAuth",
+  "name": "Auth Plus",
+  "short_name": "Auth Plus",
   "homepage_url": "https://github.com/FoxAuth/FoxAuth/",
-  "version": "1.4.12",
+  "version": "1.5.0",
   "description": "__MSG_extensionDescription__",
   "applications": {
     "gecko": {
@@ -17,7 +17,7 @@
   },
   "browser_action": {
     "default_icon": "icons/icon.svg",
-    "default_title": "FoxAuth 1.4.12",
+    "default_title": "Auth Plus 1.5.0",
     "default_popup": "options/popup.html"
   },
   "options_ui": {

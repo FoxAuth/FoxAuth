@@ -1,4 +1,4 @@
-# FoxAuth Firefox TOTP Extension
+# Auth Plus Firefox TOTP Extension
 
 <div align='center'>
   <img width='20%' height='20%' src='foxauth.svg'></img>
@@ -28,7 +28,7 @@
 
 ## Introduction
 
-FoxAuth is an [TOTP](https://wikipedia.org/wiki/Time-based_One-time_Password_algorithm) browser client with autofill support for __Firefox__ and __Firefox Android__
+Auth Plus is an [TOTP](https://wikipedia.org/wiki/Time-based_One-time_Password_algorithm) browser client with autofill support for __Firefox__ and __Firefox Android__
 
 > 2FA made no longer annoying but enjoyable
 
@@ -84,7 +84,7 @@ We use encryption code from [Firefox Send](github.com/mozilla/send) in WebCrypto
 FoxAuth is licensed under __GNU General Public License 3.0__
 
 ```plain
-FoxAuth is a Firefox (for Desktop / Android) authenticator that can autofill TOTP codes
+Auth Plus is a Firefox (for Desktop / Android) authenticator that can autofill TOTP codes
 Copyright (C) 2018 FoxAuth contributors
 
 This program is free software: you can redistribute it and/or modify

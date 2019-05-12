@@ -123,6 +123,10 @@
     "message": "<a href=\"https://github.com/violentmonkey/violentmonkey\">Violentmonkey <img src=\"../icons/options/Open In New.svg\" width=\"16px\" height=\"16px\"></a> Dropbox API 操作アルゴリズム",
     "description": "Acknowledgement fifth"
   },
+  "about_acknowledgement_logo": {
+    "message": "<a href=\"https://github.com/EYHN\">EYHN <img src=\"../icons/options/Open In New.svg\" width=\"16px\" height=\"16px\"></a> ロゴデザイン",
+    "description": "Acknowledgement logo"
+  },
   "about_acknowledgement_helper_last": {
     "message": "他のヘルパーたちと素晴らしいアイデア",
     "description": "Acknowledgement last"
