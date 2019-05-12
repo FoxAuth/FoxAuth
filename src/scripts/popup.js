@@ -186,10 +186,10 @@ function addOTP(issuer, containerObj = {}, key, expiry = 30, code_length = 6, op
       i18n_Copy: 'Copy',
       i18n_Edit: 'Edit',
       OTP: otpKey,
-      issuer: issuer,
+      issuer: issuer || '',
       issuerIcon: serviceIconNames.find(e => getSvgNameByIssuer(issuer).indexOf(e) >= 0) || 'fallback',
       otpKeyClassName: otpKeyClassName,
-      container: containerObj.name,
+      container: containerObj.name || '',
       containerIcon: containerObj.iconUrl,
       containerIconDisplay: containerObj.iconUrl ? 'block' : 'none',
       containerColorCode: containerObj.colorCode,
@@ -233,7 +233,7 @@ const handleListItemFilter = function () {
   [...domList].forEach(e => {
     const data = e.dataset;
     if (
-      [data.issuer, data.containerName].some(str => str.toLowerCase().indexOf(keyword) >= 0)
+      [data.issuer || '', data.containerName || ''].some(str => str.toLowerCase().indexOf(keyword) >= 0)
       &&
       (isMore || data.flag === 'matched')
     ) {
