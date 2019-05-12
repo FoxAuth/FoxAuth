@@ -426,3 +426,11 @@ function topFunction() {
 } 
 
 document.getElementById("btnToTop").addEventListener("click", topFunction);
+
+popupSearchInput.addEventListener("focus", ()=> {
+  toggleAccountsMore.click();
+})
+
+popupSearchInput.addEventListener("blur", ()=> {
+  toggleAccountsLess.click();
+})
