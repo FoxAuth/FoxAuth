@@ -107,7 +107,10 @@ function hackOtpInfo(otpInfo, from) {
             break;
         case isLike(/docusign/i):
             otpInfo.issuer = "DocuSign";
-        break;
+            break;
+        case isLike(/mailchimp/i):
+            otpInfo.issuer = "Mailchimp";
+            break;
     }
     return otpInfo;
 }
