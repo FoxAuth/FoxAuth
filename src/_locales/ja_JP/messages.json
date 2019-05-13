@@ -104,7 +104,7 @@
     "description": "Thanks to helpers"
   },
   "about_acknowledgement_helper_first": {
-    "message": "Mozilla の <a href=\"https://design.firefox.com/photon\">Photon Design ドキュメント < img src=\"../icons/options/Open In New.svg\" width=\"16px\" height=\"16px\"></a> 又は <a href=\"http://design.firefox.com/icons/\"> アイコン資源  <img src=\"../icons/options/Open In New.svg\" width=\"16px\" height=\"16px\"></a>",
+    "message": "Mozilla の <a href=\"https://design.firefox.com/photon\">Photon Design ドキュメント <img src=\"../icons/options/Open In New.svg\" width=\"16px\" height=\"16px\"></a> 又は <a href=\"http://design.firefox.com/icons/\"> アイコン資源  <img src=\"../icons/options/Open In New.svg\" width=\"16px\" height=\"16px\"></a>",
     "description": "Acknowledgement first"
   },
   "about_acknowledgement_helper_second": {

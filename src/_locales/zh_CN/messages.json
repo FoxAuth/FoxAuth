@@ -104,7 +104,7 @@
     "description": "Thanks to helpers"
   },
   "about_acknowledgement_helper_first": {
-    "message": "Mozilla 的 <a href=\"https://design.firefox.com/photon\">Photon Design 设计文档<img src=\"../icons/options/Open In New.svg\" width=\"16px\" height=\"16px\"></a> 与 <a href=\"http://design.firefox.com/icons/\">相关图标资源  <img src=\"../icons/options/Open In New.svg\" width=\"16px\" height=\"16px\"></a>",
+    "message": "Mozilla 的 <a href=\"https://design.firefox.com/photon\">Photon Design 设计文档 <img src=\"../icons/options/Open In New.svg\" width=\"16px\" height=\"16px\"></a> 与 <a href=\"http://design.firefox.com/icons/\">相关图标资源  <img src=\"../icons/options/Open In New.svg\" width=\"16px\" height=\"16px\"></a>",
     "description": "Acknowledgement first"
   },
   "about_acknowledgement_helper_second": {
