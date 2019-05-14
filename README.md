@@ -35,7 +35,7 @@ Auth Plus is an [TOTP](https://wikipedia.org/wiki/Time-based_One-time_Password_a
 ## Features
 
 - __Firefox Android__ support
-- __Steam OTP__ code supoort 
+- __Steam OTP__ code support 
 - __QR code__ / manually add account info
 - [__Container tab__](https://support.mozilla.org/en-US/kb/containers) support to autofill multiple same-domain accounts
 - __import / export__
@@ -44,7 +44,7 @@ Auth Plus is an [TOTP](https://wikipedia.org/wiki/Time-based_One-time_Password_a
     - [ ] [Google Authenticator](https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2)
     - [ ] [Microsoft Authenticator](https://play.google.com/store/apps/details?id=com.azure.authenticator)
     - [ ] [LastPass Authenticator](https://play.google.com/store/apps/details?id=com.lastpass.authenticator)
-    - [ ] [Authenticator](https://github.com/Authenticator-Extension/Authenticator)
+    - [x] [Authenticator](https://github.com/Authenticator-Extension/Authenticator)
 
 - (Password based) account list __encryption__
 - Autofill __TOTP__ form

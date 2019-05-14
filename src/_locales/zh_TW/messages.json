@@ -363,6 +363,14 @@
     "message": "自動填入 OTP 驗證碼",
     "description": "Context Menu item for QR scanning"
   },
+  "otpinfo_page_title": {
+    "message": "新增帳戶訊息",
+    "description": "Page title for new credential adding"
+  },
+  "import_page_title": {
+    "message": "導入資料庫",
+    "description": "Page title for data importing"
+  },
   "about_acknowledgement_helper_translators": {
     "message": "翻譯人員",
     "description": "Acknowledgement for translators"
