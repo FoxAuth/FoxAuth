@@ -35,12 +35,28 @@
     "message": "全部提交",
     "description": "Submit all input account info"
   },
+  "placeholder_new_issuer": {
+    "message": "新頒布方",
+    "description": "Placeholder for new issuer"
+  },
+  "placeholder_new_account_name": {
+    "message": "新帳戶名稱",
+    "description": "Placeholder for new account name"
+  },
+  "placeholder_new_secret_token": {
+    "message": "新預共享密鑰",
+    "description": "Placeholder for new secret token"
+  },
+  "placeholder_new_recovery": {
+    "message": "新救援碼",
+    "description": "Placeholder for new recovery"
+  },
   "label_assign_container": {
     "message": "對應的容器分頁",
     "description": "Current Container which the account assigned onto"
   },
   "label_issuer": {
-    "message": "Issuer",
+    "message": "頒布方",
     "description": "The site from which generates OTP secret key"
   },
   "label_account": {
@@ -48,7 +64,7 @@
     "description": "OTP account name param"
   },
   "label_secret": {
-    "message": "密鑰",
+    "message": "預共享密鑰",
     "description": "OTP secret key param"
   },
   "label_recovery": {
@@ -168,7 +184,7 @@
     "description": "warning text before account deletion"
   },
   "tokens_search_account_infos": {
-    "message": "🔎 搜尋 Issuers、容器分頁名稱或帳戶名稱",
+    "message": "🔎 搜尋頒布方、容器分頁名稱或帳戶名稱",
     "description": "Search box placeholder in option page"
   },
   "import_own_database": {
@@ -220,7 +236,7 @@
     "description": "Form description for Recovery in manually importing UI"
   },
   "popup_search_account_infos": {
-    "message": "🔎 搜尋 Issuer 或 容器分頁名稱",
+    "message": "🔎 搜尋頒布方或容器分頁名稱",
     "description": "Search box placeholder in popup"
   },
   "popup_title_open_options": {

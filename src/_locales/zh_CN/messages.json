@@ -35,6 +35,22 @@
     "message": "全部提交",
     "description": "Submit all input account info"
   },
+  "placeholder_new_issuer": {
+    "message": "新颁布方",
+    "description": "Placeholder for new issuer"
+  },
+  "placeholder_new_account_name": {
+    "message": "新账户名",
+    "description": "Placeholder for new account name"
+  },
+  "placeholder_new_secret_token": {
+    "message": "新预共享密钥",
+    "description": "Placeholder for new secret token"
+  },
+  "placeholder_new_recovery": {
+    "message": "新恢复码",
+    "description": "Placeholder for new recovery"
+  },
   "label_assign_container": {
     "message": "对应的容器标签页",
     "description": "Current Container which the account assigned onto"
@@ -148,7 +164,7 @@
     "description": "Welcome message in option page"
   },
   "general_checkout_wiki": {
-    "message": "阅读<a href=\"https://github.com/FoxAuth/FoxAuth/wiki\">帮助文档<img src=\"../icons/options/Open In New.svg\" width=\"16px\" height=\"16px\"></a>可以了解更多详情。",
+    "message": "阅读<a href=\"https://github.com/FoxAuth/FoxAuth/wiki\">帮助文档 <img src=\"../icons/options/Open In New.svg\" width=\"16px\" height=\"16px\"></a> 可以了解更多详情。",
     "description": "Wiki link for users guide"
   },
   "general_header_options": {

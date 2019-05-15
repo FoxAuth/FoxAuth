@@ -35,6 +35,22 @@
     "message": "Submit all",
     "description": "Submit all input account info"
   },
+  "placeholder_new_issuer": {
+    "message": "New Issuer",
+    "description": "Placeholder for new issuer"
+  },
+  "placeholder_new_account_name": {
+    "message": "New account name",
+    "description": "Placeholder for new account name"
+  },
+  "placeholder_new_secret_token": {
+    "message": "New secret token",
+    "description": "Placeholder for new secret token"
+  },
+  "placeholder_new_recovery": {
+    "message": "New recovery",
+    "description": "Placeholder for new recovery"
+  },
   "label_assign_container": {
     "message": "Assigned Container",
     "description": "Current Container which the account assigned onto"

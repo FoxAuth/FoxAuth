@@ -35,6 +35,22 @@
     "message": "全部提出する",
     "description": "Submit all input account info"
   },
+  "placeholder_new_issuer": {
+    "message": "新しい発行者",
+    "description": "Placeholder for new issuer"
+  },
+  "placeholder_new_account_name": {
+    "message": "新しいユーザー名",
+    "description": "Placeholder for new account name"
+  },
+  "placeholder_new_secret_token": {
+    "message": "新しい秘密トークン",
+    "description": "Placeholder for new secret token"
+  },
+  "placeholder_new_recovery": {
+    "message": "新しいリカバリーコード",
+    "description": "Placeholder for new recovery"
+  },
   "label_assign_container": {
     "message": "割り当て済みコンテナー",
     "description": "Current Container which the account assigned onto"
@@ -148,7 +164,7 @@
     "description": "Welcome message in option page"
   },
   "general_checkout_wiki": {
-    "message": "プロジェクトウィキ<a href=\"https://github.com/FoxAuth/FoxAuth/wiki\">を読む<img src=\"../icons/options/Open In New.svg\" width=\"16px\" height=\"16px\"></a>からはじめます。",
+    "message": "プロジェクトウィキ<a href=\"https://github.com/FoxAuth/FoxAuth/wiki\">を読む <img src=\"../icons/options/Open In New.svg\" width=\"16px\" height=\"16px\"></a> からはじめます。",
     "description": "Wiki link for users guide"
   },
   "general_header_options": {
