@@ -1,6 +1,12 @@
 # Changelog
 All changes per revisioning to this project will be documented in this file. All dates used in this file are recorded as UTC+8.
 
+## v 1.5.1 - May 15th 2019
+### New 💡
+- several new service icons
+### Fixed 🔨
+- added some missing strings & fixed some typos
+
 ## v 1.5.0 - May 12th 2019
 ### New 💡
 - i18n support, with the following locales added: Simplified Chinese (zh_CN), Traditional Chinese (zh_TW), Japanese (ja_JP)
