@@ -69,7 +69,7 @@
     },
     "open-popup-in-sidebar": {
       "suggested_key": {
-        "default": "F3"
+        "default": "F2"
     },
     "description": "Open popup in Firefox sidebar"
     }
