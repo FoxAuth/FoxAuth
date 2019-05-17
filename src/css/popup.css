@@ -95,13 +95,27 @@ body.scanning::after {
     font-size: 13px;
 }
 .popup-header {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    justify-items: center;
+    column-gap: 10px;
     margin: 8px;
     margin-bottom: 0;
 }
-.popup-header::after {
-    content: ' ';
-    display: block;
-    clear: both;
+.popup-header > span {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.popup-header > .issuer {
+    justify-self: start;
+}
+.popup-header > .account {
+    justify-self: center;
+}
+.popup-header > .container {
+    justify-self: end;
 }
 .fl {
     float: left;
@@ -120,25 +134,19 @@ body.scanning::after {
 }
 .popup-row-item {
     position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
     display: block;
+    width: 100%;
     text-align: center;
     font-size: 0;
     color: #2a2a2e;
-    flex: 1 1 100px;
+    flex: 1 1 auto;
 }
 .popup-left {
-    /* position: absolute; */
-    /* left: 0;
-    bottom: 0; */
+    position: relative;
+    z-index: 99;
     flex: 0 0 32px;
 }
 .popup-right {
-    /* position: absolute; */
-    /* right: 0;
-    bottom: 0; */
     flex: 0 0 32px;
 }
 .popup-icon {
@@ -188,29 +196,30 @@ body.scanning::after {
     margin-right: 8px;
 }
 .popup-row-item > span {
+    position: relative;
     display: inline-block;
     align-items: center;
     height: 28px;
     font-size: 28px;
     line-height: 28px;
     font-weight: 600;
-    vertical-align: middle;
+    vertical-align: baseline;
 }
-.popup-row-item > .icon-copy {
-    display: inline-block;
+.popup-row-item .icon-copy {
+    position: absolute;
+    left: calc(100% + 5px);
+    top: 50%;
     width: 32px;
     height: 32px;
-    margin-left: 10px;
+    transform: translateY(-50%);
     background: url(/icons/options/Copy.svg) center center / 18px 18px no-repeat;
     box-sizing: border-box;
     border: 1px solid #e7e9ed;
     border-radius: 50%;
     cursor: pointer;
     vertical-align: middle;
-    position: relative;
-    left: 140%;
 }
-.popup-row-item > .copy-success-message {
+.popup-row-item .copy-success-message {
     z-index: 999;
     position: absolute;
     top: -28px;
@@ -227,12 +236,12 @@ body.scanning::after {
     background: #0060df;
     border-radius: 4px;
 }
-.popup-row-item > .copy-success-message > svg {
+.popup-row-item .copy-success-message > svg {
     width: 24px;
     height: 24px;
     vertical-align: middle;
 }
-.popup-row-item > .copy-success-message > span {
+.popup-row-item .copy-success-message > span {
     color: #fff;
     font-size: 14px;
     vertical-align: middle;
@@ -330,7 +339,7 @@ body.scanning::after {
         font-size: 5.6vmin;
         line-height: 5.6vmin;
     }
-    .popup-row-item > .icon-copy {
+    .popup-row-item .icon-copy {
         width: 6.2vmin;
         height: 6.2vmin;
         background-size: 3.4875vmin 3.4875vmin;

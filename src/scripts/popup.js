@@ -114,9 +114,11 @@ const template_totp = ef.t`
   #data-flag = {{flag}}
   >div.card.popup-card
     >div.popup-header.popup-text
-      >span.fl
+      >span.issuer
         .{{issuer}}
-      >span.fr
+      >span.account
+        .{{account}}
+      >span.container
         #style = color:{{containerColorCode}}
         .{{container}}
     >div.popup-content
@@ -132,10 +134,9 @@ const template_totp = ef.t`
             #href = javascript:void(0);
             #class = {{otpKeyClassName}}
             .{{OTP}}
-        >div.popup-row-item
-          >i.popup-icon.icon-copy
-            @click.stop = copyOtp
-          -copySuccessMessage
+            -copySuccessMessage
+            >i.popup-icon.icon-copy
+              @click.stop = copyOtp
         >div.popup-right.container-icon-box
           #style = display:{{containerIconDisplay}}
           #data-color = {{containerColor}}
@@ -186,6 +187,7 @@ function addOTP(issuer, containerObj = {}, key, expiry = 30, code_length = 6, op
       i18n_Copy: 'Copy',
       i18n_Edit: 'Edit',
       OTP: otpKey,
+      account: option.account,
       issuer: issuer || '',
       issuerIcon: serviceIconNames.find(e => getSvgNameByIssuer(issuer).indexOf(e) >= 0) || 'fallback',
       otpKeyClassName: otpKeyClassName,
@@ -363,6 +365,7 @@ function otpKeyClickInit() {
       {
         index: i,
         flag: isMatch ? 'matched' : 'other',
+        account: e.localAccountName
       }
     )
   })
