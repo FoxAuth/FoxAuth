@@ -85,8 +85,131 @@ body.scanning::after {
     justify-content: center;
 }
 
+.account-item.column {
+    position: relative;
+    width: calc(100% - .4rem);
+    padding-right: 0;
+    overflow: hidden;
+    transition: background-color .6s;
+}
+.account-item:first-child .popup-card-wrapper {
+    padding-top: 0;
+}
+.account-item:last-child .popup-card-wrapper {
+    padding-bottom: 0;
+}
+.danger-zone {
+    position: absolute;
+    left: .4rem;
+    top: 0;
+    width: 54px;
+    height: 100%;
+    display: flex;
+    transition: background-color .6s;
+    background: #fff;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+.delete-account-btn {
+    width: 36px;
+    height: 36px;
+    background: url(/icons/options/deletetoken.svg) center center/100% 100% no-repeat;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity .6s;
+}
+.popup-card-wrapper {
+    position: relative;
+    z-index: 99;
+    padding: 4px 0;
+    background: #fff;
+}
 .popup-card.card {
-    margin: 8px 0;
+    margin: 0;
+}
+.delete-mode-enter .danger-zone {
+    background: #737373;
+}
+.delete-mode-enter .delete-account-btn {
+    opacity: 1;
+}
+.delete-mode-enter .popup-card-wrapper {
+    animation: .6s ease-in both delete-mode-enter-popup-card;
+}
+@keyframes delete-mode-enter-popup-card {
+    10% {
+        transform: translate(54px, 0);
+    }
+    40% {
+        transform: translate(36px, 0);
+    }
+    100% {
+        transform: translate(54px, 0);
+    }
+}
+.delete-mode-leave .popup-card-wrapper {
+    animation: .6s ease-in both delete-mode-leave-popup-card;
+}
+@keyframes delete-mode-leave-popup-card {
+    0% {
+        transform: translate(54px, 0);
+    } 
+    10% {
+        transform: translate(0, 0);
+    }
+    40% {
+        transform: translate(8px, 0);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
+.delete-prompt-dialog {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: calc(100% - 54px);
+    height: 100%;
+    z-index: 9999;
+    box-sizing: border-box;
+}
+.delete-prompt-dialog .dialog-shadow {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+}
+.delete-prompt-dialog .dialog {
+    position: relative;
+    z-index: 99;
+    width: 100%;
+    height: 100%;
+}
+.delete-prompt-dialog .message {
+    text-align: center;
+    margin-top: 6px;
+}
+.delete-prompt-dialog .buttons {
+    margin-top: 10px;
+    text-align: center;
+}
+.delete-prompt-dialog button {
+    padding: 5px 14px;
+    cursor: pointer;
+    border: 0 none;
+    border-radius: 5px;
+}
+.delete-prompt-dialog .btn-sure {
+    background: #45a1ff;
+    color: #fff;
+    margin-right: 10px;
+}
+.delete-prompt-dialog .btn-cancel {
+    background: #d7d7db;
+    color: #000;
 }
 
 

@@ -31,6 +31,14 @@
     "message": "Export",
     "description": "Export all data to your disk"
   },
+  "sure": {
+    "message": "Sure",
+    "description": "Sure button text before action taken"
+  },
+  "cancel": {
+    "message": "Cancel",
+    "description": "Cancel button text before action taken"
+  },
   "submit_all": {
     "message": "Submit all",
     "description": "Submit all input account info"
@@ -259,6 +267,10 @@
     "message": "Manually add OTP info",
     "description": "Tooltip for top buttons in popup"
   },
+  "popup_title_delete_accounts": {
+    "message": "Delete accounts",
+    "description": "Tooltip for top buttons in popup"
+  },
   "popup_title_display_all_accounts": {
     "message": "Display all accounts",
     "description": "Tooltip for autohide buttons in popup"
@@ -270,6 +282,10 @@
   "popup_otp_copied": {
     "message": "Copied!",
     "description": "Message displayed after OTP code copied"
+  },
+  "popup_delete_message": {
+    "message": "Are you sure to delete it?",
+    "description": "Prompt user whether to delete account"
   },
   "sync_choose_service": {
     "message": "Choose service you prefer to sync your data",

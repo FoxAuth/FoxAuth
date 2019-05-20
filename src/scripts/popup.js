@@ -3,7 +3,7 @@ import './dependency/jsOTP.min.js';
 import './scanQR.js';
 import { KeyUtilities, OTPType } from './dependency/key-utilities.js';
 import getServiceIconNames from './serviceIcon.js';
-import { getPasswordInfo, getAccountInfos } from './accountInfo.js';
+import { getPasswordInfo, getAccountInfos, saveAccountInfos } from './accountInfo.js';
 import * as i18n from './i18n.js';
 
 i18n.render();
@@ -108,49 +108,53 @@ const otpContainer = new (ef.t`
   >div.column.col-12.mt-1
 `)()
 const template_totp = ef.t`
->div.column.col-12.mt-1.account-item
+>div.column.col-12.mt-1.account-item.{{deleteModeClassName}} #accountItem
   #data-issuer = {{issuer}}
   #data-container-name = {{container}}
   #data-flag = {{flag}}
-  >div.card.popup-card
-    >div.popup-header.popup-text
-      >span.issuer
-        .{{issuer}}
-      >span.account
-        .{{account}}
-      >span.container
-        #style = color:{{containerColorCode}}
-        .{{container}}
-    >div.popup-content
-      >div.popup-row
-        >a.popup-left
-          #href = /options/tokens.html?index={{index}}
-          #target = _blank
-          >img.popup-icon.issuer-icon
-            #onerror = iconOnError(this)
-            #src = ../icons/service/{{issuerIcon}}.svg
-        >div.popup-row-item
-          >span
-            #href = javascript:void(0);
-            #class = {{otpKeyClassName}}
-            .{{OTP}}
-            -copySuccessMessage
-            >i.popup-icon.icon-copy
-              @click.stop = copyOtp
-        >div.popup-right.container-icon-box
-          #style = display:{{containerIconDisplay}}
-          #data-color = {{containerColor}}
-          >img.popup-icon.container-icon
-            #style = fill:{{containerColorCode}}
-            #onerror = containerIconOnError(this)
-            #src = {{containerIcon}}
-    >progress.progress
-      #max={{progress_max}}
-      %value={{progress}}
+  >div.danger-zone
+    >div.delete-account-btn
+      @click = deleteAccount
+  >div.popup-card-wrapper
+    -deletePromptDialog
+    >div.card.popup-card
+      >div.popup-header.popup-text
+        >span.issuer
+          .{{issuer}}
+        >span.account
+          .{{account}}
+        >span.container
+          #style = color:{{containerColorCode}}
+          .{{container}}
+      >div.popup-content
+        >div.popup-row
+          >a.popup-left
+            #href = /options/tokens.html?index={{index}}
+            #target = _blank
+            >img.popup-icon.issuer-icon
+              #onerror = iconOnError(this)
+              #src = ../icons/service/{{issuerIcon}}.svg
+          >div.popup-row-item
+            >span
+              #href = javascript:void(0);
+              #class = {{otpKeyClassName}}
+              .{{OTP}}
+              -copySuccessMessage
+              >i.popup-icon.icon-copy
+                @click.stop = copyOtp
+          >div.popup-right.container-icon-box
+            #style = display:{{containerIconDisplay}}
+            #data-color = {{containerColor}}
+            >img.popup-icon.container-icon
+              #style = fill:{{containerColorCode}}
+              #onerror = containerIconOnError(this)
+              #src = {{containerIcon}}
+      >progress.progress
+        #max={{progress_max}}
+        %value={{progress}}
 `
 const template_copy_success = ef.t`
 >div.copy-success-message
-  #style = {{ style }}
   @animationend.stop = onAnimationEnd
   >svg
     #xmlns = http://www.w3.org/2000/svg
@@ -161,6 +165,23 @@ const template_copy_success = ef.t`
   >span
     .{{copiedMessage}}
 `;
+
+const template_delete_prompt_dialog = ef.t`
+>div.delete-prompt-dialog
+  #style = display: {{styles.display}};
+  >div.dialog-shadow
+  >div.dialog
+    >div.message
+      .{{i18n_message}}
+    >div.buttons
+      >button.btn-sure
+        @click=onSure
+        .{{i18n_sure}}
+      >button.btn-cancel
+        @click=onCancel
+        .{{i18n_cancel}}
+`;
+
 
 function getOtpType(issuer) {
   if (/steam/i.test(issuer)) {
@@ -200,6 +221,8 @@ function addOTP(issuer, containerObj = {}, key, expiry = 30, code_length = 6, op
       progress: expiry - (Math.round(new Date().getTime() / 1000.0) % expiry),
       index: option.index,
       flag: option.flag,
+
+      deleteModeClassName: '',
     },
     $methods: {
       copyOtp({ state, e }) {
@@ -210,6 +233,13 @@ function addOTP(issuer, containerObj = {}, key, expiry = 30, code_length = 6, op
             const { parentNode } = e.target;
             mountCopySuccessMessage(state, parentNode);
           });
+      },
+      deleteAccount({state, e}) {
+        if (!state.deletePromptDialog) {
+          state.deletePromptDialog = initDeletePromptDialog();
+        } else {
+          state.deletePromptDialog.$methods.setDisplay(state.deletePromptDialog, 'block');
+        }
       }
     }
   })) - 1;
@@ -437,3 +467,48 @@ popupSearchInput.addEventListener("focus", ()=> {
 popupSearchInput.addEventListener("blur", ()=> {
   toggleAccountsLess.click();
 })
+
+document.getElementById('delAccounts').addEventListener('click', (event) => {
+  event.preventDefault();
+  const accounts = otpContainer.otppoint;
+  accounts.forEach((account) => {
+    if (account.$data.deleteModeClassName === 'delete-mode-enter') {
+      account.$data.deleteModeClassName = 'delete-mode-leave';
+      if (account.deletePromptDialog) {
+        account.deletePromptDialog.$methods.setDisplay(account.deletePromptDialog, 'none');
+      }
+    } else {
+      account.$data.deleteModeClassName = 'delete-mode-enter';
+    }
+  });
+});
+
+function initDeletePromptDialog() {
+  return new template_delete_prompt_dialog({
+    $data: {
+      i18n_sure: i18n.getMessage('sure'),
+      i18n_cancel: i18n.getMessage('cancel'),
+      i18n_message: i18n.getMessage('popup_delete_message'),
+      styles: {
+        display: 'block'
+      }
+    },
+    $methods: {
+      onCancel({state}) {
+        state.$methods.setDisplay(state, 'none');
+      },
+      async onSure({state}) {
+        const parentState = state.$parent;
+        const { index } = parentState.$data;
+
+        const accountInfos = await getAccountInfos();
+        accountInfos.splice(index, 1);
+        saveAccountInfos(accountInfos);
+        parentState.$umount();
+      },
+      setDisplay(state, value) {
+        state.$data.styles.display = value;
+      }
+    }
+  });
+}
