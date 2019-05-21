@@ -31,6 +31,14 @@
     "message": "匯出",
     "description": "Export all data to your disk"
   },
+  "sure": {
+    "message": "確認",
+    "description": "Sure button text before action taken"
+  },
+  "cancel": {
+    "message": "取消",
+    "description": "Cancel button text before action taken"
+  },
   "submit_all": {
     "message": "全部提交",
     "description": "Submit all input account info"
@@ -259,6 +267,10 @@
     "message": "手動添加 OTP 資訊",
     "description": "Tooltip for top buttons in popup"
   },
+  "popup_title_delete_accounts": {
+    "message": "刪除帳戶",
+    "description": "Tooltip for top buttons in popup"
+  },
   "popup_title_display_all_accounts": {
     "message": "顯示全部帳戶",
     "description": "Tooltip for autohide buttons in popup"
@@ -270,6 +282,10 @@
   "popup_otp_copied": {
     "message": "已複製！",
     "description": "Message displayed after OTP code copied"
+  },
+  "popup_delete_message": {
+    "message": "是否確認刪除該帳戶？",
+    "description": "Prompt user whether to delete account"
   },
   "sync_choose_service": {
     "message": "選擇用於同步您資料的服務",
@@ -402,5 +418,9 @@
   "about_acknowledgement_translators_jaJP": {
     "message": "日文： ",
     "description": "ja_JP translators"
+  },
+  "about_acknowledgement_translators_fr": {
+    "message": "法語：",
+    "description": "fr translators"
   }
 }
