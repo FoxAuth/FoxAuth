@@ -102,82 +102,99 @@ const otpContainer = new (ef.t`
   >div.columns
     +otppoint
   >div.column.col-12.mt-1
-`)()
-const template_totp = ef.t`
->div.column.col-12.mt-1.account-item.{{deleteModeClassName}} #accountItem
-  #data-issuer = {{issuer}}
-  #data-container-name = {{container}}
-  #data-flag = {{flag}}
-  >div.danger-zone
-    >div.delete-account-btn
-      @click = deleteAccount
-  >div.popup-card-wrapper
-    -deletePromptDialog
-    >div.card.popup-card
-      >div.popup-header.popup-text
-        >span.issuer
-          .{{issuer}}
-        >span.account
-          .{{account}}
-        >span.container
-          #style = color:{{containerColorCode}}
-          .{{container}}
-      >div.popup-content
-        >div.popup-row
-          >a.popup-left
-            #href = /options/tokens.html?index={{index}}
-            #target = _blank
-            >img.popup-icon.issuer-icon
-              #onerror = iconOnError(this)
-              #src = ../icons/service/{{issuerIcon}}.svg
-          >div.popup-row-item
-            >span
-              #href = javascript:void(0);
-              #class = {{otpKeyClassName}}
-              .{{OTP}}
-              -copySuccessMessage
-              >i.popup-icon.icon-copy
-                @click.stop = copyOtp
-          >div.popup-right.container-icon-box
-            #style = display:{{containerIconDisplay}}
-            #data-color = {{containerColor}}
-            >img.popup-icon.container-icon
-              #style = fill:{{containerColorCode}}
-              #onerror = containerIconOnError(this)
-              #src = {{containerIcon}}
-      >progress.progress
-        #max={{progress_max}}
-        %value={{progress}}
-`
-const template_copy_success = ef.t`
->div.copy-success-message
-  @animationend.stop = onAnimationEnd
-  >svg
-    #xmlns = http://www.w3.org/2000/svg
-    #version = 1.2
-    #viewBox = 0 0 16 20
-    >path.checkmark
-      #d = M2 10 L 6 14 14 4
-  >span
-    .{{copiedMessage}}
-`;
+`)();
 
-const template_delete_prompt_dialog = ef.t`
->div.delete-prompt-dialog
-  #style = display: {{styles.display}};
-  >div.dialog-shadow
-  >div.dialog
-    >div.message
-      .{{i18n_message}}
-    >div.buttons
-      >button.btn-sure
-        @click=onSure
-        .{{i18n_sure}}
-      >button.btn-cancel
-        @click=onCancel
-        .{{i18n_cancel}}
-`;
-
+const simpleMemoized = (fn) => {
+  let cache = undefined;
+  return function() {
+    if (cache === undefined) {
+      cache = fn();
+    }
+    return cache;
+  }
+};
+function getTemplateTotp() {
+  return ef.t`
+  >div.column.col-12.mt-1.account-item.{{deleteModeClassName}} #accountItem
+    #data-issuer = {{issuer}}
+    #data-container-name = {{container}}
+    #data-flag = {{flag}}
+    >div.danger-zone
+      >div.delete-account-btn
+        @click = deleteAccount
+    >div.popup-card-wrapper
+      -deletePromptDialog
+      >div.card.popup-card
+        >div.popup-header.popup-text
+          >span.issuer
+            .{{issuer}}
+          >span.account
+            .{{account}}
+          >span.container
+            #style = color:{{containerColorCode}}
+            .{{container}}
+        >div.popup-content
+          >div.popup-row
+            >a.popup-left
+              #href = /options/tokens.html?index={{index}}
+              #target = _blank
+              >img.popup-icon.issuer-icon
+                #onerror = iconOnError(this)
+                #src = ../icons/service/{{issuerIcon}}.svg
+            >div.popup-row-item
+              >span
+                #href = javascript:void(0);
+                #class = {{otpKeyClassName}}
+                .{{OTP}}
+                -copySuccessMessage
+                >i.popup-icon.icon-copy
+                  @click.stop = copyOtp
+            >div.popup-right.container-icon-box
+              #style = display:{{containerIconDisplay}}
+              #data-color = {{containerColor}}
+              >img.popup-icon.container-icon
+                #style = fill:{{containerColorCode}}
+                #onerror = containerIconOnError(this)
+                #src = {{containerIcon}}
+        >progress.progress
+          #max={{progress_max}}
+          %value={{progress}}
+  `;
+}
+function getTemplateCopySuccess() {
+  return ef.t`
+  >div.copy-success-message
+    @animationend.stop = onAnimationEnd
+    >svg
+      #xmlns = http://www.w3.org/2000/svg
+      #version = 1.2
+      #viewBox = 0 0 16 20
+      >path.checkmark
+        #d = M2 10 L 6 14 14 4
+    >span
+      .{{copiedMessage}}
+  `;
+}
+function getTemplateDeletePromptDialog() {
+  return ef.t`
+  >div.delete-prompt-dialog
+    #style = display: {{styles.display}};
+    >div.dialog-shadow
+    >div.dialog
+      >div.message
+        .{{i18n_message}}
+      >div.buttons
+        >button.btn-sure
+          @click=onSure
+          .{{i18n_sure}}
+        >button.btn-cancel
+          @click=onCancel
+          .{{i18n_cancel}}
+  `;
+}
+getTemplateTotp = simpleMemoized(getTemplateTotp);
+getTemplateCopySuccess = simpleMemoized(getTemplateCopySuccess);
+getTemplateDeletePromptDialog = simpleMemoized(getTemplateDeletePromptDialog);
 
 async function getOtpType(issuer) {
   const { OTPType } = await import('/scripts/dependency/key-utilities.js');
@@ -204,6 +221,8 @@ async function addOTP(issuer, containerObj = {}, key, expiry = 30, code_length =
     otpKey = 'ERROR';
     otpKeyClassName = 'popup-link-error'
   }
+
+  const template_totp = getTemplateTotp();
   var id = otpContainer.otppoint.push(new template_totp({
     $data: {
       i18n_Copy: 'Copy',
@@ -426,6 +445,7 @@ function mountCopySuccessMessage(component, rowItem) {
   }
 
   const { top } = rowItem.getBoundingClientRect();
+  const template_copy_success = getTemplateCopySuccess();
   component.copySuccessMessage = new template_copy_success({
     $data: {
       style: top > 28 ? 'top: -28px;' : 'top: calc(100% + 4px);',
@@ -481,6 +501,7 @@ document.getElementById('delAccounts').addEventListener('click', (event) => {
 });
 
 function initDeletePromptDialog() {
+  const template_delete_prompt_dialog = getTemplateDeletePromptDialog();
   return new template_delete_prompt_dialog({
     $data: {
       i18n_sure: i18n.getMessage('sure'),
