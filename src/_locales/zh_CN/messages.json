@@ -251,10 +251,6 @@
     "message": "打开设置页面",
     "description": "Tooltip for top buttons in popup"
   },
-  "popup_title_open_tokens": {
-    "message": "查看全部账户",
-    "description": "Tooltip for top buttons in popup"
-  },
   "popup_title_scan_qr": {
     "message": "扫描 QR 码",
     "description": "Tooltip for top buttons in popup"

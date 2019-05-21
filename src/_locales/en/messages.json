@@ -251,10 +251,6 @@
     "message": "Open options",
     "description": "Tooltip for top buttons in popup"
   },
-  "popup_title_open_tokens": {
-    "message": "See all tokens",
-    "description": "Tooltip for top buttons in popup"
-  },
   "popup_title_scan_qr": {
     "message": "Scan QR",
     "description": "Tooltip for top buttons in popup"

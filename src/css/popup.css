@@ -112,8 +112,8 @@ body.scanning::after {
     box-sizing: border-box;
 }
 .delete-account-btn {
-    width: 36px;
-    height: 36px;
+    width: 32px;
+    height: 32px;
     background: url(/icons/options/deletetoken.svg) center center/100% 100% no-repeat;
     cursor: pointer;
     opacity: 0;

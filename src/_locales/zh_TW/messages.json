@@ -251,10 +251,6 @@
     "message": "開啟選項頁面",
     "description": "Tooltip for top buttons in popup"
   },
-  "popup_title_open_tokens": {
-    "message": "查看全部帳戶",
-    "description": "Tooltip for top buttons in popup"
-  },
   "popup_title_scan_qr": {
     "message": "掃描 QR Code",
     "description": "Tooltip for top buttons in popup"
