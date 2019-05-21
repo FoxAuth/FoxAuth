@@ -31,6 +31,14 @@
     "message": "エクスポート",
     "description": "Export all data to your disk"
   },
+  "sure": {
+    "message": "确认",
+    "description": "Sure button text before action taken"
+  },
+  "cancel": {
+    "message": "取消",
+    "description": "Cancel button text before action taken"
+  },
   "submit_all": {
     "message": "全部提出する",
     "description": "Submit all input account info"
@@ -259,6 +267,10 @@
     "message": "手動でOTPインフォメーションを追加する",
     "description": "Tooltip for top buttons in popup"
   },
+  "popup_title_delete_accounts": {
+    "message": "削除アカウント",
+    "description": "Tooltip for top buttons in popup"
+  },
   "popup_title_display_all_accounts": {
     "message": "べてのアカウントを表示する",
     "description": "Tooltip for autohide buttons in popup"
@@ -270,6 +282,10 @@
   "popup_otp_copied": {
     "message": "コピーした！",
     "description": "Message displayed after OTP code copied"
+  },
+  "popup_delete_message": {
+    "message": "是否确认删除该账户？",
+    "description": "Prompt user whether to delete account"
   },
   "sync_choose_service": {
     "message": "好きなサービスを選択して、データを同期します。",
@@ -402,5 +418,9 @@
   "about_acknowledgement_translators_jaJP": {
     "message": "日本語：",
     "description": "ja_JP translators"
+  },
+  "about_acknowledgement_translators_fr": {
+    "message": "フランス語：",
+    "description": "fr translators"
   }
 }

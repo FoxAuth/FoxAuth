@@ -418,5 +418,9 @@
   "about_acknowledgement_translators_zhTW": {
     "message": "Traditional Chinese: ",
     "description": "zh_TW translators"
+  },
+  "about_acknowledgement_translators_fr": {
+    "message": "French: ",
+    "description": "fr translators"
   }
 }
