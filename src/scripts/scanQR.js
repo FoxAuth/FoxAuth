@@ -1,6 +1,3 @@
-import { scanVideo } from './dependency/jsQRWrap.js';
-import doScanQR from './doScanQR.js';
-
 const webcamBox = document.querySelector('.webcam-box')
 const webcamClose = document.querySelector('.webcam-close')
 
@@ -39,6 +36,8 @@ async function androidCamera() {
         requestAnimationFrame(recursiveScan);
         return;
       }
+      const { scanVideo } = await import('./dependency/jsQRWrap.js');
+
       const result = await scanVideo(video);
       if (!result) {
         requestAnimationFrame(recursiveScan);
@@ -64,6 +63,8 @@ document.getElementById('scanQRPopup').addEventListener('click', async (e) => {
   } else {
     // show waiting overlay
     document.body.classList.add('scanning')
+    const { default: doScanQR } = await import('./doScanQR.js');
+
     try {
       await doScanQR();
     } catch (error) {
