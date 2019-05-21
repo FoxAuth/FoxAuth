@@ -1,6 +1,18 @@
 # Changelog
 All changes per revisioning to this project will be documented in this file. All dates used in this file are recorded as UTC+8.
 
+## v 1.5.2 - May th 2019
+### New 💡
+- remove account on popup directly
+- French (fr) locale added
+- account names are now displayed on popup
+### Changes 📝
+- use JavaScript dymanic import() rather than static import{} as much as we can. Hope this improves performance
+### Fixed 🔨
+- popup page opened in sidebar will be now refreshed as any account added
+### Removed 🚫
+- popup button to token page (use issuer icon instead)
+
 ## v 1.5.1 - May 15th 2019
 ### New 💡
 - several new service icons
