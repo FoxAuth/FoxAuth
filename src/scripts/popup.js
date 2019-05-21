@@ -192,8 +192,7 @@ async function getOtpType(issuer) {
 otpContainer.$mount({ target: document.getElementById('otpContainer'), option: 'replace' })
 var otpStoreInterval = []
 async function addOTP(issuer, containerObj = {}, key, expiry = 30, code_length = 6, option = {}) {
-  const { KeyUtilities } = await import('./dependency/key-utilities.js');
-  const { default: getServiceIconNames } = await import('./serviceIcon.js');
+  const [{ KeyUtilities }, { default: getServiceIconNames }] = await Promise.all([import('./dependency/key-utilities.js'), import('./serviceIcon.js')]);
   const serviceIconNames = getServiceIconNames();
 
   var otpKey;

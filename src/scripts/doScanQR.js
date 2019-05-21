@@ -33,9 +33,10 @@ export default async function doScanQR(from) {
         otpInfo = hackOtpInfo(otpInfo, tab.url);
         otpInfo.container = tab.cookieStoreId === 'firefox-default' ? '' : tab.cookieStoreId
         otpInfo = transform(otpInfo)
-        const { getAccountInfos,
-                saveAccountInfos,
-                mergeAccountInfos
+        const {
+            getAccountInfos,
+            saveAccountInfos,
+            mergeAccountInfos
             } = await import('./accountInfo.js');
         let infos = await getAccountInfos()
         infos = mergeAccountInfos(infos, [otpInfo])
