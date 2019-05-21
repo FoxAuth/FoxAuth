@@ -102,7 +102,7 @@ body.scanning::after {
     position: absolute;
     left: .4rem;
     top: 0;
-    width: 54px;
+    width: 8%;
     height: 100%;
     display: flex;
     transition: background-color .6s;
@@ -112,8 +112,8 @@ body.scanning::after {
     box-sizing: border-box;
 }
 .delete-account-btn {
-    width: 32px;
-    height: 32px;
+    width: 80%;
+    height: 80%;
     background: url(/icons/options/deletetoken.svg) center center/100% 100% no-repeat;
     cursor: pointer;
     opacity: 0;
@@ -135,34 +135,37 @@ body.scanning::after {
     opacity: 1;
 }
 .delete-mode-enter .popup-card-wrapper {
-    animation: .6s ease-in both delete-mode-enter-popup-card;
+    animation: .5s ease-in both delete-mode-enter-popup-card;
 }
 @keyframes delete-mode-enter-popup-card {
+    0% {
+        transform: translate(0, 0) scaleX(1);
+    }
     10% {
-        transform: translate(54px, 0);
+        transform: translate(4%, 0) scaleX(.92);
     }
     40% {
-        transform: translate(36px, 0);
+        transform: translate(5%, 0) scaleX(.90);
     }
     100% {
-        transform: translate(54px, 0);
-    }
+        transform: translate(4%, 0) scaleX(.92);
+    } 
 }
 .delete-mode-leave .popup-card-wrapper {
     animation: .6s ease-in both delete-mode-leave-popup-card;
 }
 @keyframes delete-mode-leave-popup-card {
     0% {
-        transform: translate(54px, 0);
+        transform: translate(4%, 0) scaleX(.92);
     } 
     10% {
-        transform: translate(0, 0);
+        transform: translate(0, 0) scaleX(1);
     }
     40% {
-        transform: translate(8px, 0);
+        transform: translate(1%, 0) scaleX(.98);
     }
     100% {
-        transform: translate(0, 0);
+        transform: translate(0, 0) scaleX(1);
     }
 }
 .delete-prompt-dialog {
