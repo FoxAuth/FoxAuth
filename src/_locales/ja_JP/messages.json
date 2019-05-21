@@ -32,11 +32,11 @@
     "description": "Export all data to your disk"
   },
   "sure": {
-    "message": "确认",
+    "message": "削除",
     "description": "Sure button text before action taken"
   },
   "cancel": {
-    "message": "取消",
+    "message": "キャンセル",
     "description": "Cancel button text before action taken"
   },
   "submit_all": {
@@ -251,10 +251,6 @@
     "message": "オプションを開く",
     "description": "Tooltip for top buttons in popup"
   },
-  "popup_title_open_tokens": {
-    "message": "すべてのトークンを表示",
-    "description": "Tooltip for top buttons in popup"
-  },
   "popup_title_scan_qr": {
     "message": "QRコードをスキャン",
     "description": "Tooltip for top buttons in popup"
@@ -284,7 +280,7 @@
     "description": "Message displayed after OTP code copied"
   },
   "popup_delete_message": {
-    "message": "是否确认删除该账户？",
+    "message": "このアカウントを削除しますか?",
     "description": "Prompt user whether to delete account"
   },
   "sync_choose_service": {
