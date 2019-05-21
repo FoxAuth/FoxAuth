@@ -129,7 +129,7 @@ body.scanning::after {
     margin: 0;
 }
 .delete-mode-enter .danger-zone {
-    background: #737373;
+    background: #f9f9fa;
 }
 .delete-mode-enter .delete-account-btn {
     opacity: 1;
