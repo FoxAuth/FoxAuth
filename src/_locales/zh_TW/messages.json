@@ -287,6 +287,10 @@
     "message": "選擇用於同步您資料的服務",
     "description": "Texture above sync buttons in Backup & Sync page"
   },
+  "popup_data_encrypted": {
+    "message": "資料庫已加密或出錯",
+    "description": "Displayed texture in popup when data is encrypted or error"
+  },
   "sync_encrypt_descrypt": {
     "message": "加密與解密",
     "description": "Texture above sync encryption form in Backup & Sync page"

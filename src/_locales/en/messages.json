@@ -283,6 +283,10 @@
     "message": "Are you sure to delete it?",
     "description": "Prompt user whether to delete account"
   },
+  "popup_data_encrypted": {
+    "message": "ENCRYPTED OR ERROR",
+    "description": "Displayed texture in popup when data is encrypted or error"
+  },
   "sync_choose_service": {
     "message": "Choose service you prefer to sync your data",
     "description": "Texture above sync buttons in Backup & Sync page"

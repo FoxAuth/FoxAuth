@@ -360,7 +360,7 @@ function otpKeyClickInit() {
   if (passwordInfo.isEncrypted && !passwordInfo.password) {
     const errorDom = document.createElement('div');
     errorDom.setAttribute('class', 'popup-error');
-    errorDom.innerText = 'ENCRYPTED OR ERROR';
+    errorDom.innerText = i18n.getMessage('popup_data_encrypted');
     document.body.appendChild(errorDom);
     return;
   }

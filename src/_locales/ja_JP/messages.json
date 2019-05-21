@@ -283,6 +283,10 @@
     "message": "このアカウントを削除しますか?",
     "description": "Prompt user whether to delete account"
   },
+  "popup_data_encrypted": {
+    "message": "ENCRYPTED OR ERROR",
+    "description": "Displayed texture in popup when data is encrypted or error"
+  },
   "sync_choose_service": {
     "message": "好きなサービスを選択して、データを同期します。",
     "description": "Texture above sync buttons in Backup & Sync page"

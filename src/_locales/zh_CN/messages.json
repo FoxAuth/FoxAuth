@@ -283,6 +283,10 @@
     "message": "是否确认删除该账户？",
     "description": "Prompt user whether to delete account"
   },
+  "popup_data_encrypted": {
+    "message": "数据库已加密或出错",
+    "description": "Displayed texture in popup when data is encrypted or error"
+  },
   "sync_choose_service": {
     "message": "选择一个服务进行数据同步",
     "description": "Texture above sync buttons in Backup & Sync page"
