@@ -505,6 +505,8 @@ function initDeletePromptDialog() {
         accountInfos.splice(index, 1);
         saveAccountInfos(accountInfos);
         parentState.$umount();
+        clearInterval(otpStoreInterval[index]);
+        otpStoreInterval.splice(index, 1);
       },
       setDisplay(state, value) {
         state.$data.styles.display = value;
