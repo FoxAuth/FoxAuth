@@ -284,7 +284,7 @@
     "description": "Prompt user whether to delete account"
   },
   "popup_data_encrypted": {
-    "message": "ENCRYPTED OR ERROR",
+    "message": "暗号化されたデータを含むまたはエラーが発生した",
     "description": "Displayed texture in popup when data is encrypted or error"
   },
   "sync_choose_service": {
