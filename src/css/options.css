@@ -561,3 +561,7 @@ input::selection {
   line-height: 1.5;
   margin-right: 4px;
 }
+
+#translatorList {
+  columns: 2;
+}
