@@ -1,14 +1,10 @@
 import './dependency/ef.min.js';
-import './dependency/jsOTP.min.js';
 import './scanQR.js';
-import { KeyUtilities, OTPType } from './dependency/key-utilities.js';
-import getServiceIconNames from './serviceIcon.js';
-import { getPasswordInfo, getAccountInfos, saveAccountInfos } from './accountInfo.js';
 import * as i18n from './i18n.js';
+import { debounce } from './utils.js';
 
 i18n.render();
 
-const serviceIconNames = getServiceIconNames();
 const iconOnError = function (e) {
   e.src = '../icons/service/fallback.svg';
 }
@@ -183,7 +179,9 @@ const template_delete_prompt_dialog = ef.t`
 `;
 
 
-function getOtpType(issuer) {
+async function getOtpType(issuer) {
+  const { OTPType } = await import('/scripts/dependency/key-utilities.js');
+
   if (/steam/i.test(issuer)) {
     return OTPType.steam;
   } else {
@@ -193,11 +191,15 @@ function getOtpType(issuer) {
 
 otpContainer.$mount({ target: document.getElementById('otpContainer'), option: 'replace' })
 var otpStoreInterval = []
-function addOTP(issuer, containerObj = {}, key, expiry = 30, code_length = 6, option = {}) {
+async function addOTP(issuer, containerObj = {}, key, expiry = 30, code_length = 6, option = {}) {
+  const { KeyUtilities } = await import('./dependency/key-utilities.js');
+  const { default: getServiceIconNames } = await import('./serviceIcon.js');
+  const serviceIconNames = getServiceIconNames();
+
   var otpKey;
   var otpKeyClassName = 'popup-link';
   try {
-    otpKey = KeyUtilities.generate(getOtpType(issuer), key, code_length, expiry);
+    otpKey = KeyUtilities.generate(await getOtpType(issuer), key, code_length, expiry);
   } catch (error) {
     console.error(error);
     otpKey = 'ERROR';
@@ -244,8 +246,8 @@ function addOTP(issuer, containerObj = {}, key, expiry = 30, code_length = 6, op
     }
   })) - 1;
   if (otpKey !== 'ERROR') {
-    otpStoreInterval.push(setInterval(function () {
-      otpContainer.otppoint[id].$data.OTP = KeyUtilities.generate(getOtpType(issuer), key, code_length, expiry)
+    otpStoreInterval.push(setInterval(async function () {
+      otpContainer.otppoint[id].$data.OTP = KeyUtilities.generate(await getOtpType(issuer), key, code_length, expiry)
       otpContainer.otppoint[id].$data.progress = expiry - (Math.round(new Date().getTime() / 1000.0) % expiry)
     }, 500))
   }
@@ -277,19 +279,13 @@ const handleListItemFilter = function () {
 }
 
 function initSearch() {
-  let timer = null;
-  function debounce(func, wait) {
-    if (timer) {
-      clearTimeout(timer);
-    }
-    timer = setTimeout(() => {
-      func();
-      timer = null;
-    }, wait);
-  }
-  popupSearchInput.addEventListener('input', e => {
-    debounce(handleListItemFilter, 300)
-  })
+  popupSearchInput.addEventListener('input',
+    debounce(handleListItemFilter, {
+      wait: 300,
+      trailing: true,
+      head: false,
+    })
+  );
 }
 
 function initMoreOrLess() {
@@ -358,6 +354,8 @@ function otpKeyClickInit() {
 }
 
 (async function () {
+  const { getPasswordInfo, getAccountInfos } = await import('./accountInfo.js');
+  
   const passwordInfo = await getPasswordInfo();
   if (passwordInfo.isEncrypted && !passwordInfo.password) {
     const errorDom = document.createElement('div');
@@ -498,6 +496,8 @@ function initDeletePromptDialog() {
         state.$methods.setDisplay(state, 'none');
       },
       async onSure({state}) {
+        const { getAccountInfos, saveAccountInfos } = await import('./accountInfo.js');
+
         const parentState = state.$parent;
         const { index } = parentState.$data;
 
@@ -505,6 +505,8 @@ function initDeletePromptDialog() {
         accountInfos.splice(index, 1);
         saveAccountInfos(accountInfos);
         parentState.$umount();
+        clearInterval(otpStoreInterval[index]);
+        otpStoreInterval.splice(index, 1);
       },
       setDisplay(state, value) {
         state.$data.styles.display = value;
