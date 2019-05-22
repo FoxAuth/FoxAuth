@@ -43,12 +43,13 @@ export function saveInfosToLocal(infos) {
     });
 }
 
-export async function getAccountInfos() {
-    let accountInfos = [];
-    accountInfos = await getInfosFromLocal();
-    const passwordInfo = await getPasswordInfo();
+export async function getAccountInfos(paramPasswordInfo) {
+    const accountInfoPromise = getInfosFromLocal();
+    const passwordInfoPromise = paramPasswordInfo || getPasswordInfo();
+
+    const [accountInfos, passwordInfo] = await Promise.all([accountInfoPromise, passwordInfoPromise]);
     if (passwordInfo.isEncrypted && passwordInfo.password && passwordInfo.encryptIV) {
-        accountInfos = await decryptAccountInfos(accountInfos, {
+        return await decryptAccountInfos(accountInfos, {
             encryptPassword: passwordInfo.password,
             encryptIV: passwordInfo.encryptIV
         });
@@ -136,30 +137,29 @@ export async function getPasswordInfo(storageArea) {
         return new(TextDecoder || TextDecoderLite)(encoding).decode(bytes);
     }
 
-    storageArea = storageArea || await getPasswordStorageArea();
-    const data = await browser.storage.local.get({
-        isEncrypted: false,
-    });
-    const isEncrypted = data.isEncrypted || false;
-    let { passwordInfo } = await browser.storage.local.get({
+    const passwordInfoPromise = browser.storage.local.get({
         passwordInfo: {
-            encryptIV: null
+            encryptIV: null,
+            encryptPassword: '',
+        },
+        isEncrypted: false,
+        settings: {
+            passwordStorage: 'storage.local'
         }
     });
+    const {passwordInfo, isEncrypted, settings} = await passwordInfoPromise;
+    if (!storageArea) {
+        storageArea = settings.passwordStorage || 'storage.local'
+    }
     let password = '';
     let encryptIV = null;
     if (storageArea === 'storage.local') {
-        const data = await browser.storage.local.get({
-            passwordInfo: {
-                encryptPassword: '',
-            }
-        });
-        passwordInfo.encryptPassword = data.passwordInfo.encryptPassword || '';
+        password = passwordInfo.encryptPassword || '';
     } else {
         const data = jsonParse(sessionStorage.getItem('passwordInfo')) || {};
-        passwordInfo.encryptPassword = data.encryptPassword || '';
+        password = data.encryptPassword || '';
     }
-    password = base64Decode(passwordInfo.encryptPassword || '');
+    password = base64Decode(password);
     encryptIV = passwordInfo.encryptIV || null;
     if (encryptIV) {
         encryptIV = Array.from(encryptIV);

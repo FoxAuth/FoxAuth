@@ -2,9 +2,12 @@ import './dependency/ef.min.js';
 import './scanQR.js';
 import * as i18n from './i18n.js';
 import { debounce } from './utils.js';
+import { KeyUtilities, OTPType } from './dependency/key-utilities.js';
+import getServiceIconNames from './serviceIcon.js';
 
 i18n.render();
 
+const serviceIconNames = getServiceIconNames();
 const iconOnError = function (e) {
   e.src = '../icons/service/fallback.svg';
 }
@@ -97,6 +100,8 @@ const isVisible = function (elem) {
 const toggleAccountsLess = document.querySelector('.toggleAccounts[data-type=less]');
 const toggleAccountsMore = document.querySelector('.toggleAccounts[data-type=more]');
 const popupSearchInput = document.querySelector('#popupSearchInput');
+
+ef.inform();
 const otpContainer = new (ef.t`
 >div.container
   >div.columns
@@ -113,93 +118,83 @@ const simpleMemoized = (fn) => {
     return cache;
   }
 };
-function getTemplateTotp() {
-  return ef.t`
-  >div.column.col-12.mt-1.account-item.{{deleteModeClassName}} #accountItem
-    #data-issuer = {{issuer}}
-    #data-container-name = {{container}}
-    #data-account={{account}}
-    #data-flag = {{flag}}
-    >div.danger-zone
-      >div.delete-account-btn
-        @click = deleteAccount
-    >div.popup-card-wrapper
-      -deletePromptDialog
-      >div.card.popup-card
-        >div.popup-header.popup-text
-          >span.issuer
-            .{{issuer}}
-          >span.account
-            .{{account}}
-          >span.container
-            #style = color:{{containerColorCode}}
-            .{{container}}
-        >div.popup-content
-          >div.popup-row
-            >a.popup-left
-              #href = /options/tokens.html?index={{index}}
-              #target = _blank
-              >img.popup-icon.issuer-icon
-                #onerror = iconOnError(this)
-                #src = ../icons/service/{{issuerIcon}}.svg
-            >div.popup-row-item
-              >span
-                #href = javascript:void(0);
-                #class = {{otpKeyClassName}}
-                .{{OTP}}
-                -copySuccessMessage
-                >i.popup-icon.icon-copy
-                  @click.stop = copyOtp
-            >div.popup-right.container-icon-box
-              #style = display:{{containerIconDisplay}}
-              #data-color = {{containerColor}}
-              >img.popup-icon.container-icon
-                #style = fill:{{containerColorCode}}
-                #onerror = containerIconOnError(this)
-                #src = {{containerIcon}}
-        >progress.progress
-          #max={{progress_max}}
-          %value={{progress}}
-  `;
-}
-function getTemplateCopySuccess() {
-  return ef.t`
-  >div.copy-success-message
-    @animationend.stop = onAnimationEnd
-    >svg
-      #xmlns = http://www.w3.org/2000/svg
-      #version = 1.2
-      #viewBox = 0 0 16 20
-      >path.checkmark
-        #d = M2 10 L 6 14 14 4
-    >span
-      .{{copiedMessage}}
-  `;
-}
-function getTemplateDeletePromptDialog() {
-  return ef.t`
-  >div.delete-prompt-dialog
-    #style = display: {{styles.display}};
-    >div.dialog-shadow
-    >div.dialog
-      >div.message
-        .{{i18n_message}}
-      >div.buttons
-        >button.btn-sure
-          @click=onSure
-          .{{i18n_sure}}
-        >button.btn-cancel
-          @click=onCancel
-          .{{i18n_cancel}}
-  `;
-}
-getTemplateTotp = simpleMemoized(getTemplateTotp);
-getTemplateCopySuccess = simpleMemoized(getTemplateCopySuccess);
-getTemplateDeletePromptDialog = simpleMemoized(getTemplateDeletePromptDialog);
+const template_totp = ef.t`
+>div.column.col-12.mt-1.account-item.{{deleteModeClassName}} #accountItem
+  #data-issuer = {{issuer}}
+  #data-container-name = {{container}}
+  #data-account={{account}}
+  #data-flag = {{flag}}
+  >div.danger-zone
+    >div.delete-account-btn
+      @click = deleteAccount
+  >div.popup-card-wrapper
+    -deletePromptDialog
+    >div.card.popup-card
+      >div.popup-header.popup-text
+        >span.issuer
+          .{{issuer}}
+        >span.account
+          .{{account}}
+        >span.container
+          #style = color:{{containerColorCode}}
+          .{{container}}
+      >div.popup-content
+        >div.popup-row
+          >a.popup-left
+            #href = /options/tokens.html?index={{index}}
+            #target = _blank
+            >img.popup-icon.issuer-icon
+              #onerror = iconOnError(this)
+              #src = ../icons/service/{{issuerIcon}}.svg
+          >div.popup-row-item
+            >span
+              #href = javascript:void(0);
+              #class = {{otpKeyClassName}}
+              .{{OTP}}
+              -copySuccessMessage
+              >i.popup-icon.icon-copy
+                @click.stop = copyOtp
+          >div.popup-right.container-icon-box
+            #style = display:{{containerIconDisplay}}
+            #data-color = {{containerColor}}
+            >img.popup-icon.container-icon
+              #style = fill:{{containerColorCode}}
+              #onerror = containerIconOnError(this)
+              #src = {{containerIcon}}
+      >progress.progress
+        #max={{progress_max}}
+        %value={{progress}}
+`;
 
-async function getOtpType(issuer) {
-  const { OTPType } = await import('/scripts/dependency/key-utilities.js');
+const template_copy_success = ef.t`
+>div.copy-success-message
+  @animationend.stop = onAnimationEnd
+  >svg
+    #xmlns = http://www.w3.org/2000/svg
+    #version = 1.2
+    #viewBox = 0 0 16 20
+    >path.checkmark
+      #d = M2 10 L 6 14 14 4
+  >span
+    .{{copiedMessage}}
+`;
+const template_delete_prompt_dialog = ef.t`
+>div.delete-prompt-dialog
+  #style = display: {{styles.display}};
+  >div.dialog-shadow
+  >div.dialog
+    >div.message
+      .{{i18n_message}}
+    >div.buttons
+      >button.btn-sure
+        @click=onSure
+        .{{i18n_sure}}
+      >button.btn-cancel
+        @click=onCancel
+        .{{i18n_cancel}}
+`;
 
+function getOtpType(issuer) {
   if (/steam/i.test(issuer)) {
     return OTPType.steam;
   } else {
@@ -209,22 +204,18 @@ async function getOtpType(issuer) {
 
 otpContainer.$mount({ target: document.getElementById('otpContainer'), option: 'replace' })
 var otpStoreInterval = []
-async function addOTP(issuer, containerObj = {}, key, expiry = 30, code_length = 6, option = {}) {
-  const [{ KeyUtilities }, { default: getServiceIconNames }] = await Promise.all([import('./dependency/key-utilities.js'), import('./serviceIcon.js')]);
-  const serviceIconNames = getServiceIconNames();
-
+function addOTP(issuer, containerObj = {}, key, expiry = 30, code_length = 6, option = {}) {
   var otpKey;
   var otpKeyClassName = 'popup-link';
   try {
-    otpKey = KeyUtilities.generate(await getOtpType(issuer), key, code_length, expiry);
+    otpKey = KeyUtilities.generate(getOtpType(issuer), key, code_length, expiry);
   } catch (error) {
     console.error(error);
     otpKey = 'ERROR';
     otpKeyClassName = 'popup-link-error'
   }
 
-  const template_totp = getTemplateTotp();
-  var id = otpContainer.otppoint.push(new template_totp({
+  const id = otpContainer.otppoint.push(new template_totp({
     $data: {
       i18n_Copy: 'Copy',
       i18n_Edit: 'Edit',
@@ -266,7 +257,7 @@ async function addOTP(issuer, containerObj = {}, key, expiry = 30, code_length =
   })) - 1;
   if (otpKey !== 'ERROR') {
     otpStoreInterval.push(setInterval(async function () {
-      otpContainer.otppoint[id].$data.OTP = KeyUtilities.generate(await getOtpType(issuer), key, code_length, expiry)
+      otpContainer.otppoint[id].$data.OTP = KeyUtilities.generate(getOtpType(issuer), key, code_length, expiry)
       otpContainer.otppoint[id].$data.progress = expiry - (Math.round(new Date().getTime() / 1000.0) % expiry)
     }, 500))
   }
@@ -374,7 +365,7 @@ function otpKeyClickInit() {
 
 (async function () {
   const { getPasswordInfo, getAccountInfos } = await import('./accountInfo.js');
-  
+
   const passwordInfo = await getPasswordInfo();
   if (passwordInfo.isEncrypted && !passwordInfo.password) {
     const errorDom = document.createElement('div');
@@ -384,12 +375,8 @@ function otpKeyClickInit() {
     return;
   }
 
-  const accountInfosPromise = getAccountInfos();
-  const contextualIdentitiesPromise = browser.contextualIdentities.query({});
-  const tabInfoPromise = browser.tabs.query({ active: true });
-  const accountInfos = await accountInfosPromise;
-  const contextualIdentities = await contextualIdentitiesPromise;
-  const tabInfo = (await tabInfoPromise)[0];
+  const [ accountInfos, contextualIdentities, tabInfos ] = await Promise.all([getAccountInfos(passwordInfo), browser.contextualIdentities.query({}), browser.tabs.query({ active: true })]);
+  const tabInfo = tabInfos[0];
   if (!accountInfos || !accountInfos.length) {
     const emptyDom = document.createElement('div');
     emptyDom.setAttribute('class', 'popup-empty');
@@ -398,6 +385,7 @@ function otpKeyClickInit() {
     return;
   }
   let hasMatch = false;
+
   accountInfos.forEach((e, i) => {
     const isMatch = isIssuerMatchedUrl(e.localIssuer, tabInfo.url) && isContainerMatched(e.containerAssign, tabInfo.cookieStoreId);
     if (isMatch) {
@@ -416,6 +404,7 @@ function otpKeyClickInit() {
       }
     )
   })
+  ef.exec();
   if (hasMatch && !(accountInfos.length === 1)) {
     toggleAccountsMore.style.display = 'block';
     [...document.querySelectorAll('.account-item[data-flag=other]')].forEach(e => {
@@ -446,7 +435,6 @@ function mountCopySuccessMessage(component, rowItem) {
   }
 
   const { top } = rowItem.getBoundingClientRect();
-  const template_copy_success = getTemplateCopySuccess();
   component.copySuccessMessage = new template_copy_success({
     $data: {
       style: top > 28 ? 'top: -28px;' : 'top: calc(100% + 4px);',
@@ -502,7 +490,6 @@ document.getElementById('delAccounts').addEventListener('click', (event) => {
 });
 
 function initDeletePromptDialog() {
-  const template_delete_prompt_dialog = getTemplateDeletePromptDialog();
   return new template_delete_prompt_dialog({
     $data: {
       i18n_sure: i18n.getMessage('sure'),
