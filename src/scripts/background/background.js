@@ -57,7 +57,7 @@ function accountMessageTemplate(accountMessage) {
     browser.notifications.create({
         "type": "basic",
         "iconUrl": "../icons/icon.svg",
-        "title": "FoxAuth Authenticator",
+        "title": "Auth Plus",
         "message": accountMessage
     });
 };
