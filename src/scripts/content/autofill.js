@@ -64,14 +64,8 @@ function sendExecHackCodeMessage(filename, url = window.location.hostname) {
     });
 }
 async function hackFillTotpDom(totpDom, totpKey) {
-    if (isMatchCurrentSite([
-        'www.dropbox.com', 'discordapp.com', 'atlassian'
-    ])) {
-        await sendExecHackCodeMessage('setInputValue.js');
-        __FOXAUTH_SetInputValue(totpDom, totpKey);
-    } else {
-        totpDom.value = totpKey;
-    }
+    await sendExecHackCodeMessage('setInputValue.js');
+    __FOXAUTH_SetInputValue(totpDom, totpKey);
 }
 function hackAfterFillTotoDom() {
     if (isMatchCurrentSite(['mail.protonmail.com'])) {
