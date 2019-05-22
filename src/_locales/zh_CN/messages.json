@@ -191,9 +191,9 @@
     "message": "删除账号信息不会禁用账号的二步验证。请确认您不会因此拒绝访问您的账号。",
     "description": "warning text before account deletion"
   },
-  "tokens_search_account_infos": {
+  "search_account_infos": {
     "message": "🔎 搜索颁布方，容器标签页名称或账户名",
-    "description": "Search box placeholder in option page"
+    "description": "Search box placeholder in option page or popup"
   },
   "import_own_database": {
     "message": "自有数据库",
@@ -242,10 +242,6 @@
   "otpinfo_tip_recovery": {
     "message": "以防 OTP 账户信息丢失给出的字段",
     "description": "Form description for Recovery in manually importing UI"
-  },
-  "popup_search_account_infos": {
-    "message": "🔎 搜索颁布方或是容器标签页名称",
-    "description": "Search box placeholder in popup"
   },
   "popup_title_open_options": {
     "message": "打开设置页面",

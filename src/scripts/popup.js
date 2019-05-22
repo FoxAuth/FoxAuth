@@ -118,6 +118,7 @@ function getTemplateTotp() {
   >div.column.col-12.mt-1.account-item.{{deleteModeClassName}} #accountItem
     #data-issuer = {{issuer}}
     #data-container-name = {{container}}
+    #data-account={{account}}
     #data-flag = {{flag}}
     >div.danger-zone
       >div.delete-account-btn
@@ -285,7 +286,7 @@ const handleListItemFilter = function () {
   [...domList].forEach(e => {
     const data = e.dataset;
     if (
-      [data.issuer || '', data.containerName || ''].some(str => str.toLowerCase().indexOf(keyword) >= 0)
+      [data.issuer || '', data.containerName || '', data.account || ''].some(str => str.toLowerCase().indexOf(keyword) >= 0)
       &&
       (isMore || data.flag === 'matched')
     ) {

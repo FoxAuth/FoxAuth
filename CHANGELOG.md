@@ -5,7 +5,7 @@ All changes per revisioning to this project will be documented in this file. All
 ### New 💡
 - remove account on popup directly
 - French (fr) locale added
-- account names are now displayed on popup
+- account names are now displayed on popup (you can now search them as well)
 ### Changes 📝
 - use JavaScript dymanic import() rather than static import{} as much as we can. Hope this improves performance
 ### Fixed 🔨

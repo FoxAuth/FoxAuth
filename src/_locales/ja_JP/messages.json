@@ -191,9 +191,9 @@
     "message": "アカウントの削除は設定した二段階認証を影響しない、ロックアウトの可能性を必ず確認してください。",
     "description": "warning text before account deletion"
   },
-  "tokens_search_account_infos": {
+  "search_account_infos": {
     "message": "🔎 発行者、コンテナ名とユーザー名から捜す",
-    "description": "Search box placeholder in option page"
+    "description": "Search box placeholder in option page or popup"
   },
   "import_own_database": {
     "message": "独自のデータベースから",
@@ -242,10 +242,6 @@
   "otpinfo_tip_recovery": {
     "message": "OTPアカウントが紛失した時、与えられた文字列",
     "description": "Form description for Recovery in manually importing UI"
-  },
-  "popup_search_account_infos": {
-    "message": "🔎 発行者やコンテナ名から捜します",
-    "description": "Search box placeholder in popup"
   },
   "popup_title_open_options": {
     "message": "オプションを開く",

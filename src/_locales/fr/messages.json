@@ -191,9 +191,9 @@
     "message": "La suppression des informations du compte ne désactive pas le 2FA. Assurez-vous de ne pas être en verrouillage avant de continuer.",
     "description": "warning text before account deletion"
   },
-  "tokens_search_account_infos": {
+  "search_account_infos": {
     "message": "🔎 Rechercher des émetteurs, noms du conteneur ou noms du compte",
-    "description": "Search box placeholder in option page"
+    "description": "Search box placeholder in option page or popup"
   },
   "import_own_database": {
     "message": "Base de données",
@@ -242,10 +242,6 @@
   "otpinfo_tip_recovery": {
     "message": "Chaîne de caractère donnée en cas de perte des informations du compte OTP.",
     "description": "Form description for Recovery in manually importing UI"
-  },
-  "popup_search_account_infos": {
-    "message": "🔎 Rechercher les émetteurs ou les noms des conteneurs",
-    "description": "Search box placeholder in popup"
   },
   "popup_title_open_options": {
     "message": "Ouvrir la page de paramètre",

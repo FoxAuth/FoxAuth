@@ -191,9 +191,9 @@
     "message": "Deleting account info doesn't disable 2FA. Make sure you won't be locked out before proceed.",
     "description": "warning text before account deletion"
   },
-  "tokens_search_account_infos": {
+  "search_account_infos": {
     "message": "🔎 Search Issuers, Containers name or Account name",
-    "description": "Search box placeholder in option page"
+    "description": "Search box placeholder in option page or popup"
   },
   "import_own_database": {
     "message": "Own Database",
@@ -242,10 +242,6 @@
   "otpinfo_tip_recovery": {
     "message": "Given string in case OTP account info lost.",
     "description": "Form description for Recovery in manually importing UI"
-  },
-  "popup_search_account_infos": {
-    "message": "🔎 Search Issuers or Containers name",
-    "description": "Search box placeholder in popup"
   },
   "popup_title_open_options": {
     "message": "Open options",
