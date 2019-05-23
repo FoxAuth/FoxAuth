@@ -65,6 +65,7 @@ export default function getServiceIconNames(){
     'online.net',
     'owncloud',
     'packet',
+    'patreon',
     'paypal',
     'pcloud',
     'phantom',
