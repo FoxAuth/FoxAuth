@@ -8,8 +8,6 @@ All changes per revisioning to this project will be documented in this file. All
 - account names are now displayed on popup (you can now search them as well)
 ### Changes 📝
 - use JavaScript dymanic import() rather than static import{} as much as we can. Hope this improves performance
-### Fixed 🔨
-- popup page opened in sidebar will be now refreshed as any account added
 ### Removed 🚫
 - popup button to token page (use issuer icon instead)
 
