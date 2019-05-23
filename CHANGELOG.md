@@ -1,7 +1,7 @@
 # Changelog
 All changes per revisioning to this project will be documented in this file. All dates used in this file are recorded as UTC+8.
 
-## v 1.5.2 - May th 2019
+## v 1.5.2 - May 23rd 2019
 ### New 💡
 - remove account on popup directly
 - French (fr) locale added
