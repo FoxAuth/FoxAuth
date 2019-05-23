@@ -18,17 +18,14 @@ const getSvgNameByIssuer = function (i) {
   switch (i) {
     case 'z.cn':
       return 'amazon';
-      break;
     case 'Amazon Web Services':
       return 'aws';
-      break;
-    case 'NutStore':
     case '坚果云':
       return 'nutstore';
-      break;
+    case 'gitlab':
+      return 'gitlab.com'
     case 'WordPress.com':
       return 'wordpress';
-      break;
     default:
       return i.toLowerCase();
   }
