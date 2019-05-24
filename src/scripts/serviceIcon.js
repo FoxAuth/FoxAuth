@@ -82,6 +82,7 @@ export default function getServiceIconNames(){
     'sourceforge',
     'squarespace',
     'steam',
+    'stripe',
     'synology',
     'teamviewer',
     'trello',
