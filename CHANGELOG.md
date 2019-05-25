@@ -6,8 +6,7 @@ All changes per revisioning to this project will be documented in this file. All
 - remove account on popup directly
 - French (fr) locale added
 - account names are now displayed on popup (you can now search them as well)
-### Changes 📝
-- use JavaScript dymanic import() rather than static import{} as much as we can. Hope this improves performance
+- several new service icons (over 100 collected now)
 ### Removed 🚫
 - popup button to token page (use issuer icon instead)
 
