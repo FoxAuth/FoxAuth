@@ -97,6 +97,7 @@ export default function getServiceIconNames(){
     'vagrant cloud by hashicorp',
     'vultr',
     'wargame',
+    'wasabi technologies',
     'wikimedia',
     'wordpress',
     'yahoo',

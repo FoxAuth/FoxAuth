@@ -155,6 +155,9 @@ function matchOTP() {
             case eqR(/\.battle\.net$/):
                 matchIssuer = "Battle.Net"
                 break;
+            case eqR(/\.wasabisys\.com$/):
+                matchIssuer = "Wasabi Technologies"
+                break;
             case eqR(/^.*\.wiki.*\.org$/):
                 matchIssuer = "Wikimedia"
                 break;
