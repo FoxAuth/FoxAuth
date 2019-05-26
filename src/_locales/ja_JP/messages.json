@@ -187,6 +187,10 @@
     "message": "コンテキスト メニューを無効にする",
     "description": "Option: whether disable context menus"
   },
+  "general_option_enable_compression": {
+    "message": "Enable compression to data on sync (can be laggy on extremely old devices).",
+    "description": "Option: whether enable compression when syncing"
+  },
   "tokens_warning_message_content": {
     "message": "アカウントの削除は設定した二段階認証を影響しない、ロックアウトの可能性を必ず確認してください。",
     "description": "warning text before account deletion"
