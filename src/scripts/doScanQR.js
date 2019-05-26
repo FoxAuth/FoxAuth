@@ -1,4 +1,6 @@
 import './dependency/url-otpauth-ng.browser.js';
+import { getAccountInfos, saveAccountInfos, mergeAccountInfos } from './accountInfo.js';
+import { scanImage, scanImageData } from './dependency/jsQRWrap.js';
 
 export default async function doScanQR(from) {
     function getImage(url, width, height) {
@@ -33,17 +35,11 @@ export default async function doScanQR(from) {
         otpInfo = hackOtpInfo(otpInfo, tab.url);
         otpInfo.container = tab.cookieStoreId === 'firefox-default' ? '' : tab.cookieStoreId
         otpInfo = transform(otpInfo)
-        const {
-            getAccountInfos,
-            saveAccountInfos,
-            mergeAccountInfos
-            } = await import('./accountInfo.js');
         let infos = await getAccountInfos()
         infos = mergeAccountInfos(infos, [otpInfo])
         return saveAccountInfos(infos)
     }
     async function doScanDataURL(dataURL, tab) {
-        const { scanImage } = await import('./dependency/jsQRWrap.js');
         const image = await getImage(dataURL, tab.width, tab.height)
         const result = await scanImage(image)
         return doAfterScan(result, tab);
@@ -58,7 +54,6 @@ export default async function doScanQR(from) {
         if (!imageData || imageData[0] === null) {
             return doScanTabActiveTab(tab);
         } else {
-            const { scanImageData } = await import('./dependency/jsQRWrap.js');
             return doAfterScan(scanImageData(imageData), tab);
         }
     }

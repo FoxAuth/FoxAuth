@@ -4,6 +4,7 @@ import * as i18n from './i18n.js';
 import { debounce } from './utils.js';
 import { KeyUtilities, OTPType } from './dependency/key-utilities.js';
 import getServiceIconNames from './serviceIcon.js';
+import { getPasswordInfo, getAccountInfos, saveAccountInfos } from './accountInfo.js';
 
 i18n.render();
 
@@ -361,8 +362,6 @@ function otpKeyClickInit() {
 }
 
 (async function () {
-  const { getPasswordInfo, getAccountInfos } = await import('./accountInfo.js');
-
   const passwordInfo = await getPasswordInfo();
   if (passwordInfo.isEncrypted && !passwordInfo.password) {
     const errorDom = document.createElement('div');
@@ -501,8 +500,6 @@ function initDeletePromptDialog() {
         state.$methods.setDisplay(state, 'none');
       },
       async onSure({state}) {
-        const { getAccountInfos, saveAccountInfos } = await import('./accountInfo.js');
-
         const parentState = state.$parent;
         const { index } = parentState.$data;
 
