@@ -9,6 +9,7 @@ export default function getServiceIconNames(){
     'atlassian',
     'autodesk',
     'aws',
+    'backblaze',
     'battle',
     'binance.com',
     'bitbucket',
