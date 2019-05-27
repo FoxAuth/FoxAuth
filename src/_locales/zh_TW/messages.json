@@ -175,6 +175,10 @@
     "message": "閱讀 <a href=\"https:\/\/github.com\/FoxAuth\/FoxAuth\/wiki\">我們的Wiki <img src=\"..\/icons\/options\/Open In New.svg\" width=\"16px\" height=\"16px\"><\/a> 以瞭解更多詳情。",
     "description": "Wiki link for users guide"
   },
+  "general_translation": {
+    "message": "請幫助我們 <a href=\"https://github.com/FoxAuth/i18n-dictionary\">進行翻譯 <img src=\"../icons/options/Open In New.svg\" width=\"16px\" height=\"16px\"></a>",
+    "description": "i18n dictionary link"
+  },
   "general_header_options": {
     "message": "一般選項",
     "description": "General options"

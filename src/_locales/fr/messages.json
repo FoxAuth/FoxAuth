@@ -175,6 +175,10 @@
     "message": "Commençez par <a href=\"https://github.com/FoxAuth/FoxAuth/wiki\">notre wiki <img src=\"../icons/options/Open In New.svg\" width=\"16px\" height=\"16px\"> </a>.",
     "description": "Wiki link for users guide"
   },
+  "general_translation": {
+    "message": "Please help us to <a href=\"https://github.com/FoxAuth/i18n-dictionary\">translate this addon <img src=\"../icons/options/Open In New.svg\" width=\"16px\" height=\"16px\"></a> .",
+    "description": "i18n dictionary link"
+  },
   "general_header_options": {
     "message": "Options générales",
     "description": "General options"
