@@ -1,6 +1,14 @@
 # Changelog
 All changes per revisioning to this project will be documented in this file. All dates used in this file are recorded as UTC+8.
 
+## v 1.5.3 - Jun th 2019
+### New 💡
+- add an option to compress data on sync (can be laggy on extremely old devices)
+- import & export as Standard OTP format
+- encryption password strength meter
+### Fixed 🔨
+- sidebar will now refresh across account actions
+
 ## v 1.5.2 - May 23rd 2019
 ### New 💡
 - remove account on popup directly
