@@ -516,3 +516,5 @@ function initDeletePromptDialog() {
     }
   });
 }
+
+browser.storage.onChanged.addListener((changes, areaName)=> {if (changes.accountInfos && areaName === "local") {location.reload()}});
