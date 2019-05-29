@@ -466,10 +466,6 @@ popupSearchInput.addEventListener("focus", ()=> {
   toggleAccountsMore.click();
 })
 
-popupSearchInput.addEventListener("blur", ()=> {
-  toggleAccountsLess.click();
-})
-
 document.getElementById('delAccounts').addEventListener('click', (event) => {
   event.preventDefault();
   const accounts = otpContainer.otppoint;
