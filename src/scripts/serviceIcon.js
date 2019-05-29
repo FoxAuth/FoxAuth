@@ -47,6 +47,7 @@ export default function getServiceIconNames(){
     'inwx',
     'keeper',
     'kickstarter',
+    'koofr',
     'lastpass',
     'linode',
     'liuli',
