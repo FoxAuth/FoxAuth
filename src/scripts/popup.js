@@ -311,7 +311,7 @@ function initMoreOrLess() {
 
 function autoFillButtonInit() {
   document.getElementById('autofillOTPForm').addEventListener('click', async () => {
-    const tabInfo = await browser.tabs.query({ active: true })
+    const tabInfo = await browser.tabs.query({ active: true, currentWindow: true })
     await browser.tabs.executeScript(
       tabInfo[0].id,
       {
@@ -341,7 +341,7 @@ function otpKeyClickInit() {
       tempKey: e.innerText,
     });
 
-    const tabInfo = await browser.tabs.query({ active: true })
+    const tabInfo = await browser.tabs.query({ active: true, currentWindow: true })
     await browser.tabs.executeScript(
       tabInfo[0].id,
       {
@@ -371,7 +371,7 @@ function otpKeyClickInit() {
     return;
   }
 
-  const [ accountInfos, contextualIdentities, tabInfos ] = await Promise.all([getAccountInfos(passwordInfo), browser.contextualIdentities.query({}), browser.tabs.query({ active: true })]);
+  const [ accountInfos, contextualIdentities, tabInfos ] = await Promise.all([getAccountInfos(passwordInfo), browser.contextualIdentities.query({}), browser.tabs.query({ active: true, currentWindow: true })]);
   const tabInfo = tabInfos[0];
   if (!accountInfos || !accountInfos.length) {
     const emptyDom = document.createElement('div');

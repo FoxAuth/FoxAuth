@@ -59,10 +59,13 @@ export default async function doScanQR(from) {
     }
 
     const activeTabs = await browser.tabs.query({
-        active: true
-    })
-    if (activeTabs.length !== 1) return
-    const activeTab = activeTabs[0]
+        active: true,
+        currentWindow: true,
+    });
+    if (activeTabs.length !== 1) {
+        throw new Error('Too many tabs!');
+    }
+    const activeTab = activeTabs[0];
 
     if (from === 'contextMenu') {
         await handleClickContextMenu(activeTab);

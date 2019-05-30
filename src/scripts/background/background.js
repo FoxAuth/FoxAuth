@@ -81,7 +81,7 @@ browser.contextMenus.onClicked.addListener(async (info, ignored) => {
             }
         }
     } else if (info.menuItemId === "autfillOTP") {
-        const tabInfo = await browser.tabs.query({ active: true });
+        const tabInfo = await browser.tabs.query({ active: true, currentWindow: true });
         browser.tabs.executeScript(
             tabInfo[0].id,
             {

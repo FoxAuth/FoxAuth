@@ -13,7 +13,7 @@ async function getAccountAndContainer() {
     // const tabInfoPromise = browser.tabs.query({acitve: true});
     // const contextualIdentities = await contextualIdentitiesPromise;
     const [accountInfos, tabInfo] = await Promise.all(
-        [getAccountInfos(), browser.tabs.query({ active: true })]
+        [getAccountInfos(), browser.tabs.query({ active: true, currentWindow: true })]
     )
     return {
         accountInfos,
@@ -22,7 +22,7 @@ async function getAccountAndContainer() {
 }
 
 async function execHackCode(url, filename) {
-  const tabInfo = await browser.tabs.query({ active: true })
+  const tabInfo = await browser.tabs.query({ active: true, currentWindow: true })
   const tab = tabInfo[0]
   if (tab.url.indexOf(url) >= 0) {
     return browser.tabs.executeScript(
