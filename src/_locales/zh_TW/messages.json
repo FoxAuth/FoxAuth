@@ -315,6 +315,10 @@
     "message": "警告： <span id=\"specialCapt\">遺失密碼 <strong>神仙難救<\/strong><\/span>",
     "description": "Form label in encryption form in Backup & Sync page"
   },
+  "sync_password_strength": {
+    "message": "密碼強度：",
+    "description": "Label for password strength meter"
+  },
   "sync_confirm_runtime": {
     "message": "確認加密\/運行時解密",
     "description": "Button text in encryption form in Backup & Sync page"

@@ -315,6 +315,10 @@
     "message": "WARNING: <span id=\"specialCapt\"><strong>NO ONE</strong></span> can help if you lost this.",
     "description": "Form label in encryption form in Backup & Sync page"
   },
+  "sync_password_strength": {
+    "message": "Password Strength: ",
+    "description": "Label for password strength meter"
+  },
   "sync_confirm_runtime": {
     "message": "Confirm / Decrypt runtime",
     "description": "Button text in encryption form in Backup & Sync page"

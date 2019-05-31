@@ -319,6 +319,10 @@
     "message": "ATTENTION: <span id=\"specialCapt\"><strong>personne</strong></span> pourrait vous aider si vous l'avez oublié.",
     "description": "Form label in encryption form in Backup & Sync page"
   },
+  "sync_password_strength": {
+    "message": "Password Strength: ",
+    "description": "Label for password strength meter"
+  },
   "sync_confirm_runtime": {
     "message": "Confirmer / décrypter l'exécution",
     "description": "Button text in encryption form in Backup & Sync page"

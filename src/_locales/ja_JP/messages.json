@@ -315,6 +315,10 @@
     "message": "警告：<span id=\"specialCapt\">パスワードの紛失は <strong>誰でも解決できない</strong></span>",
     "description": "Form label in encryption form in Backup & Sync page"
   },
+  "sync_password_strength": {
+    "message": "Password Strength: ",
+    "description": "Label for password strength meter"
+  },
   "sync_confirm_runtime": {
     "message": "確認又は実行時復号化",
     "description": "Button text in encryption form in Backup & Sync page"
