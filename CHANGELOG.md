@@ -4,10 +4,10 @@ All changes per revisioning to this project will be documented in this file. All
 ## v 1.5.3 - Jun th 2019
 ### New 💡
 - add an option to compress data on sync (can be laggy on extremely old devices)
-- import & export as Standard OTP format
-- encryption password strength meter
+- import & export as standard OTP format
+- encryption password strength meter (with algorithm from KeePass)
 ### Changes 📝
-- tab buttons on option page now has Photon styles
+- tab buttons on option page now has [Photon styles](https://design.firefox.com/photon/components/tabs.html)
 ### Fixed 🔨
 - sidebar will now refresh across account actions
 
