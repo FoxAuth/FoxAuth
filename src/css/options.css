@@ -24,7 +24,6 @@ body {
 .top-bar {
   display: flex;
   font-size: 17px;
-  border: 1px solid #000;
   position: fixed;
   top: 0;
   left: 0;
@@ -83,10 +82,17 @@ body {
   color: #0c0c0d;
 }
 
-.top-bar .actions .action-group.active,
+.top-bar .actions .action-group.active {
+  border-bottom-style: solid;
+  border-bottom-color: #0060df;
+  border-bottom-width: 2px;
+}
+
 .top-bar .actions .action-group:hover {
-  background-color: #ededf0;
-  border-radius: 4px;
+  background-color: #f9f9fa;
+  border-bottom-style: solid;
+  border-bottom-color: #f9f9fa;
+  border-bottom-width: 2px;
 }
 
 .content {

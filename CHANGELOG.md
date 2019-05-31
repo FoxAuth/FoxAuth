@@ -6,6 +6,8 @@ All changes per revisioning to this project will be documented in this file. All
 - add an option to compress data on sync (can be laggy on extremely old devices)
 - import & export as Standard OTP format
 - encryption password strength meter
+### Changes 📝
+- tab buttons on option page now has Photon styles
 ### Fixed 🔨
 - sidebar will now refresh across account actions
 
