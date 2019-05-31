@@ -346,6 +346,11 @@ function hackTotpDom(input) {
         return totpDom;
     }
 
+    //hack for PyPi
+    if (host.indexOf('pypi.org') >= 0) {
+        return otpOwnerDoc.getElementById('totp_value');
+    }
+
     return input;
 }
 
