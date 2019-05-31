@@ -4,8 +4,9 @@ All changes per revisioning to this project will be documented in this file. All
 ## v 1.5.3 - Jun th 2019
 ### New 💡
 - add an option to compress data on sync (can be laggy on extremely old devices)
-- import & export as standard OTP format
 - encryption password strength meter (with algorithm from KeePass)
+- option to check if your password is popular (with a local list). Source [here](https://github.com/danielmiessler/SecLists/blob/master/Passwords/Common-Credentials/10-million-password-list-top-10000.txt).
+- import & export as standard OTP format
 ### Changes 📝
 - tab buttons on option page now has [Photon styles](https://design.firefox.com/photon/components/tabs.html)
 ### Fixed 🔨
