@@ -76,6 +76,7 @@ export default function getServiceIconNames(){
     'posteo',
     'presearch.org',
     'protonmail',
+    'pypi',
     'realvnc',
     'reddit',
     'roboform',
