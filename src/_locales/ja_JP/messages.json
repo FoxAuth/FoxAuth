@@ -327,6 +327,10 @@
     "message": "完全に復号化",
     "description": "Button text in encryption form in Backup & Sync page"
   },
+  "sync_check_popular": {
+    "message": "Check if it is a popular password with a (local) list",
+    "description": "Checkbox text in encryption form in Backup & Sync page"
+  },
   "sync_remember_password": {
     "message": "パスワードを記憶",
     "description": "Radio form list text in encryption form in Backup & Sync page"

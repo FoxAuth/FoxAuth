@@ -327,6 +327,10 @@
     "message": "Confirmer / décrypter l'exécution",
     "description": "Button text in encryption form in Backup & Sync page"
   },
+  "sync_check_popular": {
+    "message": "Check if it is a popular password with a (local) list",
+    "description": "Checkbox text in encryption form in Backup & Sync page"
+  },
   "sync_completely_decrypt": {
     "message": "Complètement décrypter",
     "description": "Button text in encryption form in Backup & Sync page"

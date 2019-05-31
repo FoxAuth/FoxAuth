@@ -85,8 +85,12 @@
             <span
                 class="caption"
                 data-i18n="sync_password_tip"></span><br>
+            <span id="passwordStrength">
             <label for="passwordStrength" data-i18n-html="sync_password_strength"></label></label>
-            <progress id="passwordStrength" max="128" value="0"></progress>&nbsp;&nbsp;<a target="_blank" href="https://keepass.info/help/kb/pw_quality_est.html"><img src="../icons/options/Info.svg" width="16px" height="16px"></a><br>
+            <progress id="strengthProgress" max="128" value="0"></progress>&nbsp;&nbsp;<a target="_blank" href="https://keepass.info/help/kb/pw_quality_est.html"><img src="../icons/options/Info.svg" width="16px" height="16px"></a></span><br>
+            <div class="checkbox-group">
+                <input type="checkbox" id="checkPopular" name="checkPopular"><label for="checkPopular" data-i18n="sync_check_popular"></label></progress>&nbsp;&nbsp;<a target="_blank" href="https://github.com/danielmiessler/SecLists/blob/master/Passwords/Common-Credentials/10-million-password-list-top-10000.txt"><img src="../icons/options/Info.svg" width="16px" height="16px"></a></span><br>
+            </div>
             <input type="password" class="encryptPass" id="reconfirmPass" name="reconfirmPass" data-i18n-placeholder="sync_reconfirm_password">
             <a href="#"><img class="eye" src="../icons/options/show-password.svg"></a><br>
             <span
