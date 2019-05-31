@@ -327,10 +327,6 @@
     "message": "Completely decrypt",
     "description": "Button text in encryption form in Backup & Sync page"
   },
-  "sync_check_popular": {
-    "message": "Check if it is a popular password with a (local) list",
-    "description": "Checkbox text in encryption form in Backup & Sync page"
-  },
   "sync_remember_password": {
     "message": "Remember password.",
     "description": "Radio form list text in encryption form in Backup & Sync page"

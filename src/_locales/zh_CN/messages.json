@@ -327,10 +327,6 @@
     "message": "完全解密",
     "description": "Button text in encryption form in Backup & Sync page"
   },
-  "sync_check_popular": {
-    "message": "比对（内置的）流行弱密码列表",
-    "description": "Checkbox text in encryption form in Backup & Sync page"
-  },
   "sync_remember_password": {
     "message": "记住密码",
     "description": "Radio form list text in encryption form in Backup & Sync page"
