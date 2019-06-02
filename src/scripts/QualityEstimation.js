@@ -267,6 +267,7 @@ function ComputePathCost(l, vPassword, ecPattern, mcData)
 export default function QualityEstimation(vPassword)
 {
   if (typeof vPassword !== 'string' || vPassword.length === 0) return 0;
+  if (PopularPasswords.IsPopularPassword(vPassword.toLowerCase())) return "Matched";
 
   EnsureInitialized();
 
