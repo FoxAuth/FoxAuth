@@ -11,6 +11,7 @@ import {
   getPasswordStorageArea,
 } from './accountInfo.js';
 import * as i18n from './i18n.js';
+import QualityEstimation from './QualityEstimation.js';
 
 i18n.render();
 
