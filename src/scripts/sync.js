@@ -69,6 +69,8 @@ passwordInput.addEventListener('input', debounce(calPassScore, {
   head: false,
 }));
 
+confirmBtn.addEventListener('click', function(){strengthProgress.setAttribute('value', 0)});
+
 const openMessage = (function() {
   let zIndex = 11;
   return function ({
