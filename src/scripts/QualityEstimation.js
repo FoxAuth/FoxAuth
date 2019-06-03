@@ -1,6 +1,7 @@
 import * as PopularPasswords from './PopularPasswords.js';
 
-PopularPasswords.initialize(["../options/popular-password.txt"])
+fetch("../options/popular-password.txt").then(res=>{
+  PopularPasswords.initialize(res.text().split("\r\n"))});
 
 const PatternID = {
   LowerAlpha: 'L',
