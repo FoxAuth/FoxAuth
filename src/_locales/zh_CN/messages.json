@@ -319,6 +319,10 @@
     "message": "密码强度：",
     "description": "Label for password strength meter"
   },
+  "sync_password_alert": {
+    "message": "该密码为已知的流行弱密码，使用前请三思",
+    "description": "Alert text for a known popular password"
+  },
   "sync_confirm_runtime": {
     "message": "确认加密 / 运行中解密",
     "description": "Button text in encryption form in Backup & Sync page"

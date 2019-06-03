@@ -51,6 +51,16 @@ const errorCloseBtn = errorMsgDiv.querySelector('.errorMsgCloseBtn');
 const shadowCover = document.querySelector('.warning-cover');
 const exportBtn = document.getElementById('exportBtn');
 const importBtn = document.getElementById('importBtn');
+const strengthProgress = document.getElementById('strengthProgress');
+
+passwordInput.addEventListener('blur', function(){
+  let score = QualityEstimation(passwordInput.value);
+  if (score === "Matched") {
+    score = 0;
+    showWarningMessage({message: i18n.getMessage('sync_password_alert')})
+  }
+  strengthProgress.setAttribute('value', score);
+})
 
 const openMessage = (function() {
   let zIndex = 11;
