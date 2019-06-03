@@ -10,6 +10,7 @@ import {
   decryptAccountInfos,
   getPasswordStorageArea,
 } from './accountInfo.js';
+import { debounce } from './utils.js';
 import * as i18n from './i18n.js';
 import QualityEstimation from './QualityEstimation.js';
 
@@ -53,14 +54,20 @@ const exportBtn = document.getElementById('exportBtn');
 const importBtn = document.getElementById('importBtn');
 const strengthProgress = document.getElementById('strengthProgress');
 
-passwordInput.addEventListener('blur', function(){
+function calPassScore(){
   let score = QualityEstimation(passwordInput.value);
   if (score === "Matched") {
     score = 0;
     showWarningMessage({message: i18n.getMessage('sync_password_alert')})
   }
   strengthProgress.setAttribute('value', score);
-})
+}
+
+passwordInput.addEventListener('input', debounce(calPassScore, {
+  wait: 300,
+  trailing: true,
+  head: false,
+}));
 
 const openMessage = (function() {
   let zIndex = 11;
