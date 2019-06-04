@@ -84,6 +84,7 @@ export default function getServiceIconNames(){
     'realvnc',
     'reddit',
     'roboform',
+    'seafile',
     'slack',
     'snapchat',
     'sourceforge',
