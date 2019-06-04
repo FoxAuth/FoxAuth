@@ -85,9 +85,9 @@
             <span
                 class="caption"
                 data-i18n="sync_password_tip"></span><br>
-            <span id="passwordStrength">
-            <label for="passwordStrength" data-i18n-html="sync_password_strength"></label></label>
-            <progress id="strengthProgress" max="128" value="0"></progress>&nbsp;&nbsp;<a target="_blank" href="https://keepass.info/help/kb/pw_quality_est.html"><img src="../icons/options/Info.svg" width="16px" height="16px"></a></span><br>
+            <div id="progress">
+            <label for="strengthProgress" data-i18n-html="sync_password_strength"></label></label>
+            <div id="passwordStrength"><div id="strengthProgress"></div></div>&nbsp;&nbsp;<a target="_blank" href="https://keepass.info/help/kb/pw_quality_est.html"><img id="keepassInfo" src="../icons/options/Info.svg" width="16px" height="16px"></a></div><br>
             <input type="password" class="encryptPass" id="reconfirmPass" name="reconfirmPass" data-i18n-placeholder="sync_reconfirm_password">
             <a href="#"><img class="eye" src="../icons/options/show-password.svg"></a><br>
             <span

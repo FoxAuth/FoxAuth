@@ -56,11 +56,30 @@ const strengthProgress = document.getElementById('strengthProgress');
 
 function calPassScore(){
   let score = QualityEstimation(passwordInput.value);
-  if (score === "Matched") {
+  if (score >= 0 && score < 128) {
+    strengthProgress.style.width = (score/128)*100 + "%";
+    switch (true) {
+      case (score <= 64):
+        strengthProgress.style.backgroundColor = "#FF0000";
+      break;
+      case (score > 64 && score <= 80):
+        strengthProgress.style.backgroundColor = "#FFA500";
+      break;
+      case (score > 80 && score <= 112):
+        strengthProgress.style.backgroundColor = "#FFFF00";
+      break;
+      case (score > 112 && score < 128):
+        strengthProgress.style.backgroundColor = "#00FF00";
+      break;
+    }
+  } else if (score === "Matched"){
     score = 0;
-    showWarningMessage({message: i18n.getMessage('sync_password_alert')})
+    showWarningMessage({message: i18n.getMessage('sync_password_alert')});
   }
-  strengthProgress.setAttribute('value', score);
+  else if (score >= 128) {
+    strengthProgress.style.width = "100%"
+    strengthProgress.style.backgroundColor = "#008000";
+  }
 }
 
 passwordInput.addEventListener('input', debounce(calPassScore, {
@@ -69,7 +88,7 @@ passwordInput.addEventListener('input', debounce(calPassScore, {
   head: false,
 }));
 
-confirmBtn.addEventListener('click', function(){strengthProgress.setAttribute('value', 0)});
+confirmBtn.addEventListener('click', function(){strengthProgress.style.width = 0;});
 
 const openMessage = (function() {
   let zIndex = 11;
