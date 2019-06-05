@@ -434,5 +434,9 @@
   "about_acknowledgement_translators_fr": {
     "message": "フランス語：",
     "description": "fr translators"
+  },
+  "about_acknowledgement_translators_it": {
+    "message": "イタリア語：",
+    "description": "it translators"
   }
 }

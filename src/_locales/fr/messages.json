@@ -438,5 +438,9 @@
   "about_acknowledgement_translators_fr": {
     "message": "Français: ",
     "description": "fr translators"
+  },
+  "about_acknowledgement_translators_it": {
+    "message": "Italien: ",
+    "description": "it translators"
   }
 }
