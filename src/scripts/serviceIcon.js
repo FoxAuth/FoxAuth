@@ -51,6 +51,7 @@ export default function getServiceIconNames(){
     'kickstarter',
     'koofr',
     'lastpass',
+    'lichess.org',
     'linode',
     'liuli',
     'logmein accounts',

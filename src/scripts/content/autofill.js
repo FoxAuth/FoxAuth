@@ -103,7 +103,7 @@ function matchOTP() {
   
     var matchTarget = window.location.hostname;
     var matchIssuer;
-    const prematchedDomain = ["presearch.org", "crowdin.com", "posteo.de", "wordpress.com", "posteo.de", "gitlab.com", "binance.com", "name.com"];
+    const prematchedDomain = ["presearch.org", "crowdin.com", "posteo.de", "wordpress.com", "posteo.de", "gitlab.com", "binance.com", "name.com", "lichess.org"];
     if (prematchedDomain.includes(matchTarget)) {
         matchIssuer = matchTarget;
     } else {
