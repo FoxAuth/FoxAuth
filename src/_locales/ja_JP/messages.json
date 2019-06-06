@@ -343,6 +343,10 @@
     "message": "一つだけのブラウザセッション中に保存します。",
     "description": "Radio form list text in encryption form in Backup & Sync page"
   },
+  "sync_not_remember": {
+    "message": "Never remember as extension data (though Firefox still asks whether to keep as browser password).",
+    "description": "Radio form list text in encryption form in Backup & Sync page"
+  },
   "sync_forget_password": {
     "message": "パスワードを忘れた",
     "description": "Button text in encryption form in Backup & Sync page"
