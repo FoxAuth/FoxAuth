@@ -291,6 +291,10 @@
     "message": "選擇用於同步您資料的服務",
     "description": "Texture above sync buttons in Backup & Sync page"
   },
+  "sync_disconnect": {
+    "message": "斷開同步",
+    "description": "Texture above sync buttons after you are connected"
+  },
   "popup_data_encrypted": {
     "message": "資料庫已加密或出錯",
     "description": "Displayed texture in popup when data is encrypted or error"

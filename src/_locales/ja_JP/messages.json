@@ -295,6 +295,10 @@
     "message": "好きなサービスを選択して、データを同期します。",
     "description": "Texture above sync buttons in Backup & Sync page"
   },
+  "sync_disconnect": {
+    "message": "Disconnect",
+    "description": "Texture above sync buttons after you are connected"
+  },
   "sync_encrypt_descrypt": {
     "message": "暗号化と復号化",
     "description": "Texture above sync encryption form in Backup & Sync page"

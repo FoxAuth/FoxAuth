@@ -295,6 +295,10 @@
     "message": "Encryptée ou erronée",
     "description": "Displayed texture in popup when data is encrypted or error"
   },
+  "sync_disconnect": {
+    "message": "Disconnect",
+    "description": "Texture above sync buttons after you are connected"
+  },
   "sync_choose_service": {
     "message": "Choisissez le service que vous préférez pour synchroniser vos données",
     "description": "Texture above sync buttons in Backup & Sync page"

@@ -426,7 +426,7 @@ async function setDecryptBtnStatus() {
 }
 function setDropboxText(authState) {
   if (authState === 'authorized') {
-    dropboxTextElement.textContent = 'Disconnect';
+    dropboxTextElement.textContent = i18n.getMessage('sync_disconnect');
   } else {
     dropboxTextElement.textContent = 'Dropbox';
   }

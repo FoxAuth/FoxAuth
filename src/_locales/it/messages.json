@@ -295,6 +295,10 @@
     "message": "Scegli il servizio che preferisci per sincronizzare i tuoi dati",
     "description": "Texture above sync buttons in Backup & Sync page"
   },
+  "sync_disconnect": {
+    "message": "Disconnect",
+    "description": "Texture above sync buttons after you are connected"
+  },
   "sync_encrypt_descrypt": {
     "message": "Cifra & Decifra",
     "description": "Texture above sync encryption form in Backup & Sync page"
