@@ -571,3 +571,26 @@ input::selection {
 #translatorList {
   columns: 2;
 }
+
+summary {
+  display: block;
+  text-align: left;
+  width: 75%;
+  cursor: pointer;
+  height: 12px;
+}
+
+hr {
+  border: none;
+  border-top: 3px double #0a84ff;
+  overflow: visible;
+  text-align: right;
+}
+
+hr:after {
+  background: #fff;
+  content:url(../icons/options/more\ options.svg);
+  padding: 0 4px;
+  position: relative;
+  top: -13px;
+}
