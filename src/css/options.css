@@ -577,12 +577,12 @@ summary {
   text-align: left;
   width: 75%;
   cursor: pointer;
-  height: 12px;
+  height: 10px;
 }
 
 hr {
   border: none;
-  border-top: 3px double #0a84ff;
+  border-top: 2px #0060df solid;
   overflow: visible;
   text-align: right;
 }
