@@ -40,6 +40,7 @@ export default function getServiceIconNames(){
     'gitlab.com',
     'gmail',
     'godaddy',
+    'gogs',
     'google',
     'hetzner',
     'he.net',
