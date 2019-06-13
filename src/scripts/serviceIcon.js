@@ -76,6 +76,7 @@ export default function getServiceIconNames(){
     'paypal',
     'pcloud',
     'phantom',
+    'phpMyAdmin',
     'plurk',
     'pornhub',
     'posteo',
