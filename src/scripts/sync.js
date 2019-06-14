@@ -83,8 +83,13 @@ function calPassScore(){
   scoreNum.innerText = score;
 }
 
-passwordInput.addEventListener('input', debounce(calPassScore, {
-  wait: 300,
+passwordInput.addEventListener('keyup', debounce(calPassScore, {
+  wait: 100,
+  trailing: true,
+  head: false,
+}));
+passwordInput.addEventListener('change', debounce(calPassScore, {
+  wait: 100,
   trailing: true,
   head: false,
 }));
