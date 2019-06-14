@@ -58,7 +58,6 @@ const scoreNum = document.getElementById('scoreNum');
 function calPassScore(){
   let score = QualityEstimation(passwordInput.value);
   if (score >= 0 && score < 128) {
-    strengthProgress.style.width = (score/128)*100 + "%";
     switch (true) {
       case (score <= 64):
         strengthProgress.style.backgroundColor = "#FF0000";
@@ -78,9 +77,9 @@ function calPassScore(){
     showWarningMessage({message: i18n.getMessage('sync_password_alert')});
   }
   else if (score >= 128) {
-    strengthProgress.style.width = "100%"
     strengthProgress.style.backgroundColor = "#008000";
   }
+  strengthProgress.style.width = (score/128)*100 + "%";
   scoreNum.innerText = score;
 }
 

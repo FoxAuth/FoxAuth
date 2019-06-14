@@ -73,12 +73,13 @@
 
 #strengthProgress {
     height: 15px;
-    text-align: center;
+    transition: width 0.5s ease;
 }
 
 #scoreNum {
     position: absolute;
     left: 50%;
+    font-size: 0.9rem;
 }
 
 #keepassInfo {
