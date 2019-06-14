@@ -53,6 +53,7 @@ const shadowCover = document.querySelector('.warning-cover');
 const exportBtn = document.getElementById('exportBtn');
 const importBtn = document.getElementById('importBtn');
 const strengthProgress = document.getElementById('strengthProgress');
+const scoreNum = document.getElementById('scoreNum');
 
 function calPassScore(){
   let score = QualityEstimation(passwordInput.value);
@@ -80,6 +81,7 @@ function calPassScore(){
     strengthProgress.style.width = "100%"
     strengthProgress.style.backgroundColor = "#008000";
   }
+  scoreNum.innerText = score;
 }
 
 passwordInput.addEventListener('input', debounce(calPassScore, {

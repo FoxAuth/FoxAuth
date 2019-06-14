@@ -62,17 +62,25 @@
     align-items: center;
     width: 250px;
     border-radius: 2px;
-    height: 10px;
+    height: 15px;
     background-color: rgba(237, 237, 240, 0.3);
     border: 1px solid rgba(12, 12, 13, 0.3);
     margin-top: 6px;
+    margin-bottom: 6px;
     margin-left: 4px;
+    position: relative;
 }
 
 #strengthProgress {
-    height: 10px;
+    height: 15px;
+    text-align: center;
 }
 
-#keepassInfo{
+#scoreNum {
+    position: absolute;
+    left: 45%;
+}
+
+#keepassInfo, #progressLabel {
     vertical-align: middle;
 }
