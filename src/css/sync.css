@@ -60,7 +60,7 @@
 #passwordStrength {
     display: flex;
     align-items: center;
-    width: 250px;
+    width: 258px;
     border-radius: 2px;
     height: 15px;
     background-color: rgba(237, 237, 240, 0.3);
@@ -78,9 +78,9 @@
 
 #scoreNum {
     position: absolute;
-    left: 45%;
+    left: 50%;
 }
 
-#keepassInfo, #progressLabel {
+#keepassInfo {
     vertical-align: middle;
 }

@@ -319,10 +319,6 @@
     "message": "ATTENZIONE: <span id=\"specialCapt\"><strong>NESSUNO<\/strong><\/span> può aiutarti se hai perso questo.",
     "description": "Form label in encryption form in Backup & Sync page"
   },
-  "sync_password_strength": {
-    "message": "Robustezza password: ",
-    "description": "Label for password strength meter"
-  },
   "sync_password_alert": {
     "message": "La tua password è facile da indovinare. Pensa due volte prima di utilizzarla.",
     "description": "Alert text for a known popular password"

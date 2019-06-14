@@ -319,10 +319,6 @@
     "message": "警告：<span id=\"specialCapt\">丢失密码 <strong>神仙难救</strong></span>",
     "description": "Form label in encryption form in Backup & Sync page"
   },
-  "sync_password_strength": {
-    "message": "密码强度：",
-    "description": "Label for password strength meter"
-  },
   "sync_password_alert": {
     "message": "该密码为已知的流行弱密码，使用前请三思",
     "description": "Alert text for a known popular password"
