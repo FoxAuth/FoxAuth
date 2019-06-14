@@ -94,7 +94,13 @@ passwordInput.addEventListener('change', debounce(calPassScore, {
   head: false,
 }));
 
-confirmBtn.addEventListener('click', function(){strengthProgress.style.width = 0;});
+function resetProgress() {
+  scoreNum.innerText = 0;
+  strengthProgress.style.width = 0;
+}
+
+confirmBtn.addEventListener('click', resetProgress);
+decryptBtn.addEventListener('click', resetProgress);
 
 const openMessage = (function() {
   let zIndex = 11;
