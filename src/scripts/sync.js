@@ -55,30 +55,36 @@ const importBtn = document.getElementById('importBtn');
 const strengthProgress = document.getElementById('strengthProgress');
 const scoreNum = document.getElementById('scoreNum');
 
+function progressColor(colors, progress) {
+  const level = Math.floor(progress);
+  const startColorRgb = colors[Math.max(0, Math.min(level, colors.length - 1))]
+  const endColorRgb = colors[Math.max(0, Math.min(level + 1, colors.length - 1))]
+  const current = progress - level;
+  return 'rgb(' +
+    (startColorRgb[0] - (startColorRgb[0] - endColorRgb[0]) * current) + ',' +
+    (startColorRgb[1] - (startColorRgb[1] - endColorRgb[1]) * current) + ',' +
+    (startColorRgb[2] - (startColorRgb[2] - endColorRgb[2]) * current) + ')'
+}
+
 function calPassScore(){
   let score = QualityEstimation(passwordInput.value);
-  if (score >= 0 && score < 128) {
-    switch (true) {
-      case (score <= 64):
-        strengthProgress.style.backgroundColor = "#FF0000";
-      break;
-      case (score > 64 && score <= 80):
-        strengthProgress.style.backgroundColor = "#FFA500";
-      break;
-      case (score > 80 && score <= 112):
-        strengthProgress.style.backgroundColor = "#FFFF00";
-      break;
-      case (score > 112 && score < 128):
-        strengthProgress.style.backgroundColor = "#00FF00";
-      break;
-    }
-  } else if (score === "Matched"){
+  if (score === "Matched"){
     score = 0;
     showWarningMessage({message: i18n.getMessage('sync_password_alert')});
   }
-  else if (score >= 128) {
-    strengthProgress.style.backgroundColor = "#008000";
-  }
+  let colorProgress = score < 64 && score / 64 ||
+    score < 80 && 1 + (score - 64) / (80 - 64) ||
+    score < 112 && 2 + (score - 80) / (112 - 80) ||
+    score < 128 && 3 + (score - 112) / (128 - 112) ||
+    4;
+  strengthProgress.style.backgroundColor  = progressColor([
+      [244, 67, 54],
+      [255, 152, 0],
+      [255, 235, 59],
+      [205, 220, 57],
+      [76, 175, 80]
+    ], colorProgress)
+  
   strengthProgress.style.width = (score/128)*100 + "%";
   scoreNum.innerText = score;
 }
