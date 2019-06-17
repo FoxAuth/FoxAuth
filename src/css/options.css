@@ -589,8 +589,12 @@ hr {
 
 hr:after {
   background: #fff;
-  content:url(../icons/options/more\ options.svg);
+  content: url(../icons/options/more\ options.svg);
   padding: 0 4px;
   position: relative;
   top: -13px;
+}
+
+details[open] hr:after{
+  content: url(../icons/options/less\ options.svg);
 }
