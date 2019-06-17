@@ -597,8 +597,10 @@ hr:after {
   padding: 0 4px;
   position: relative;
   top: -13px;
+  display: inline-block;
+  transition: transform .3s;
 }
 
 details[open] hr:after{
-  content: url(../icons/options/less\ options.svg);
+  transform: rotate(180deg);
 }
