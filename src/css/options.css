@@ -602,5 +602,5 @@ hr:after {
 }
 
 details[open] hr:after{
-  transform: rotate(180deg);
+  transform: rotate(-180deg);
 }
