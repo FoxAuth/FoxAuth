@@ -363,6 +363,14 @@
     "message": "I vostri dati remoti saranno sovrascritti a causa delle diverse impostazioni di crittografia",
     "description": "Message during sync for data overwriting confirmation"
   },
+  "sync_compress_local_warning": {
+    "message": "Your local data will be overwritten due to different compression settings",
+    "description": "Message during sync for data overwriting confirmation"
+  },
+  "sync_compress_remote_warning": {
+    "message": "Your remote data will be overwritten due to different compression settings",
+    "description": "Message during sync for data overwriting confirmation"
+  },
   "sync_wrong_password": {
     "message": "Password sbagliata",
     "description": "Error message during decryption"

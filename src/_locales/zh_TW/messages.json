@@ -363,6 +363,14 @@
     "message": "由於加密設定不同，您遠端資料將會被覆蓋",
     "description": "Message during sync for data overwriting confirmation"
   },
+  "sync_compress_local_warning": {
+    "message": "由於壓縮設定不同，您本機資料將會被覆蓋",
+    "description": "Message during sync for data overwriting confirmation"
+  },
+  "sync_compress_remote_warning": {
+    "message": "由於壓縮設定不同，您遠端資料將會被覆蓋",
+    "description": "Message during sync for data overwriting confirmation"
+  },
   "sync_wrong_password": {
     "message": "密碼錯誤",
     "description": "Error message during decryption"

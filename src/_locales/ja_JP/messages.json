@@ -363,6 +363,14 @@
     "message": "暗号化設定が異なるために、リモートデータが上書きされます",
     "description": "Message during sync for data overwriting confirmation"
   },
+  "sync_compress_local_warning": {
+    "message": "圧縮設定が異なるために、ローカルデータが上書きされます",
+    "description": "Message during sync for data overwriting confirmation"
+  },
+  "sync_compress_remote_warning": {
+    "message": "圧縮設定が異なるために、リモートデータが上書きされます",
+    "description": "Message during sync for data overwriting confirmation"
+  },
   "sync_wrong_password": {
     "message": "誤ったパスワード",
     "description": "Error message during decryption"
