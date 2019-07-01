@@ -227,7 +227,7 @@ body {
 }
 
 .top-bar .actions .actiongroupbox {
-  position: relative;
+  position: inherit;
   left: 0px;
   z-index: 1;
   transition: all 1s;
@@ -257,6 +257,7 @@ body {
   }
 
   .top-bar .actions .actiongroupbox {
+    position: relative;
     display: block;
     width: auto;
   }

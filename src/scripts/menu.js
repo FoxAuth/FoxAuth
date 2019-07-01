@@ -27,6 +27,7 @@ function manytabsbtn_resize() {
       divmanytabsbtnboxR.style.display = "none";
     } else {
       divactiongroupbox.style.left = 0;
+      divmanytabsbtnboxL.style.display = "none";
     }
   } else {
     divmanytabsbtnboxR.style.display = "none";
