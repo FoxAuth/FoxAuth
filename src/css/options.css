@@ -2,25 +2,6 @@ body {
   padding-top: 4em;
 }
 
-.menu-btn {
-  background: transparent;
-  border: #d7d7db solid 1px;
-  border-radius: 2px;
-  min-width: auto;
-}
-
-.menu-btn:hover {
-  background: rgba(12, 12, 13, 0.1);
-}
-
-.menu-btn:active {
-  background: rgba(12, 12, 13, 0.2);
-}
-
-.menu-btn:focus {
-  box-shadow: 0 0 0 1px #0a84ff inset, 0 0 0 1px #0a84ff, 0 0 0 4px rgba(10, 132, 255, 0.3);
-}
-
 .top-bar {
   display: flex;
   font-size: 17px;
@@ -30,6 +11,10 @@ body {
   width: 100%;
   white-space: nowrap;
   z-index: 10;
+}
+
+.top-bar div {
+  box-sizing: content-box;
 }
 
 .top-bar .imageLogo {
@@ -59,7 +44,6 @@ body {
 .top-bar .actions {
   flex: 4;
   display: flex;
-  overflow: hidden;
   transition: max-height .5s ease;
 }
 
@@ -164,34 +148,117 @@ body {
   box-shadow: 0 0 0 1px #0a84ff inset, 0 0 0 1px #0a84ff, 0 0 0 4px rgba(10, 132, 255, 0.3);
 }
 
-@media (min-width: 768px) {
-  .top-bar .actions {
-    max-height: none !important;
-  }
+.top-bar .actions .manytabsbtnbox {
+  position: absolute;
+  display: none;
+  height: 100%;
+  width: 49px;
+  z-index: 2;
 }
 
-@media (max-width: 768px) {
-  .top-bar .logo-header button {
-    display: block;
+.top-bar .actions #manytabsbtnboxL {
+  left: 150px;
+}
+
+.top-bar .actions #manytabsbtnboxR {
+  right: 0;
+}
+
+.top-bar .actions .manytabsbtnbox .manytabsbtn {
+  width: 24px;
+  height: 100%;
+  border-color: #cecece;
+  border-width: 1px;
+  border-style: none;
+  white-space: nowrap;
+  display: inline-block;
+  background-color: #FFF;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.top-bar .actions .manytabsbtnbox .manytabsbtn:hover {
+  background-color: #e6e6e6;
+}
+
+.top-bar .actions .manytabsbtnbox .manytabsbtn:active {
+  background-color: #cecece;
+}
+
+.top-bar .actions #manytabsbtnboxL .manytabsbtn {
+  border-right-style: solid;
+}
+
+.top-bar .actions #manytabsbtnboxR .manytabsbtn {
+  border-left-style: solid;
+}
+
+.top-bar .actions .manytabsbtnbox .manytabsbtnico {
+  position: relative;
+  width: 10px;
+  height: 10px;
+  border-top: 2px solid rgba(12, 12, 13, 0.8);
+  border-left: 2px solid rgba(12, 12, 13, 0.8);
+  top: 25px;
+}
+
+.top-bar .actions #manytabsbtnboxL .manytabsbtnico {
+  transform:rotate(-45deg);
+  left: 8px;
+}
+
+.top-bar .actions #manytabsbtnboxR .manytabsbtnico {
+  transform:rotate(135deg);
+  left: 2px;
+}
+
+.top-bar .actions .manytabsbtnbox .manytabsgradient {
+  display: inline-block;
+  width: 24px;
+  height: 100%;
+}
+
+.top-bar .actions #manytabsbtnboxL .manytabsgradient {
+  background: linear-gradient(to right, #FFF, rgba(255,255,255,0));
+}
+
+.top-bar .actions #manytabsbtnboxR .manytabsgradient {
+  background: linear-gradient(to left, #FFF, rgba(255,255,255,0));
+}
+
+.top-bar .actions .actiongroupbox {
+  position: relative;
+  left: 0px;
+  z-index: 1;
+  transition: all 1s;
+  display: flex;
+  width: 100%;
+}
+
+@media (max-width: 750px) {
+  .top-bar .logo-header {
+    flex: none;
+    width: 150px;
   }
 
-  .top-bar,
   .top-bar .actions {
-    flex-direction: column;
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
   }
 
   .top-bar .actions .action-group {
-    padding-top: 10px;
-    padding-bottom: 10px;
+    display: inline-flex;
+    width: 150px;
   }
 
-  .top-bar .logo-header {
-    display: flex;
-    justify-content: space-between;
+  .top-bar .actions .action-group .icon {
+    display: inline-block;
   }
 
-  .top-bar .actions {
-    max-height: 0;
+  .top-bar .actions .actiongroupbox {
+    display: block;
+    width: auto;
   }
 }
 
