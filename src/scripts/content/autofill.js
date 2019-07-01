@@ -188,6 +188,9 @@ function matchOTP() {
             case eq("app.vagrantup.com"):
                 matchIssuer = "Vagrant Cloud by HashiCorp"
                 break;
+            case eq("access.ripe.net"):
+                matchIssuer = "RIPE NCC"
+                break;
             default:
                 matchTarget = matchTarget.split('.').reverse();
                 matchIssuer = matchTarget[1] || matchTarget[0];
@@ -349,6 +352,11 @@ function hackTotpDom(input) {
     //hack for PyPi
     if (host.indexOf('pypi.org') >= 0) {
         return otpOwnerDoc.getElementById('totp_value');
+    }
+
+    //hack for RIPE NCC
+    if (host.indexOf('access.ripe.net') >= 0) {
+        return otpOwnerDoc.querySelector('[name="securityCode"]');
     }
 
     return input;

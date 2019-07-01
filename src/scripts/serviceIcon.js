@@ -88,6 +88,7 @@ export default function getServiceIconNames(){
     'pypi',
     'realvnc',
     'reddit',
+    'ripe ncc',
     'robinhood',
     'roboform',
     'seafile',
