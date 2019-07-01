@@ -667,6 +667,7 @@ hr:after {
   top: -13px;
   display: inline-block;
   transition: transform .3s;
+  border-radius: 100%;
 }
 
 details[open] hr:after{
