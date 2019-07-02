@@ -339,10 +339,6 @@
     "message": "仅保存于一个浏览器会话",
     "description": "Radio form list text in encryption form in Backup & Sync page"
   },
-  "sync_not_remember": {
-    "message": "从不保存密码为扩展数据（此时 Firefox 仍会询问是否存储于浏览器密码区）",
-    "description": "Radio form list text in encryption form in Backup & Sync page"
-  },
   "sync_forget_password": {
     "message": "忘记密码",
     "description": "Button text in encryption form in Backup & Sync page"

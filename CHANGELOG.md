@@ -1,14 +1,13 @@
 # Changelog
 All changes per revisioning to this project will be documented in this file. All dates used in this file are recorded as UTC+8.
 
-## v 1.5.3 - Jun th 2019
+## v 1.5.3 - Jul th 2019
 ### New 💡
 - add an option to compress data on sync (can be laggy on extremely old devices)
   - displayed as a hidden item
 - encryption password strength meter (with algorithm from KeePass)
   - progress color will change as your password strength level defined by [KeePass](https://keepass.info/help/kb/pw_quality_est.html)
   - force to check if your password is popular (with a local list). Source [here](https://github.com/danielmiessler/SecLists/blob/master/Passwords/Common-Credentials/10-million-password-list-top-10000.txt). A warning will be displayed if matched (you password strength score will be then zero)
-- add an option to not saving password as extension data
 - Italian (it) locale added
 ### Changes 📝
 - tab buttons on option page now has [Photon styles](https://design.firefox.com/photon/components/tabs.html)
