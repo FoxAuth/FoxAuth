@@ -76,9 +76,9 @@
     transition: width 0.5s ease, background-color 0.5s ease;
 }
 
-#scoreNum {
+#scoreTxt {
     position: absolute;
-    left: 50%;
+    left: 3%;
     font-size: 0.9rem;
 }
 

@@ -54,6 +54,7 @@ const exportBtn = document.getElementById('exportBtn');
 const importBtn = document.getElementById('importBtn');
 const strengthProgress = document.getElementById('strengthProgress');
 const scoreNum = document.getElementById('scoreNum');
+const scoreLv = document.getElementById('scoreLv');
 
 function progressColor(colors, progress) {
   const level = Math.floor(progress);
@@ -87,6 +88,12 @@ function calPassScore(){
   
   strengthProgress.style.width = (score/128)*100 + "%";
   scoreNum.innerText = score;
+  scoreLv.innerText = 
+  score < 64 ? i18n.getMessage("sync_password_lv1") :
+  score < 80 ? i18n.getMessage("sync_password_lv2") :
+  score < 112 ? i18n.getMessage("sync_password_lv3") :
+  score < 128 ? i18n.getMessage("sync_password_lv4") :
+  i18n.getMessage("sync_password_lv5")
 }
 
 passwordInput.addEventListener('keyup', debounce(calPassScore, {
@@ -102,6 +109,7 @@ passwordInput.addEventListener('change', debounce(calPassScore, {
 
 function resetProgress() {
   scoreNum.innerText = 0;
+  scoreLv.innerText = i18n.getMessage("sync_password_lv_NaN");
   strengthProgress.style.width = 0;
 }
 

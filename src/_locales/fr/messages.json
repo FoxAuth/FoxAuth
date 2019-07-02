@@ -375,6 +375,30 @@
     "message": "Your remote data will be overwritten due to different compression settings",
     "description": "Message during sync for data overwriting confirmation"
   },
+  "sync_password_lv_NaN": {
+    "message": "N/A",
+    "description": "Password strength unknown"
+  },
+  "sync_password_lv1": {
+    "message": "Very weak",
+    "description": "Password strength lv1"
+  },
+  "sync_password_lv2": {
+    "message": "Weak",
+    "description": "Password strength lv2"
+  },
+  "sync_password_lv3": {
+    "message": "Moderate",
+    "description": "Password strength lv3"
+  },
+  "sync_password_lv4": {
+    "message": "Strong",
+    "description": "Password strength lv4"
+  },
+  "sync_password_lv5": {
+    "message": "Very strong",
+    "description": "Password strength lv5"
+  },
   "sync_wrong_password": {
     "message": "Mot de passe incorrect",
     "description": "Error message during decryption"
