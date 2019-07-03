@@ -196,7 +196,7 @@
     "description": "Option: whether enable compression when syncing"
   },
   "tokens_warning_message_content": {
-    "message": "删除账号信息不会禁用账号的二步验证。请确认您不会因此拒绝访问您的账号。",
+    "message": "删除账户信息不会禁用账户的二步验证。请确认您不会因此而被拒绝访问您的账户。",
     "description": "warning text before account deletion"
   },
   "search_account_infos": {
@@ -272,11 +272,11 @@
     "description": "Tooltip for top buttons in popup"
   },
   "popup_title_display_all_accounts": {
-    "message": "展示所有账号",
+    "message": "展示所有账户",
     "description": "Tooltip for autohide buttons in popup"
   },
   "popup_title_hide_other_accounts": {
-    "message": "隐藏其它账号",
+    "message": "隐藏其它账户",
     "description": "Tooltip for autohide buttons in popup"
   },
   "popup_otp_copied": {
@@ -300,7 +300,7 @@
     "description": "Texture above sync buttons after you are connected"
   },
   "sync_encrypt_descrypt": {
-    "message": "加密与加密",
+    "message": "加密与解密",
     "description": "Texture above sync encryption form in Backup & Sync page"
   },
   "sync_password_tip": {
@@ -352,19 +352,19 @@
     "description": "Texture under import buttons in Backup & Sync page"
   },
   "sync_overwite_local_warning": {
-    "message": "由于加密设置区别，本地数据将被覆盖",
+    "message": "由于加密设置不同，本地数据将被覆盖",
     "description": "Message during sync for data overwriting confirmation"
   },
   "sync_overwite_remote_warning": {
-    "message": "由于加密设置区别，远端数据将被覆盖",
+    "message": "由于加密设置不同，远端数据将被覆盖",
     "description": "Message during sync for data overwriting confirmation"
   },
   "sync_compress_local_warning": {
-    "message": "由于压缩设置区别，本地数据将被覆盖",
+    "message": "由于压缩设置不同，本地数据将被覆盖",
     "description": "Message during sync for data overwriting confirmation"
   },
   "sync_compress_remote_warning": {
-    "message": "由于压缩设置区别，远端数据将被覆盖",
+    "message": "由于压缩设置不同，远端数据将被覆盖",
     "description": "Message during sync for data overwriting confirmation"
   },
   "sync_password_lv_NaN": {
@@ -396,7 +396,7 @@
     "description": "Error message during decryption"
   },
   "sync_not_the_same_password": {
-    "message": "请输入两次前后一致的密码",
+    "message": "两次密码输入不一致",
     "description": "Error message during encryption/decryption"
   },
   "sync_encrypt_decrypt_error": {
