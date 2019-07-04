@@ -23,6 +23,7 @@ export default function getServiceIconNames(){
     'controlpanellivesystem',
     'crowdin.com',
     'dashlane',
+    'digicert',
     'digidentity',
     'digitalocean',
     'discord',
@@ -65,6 +66,7 @@ export default function getServiceIconNames(){
     'name.com',
     'namecheap',
     'namesilo',
+    'niconico',
     'nintendo account',
     'npmjs',
     'nutstore',
@@ -107,6 +109,7 @@ export default function getServiceIconNames(){
     'twitter',
     'uber',
     'ubisoft',
+    'unity',
     'uphold',
     'v2ex',
     'vagrant cloud by hashicorp',
@@ -118,6 +121,7 @@ export default function getServiceIconNames(){
     'yahoo',
     'yandex',
     'zapier',
+    'zendesk',
     'zoho'
   ];
   return arr

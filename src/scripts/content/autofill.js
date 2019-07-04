@@ -103,7 +103,7 @@ function matchOTP() {
   
     var matchTarget = window.location.hostname;
     var matchIssuer;
-    const prematchedDomain = ["presearch.org", "crowdin.com", "posteo.de", "wordpress.com", "posteo.de", "gitlab.com", "binance.com", "name.com", "lichess.org", "privacy.com"];
+    const prematchedDomain = ["presearch.org", "crowdin.com", "posteo.de", "wordpress.com", "posteo.de", "gitlab.com", "binance.com", "name.com", "lichess.org", "privacy.com", "id.unity.com"];
     if (prematchedDomain.includes(matchTarget)) {
         matchIssuer = matchTarget;
     } else {
@@ -190,6 +190,9 @@ function matchOTP() {
                 break;
             case eq("access.ripe.net"):
                 matchIssuer = "RIPE NCC"
+                break;
+            case eq("account.nicovideo.jp"):
+                matchIssuer = "niconico"
                 break;
             default:
                 matchTarget = matchTarget.split('.').reverse();
