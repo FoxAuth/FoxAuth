@@ -72,6 +72,8 @@ function calPassScore(){
   if (score === "Matched"){
     score = 0;
     showWarningMessage({message: i18n.getMessage('sync_password_alert')});
+  } else if (score < 80) {
+    showWarningMessage({message: i18n.getMessage('sync_password_alert')});
   }
   let colorProgress = score < 64 && score / 64 ||
     score < 80 && 1 + (score - 64) / (80 - 64) ||
@@ -97,12 +99,12 @@ function calPassScore(){
 }
 
 passwordInput.addEventListener('keyup', debounce(calPassScore, {
-  wait: 100,
+  wait: 300,
   trailing: true,
   head: false,
 }));
 passwordInput.addEventListener('change', debounce(calPassScore, {
-  wait: 100,
+  wait: 300,
   trailing: true,
   head: false,
 }));
@@ -140,7 +142,7 @@ const openMessage = (function() {
       setTimeout(() => {
         container.style.display = 'none';
         shadowCover.style.display = 'none';
-      }, 300);
+      }, 1000);
     };
     cancelBtn.addEventListener('click', cancelFunc);
     // confirm
