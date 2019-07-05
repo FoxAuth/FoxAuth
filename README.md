@@ -28,7 +28,7 @@
 
 ## Introduction
 
-Auth Plus is an [TOTP](https://wikipedia.org/wiki/Time-based_One-time_Password_algorithm) browser client with autofill support for __Firefox__ and __Firefox Android__
+Auth Plus is a [TOTP](https://wikipedia.org/wiki/Time-based_One-time_Password_algorithm) browser client with autofill support for __Firefox__ and __Firefox Android__
 
 > 2FA made no longer annoying but enjoyable
 
@@ -85,7 +85,7 @@ FoxAuth is licensed under __GNU General Public License 3.0__
 
 ```plain
 Auth Plus is a Firefox (for Desktop / Android) authenticator that can autofill TOTP codes
-Copyright (C) 2018 FoxAuth contributors
+Copyright (C) 2019 FoxAuth contributors
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
