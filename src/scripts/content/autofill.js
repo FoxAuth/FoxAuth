@@ -207,85 +207,81 @@ function ignoreFirstAtSymbol(userName) {
 }
 
 async function getTotpKey(userName) {
-    if (!userName) return '';
-    const removeAtIssuer = (function (issuers) {
-        return function(account) {
-            const { hostname: currentHost } = window.location;
-            let matched = issuers.find((issuer) => {
-                if (typeof issuer === 'string') {
-                    return issuer === currentHost;
-                } else {
-                    return issuer[0] === currentHost;
+    if (userName) {
+        const removeAtIssuer = (function (issuers) {
+            return function(account) {
+                const { hostname: currentHost } = window.location;
+                let matched = issuers.find((issuer) => {
+                    if (typeof issuer === 'string') {
+                        return issuer === currentHost;
+                    } else {
+                        return issuer[0] === currentHost;
+                    }
+                });
+                if (!matched) return account;
+                if (Array.isArray(matched)) {
+                    matched = matched[1];
                 }
-            });
-            if (!matched) return account;
-            if (Array.isArray(matched)) {
-                matched = matched[1];
+                account = account.replace(new RegExp(`@${matched}$`), '');
+                return account;
             }
-            account = account.replace(new RegExp(`@${matched}$`), '');
-            return account;
+        })([
+            // [hostname to match, actual issuer]
+            ['www.plurk.com', 'plurk'],
+            // actual issuer
+            'console.online.net'
+        ]);
+
+        const issuer = matchOTP();
+
+        const { accountInfos, tabInfo } = await browser.runtime.sendMessage({
+            id: 'getAccountAndContainer'
+        })
+
+        userName = ignoreFirstAtSymbol(userName)
+        const infos = accountInfos.map((item) => {
+            item = {...item};
+            item.localAccountName = ignoreFirstAtSymbol(removeAtIssuer(item.localAccountName));
+            return item;
+        });
+
+        const filteredInfos = infos.filter(account => {
+            let cookieStoreIdMatch = false;
+            if (
+                (tabInfo.cookieStoreId === 'firefox-default' && (!account.containerAssign))
+                ||
+                (tabInfo.cookieStoreId === account.containerAssign)
+            ) {
+                cookieStoreIdMatch = true;
+            }
+            if (!cookieStoreIdMatch) {
+                return false;
+            }
+            if (Array.isArray(issuer)) {
+                return issuer.some(i => i.toLowerCase() === account.localIssuer.toLowerCase());
+            } else {
+            return account.localIssuer.toLowerCase() === issuer.toLowerCase();
+            }
+        });
+
+        const account = filteredInfos.length === 1 ? filteredInfos[0] :
+            filteredInfos.find(
+                info => info.localAccountName.toLowerCase() === userName.toLowerCase()
+            );
+
+        if (!account) {
+            return null;
         }
-    })([
-        // [hostname to match, actual issuer]
-        ['www.plurk.com', 'plurk'],
-        // actual issuer
-        'console.online.net'
-    ]);
 
-    const issuer = matchOTP();
-
-    const { accountInfos, tabInfo } = await browser.runtime.sendMessage({
-        id: 'getAccountAndContainer'
-    })
-
-    userName = ignoreFirstAtSymbol(userName)
-    const infos = accountInfos.map((item) => {
-        item = {...item};
-        item.localAccountName = ignoreFirstAtSymbol(removeAtIssuer(item.localAccountName));
-        return item;
-    });
-
-
-    const filteredInfos = infos.filter(account => {
-        let cookieStoreIdMatch = false;
-        if (
-            (tabInfo.cookieStoreId === 'firefox-default' && (!account.containerAssign))
-            ||
-            (tabInfo.cookieStoreId === account.containerAssign)
-        ) {
-            cookieStoreIdMatch = true;
-        }
-        if (!cookieStoreIdMatch) {
-            return false;
-        }
-        if (Array.isArray(issuer)) {
-            return issuer.some(i => i.toLowerCase() === account.localIssuer.toLowerCase());
-          } else {
-           return account.localIssuer.toLowerCase() === issuer.toLowerCase();
-        }
-    });
-
-    const account = filteredInfos.length === 1 ? filteredInfos[0] :
-        filteredInfos.find(
-            info => info.localAccountName.toLowerCase() === userName.toLowerCase()
-        );
-
-
-    if (!account) {
-        return '';
+        const totpKey = await browser.runtime.sendMessage({
+            id: 'getTotpKey',
+            period: account.localOTPPeriod,
+            digits: account.localOTPDigits,
+            token: account.localSecretToken,
+            otpType: /steam/i.test(account.localIssuer) ? 4 : 1
+        });
+        return totpKey;
     }
-
-
-
-
-    const totpKey = await browser.runtime.sendMessage({
-        id: 'getTotpKey',
-        period: account.localOTPPeriod,
-        digits: account.localOTPDigits,
-        token: account.localSecretToken,
-        otpType: /steam/i.test(account.localIssuer) ? 4 : 1
-    });
-    return totpKey;
 }
 async function fillKeyToActiveEl() {
     let { activeElement } = document;
