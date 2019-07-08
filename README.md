@@ -15,7 +15,7 @@
     </a>
   </a>
   ·
-    <a href="https://t.me/joinchat/Flgxfkm5Q2c8JayWirYTmA">
+    <a href="https://t.me/joinchat/AAAAAEsInYRqQZ4eD4VEuQ">
       <img src="https://img.shields.io/badge/Telegram-Join%20Chat-red.svg?style=flat-square" alt="Telegram link" />
     </a>
       ·
@@ -85,7 +85,7 @@ FoxAuth is licensed under __GNU General Public License 3.0__
 
 ```plain
 Auth Plus is a Firefox (for Desktop / Android) authenticator that can autofill TOTP codes
-Copyright (C) 2019 FoxAuth contributors
+Copyright (C) 2017-19 FoxAuth contributors
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by

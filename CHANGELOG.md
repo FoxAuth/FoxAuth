@@ -1,7 +1,7 @@
 # Changelog
 All changes per revisioning to this project will be documented in this file. All dates used in this file are recorded as UTC+8.
 
-## v 1.5.3 - Jul th 2019
+## v 1.6.0 - Jul th 2019
 ### New 💡
 - add an option to compress data on sync (can be laggy on extremely old devices)
   - displayed as a hidden item
@@ -15,6 +15,7 @@ All changes per revisioning to this project will be documented in this file. All
 ### Fixed 🔨
 - sidebar will be now refreshed across account actions
 - go-to-top button in popup disappeared sometimes
+- multiple minor fixes
 
 ## v 1.5.2 - May 23rd 2019
 ### New 💡
