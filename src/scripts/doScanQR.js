@@ -113,6 +113,9 @@ function hackOtpInfo(otpInfo, from) {
         case isLike(/faceit/i):
             otpInfo.issuer = "FACEIT";
             break;
+        case isLike(/localbitcoins/i):
+            otpInfo.issuer = "LocalBitcoins";
+            break;
     }
     return otpInfo;
 }

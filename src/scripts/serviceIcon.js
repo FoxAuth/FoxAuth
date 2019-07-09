@@ -61,6 +61,7 @@ export default function getServiceIconNames(){
     'lichess.org',
     'linode',
     'liuli',
+    'localbitcoins',
     'logmein accounts',
     'mailchimp',
     'mailgun',
