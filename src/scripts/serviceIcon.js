@@ -17,6 +17,7 @@ export default function getServiceIconNames(){
     'bitwarden',
     'bugzilla@mozilla',
     'ciscooneidentity',
+    'cloudconvert',
     'cloudflare',
     'codeberg',
     'codegiant',
