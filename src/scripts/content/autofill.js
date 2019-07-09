@@ -358,6 +358,11 @@ function hackTotpDom(input) {
         return otpOwnerDoc.querySelector('[name="securityCode"]');
     }
 
+    // hack for constellix
+    if (host.indexOf('constellix.com') >= 0) {
+        return otpOwnerDoc.getElementById('timeBasedOneTimePassword');
+    }
+
     return input;
 }
 

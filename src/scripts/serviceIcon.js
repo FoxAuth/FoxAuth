@@ -21,6 +21,7 @@ export default function getServiceIconNames(){
     'cloudflare',
     'codeberg',
     'codegiant',
+    'constellix',
     'controlpanellivesystem',
     'crowdin.com',
     'dashlane',
