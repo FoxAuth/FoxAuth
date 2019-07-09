@@ -38,6 +38,7 @@ export default function getServiceIconNames(){
     'facebook',
     'faceit',
     'fallback',
+    'fastly',
     'fastmail',
     'firefox',
     'gandi',
