@@ -68,6 +68,7 @@ export default function getServiceIconNames(){
     'linotp',
     'liuli',
     'localbitcoins',
+    'login.gov',
     'logmein accounts',
     'mailchimp',
     'mailgun',

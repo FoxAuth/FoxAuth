@@ -197,6 +197,9 @@ function matchOTP() {
             case eq("login.mailbox.org"):
                 matchIssuer = "LinOTP"
                 break;
+            case eq("secure.login.gov"):
+                matchIssuer = "Login.gov"
+                break;
             default:
                 matchTarget = matchTarget.split('.').reverse();
                 matchIssuer = matchTarget[1] || matchTarget[0];
