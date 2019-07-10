@@ -120,7 +120,7 @@ function hackOtpInfo(otpInfo, from) {
             otpInfo.issuer = "Arena";
             break;
         case isLike(/atechmedia/i):
-            otpInfo.issuer = "AtechMedia";
+            otpInfo.issuer = "aTechMedia";
             break;
     }
     return otpInfo;

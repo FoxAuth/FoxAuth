@@ -90,6 +90,7 @@ export default function getServiceIconNames(){
     'office',
     'oneprovider',
     'online.net',
+    'ovh',
     'owncloud',
     'packet',
     'patreon',
