@@ -194,6 +194,9 @@ function matchOTP() {
             case eq("account.nicovideo.jp"):
                 matchIssuer = "niconico"
                 break;
+            case eq("login.mailbox.org"):
+                matchIssuer = "LinOTP"
+                break;
             default:
                 matchTarget = matchTarget.split('.').reverse();
                 matchIssuer = matchTarget[1] || matchTarget[0];
@@ -207,7 +210,7 @@ function ignoreFirstAtSymbol(userName) {
 }
 
 async function getTotpKey(userName) {
-    if (userName) {
+    if (!userName) return '';
         const removeAtIssuer = (function (issuers) {
             return function(account) {
                 const { hostname: currentHost } = window.location;
@@ -270,7 +273,7 @@ async function getTotpKey(userName) {
             );
 
         if (!account) {
-            return null;
+            return '';
         }
 
         const totpKey = await browser.runtime.sendMessage({
@@ -281,7 +284,6 @@ async function getTotpKey(userName) {
             otpType: /steam/i.test(account.localIssuer) ? 4 : 1
         });
         return totpKey;
-    }
 }
 async function fillKeyToActiveEl() {
     let { activeElement } = document;
@@ -361,6 +363,11 @@ function hackTotpDom(input) {
     // hack for constellix
     if (host.indexOf('constellix.com') >= 0) {
         return otpOwnerDoc.getElementById('timeBasedOneTimePassword');
+    }
+
+    // hack for porkbun
+    if (host.indexOf('porkbun.com') >= 0) {
+        return otpOwnerDoc.getElementById('twoFactorLoginCode');
     }
 
     return input;
