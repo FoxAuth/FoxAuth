@@ -6,6 +6,7 @@ export default function getServiceIconNames(){
     'aliyun',
     'amazon',
     'apple',
+    'arena',
     'atlassian',
     'autodesk',
     'aws',
