@@ -128,6 +128,7 @@ export default function getServiceIconNames(){
     'stackpathprod',
     'steam',
     'stripe',
+    'sync',
     'synology',
     'teamviewer',
     'tebex.io',
