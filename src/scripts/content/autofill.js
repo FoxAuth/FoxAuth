@@ -200,6 +200,9 @@ function matchOTP() {
             case eq("secure.login.gov"):
                 matchIssuer = "Login.gov"
                 break;
+            case eq("server.tebex.io"):
+                matchIssuer = "Tebex.io"
+                break;
             default:
                 matchTarget = matchTarget.split('.').reverse();
                 matchIssuer = matchTarget[1] || matchTarget[0];

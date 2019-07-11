@@ -122,6 +122,12 @@ function hackOtpInfo(otpInfo, from) {
         case isLike(/atechmedia/i):
             otpInfo.issuer = "aTechMedia";
             break;
+        case isLike(/okta/i):
+            otpInfo.issuer = "okta";
+            break;
+        case isLike(/meraki/i):
+            otpInfo.issuer = "Meraki";
+            break;
     }
     return otpInfo;
 }
