@@ -77,6 +77,7 @@ export default function getServiceIconNames(){
     'localbitcoins',
     'login.gov',
     'logmein accounts',
+    'macstadium',
     'mailchimp',
     'mailgun',
     'mapbox',
