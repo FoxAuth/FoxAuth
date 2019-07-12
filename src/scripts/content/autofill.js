@@ -103,7 +103,7 @@ function matchOTP() {
   
     var matchTarget = window.location.hostname;
     var matchIssuer;
-    const prematchedDomain = ["presearch.org", "crowdin.com", "posteo.de", "wordpress.com", "posteo.de", "gitlab.com", "binance.com", "name.com", "lichess.org", "privacy.com", "id.unity.com", "www.pythonanywhere.com"];
+    const prematchedDomain = ["presearch.org", "crowdin.com", "posteo.de", "wordpress.com", "posteo.de", "gitlab.com", "binance.com", "name.com", "lichess.org", "privacy.com", "id.unity.com", "www.pythonanywhere.com", "customer.io"];
     if (prematchedDomain.includes(matchTarget)) {
         matchIssuer = matchTarget;
     } else {
@@ -202,6 +202,12 @@ function matchOTP() {
                 break;
             case eq("server.tebex.io"):
                 matchIssuer = "Tebex.io"
+                break;
+            case eqR(/\.capsulecrm\.com$/):
+                matchIssuer = "Capsule"
+                break;
+            case eq("app.frontapp.com"):
+                matchIssuer = "Front"
                 break;
             default:
                 matchTarget = matchTarget.split('.').reverse();

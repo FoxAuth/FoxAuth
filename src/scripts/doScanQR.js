@@ -131,6 +131,12 @@ function hackOtpInfo(otpInfo, from) {
         case isLike(/sync/i):
             otpInfo.issuer = "Sync";
             break;
+        case isLike(/chatgrape/i):
+            otpInfo.issuer = "chatgrape";
+            break;
+        case isLike(/buddy/i):
+            otpInfo.issuer = "Buddy";
+            break;
     }
     return otpInfo;
 }
