@@ -17,34 +17,39 @@ browser.runtime.onInstalled.addListener(function () {
 });*/
 
 /*
-    Create all the context menu items.
+    Handle all the context menu items.
 */
-browser.contextMenus.create({
-    id: "scanQR",
-    title: i18n.getMessage('context_qr'),
-    contexts: ["image", "page"],
-    icons: {
-        "16": "../icons/icon.svg",
-        "32": "../icons/icon.svg"
-    }
-});
 
-(async function () {
-    const obj = await browser.storage.local.get('settings');
-    const { settings } = obj;
-    if (settings && settings['disableContext']) {
-        return;
-    }
-    browser.contextMenus.create({
-        id: "autfillOTP",
-        title: i18n.getMessage('context_autofill'),
-        contexts: ["editable"],
-        icons: {
-            "16": "../icons/icon.svg",
-            "32": "../icons/icon.svg"
+async function handleMenu(changes, areaName) {
+    if (changes && areaName === "local") {
+        const obj = await browser.storage.local.get('settings');
+        const { settings } = obj;
+        if (settings && settings.disableContext) {
+            browser.contextMenus.remove("autfillOTP");
+            browser.contextMenus.remove("scanQR");
+        } else {
+            browser.contextMenus.create({
+                id: "autfillOTP",
+                title: i18n.getMessage('context_autofill'),
+                contexts: ["editable"],
+                icons: {
+                    "16": "../icons/icon.svg",
+                    "32": "../icons/icon.svg"
+                }
+            });
+        
+            browser.contextMenus.create({
+                id: "scanQR",
+                title: i18n.getMessage('context_qr'),
+                contexts: ["image", "page"],
+                icons: {
+                    "16": "../icons/icon.svg",
+                    "32": "../icons/icon.svg"
+                }
+            });
         }
-    });
-})();
+    }
+};
 
 /*
     The click event listener, where we perform the appropriate action given the
@@ -170,6 +175,8 @@ browser.commands.onCommand.addListener(function(command) {
 });
 
 browser.storage.onChanged.addListener(accountInfosChange);
+
+browser.storage.onChanged.addListener(handleMenu);
 
 browser.runtime.onStartup.addListener(setBadgeAsLength);
 
