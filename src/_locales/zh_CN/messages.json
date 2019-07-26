@@ -195,6 +195,10 @@
     "message": "压缩同步数据（极端老旧设备可见卡顿）",
     "description": "Option: whether enable compression when syncing"
   },
+  "general_option_color": {
+    "message": "设置扩展角标背景色：",
+    "description": "Option: picker your color of badge background"
+  },
   "tokens_warning_message_content": {
     "message": "删除账户信息不会禁用账户的二步验证。请确认您不会因此而被拒绝访问您的账户。",
     "description": "warning text before account deletion"

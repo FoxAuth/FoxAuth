@@ -669,3 +669,9 @@ hr:after {
 details[open] hr:after{
   transform: rotate(-180deg);
 }
+
+input[type=color] {
+  margin: .4rem;
+  height: 1.2rem;
+  vertical-align: middle;
+}

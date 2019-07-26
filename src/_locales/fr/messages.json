@@ -195,6 +195,10 @@
     "message": "Enable compression to data on sync (can be laggy on extremely old devices).",
     "description": "Option: whether enable compression when syncing"
   },
+  "general_option_color": {
+    "message": "Set badge color:",
+    "description": "Option: picker your color of badge background"
+  },
   "tokens_warning_message_content": {
     "message": "La suppression des informations du compte ne désactive pas le 2FA. Assurez-vous de ne pas être en verrouillage avant de continuer.",
     "description": "warning text before account deletion"

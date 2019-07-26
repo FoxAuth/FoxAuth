@@ -132,8 +132,6 @@ async function setBadgeAsLength() {
     browser.browserAction.setTitle({title: textString + i18n.getMessage('badge_text_dymanic')});
 }
 
-browser.browserAction.setBadgeBackgroundColor({color: "#0ff036"});
-
 async function accountInfosChange(changes, areaName) {
     if (changes.accountInfos && areaName === "local"){
         setBadgeAsLength();

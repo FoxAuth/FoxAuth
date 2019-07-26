@@ -3,6 +3,8 @@ import * as i18n from './i18n.js';
 
 i18n.render();
 
+const colorInput = document.getElementById("badgeColor")
+
 async function getSettings() {
   const obj = await browser.storage.local.get('settings');
   const { settings } = obj;
@@ -14,6 +16,15 @@ function saveSettings(obj) {
     settings: obj
   });
 }
+
+async function handleColor() {
+  let obj = await browser.storage.local.get('settings');
+  browser.browserAction.setBadgeBackgroundColor({color: colorInput.value});
+  colorInput.value = obj.settings.badgeColor = colorInput.value;
+  saveSettings(obj);
+}
+
+colorInput.addEventListener('change', handleColor);
 
 function toggleContextMenu(isAble) {
   if (isAble) {
@@ -53,6 +64,7 @@ function checkAndroidBrowser() {
     return;
   }
   const dom = document.querySelector('#context');
+  colorInput.disabled = 'disabled';
   dom.checked = 'checked';
   dom.disabled = 'disabled';
 }

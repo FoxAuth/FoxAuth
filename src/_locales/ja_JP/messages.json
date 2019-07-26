@@ -195,6 +195,10 @@
     "message": "Enable compression to data on sync (can be laggy on extremely old devices).",
     "description": "Option: whether enable compression when syncing"
   },
+  "general_option_color": {
+    "message": "Set badge color:",
+    "description": "Option: picker your color of badge background"
+  },
   "tokens_warning_message_content": {
     "message": "アカウントの削除は設定した二段階認証を影響しない、ロックアウトの可能性を必ず確認してください。",
     "description": "warning text before account deletion"

@@ -8,6 +8,7 @@ All changes per revisioning to this project will be documented in this file. All
 - encryption password strength meter (with algorithm from KeePass)
   - progress color will change as your password strength level defined by [KeePass](https://keepass.info/help/kb/pw_quality_est.html)
   - force to check if your password is popular (with a local list). List source [here](https://github.com/danielmiessler/SecLists/blob/master/Passwords/Common-Credentials/10-million-password-list-top-10000.txt). A warning will be displayed if your password matched (you password strength score will be then zero) or considered weak
+- add an option to change badge background color
 - Italian (it) locale added
 ### Changes 📝
 - tab buttons on option page now has [Photon styles](https://design.firefox.com/photon/components/tabs.html)
