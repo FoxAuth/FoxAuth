@@ -16,6 +16,7 @@ All changes per revisioning to this project will be documented in this file. All
 - sidebar will be now refreshed across account actions
 - go-to-top button in popup disappeared sometimes
 - multiple minor fixes
+- context menus can't be removed sometimes
 
 ## v 1.5.2 - May 23rd 2019
 ### New 💡
