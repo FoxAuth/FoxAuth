@@ -172,6 +172,15 @@ browser.commands.onCommand.addListener(function(command) {
     }
 });
 
+function initColor() {
+    browser.storage.local.get('settings').then(obj => {
+      if (obj.settings.color) {
+        let color = obj.settings.color;
+        browser.browserAction.setBadgeBackgroundColor({color: color});
+      }
+    })
+}
+
 browser.storage.onChanged.addListener(accountInfosChange);
 
 browser.storage.onChanged.addListener(handleMenu);
@@ -179,3 +188,7 @@ browser.storage.onChanged.addListener(handleMenu);
 browser.runtime.onStartup.addListener(setBadgeAsLength);
 
 browser.runtime.onInstalled.addListener(handleInstalled);
+
+browser.runtime.onStartup.addListener(initColor);
+
+browser.runtime.onInstalled.addListener(initColor);

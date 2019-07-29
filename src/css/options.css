@@ -671,7 +671,12 @@ details[open] hr:after{
 }
 
 input[type=color] {
-  margin: .4rem;
-  height: 1.2rem;
+  margin-left: 12px;
+  height: 1.4rem;
   vertical-align: middle;
+}
+
+#colorLine {
+  position: relative;
+  top: 4px;
 }

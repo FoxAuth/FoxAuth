@@ -17,14 +17,31 @@ function saveSettings(obj) {
   });
 }
 
-async function handleColor() {
-  let obj = await browser.storage.local.get('settings');
-  browser.browserAction.setBadgeBackgroundColor({color: colorInput.value});
-  colorInput.value = obj.settings.badgeColor = colorInput.value;
-  saveSettings(obj);
+function saveColor(color) {
+  let settings = {};
+  settings.color = color;
+  browser.storage.local.set({settings});
+  colorInput.value = color;
 }
 
-colorInput.addEventListener('change', handleColor);
+function handleChange() {
+  let color = colorInput.value;
+  saveColor(color);
+  browser.browserAction.setBadgeBackgroundColor({color: color});
+}
+
+window.addEventListener('DOMContentLoaded', (event) => {
+  browser.storage.local.get('settings').then(obj => {
+    if (obj.settings.color) {
+      let color = obj.settings.color;
+      colorInput.value = color;
+    }
+  })
+});
+
+colorInput.addEventListener('change', handleChange);
+
+colorInput.addEventListener('change', handleChange);
 
 function toggleContextMenu(isAble) {
   if (isAble) {
