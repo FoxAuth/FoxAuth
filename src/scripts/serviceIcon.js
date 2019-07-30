@@ -127,6 +127,7 @@ export default function getServiceIconNames(){
     'proxmox',
     'pypi',
     'pythonanywhere',
+    'razer',
     'realvnc',
     'reddit',
     'ripe ncc',
