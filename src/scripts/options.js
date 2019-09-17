@@ -47,16 +47,26 @@ colorInput.addEventListener('change', handleChange);
 function toggleContextMenu(isAble) {
   if (isAble) {
     browser.contextMenus.remove('autfillOTP');
+    browser.contextMenus.remove("scanQR");
   } else {
     browser.contextMenus.create({
       id: "autfillOTP",
-      title: "Autofill OTP code",
+      title: i18n.getMessage('context_autofill'),
       contexts: ["editable"],
       icons: {
         "16": "../icons/icon.svg",
         "32": "../icons/icon.svg"
       }
     });
+    browser.contextMenus.create({
+      id: "scanQR",
+      title: i18n.getMessage('context_qr'),
+      contexts: ["image", "page"],
+      icons: {
+          "16": "../icons/icon.svg",
+          "32": "../icons/icon.svg"
+      }
+  });
   }
 }
 
@@ -73,7 +83,7 @@ document.querySelectorAll('.settings-checkbox').forEach(el => el.addEventListene
     if (e.target.dataset.key === 'autoLock') {
       if (e.target.checked) {
         browser.alarms.create("autoLock-alarm", {
-          periodInMinutes: Number(settings.autoLockInterval)
+          periodInMinutes: Number(autoLockInterval.value)
         })
       } else {
         browser.alarms.clear("autoLock-alarm");

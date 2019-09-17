@@ -4,51 +4,34 @@ import doScanQR from '/scripts/doScanQR.js';
 import { getAccountInfos, saveAccountInfos } from '/scripts/accountInfo.js';
 import { showErrorMsg } from './utils.js';
 import * as i18n from '../i18n.js';
-import doForgetPassword from './sync.js';
+import { doForgetPassword } from '../sync.js';
 
-//option page
-/*function openURL(url) {
-    browser.tabs.create({
-        url: "../options/options.html"
-    })
-}
-
-browser.runtime.onInstalled.addListener(function () {
-    browser.runtime.openOptionsPage();
-});*/
-
-/*
-    Handle all the context menu items.
-*/
-
-async function handleMenu(changes, areaName) {
-    if (changes && areaName === "local") {
-        const obj = await browser.storage.local.get('settings');
-        const { settings } = obj;
-        if (settings && settings.disableContext) {
-            browser.contextMenus.remove("autfillOTP");
-            browser.contextMenus.remove("scanQR");
-        } else {
-            browser.contextMenus.create({
-                id: "autfillOTP",
-                title: i18n.getMessage('context_autofill'),
-                contexts: ["editable"],
-                icons: {
-                    "16": "../icons/icon.svg",
-                    "32": "../icons/icon.svg"
-                }
-            });
-        
-            browser.contextMenus.create({
-                id: "scanQR",
-                title: i18n.getMessage('context_qr'),
-                contexts: ["image", "page"],
-                icons: {
-                    "16": "../icons/icon.svg",
-                    "32": "../icons/icon.svg"
-                }
-            });
-        }
+async function handleMenu() {
+    const obj = await browser.storage.local.get('settings');
+    const { settings } = obj;
+    if (settings && settings.disableContext) {
+        browser.contextMenus.remove("autfillOTP");
+        browser.contextMenus.remove("scanQR");
+    } else {
+        browser.contextMenus.create({
+            id: "autfillOTP",
+            title: i18n.getMessage('context_autofill'),
+            contexts: ["editable"],
+            icons: {
+                "16": "../icons/icon.svg",
+                "32": "../icons/icon.svg"
+            }
+        });
+    
+        browser.contextMenus.create({
+            id: "scanQR",
+            title: i18n.getMessage('context_qr'),
+            contexts: ["image", "page"],
+            icons: {
+                "16": "../icons/icon.svg",
+                "32": "../icons/icon.svg"
+            }
+        });
     }
 };
 
@@ -57,7 +40,7 @@ async function handleMenu(changes, areaName) {
     ID of the menu item that was clicked.
 */
 
-var accountOverwrite = false;
+let accountOverwrite = false;
 
 function accountMessageTemplate(accountMessage) {
     browser.notifications.create({
@@ -97,7 +80,7 @@ browser.contextMenus.onClicked.addListener(async (info, ignored) => {
     }
 });
 
-var injectQr_1 = document.createElement('script')
+let injectQr_1 = document.createElement('script')
 injectQr_1.onload = function () {
     qrcode.callback = function (/*err,*/ result) {
         if (result === 'error decoding QR Code') {
@@ -127,7 +110,7 @@ async function setInfoNotFoundContainerToNone(container) {
 }
 
 async function setBadgeAsLength() {
-    var {accountInfos: arr} = await browser.storage.local.get("accountInfos"),
+    let {accountInfos: arr} = await browser.storage.local.get("accountInfos"),
         textString = arr.length.toString();
     browser.browserAction.setBadgeText({text: textString});
     browser.browserAction.setTitle({title: textString + i18n.getMessage('badge_text_dymanic')});
@@ -136,10 +119,10 @@ async function setBadgeAsLength() {
 async function accountInfosChange(changes, areaName) {
     if (changes.accountInfos && areaName === "local"){
         setBadgeAsLength();
-        var oldLength = changes.accountInfos.oldValue.length,
+        let oldLength = changes.accountInfos.oldValue.length,
             newLength = changes.accountInfos.newValue.length;
         }
-        var accountMessage = "";
+        let accountMessage = "";
         if (oldLength < newLength) {
             accountMessage = i18n.getMessage('background_account_added');
             accountMessageTemplate(accountMessage);
@@ -200,7 +183,7 @@ browser.alarms.onAlarm.addListener(handleAlarm);
 
 browser.storage.onChanged.addListener(accountInfosChange);
 
-browser.storage.onChanged.addListener(handleMenu);
+browser.runtime.onInstalled.addListener(handleMenu);
 
 browser.runtime.onStartup.addListener(setBadgeAsLength);
 
