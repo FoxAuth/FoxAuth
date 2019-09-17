@@ -70,6 +70,15 @@ document.querySelectorAll('.settings-checkbox').forEach(el => el.addEventListene
     if (e.target.dataset.key === 'disableContext') {
       toggleContextMenu(e.target.checked);
     }
+    if (e.target.dataset.key === 'autoLock') {
+      if (e.target.checked) {
+        browser.alarms.create("autoLock-alarm", {
+          periodInMinutes: Number(settings.autoLockInterval)
+        })
+      } else {
+        browser.alarms.clear("autoLock-alarm");
+      }
+    }
   }
 }));
 

@@ -3,7 +3,7 @@
   "name": "Auth Plus",
   "short_name": "Auth Plus",
   "homepage_url": "https://github.com/FoxAuth/FoxAuth/",
-  "version": "1.5.2",
+  "version": "1.6.1",
   "description": "__MSG_extensionDescription__",
   "applications": {
     "gecko": {
@@ -17,7 +17,7 @@
   },
   "browser_action": {
     "default_icon": "icons/icon.svg",
-    "default_title": "Auth Plus 1.5.2",
+    "default_title": "Auth Plus 1.6.1",
     "default_popup": "options/popup.html"
   },
   "options_ui": {
@@ -34,6 +34,7 @@
     "open_at_install":false
   },
   "permissions": [
+    "alarms",
     "tabs",
     "cookies",
     "storage",

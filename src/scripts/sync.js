@@ -219,7 +219,7 @@ const doResetAccountInfos = lockAsyncFunc(
     }
   }
 );
-const doForgetPassword = lockAsyncFunc(
+export const doForgetPassword = lockAsyncFunc(
   async () => {
     const passwordInfo = await getPasswordInfo();
     await savePasswordInfo({

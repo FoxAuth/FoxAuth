@@ -4,6 +4,7 @@ import doScanQR from '/scripts/doScanQR.js';
 import { getAccountInfos, saveAccountInfos } from '/scripts/accountInfo.js';
 import { showErrorMsg } from './utils.js';
 import * as i18n from '../i18n.js';
+import doForgetPassword from './sync.js';
 
 //option page
 /*function openURL(url) {
@@ -191,11 +192,11 @@ browser.storage.local.get('settings').then(obj => {
 
 function handleAlarm(alarmInfo) {
     if (alarmInfo.name === "autoLock-alarm") {
-        //todo
+        doForgetPassword();
     }
 }
 
-browser.alarms.onAlarm.addListener(handleAlarm)
+browser.alarms.onAlarm.addListener(handleAlarm);
 
 browser.storage.onChanged.addListener(accountInfosChange);
 
