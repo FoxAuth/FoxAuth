@@ -676,7 +676,11 @@ input[type=color] {
   vertical-align: middle;
 }
 
+details[open] {
+  margin-bottom: 8px;
+}
+
 #colorLine {
   position: relative;
-  top: 4px;
+  top: -4px;
 }
