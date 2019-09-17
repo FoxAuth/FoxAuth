@@ -3,7 +3,8 @@ import * as i18n from './i18n.js';
 
 i18n.render();
 
-const colorInput = document.getElementById("badgeColor")
+const colorInput = document.getElementById("badgeColor");
+const autoLockInterval = document.getElementById("autoLockInterval");
 
 async function getSettings() {
   const obj = await browser.storage.local.get('settings');
@@ -72,7 +73,20 @@ document.querySelectorAll('.settings-checkbox').forEach(el => el.addEventListene
   }
 }));
 
+(async function setIntervalInput() {
+  let settings = await getSettings();
+  if (settings.autoLockInterval) {
+    autoLockInterval.value = settings.autoLockInterval
+  }
+})();
 
+function saveAutoLock() {
+  let settings = {};
+  settings.autoLockInterval = autoLockInterval.value;
+  browser.storage.local.set({settings});
+}
+
+autoLockInterval.addEventListener('change', saveAutoLock);
 
 function checkAndroidBrowser() {
   const u = navigator.userAgent;

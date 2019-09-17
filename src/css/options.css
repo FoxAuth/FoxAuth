@@ -684,3 +684,9 @@ details[open] {
   position: relative;
   top: -4px;
 }
+
+#autoLockInterval {
+  height: 1rem;
+  width: 80px;
+  text-align: center;
+}

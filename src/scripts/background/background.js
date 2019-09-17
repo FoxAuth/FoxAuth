@@ -181,6 +181,22 @@ function initColor() {
     })
 }
 
+browser.storage.local.get('settings').then(obj => {
+    if (obj.settings.autoLock && obj.settings.autoLockInterval) {
+        browser.alarms.create("autoLock-alarm", {
+            periodInMinutes: Number(obj.settings.autoLockInterval)
+        });
+    }
+})
+
+function handleAlarm(alarmInfo) {
+    if (alarmInfo.name === "autoLock-alarm") {
+        //todo
+    }
+}
+
+browser.alarms.onAlarm.addListener(handleAlarm)
+
 browser.storage.onChanged.addListener(accountInfosChange);
 
 browser.storage.onChanged.addListener(handleMenu);
