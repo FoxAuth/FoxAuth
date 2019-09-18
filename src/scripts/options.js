@@ -1,6 +1,6 @@
 import './menu.js';
 import * as i18n from './i18n.js';
-import {menuAction} from './background/background.js'
+import { menuAction, alarmAction } from './background/background.js'
 
 i18n.render();
 
@@ -64,13 +64,7 @@ document.querySelectorAll('.settings-checkbox').forEach(el => el.addEventListene
       toggleContextMenu(e.target.checked);
     }
     if (e.target.dataset.key === 'autoLock') {
-      if (e.target.checked) {
-        browser.alarms.create("autoLock-alarm", {
-          periodInMinutes: Number(autoLockInterval.value)
-        })
-      } else {
-        browser.alarms.clear("autoLock-alarm");
-      }
+      alarmAction(autoLockInterval.value);
     }
   }
 }));

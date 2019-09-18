@@ -4,7 +4,6 @@ import doScanQR from '/scripts/doScanQR.js';
 import { getAccountInfos, saveAccountInfos } from '/scripts/accountInfo.js';
 import { showErrorMsg } from './utils.js';
 import * as i18n from '../i18n.js';
-// import { doForgetPassword } from '../sync.js';
 
 export const menuAction = {
     create: function() {
@@ -32,7 +31,19 @@ export const menuAction = {
         browser.contextMenus.remove("autfillOTP");
         browser.contextMenus.remove("scanQR");
     }
-}
+};
+
+export async function alarmAction(interval) {
+    let settingObj = await browser.storage.local.get('settings');
+    if (settingObj.settings.autoLock && settingObj.settings.autoLockInterval) {
+        browser.alarms.create("autoLock-alarm", {
+            delayInMinutes: 1,
+            periodInMinutes: Number(interval) || Number(settingObj.settings.autoLockInterval)
+        });
+    } else {
+        browser.alarms.clear("autoLock-alarm");
+    }
+};
 
 async function handleMenu() {
     const obj = await browser.storage.local.get('settings');
@@ -125,9 +136,10 @@ async function setBadgeAsLength() {
     browser.browserAction.setTitle({title: textString + i18n.getMessage('badge_text_dymanic')});
 }
 
-async function accountInfosChange(changes, areaName) {
+async function handleChange(changes, areaName) {
     if (changes.accountInfos && areaName === "local"){
         setBadgeAsLength();
+        alarmAction();
         let oldLength = changes.accountInfos.oldValue.length,
             newLength = changes.accountInfos.newValue.length,
             accountMessage = "";
@@ -158,6 +170,33 @@ async function handleStartup() {
     initColor();
 }
 
+function initColor() {
+    browser.storage.local.get('settings').then(obj => {
+      if (obj.settings.color) {
+        let color = obj.settings.color;
+        browser.browserAction.setBadgeBackgroundColor({color: color});
+      }
+    })
+}
+
+async function handleAlarm(alarmInfo) {
+    if (alarmInfo.name === "autoLock-alarm") {
+        let passwordInfoObj = await browser.storage.local.get({passwordInfo: {}}),
+            newPasswordInfo  = {
+                encryptIV: passwordInfoObj.passwordInfo.encryptIV,
+                encryptPassword: ""
+            },
+        passwordInfo = newPasswordInfo;
+        browser.storage.local.set({passwordInfo});
+        browser.notifications.create({
+            "type": "basic",
+            "iconUrl": "../icons/icon.svg",
+            "title": "Auth Plus",
+            "message": "Auto-lock feature: Locked!"
+        });
+    }
+}
+
 //add listeners here
 browser.contextualIdentities.onRemoved.addListener((changeInfo) => {
     const { contextualIdentity } = changeInfo;
@@ -172,32 +211,9 @@ browser.commands.onCommand.addListener(function(command) {
     }
 });
 
-function initColor() {
-    browser.storage.local.get('settings').then(obj => {
-      if (obj.settings.color) {
-        let color = obj.settings.color;
-        browser.browserAction.setBadgeBackgroundColor({color: color});
-      }
-    })
-}
-
-browser.storage.local.get('settings').then(obj => {
-    if (obj.settings.autoLock && obj.settings.autoLockInterval) {
-        browser.alarms.create("autoLock-alarm", {
-            periodInMinutes: Number(obj.settings.autoLockInterval)
-        });
-    }
-})
-
-function handleAlarm(alarmInfo) {
-    if (alarmInfo.name === "autoLock-alarm") {
-        // doForgetPassword();
-    }
-}
-
 browser.alarms.onAlarm.addListener(handleAlarm);
 
-browser.storage.onChanged.addListener(accountInfosChange);
+browser.storage.onChanged.addListener(handleChange);
 
 browser.runtime.onInstalled.addListener(handleInstalled);
 
