@@ -1,5 +1,6 @@
 import './menu.js';
 import * as i18n from './i18n.js';
+import {menuAction} from './background/background.js'
 
 i18n.render();
 
@@ -46,27 +47,9 @@ colorInput.addEventListener('change', handleChange);
 
 function toggleContextMenu(isAble) {
   if (isAble) {
-    browser.contextMenus.remove('autfillOTP');
-    browser.contextMenus.remove("scanQR");
+    menuAction.remove();
   } else {
-    browser.contextMenus.create({
-      id: "autfillOTP",
-      title: i18n.getMessage('context_autofill'),
-      contexts: ["editable"],
-      icons: {
-        "16": "../icons/icon.svg",
-        "32": "../icons/icon.svg"
-      }
-    });
-    browser.contextMenus.create({
-      id: "scanQR",
-      title: i18n.getMessage('context_qr'),
-      contexts: ["image", "page"],
-      icons: {
-          "16": "../icons/icon.svg",
-          "32": "../icons/icon.svg"
-      }
-  });
+    menuAction.create();
   }
 }
 

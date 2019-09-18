@@ -4,34 +4,43 @@ import doScanQR from '/scripts/doScanQR.js';
 import { getAccountInfos, saveAccountInfos } from '/scripts/accountInfo.js';
 import { showErrorMsg } from './utils.js';
 import * as i18n from '../i18n.js';
-import { doForgetPassword } from '../sync.js';
+// import { doForgetPassword } from '../sync.js';
+
+export const menuAction = {
+    create: function() {
+        browser.contextMenus.create({
+        id: "autfillOTP",
+        title: i18n.getMessage('context_autofill'),
+        contexts: ["editable"],
+        icons: {
+            "16": "../icons/icon.svg",
+            "32": "../icons/icon.svg"
+        }
+        });
+
+        browser.contextMenus.create({
+        id: "scanQR",
+        title: i18n.getMessage('context_qr'),
+        contexts: ["image", "page"],
+        icons: {
+            "16": "../icons/icon.svg",
+            "32": "../icons/icon.svg"
+        }
+        });
+    },
+    remove: function() {
+        browser.contextMenus.remove("autfillOTP");
+        browser.contextMenus.remove("scanQR");
+    }
+}
 
 async function handleMenu() {
     const obj = await browser.storage.local.get('settings');
     const { settings } = obj;
-    if (settings && settings.disableContext) {
-        browser.contextMenus.remove("autfillOTP");
-        browser.contextMenus.remove("scanQR");
+    if (!settings || !settings.disableContext) {
+        menuAction.create();
     } else {
-        browser.contextMenus.create({
-            id: "autfillOTP",
-            title: i18n.getMessage('context_autofill'),
-            contexts: ["editable"],
-            icons: {
-                "16": "../icons/icon.svg",
-                "32": "../icons/icon.svg"
-            }
-        });
-    
-        browser.contextMenus.create({
-            id: "scanQR",
-            title: i18n.getMessage('context_qr'),
-            contexts: ["image", "page"],
-            icons: {
-                "16": "../icons/icon.svg",
-                "32": "../icons/icon.svg"
-            }
-        });
+        menuAction.remove();
     }
 };
 
@@ -120,9 +129,8 @@ async function accountInfosChange(changes, areaName) {
     if (changes.accountInfos && areaName === "local"){
         setBadgeAsLength();
         let oldLength = changes.accountInfos.oldValue.length,
-            newLength = changes.accountInfos.newValue.length;
-        }
-        let accountMessage = "";
+            newLength = changes.accountInfos.newValue.length,
+            accountMessage = "";
         if (oldLength < newLength) {
             accountMessage = i18n.getMessage('background_account_added');
             accountMessageTemplate(accountMessage);
@@ -134,12 +142,20 @@ async function accountInfosChange(changes, areaName) {
             accountMessageTemplate(accountMessage);
             accountOverwrite = false;
         }
+    }
 }
 
 async function handleInstalled(details) {
     if (details.reason) {
         setBadgeAsLength();
+        handleMenu();
+        initColor();
     }
+}
+
+async function handleStartup() {
+    setBadgeAsLength();
+    initColor();
 }
 
 //add listeners here
@@ -175,7 +191,7 @@ browser.storage.local.get('settings').then(obj => {
 
 function handleAlarm(alarmInfo) {
     if (alarmInfo.name === "autoLock-alarm") {
-        doForgetPassword();
+        // doForgetPassword();
     }
 }
 
@@ -183,12 +199,6 @@ browser.alarms.onAlarm.addListener(handleAlarm);
 
 browser.storage.onChanged.addListener(accountInfosChange);
 
-browser.runtime.onInstalled.addListener(handleMenu);
-
-browser.runtime.onStartup.addListener(setBadgeAsLength);
-
 browser.runtime.onInstalled.addListener(handleInstalled);
 
-browser.runtime.onStartup.addListener(initColor);
-
-browser.runtime.onInstalled.addListener(initColor);
+browser.runtime.onStartup.addListener(handleStartup);
