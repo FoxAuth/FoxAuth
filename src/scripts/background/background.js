@@ -187,6 +187,7 @@ async function handleAlarm(alarmInfo) {
                 encryptPassword: ""
             },
         passwordInfo = newPasswordInfo;
+        sessionStorage.removeItem('passwordInfo');
         browser.storage.local.set({passwordInfo});
         browser.notifications.create({
             "type": "basic",
