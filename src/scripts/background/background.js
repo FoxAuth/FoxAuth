@@ -37,8 +37,7 @@ export async function alarmAction(interval) {
     let settingObj = await browser.storage.local.get('settings');
     if (settingObj.settings.autoLock && settingObj.settings.autoLockInterval) {
         browser.alarms.create("autoLock-alarm", {
-            delayInMinutes: 1,
-            periodInMinutes: Number(interval) || Number(settingObj.settings.autoLockInterval)
+            delayInMinutes: Number(interval) || Number(settingObj.settings.autoLockInterval)
         });
     } else {
         browser.alarms.clear("autoLock-alarm");
