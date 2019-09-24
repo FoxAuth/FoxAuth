@@ -690,3 +690,50 @@ details[open] {
   width: 80px;
   text-align: center;
 }
+
+#tooltipTable {
+  position: relative;
+}
+
+#tooltipTable table {
+  visibility: hidden;
+  float: right;
+  position: absolute;
+  top: -200%;
+  left: 200%;
+}
+
+#tooltipTable:hover table {
+  visibility: visible;
+  height: 0;
+}
+
+table {
+  width: 180px;
+  background-color: #f9f9fa;
+  border: #d7d7db 1px solid;
+  border-radius: 2px;
+  border-spacing: 0;
+}
+
+table td:nth-child(2) {
+  width: 100px;
+  text-align: left;
+  padding-left: 4px;
+}
+
+table td:nth-child(1) {
+  background-color: #ededf0;
+  width: 80px;
+  border-right: 2px solid #b1b1b3;
+  text-align: right;
+  padding-right: 4px;
+}
+
+table td {
+  border-bottom: 2px dotted #d7d7db;
+}
+
+table tr:nth-last-child(1) td {
+  border-bottom: none;
+}

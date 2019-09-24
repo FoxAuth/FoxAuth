@@ -94,7 +94,32 @@
                 class="caption"
                 data-i18n="sync_password_tip"></span><br>
             <div id="progress">
-            <div id="passwordStrength"><span id="scoreTxt"><span id="scoreNum">0</span> - <span id="scoreLv" data-i18n="sync_password_lv_NaN"></span></span><div id="strengthProgress"></div></div>&nbsp;&nbsp;<a target="_blank" href="https://keepass.info/help/kb/pw_quality_est.html"><img id="keepassInfo" src="../icons/options/Info.svg" width="16px" height="16px"></a></div><br>
+            <div id="passwordStrength"><span id="scoreTxt"><span id="scoreNum">0</span> - <span id="scoreLv" data-i18n="sync_password_lv_NaN"></span></span><div id="strengthProgress"></div></div>&nbsp;&nbsp;
+            <span id="tooltipTable">
+                <table>
+                    <tr>
+                        <td>0-64</td>
+                        <td>Very weak</td>
+                    </tr>
+                    <tr>
+                        <td>64-80</td>
+                        <td>Weak</td>
+                    </tr>
+                    <tr>
+                        <td>80-112</td>
+                        <td>Moderate</td>
+                    </tr>
+                    <tr>
+                        <td>112-128</td>
+                        <td>Strong</td>
+                    </tr>
+                    <tr>
+                        <td>≥ 128</td>
+                        <td>Very strong</td>
+                    </tr>
+                </table>
+                <a href="https://keepass.info/help/kb/pw_quality_est.html#trl"><img id="keepassInfo" src="../icons/options/Info.svg" width="16px" height="16px"></a>
+            </span></div><br>
             <input type="password" class="encryptPass" id="reconfirmPass" name="reconfirmPass" data-i18n-placeholder="sync_reconfirm_password">
             <a href="#"><img class="eye" src="../icons/options/show-password.svg"></a><br>
             <span
