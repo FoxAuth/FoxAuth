@@ -209,6 +209,9 @@ function matchOTP() {
             case eq("app.frontapp.com"):
                 matchIssuer = "Front"
                 break;
+            case eq("signin.rockstargames.com"):
+                matchIssuer = "Rockstar Games"
+                break;
             default:
                 matchTarget = matchTarget.split('.').reverse();
                 matchIssuer = matchTarget[1] || matchTarget[0];
