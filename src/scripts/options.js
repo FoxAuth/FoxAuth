@@ -1,9 +1,11 @@
 import './menu.js';
 import * as i18n from './i18n.js';
+import { menuAction, alarmAction } from './background/background.js'
 
 i18n.render();
 
-const colorInput = document.getElementById("badgeColor")
+const colorInput = document.getElementById("badgeColor");
+const autoLockInterval = document.getElementById("autoLockInterval");
 
 async function getSettings() {
   const obj = await browser.storage.local.get('settings');
@@ -45,17 +47,9 @@ colorInput.addEventListener('change', handleChange);
 
 function toggleContextMenu(isAble) {
   if (isAble) {
-    browser.contextMenus.remove('autfillOTP');
+    menuAction.remove();
   } else {
-    browser.contextMenus.create({
-      id: "autfillOTP",
-      title: "Autofill OTP code",
-      contexts: ["editable"],
-      icons: {
-        "16": "../icons/icon.svg",
-        "32": "../icons/icon.svg"
-      }
-    });
+    menuAction.create();
   }
 }
 
@@ -69,10 +63,26 @@ document.querySelectorAll('.settings-checkbox').forEach(el => el.addEventListene
     if (e.target.dataset.key === 'disableContext') {
       toggleContextMenu(e.target.checked);
     }
+    if (e.target.dataset.key === 'autoLock') {
+      alarmAction(autoLockInterval.value);
+    }
   }
 }));
 
+(async function setIntervalInput() {
+  let settings = await getSettings();
+  if (settings.autoLockInterval) {
+    autoLockInterval.value = settings.autoLockInterval
+  }
+})();
 
+function saveAutoLock() {
+  let settings = {};
+  settings.autoLockInterval = autoLockInterval.value;
+  browser.storage.local.set({settings});
+}
+
+autoLockInterval.addEventListener('change', saveAutoLock);
 
 function checkAndroidBrowser() {
   const u = navigator.userAgent;

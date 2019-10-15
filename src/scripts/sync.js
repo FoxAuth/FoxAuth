@@ -13,6 +13,7 @@ import {
 import { debounce } from './utils.js';
 import * as i18n from './i18n.js';
 import QualityEstimation from './QualityEstimation.js';
+import { alarmAction } from './background/background.js';
 
 i18n.render();
 
@@ -113,6 +114,7 @@ function resetProgress() {
   scoreNum.innerText = 0;
   scoreLv.innerText = i18n.getMessage("sync_password_lv_NaN");
   strengthProgress.style.width = 0;
+  alarmAction();
 }
 
 confirmBtn.addEventListener('click', resetProgress);
@@ -219,7 +221,7 @@ const doResetAccountInfos = lockAsyncFunc(
     }
   }
 );
-const doForgetPassword = lockAsyncFunc(
+export const doForgetPassword = lockAsyncFunc(
   async () => {
     const passwordInfo = await getPasswordInfo();
     await savePasswordInfo({

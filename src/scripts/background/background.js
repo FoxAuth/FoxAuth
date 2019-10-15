@@ -5,49 +5,52 @@ import { getAccountInfos, saveAccountInfos } from '/scripts/accountInfo.js';
 import { showErrorMsg } from './utils.js';
 import * as i18n from '../i18n.js';
 
-//option page
-/*function openURL(url) {
-    browser.tabs.create({
-        url: "../options/options.html"
-    })
-}
-
-browser.runtime.onInstalled.addListener(function () {
-    browser.runtime.openOptionsPage();
-});*/
-
-/*
-    Handle all the context menu items.
-*/
-
-async function handleMenu(changes, areaName) {
-    if (changes && areaName === "local") {
-        const obj = await browser.storage.local.get('settings');
-        const { settings } = obj;
-        if (settings && settings.disableContext) {
-            browser.contextMenus.remove("autfillOTP");
-            browser.contextMenus.remove("scanQR");
-        } else {
-            browser.contextMenus.create({
-                id: "autfillOTP",
-                title: i18n.getMessage('context_autofill'),
-                contexts: ["editable"],
-                icons: {
-                    "16": "../icons/icon.svg",
-                    "32": "../icons/icon.svg"
-                }
-            });
-        
-            browser.contextMenus.create({
-                id: "scanQR",
-                title: i18n.getMessage('context_qr'),
-                contexts: ["image", "page"],
-                icons: {
-                    "16": "../icons/icon.svg",
-                    "32": "../icons/icon.svg"
-                }
-            });
+export const menuAction = {
+    create: function() {
+        browser.contextMenus.create({
+        id: "autfillOTP",
+        title: i18n.getMessage('context_autofill'),
+        contexts: ["editable"],
+        icons: {
+            "16": "../icons/icon.svg",
+            "32": "../icons/icon.svg"
         }
+        });
+
+        browser.contextMenus.create({
+        id: "scanQR",
+        title: i18n.getMessage('context_qr'),
+        contexts: ["image", "page"],
+        icons: {
+            "16": "../icons/icon.svg",
+            "32": "../icons/icon.svg"
+        }
+        });
+    },
+    remove: function() {
+        browser.contextMenus.remove("autfillOTP");
+        browser.contextMenus.remove("scanQR");
+    }
+};
+
+export async function alarmAction(interval) {
+    let settingObj = await browser.storage.local.get('settings');
+    if (settingObj.settings.autoLock && settingObj.settings.autoLockInterval) {
+        browser.alarms.create("autoLock-alarm", {
+            delayInMinutes: Number(interval) || Number(settingObj.settings.autoLockInterval)
+        });
+    } else {
+        browser.alarms.clear("autoLock-alarm");
+    }
+};
+
+async function handleMenu() {
+    const obj = await browser.storage.local.get('settings');
+    const { settings } = obj;
+    if (!settings || !settings.disableContext) {
+        menuAction.create();
+    } else {
+        menuAction.remove();
     }
 };
 
@@ -56,7 +59,7 @@ async function handleMenu(changes, areaName) {
     ID of the menu item that was clicked.
 */
 
-var accountOverwrite = false;
+let accountOverwrite = false;
 
 function accountMessageTemplate(accountMessage) {
     browser.notifications.create({
@@ -96,7 +99,7 @@ browser.contextMenus.onClicked.addListener(async (info, ignored) => {
     }
 });
 
-var injectQr_1 = document.createElement('script')
+let injectQr_1 = document.createElement('script')
 injectQr_1.onload = function () {
     qrcode.callback = function (/*err,*/ result) {
         if (result === 'error decoding QR Code') {
@@ -126,19 +129,19 @@ async function setInfoNotFoundContainerToNone(container) {
 }
 
 async function setBadgeAsLength() {
-    var {accountInfos: arr} = await browser.storage.local.get("accountInfos"),
+    let {accountInfos: arr} = await browser.storage.local.get("accountInfos"),
         textString = arr.length.toString();
     browser.browserAction.setBadgeText({text: textString});
     browser.browserAction.setTitle({title: textString + i18n.getMessage('badge_text_dymanic')});
 }
 
-async function accountInfosChange(changes, areaName) {
+async function handleChange(changes, areaName) {
     if (changes.accountInfos && areaName === "local"){
         setBadgeAsLength();
-        var oldLength = changes.accountInfos.oldValue.length,
-            newLength = changes.accountInfos.newValue.length;
-        }
-        var accountMessage = "";
+        alarmAction();
+        let oldLength = changes.accountInfos.oldValue.length,
+            newLength = changes.accountInfos.newValue.length,
+            accountMessage = "";
         if (oldLength < newLength) {
             accountMessage = i18n.getMessage('background_account_added');
             accountMessageTemplate(accountMessage);
@@ -150,11 +153,47 @@ async function accountInfosChange(changes, areaName) {
             accountMessageTemplate(accountMessage);
             accountOverwrite = false;
         }
+    }
 }
 
 async function handleInstalled(details) {
     if (details.reason) {
         setBadgeAsLength();
+        handleMenu();
+        initColor();
+    }
+}
+
+async function handleStartup() {
+    setBadgeAsLength();
+    initColor();
+}
+
+function initColor() {
+    browser.storage.local.get('settings').then(obj => {
+      if (obj.settings.color) {
+        let color = obj.settings.color;
+        browser.browserAction.setBadgeBackgroundColor({color: color});
+      }
+    })
+}
+
+async function handleAlarm(alarmInfo) {
+    if (alarmInfo.name === "autoLock-alarm") {
+        let passwordInfoObj = await browser.storage.local.get({passwordInfo: {}}),
+            newPasswordInfo  = {
+                encryptIV: passwordInfoObj.passwordInfo.encryptIV,
+                encryptPassword: ""
+            },
+        passwordInfo = newPasswordInfo;
+        sessionStorage.removeItem('passwordInfo');
+        browser.storage.local.set({passwordInfo});
+        browser.notifications.create({
+            "type": "basic",
+            "iconUrl": "../icons/icon.svg",
+            "title": "Auth Plus",
+            "message": "Auto-lock feature: Locked!"
+        });
     }
 }
 
@@ -172,23 +211,10 @@ browser.commands.onCommand.addListener(function(command) {
     }
 });
 
-function initColor() {
-    browser.storage.local.get('settings').then(obj => {
-      if (obj.settings.color) {
-        let color = obj.settings.color;
-        browser.browserAction.setBadgeBackgroundColor({color: color});
-      }
-    })
-}
+browser.alarms.onAlarm.addListener(handleAlarm);
 
-browser.storage.onChanged.addListener(accountInfosChange);
-
-browser.storage.onChanged.addListener(handleMenu);
-
-browser.runtime.onStartup.addListener(setBadgeAsLength);
+browser.storage.onChanged.addListener(handleChange);
 
 browser.runtime.onInstalled.addListener(handleInstalled);
 
-browser.runtime.onStartup.addListener(initColor);
-
-browser.runtime.onInstalled.addListener(initColor);
+browser.runtime.onStartup.addListener(handleStartup);

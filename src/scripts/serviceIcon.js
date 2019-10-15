@@ -133,6 +133,7 @@ export default function getServiceIconNames(){
     'ripe ncc',
     'robinhood',
     'roboform',
+    'rockstar games',
     'seafile',
     'sentry',
     'slack',
