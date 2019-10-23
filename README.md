@@ -73,11 +73,11 @@ Here is how this project gets revisioning:
 
 ## Security
 
-We use encryption code from [Firefox Send](github.com/mozilla/send) in WebCrypto API. Welcome as we are to any security review, it shall be more efficiently to perform it at that side.
+We use encryption code from [Firefox Send](https://github.com/mozilla/send) in WebCrypto API. Welcome as we are to any security review, it shall be more efficiently to perform it at that side.
 
 ## Third-party Branding
 
-<a href="https://www.appinn.com/foxauth/"><img src="https://img3.appinn.com/images/appinn-small.png" alt="appinn" width="96px"></a> <a href="https://www.landiannews.com/archives/52496.html"><img src="https://static.lancdn.com/landian/public/images/logo_388.png" alt="landiannews" width="96px"></a>
+<a href="https://www.appinn.com/foxauth/"><img src="https://img3.appinn.net/static/wp-content/uploads/appinn190.png" alt="appinn" width="96px"></a> <a href="https://www.landiannews.com/archives/52496.html"><img src="https://static.lancdn.com/landian/public/images/logo_388.png" alt="landiannews" width="96px"></a>
 
 ## License
 
